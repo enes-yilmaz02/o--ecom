@@ -1,0 +1,141 @@
+{
+  "loginForm": {
+    "usernameTooltip": "Enter your username",
+    "usernameLabel": "Username",
+    "usernameSmall": "* Username field cannot be left blank",
+    "passwordTooltip": "Enter your password",
+    "passwordLabel": "Password",
+    "passwordSmall": "* Password field cannot be left blank",
+    "buttonLabel": "Login"
+  },
+
+  "registerForm": {
+    "nameTooltip": "Enter your name",
+    "nameLabel": "Name",
+    "nameSmall": "* Name field cannot be left blank",
+    "usernameTooltip": "Enter your username",
+    "usernameLabel": "Username",
+    "usernameSmall": "* Username field cannot be left blank",
+    "emailTooltip": "Enter your email",
+    "emailLabel": "Email",
+    "emailSmall": "* Email field cannot be left blank",
+    "passwordTooltip": "Enter your password",
+    "passwordLabel": "Password",
+    "passwordSmall": "* Password field cannot be left blank",
+    "confirmTooltip": "Enter your Password (Repeat)",
+    "confirmLabel": "Password (Repeat) ",
+    "confirmSmall": "* Password field cannot be left blank",
+    "confirmSmallSecond": "* Passwords you entered do not match",
+    "buttonLabel": "Sign up"
+  },
+  "resetForm": {
+    "emailTooltip": "Enter your email",
+    "emailLabel": "Email",
+    "emailSmall": "* Email field cannot be left blank",
+    "buttonLabelNew": "Reset Password",
+    "buttonLabelBack": "Back"
+  },
+  "startForm": {
+    "header": "Orion Innovation",
+    "loginText": "Login",
+    "forgetText": "Did you forget your password?",
+    "registerText": "Sign up",
+    "newPassText": "Reset Password",
+    "headerSocial": "log in with social account",
+    "descSocialOne": "You can connect your Google, Apple or Facebook account to log in to",
+    "descSocialTwo": "Orion Innovation without a password.",
+    "piGoogle": "Sign in with Google",
+    "piApple": "Sign in with Apple",
+    "piFacebook": "Sign in with Facebook"
+  },
+  "userContact": {
+    "header": "Communication Preferences",
+    "headerP": "Within the scope of the Consent Text, you can specify the methods you prefer to be informed about important campaigns.",
+    "sms": "SMS",
+    "smsP": "Messages that will be sent to your mobile phone by Orion Innovation via SMS",
+    "eposta": "E-posta",
+    "epostaP": "Messages will be sent to your e-mail address registered in your Orion Innovation account.",
+    "phoneCall": "Phone Call",
+    "phoneCallP": "Calls coming to your mobile phone from Orion Innovation via the search method",
+    "textP": " Within the scope of your orders from Orion Innovation platforms; You can specify your preferred methods for conducting satisfaction surveys within the scope of the Information Text.",
+    "whatsapp": "Whatsapp",
+    "whatsappP": "Messages will be sent via Whatsapp application to your mobile phone number registered in your Orion Innovation account."
+  },
+  "navigationForm": {
+    "account": "Account",
+    "orders": "Orders",
+    "favorites": "Favorites",
+    "about": "About",
+    "help&support": "Help & Support",
+    "manager": "Manager",
+    "logout": "Log out"
+  },
+  "accountForm": {
+    "accountHeader": "User Information",
+    "userInfoPanel": "Membership Information",
+    "changePassPanel": "Password Change",
+    "contactPanel": "Communication Preferences"
+  },
+  "userinfoForm": {
+    "header": "Information Profile",
+    "headerP": "You can edit the information you need here so that we can keep your experience at Orion Innovation at the best level.",
+    "nameLabel": "Name",
+    "surnameLabel": "Surname",
+    "date": "Date of birth",
+    "buttonLabel": "Update",
+    "contactHeader": "Contact information",
+    "contactHeaderP": "We will ask you to verify your new email address before we can change this information.",
+    "emailLabel": "email",
+    "emailButton": "Update"
+  },
+  "userpassForm": {
+    "infoP": "Your password must contain at least one letter, number or special character. Additionally, your password must consist of at least 8 characters.",
+    "currentPass": "Current Password",
+    "newPass": "New Password",
+    "warnP": " For your security, choose a password that does not include your name, surname and date of birth.",
+    "buttonLabel": "Update"
+  },
+  "helpsupportForm": {
+    "header": "Help & Support",
+    "accordion1": "When will my refund be made?",
+    "accordion2": "Can I change the shipping address or recipient name of my order?",
+    "accordion3": "When will my order arrive?",
+    "accordion4": "How can I cancel my order?",
+    "accordion5": "How can I submit my requests/questions regarding my product or order?",
+    "buttonLabel": "Home page"
+  },
+  "favoritesMainForm":{
+    "header":"Favorites",
+    "favPanel":"Favorites",
+    "colPanel":"Collections"
+  },
+  "favoritesForm":{
+    "title":"You Don't Have Favorites",
+    "desc":"You can immediately add the products to your favorites and share them with your loved ones!",
+    "buttonLabel":"Add product"
+  },
+  "collectionForm":{
+    "title":"You Don't Have a Collection",
+    "desc":" You can follow the collections and share them with your loved ones!",
+    "buttonLabel":"Create collection"
+  },
+  "ordersForm":{
+    "title":"Orders",
+    "desc":"You don't have any orders, but now is a great time to start shopping...",
+    "desc2":"Millions of products are waiting for you at Orion Innovation.",
+    "buttonLabel":"Start shopping"
+  },
+  "managerSidebar":{
+    "profile":"Profile Management",
+    "users":"User Management",
+    "products":"Product management",
+    "orders" : "Order Management",
+    "reports":"Report and Statistics",
+    "settingsSite":"Site Settings",
+    "daysandsaved":"Logs and Records",
+    "content":"Content Management",
+    "acessibility":"Access Control",
+    "security":"Security Management"
+  }
+}
+

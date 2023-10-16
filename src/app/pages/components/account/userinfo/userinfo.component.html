@@ -1,0 +1,61 @@
+<div class="flex flex-column align-items-center justify-content-center ">
+  <div class="align-items-center w-full justify-content-center border-round m-2">
+    <h2>{{'userinfoForm.header' | transloco}}</h2>
+    <p class="flex flex-wrap">
+      {{'userinfoForm.headerP' | transloco}}
+    </p>
+  </div>
+  <div class="flex align-items-center w-full justify-content-center border-round m-2">
+    <form [formGroup]="accountForm">
+      <div class="flex flex-row flex-wrap justify-content-around">
+        <span class="p-float-label m-4">
+          <input pInputText id="name" formControlName="name" />
+          <label htmlFor="name">{{'userinfoForm.nameLabel' | transloco}}</label>
+        </span>
+        <span class="p-float-label m-4">
+          <input pInputText id="surname" formControlName="surname" />
+          <label htmlFor="surname">{{'userinfoForm.surnameLabel' | transloco}}</label>
+        </span>
+      </div>
+     <div class="flex flex-column align-items-center ">
+      <div class="flex align-items-center ">
+        <span class="p-float-label m-4 ">
+          <p-calendar
+            formControlName="calendar"
+            class="w-24rem"
+            [showIcon]="true"
+            id="calendar"
+          ></p-calendar>
+          <label htmlFor="calendar">{{'userinfoForm.date' | transloco}}</label>
+        </span>
+      </div>
+      <div class="flex align-items-center ">
+        <span class="button-style mt-0 ">
+          <button class="button w-11rem">{{'userinfoForm.buttonLabel' | transloco}}</button>
+        </span>
+      </div>
+     </div>
+
+
+  <div class="flex flex-column align-items-center justify-content-center bg-gray-200 p-4 border-round m-2">
+    <div class="align-items-center justify-content-center border-round m-2">
+      <h2>{{'userinfoForm.contactHeader' | transloco}}</h2>
+      <p class="flex flex-wrap">
+        {{'userinfoForm.contactHeaderP' | transloco}}
+      </p>
+    </div>
+   <div class="flex ">
+    <span class="p-float-label m-4">
+      <input pInputText id="email" formControlName="email" />
+      <label htmlFor="email">{{'userinfoForm.emailLabel' | transloco}}</label>
+    </span>
+   </div>
+    <div class="flex align-items-center ">
+      <span class="button-style mt-0 ">
+        <button class="button w-11rem">{{'userinfoForm.emailButton' | transloco}}</button>
+      </span>
+    </div>
+  </div>
+</form>
+</div>
+</div>

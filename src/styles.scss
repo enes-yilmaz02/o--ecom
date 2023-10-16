@@ -1,0 +1,34 @@
+/* You can add global styles to this file, and also import other style files */
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+@import "primeflex/primeflex.css";
+@import "primeicons/primeicons.css";
+/* You can add global styles to this file, and also import other style files */
+*{
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.p-float-label{
+  background-color: #176B87;
+}
+
+.button-style{
+  margin-top: 25px;
+  display: block;
+
+}
+
+.button-style .button{
+  color:white;
+  background: #176B87;
+  width: 100px;
+  height: 50px;
+  font-size: 16px;
+  border: solid 1px gainsboro;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.button-style .button:hover{
+  color:#fff;
+  background: #04364A;
+}
+
