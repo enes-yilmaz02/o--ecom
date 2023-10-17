@@ -1,0 +1,95 @@
+<form [formGroup]="userFormRegister" >
+  <span class="p-float-label mt-4 " >
+    <input pInputText id="name" formControlName="name" pTooltip="{{'registerForm.nameTooltip' | transloco}}"  />
+    <label htmlFor="name">{{'registerForm.nameLabel' | transloco}}</label>
+  </span>
+  <small
+ *ngIf="
+ userFormRegister.get('name')
+         ?.invalid &&
+         userFormRegister.get('name')?.touched"
+ class="text-red-500"
+>
+{{ userFormRegister.get('name').errors != null && userFormRegister.get('name').errors['whitespace'] ? ('registerForm.nameSmall' | transloco) : '' }}
+{{ userFormRegister.get('name').errors != null && userFormRegister.get('name').errors['required'] ? ('registerForm.nameSmall' | transloco) : '' }}
+</small>
+  <span class="p-float-label mt-4 " >
+    <input pInputText id="username" formControlName="username" pTooltip="{{'registerForm.usernameTooltip' | transloco}}"  />
+    <label htmlFor="username">{{'registerForm.usernameLabel' | transloco}}</label>
+  </span>
+  <small
+ *ngIf="
+ userFormRegister.get('username')
+         ?.invalid &&
+         userFormRegister.get('username')?.touched"
+
+ class="text-red-500"
+>
+
+{{ userFormRegister.get('username').errors != null && userFormRegister.get('username').errors['whitespace'] ? ('registerForm.usernameSmall' | transloco) : '' }}
+{{ userFormRegister.get('username').errors != null && userFormRegister.get('username').errors['required'] ? ('registerForm.usernameSmall' | transloco) : '' }}
+</small>
+  <span class="p-float-label mt-4 " >
+    <input pInputText id="email" formControlName="email" pTooltip="Emaili giriniz"  />
+    <label htmlFor="email">{{'registerForm.emailLabel' | transloco}}</label>
+  </span>
+  <small
+ *ngIf="
+ userFormRegister.get('email')
+         ?.invalid &&
+         userFormRegister.get('email')?.touched"
+
+ class="text-red-500"
+>
+
+{{ userFormRegister.get('email').errors != null && userFormRegister.get('email').errors['whitespace'] ? ('registerForm.emailSmall' | transloco) : '' }}
+{{ userFormRegister.get('email').errors != null && userFormRegister.get('email').errors['required'] ? ('registerForm.emailSmall' | transloco) : '' }}
+</small>
+ <span class="p-float-label mt-4">
+  <p-password id="password" formControlName="password" pTooltip="{{'registerForm.passwordTooltip' | transloco}}"  ></p-password>
+  <label htmlFor="password">{{'registerForm.passwordLabel' | transloco}}</label>
+ </span>
+ <small
+ *ngIf="
+ userFormRegister.get('password')
+         ?.invalid &&
+         userFormRegister.get('password')?.touched"
+
+ class="text-red-500"
+>
+{{ userFormRegister.get('password').errors != null && userFormRegister.get('password').errors['whitespace'] ? ('registerForm.passwordSmall' | transloco) : '' }}
+{{ userFormRegister.get('password').errors != null && userFormRegister.get('password').errors['required'] ? ('registerForm.passwordSmall' | transloco) : '' }}
+</small>
+ <span class="p-float-label mt-4">
+  <p-password id="confirmpassword" formControlName="confirmpassword" pTooltip="{{'registerForm.confirmTooltip' | transloco}}"  ></p-password>
+  <label htmlFor="confirmpassword">{{'registerForm.confirmLabel' | transloco}} </label>
+ </span>
+ <small
+ *ngIf="
+ userFormRegister.get('confirmpassword')?.invalid &&userFormRegister.get('confirmpassword')?.touched" class="text-red-500">
+{{ userFormRegister.get('confirmpassword').errors != null && userFormRegister.get('confirmpassword').errors['whitespace'] ? ('registerForm.confirmSmall' | transloco) : '' }}
+{{ userFormRegister.get('confirmpassword').errors != null && userFormRegister.get('confirmpassword').errors['required'] ? ('registerForm.confirmSmall' | transloco) : '' }}
+</small>
+<span>
+  <small
+ *ngIf="
+ userFormRegister.get('password').value!=userFormRegister.get('confirmpassword').value"
+ class=" block text-red-500"
+>
+{{ userFormRegister.get('email').errors != null && userFormRegister.get('email').errors['required'] ? ('registerForm.confirmSmallSecond' | transloco) : '' }}
+
+</small>
+</span>
+ <span class="button-style  mt-4 " >
+  <button class="button w-12rem" (onClick)="onSubmit()">{{'registerForm.buttonLabel' | transloco}}</button>
+</span>
+<!-- <span class="p-float-label mt-4 ">
+  <p>Kişisel verileriniz, Aydınlatma Metni</p>
+  <p>kapsamında işlenmektedir. “Devam et” </p>
+  <p>veya “Sosyal Hesap” butonlarından birine</p>
+  <p>basarak Üyelik Sözleşmesi’ni ve Gizlilik</p>
+  <p>Politikası’nı okuduğunuzu ve kabul</p>
+  <p>ettiğinizi onaylıyorsunuz.</p>
+</span> -->
+
+</form>

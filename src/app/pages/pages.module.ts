@@ -16,7 +16,11 @@ import { OrdersComponent } from './components/orders/orders.component';
 import { ProductComponent } from './components/product/product.component';
 import { CardComponent } from './components/product/card/card.component';
 import { CardDetailComponent } from './components/product/card-detail/card-detail.component';
-import { CardElementComponent } from './components/product/card-element/card-element.component';@NgModule({
+import { CardElementComponent } from './components/product/card-element/card-element.component';
+import { MainComponent } from './components/main/main.component';
+import { LoginComponent } from './components/main/login/login.component';
+import { RegisterComponent } from './components/main/register/register.component';
+import { ResetpasswordComponent } from './components/main/resetpassword/resetpassword.component';@NgModule({
   declarations: [
 
     NavbarListComponent,
@@ -32,7 +36,11 @@ import { CardElementComponent } from './components/product/card-element/card-ele
      ProductComponent,
      CardComponent,
      CardDetailComponent,
-     CardElementComponent
+     CardElementComponent,
+     MainComponent,
+     LoginComponent,
+     RegisterComponent,
+     ResetpasswordComponent
   ],
   imports: [
     CommonModule,
@@ -48,7 +56,8 @@ import { CardElementComponent } from './components/product/card-element/card-ele
     SupportComponent,
     FavoritesComponent,
     OrdersComponent,
-    ProductComponent
+    ProductComponent,
+    MainComponent
   ]
 })
 export class PagesModule { }
