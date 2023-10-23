@@ -1,8 +1,10 @@
 
 .navbar{
   justify-content: space-evenly;
-  background-color: #000;
+  background-color: transparent;
   cursor: pointer;
+  backdrop-filter: blur(15px);
+
 }
 .menu-item{
   margin-left: 15px;
@@ -11,9 +13,15 @@
 }
 .menu-item a{
   text-decoration: none;
-  color: #fff;
+  color: #000;
   font-size: 18px;
   margin: 10px;
+}
+
+.custom-select{
+  color: #000;
+  border: none;
+  background: transparent;
 }
 
 

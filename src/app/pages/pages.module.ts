@@ -20,9 +20,12 @@ import { CardElementComponent } from './components/product/card-element/card-ele
 import { MainComponent } from './components/main/main.component';
 import { LoginComponent } from './components/main/login/login.component';
 import { RegisterComponent } from './components/main/register/register.component';
-import { ResetpasswordComponent } from './components/main/resetpassword/resetpassword.component';@NgModule({
-  declarations: [
+import { ResetpasswordComponent } from './components/main/resetpassword/resetpassword.component';
+import { PagesComponent } from './pages.component';
+import { RouterModule } from '@angular/router';
 
+@NgModule({
+  declarations: [
     NavbarListComponent,
      AboutComponent,
      FooterComponent,
@@ -40,13 +43,16 @@ import { ResetpasswordComponent } from './components/main/resetpassword/resetpas
      MainComponent,
      LoginComponent,
      RegisterComponent,
-     ResetpasswordComponent
+     ResetpasswordComponent,
+     PagesComponent,
+
   ],
   imports: [
     CommonModule,
     TranslocoRootModule,
     SharedModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    RouterModule
   ],
   exports:[
     NavbarListComponent,
@@ -57,7 +63,12 @@ import { ResetpasswordComponent } from './components/main/resetpassword/resetpas
     FavoritesComponent,
     OrdersComponent,
     ProductComponent,
-    MainComponent
+    MainComponent,
+    PagesComponent,
+    LoginComponent,
+    RegisterComponent,
+    ResetpasswordComponent,
+    CardDetailComponent
   ]
 })
 export class PagesModule { }

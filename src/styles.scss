@@ -9,10 +9,23 @@
 }
 .p-float-label{
   background-color: #176B87;
-
+}
+body{
+  width: 100%;
+  min-height: 100vh;
+  background-image: url('assets/images/net-rd-2-1.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(8px);
+}
+input{
+  width: 100%;
 }
 
-input{
+p-password-info{
   width: 100%;
 }
 

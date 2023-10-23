@@ -2,51 +2,30 @@
   class="container align-items-center justify-content-start align-content-center text-center"
 >
   <div
-    class="block text-white align-items-center text-center p-4 border-round mb-3"
+    class="block  align-items-center text-center p-4 border-round mb-3"
   >
-    <h2>{{ "startForm.header" | transloco }}</h2>
+
   </div>
   <div
     class="flex align-items-center font-bold text-center p-2 border-round justify-content-center align-self-center mb-3"
   >
-    <div class="card bg-white shadow-3">
-      <p-tabView>
-        <p-tabPanel *ngIf="loginPanel">
-          <ng-template pTemplate="header">
-            <span>{{ "startForm.loginText" | transloco }}</span>
-          </ng-template>
-          <ng-template pTemplate="content">
-            <app-login></app-login>
-            <span>
-              <a (click)="toggleResetPass()">
-                <p>{{ "startForm.forgetText" | transloco }}</p>
-              </a>
-            </span>
-          </ng-template>
-        </p-tabPanel>
-        <p-tabPanel *ngIf="registerPanel">
-          <ng-template pTemplate="header">
-            <span>{{ "startForm.registerText" | transloco }}</span>
-          </ng-template>
-          <ng-template pTemplate="content">
-            <app-register></app-register>
-          </ng-template>
-        </p-tabPanel>
-        <p-tabPanel *ngIf="resetPanel">
-          <ng-template pTemplate="header">
-            <span>{{ "startForm.newPassText" | transloco }}</span>
-          </ng-template>
-          <ng-template pTemplate="content">
-            <app-resetpassword></app-resetpassword>
-          </ng-template>
-        </p-tabPanel>
-      </p-tabView>
+    <div class="card">
+      <div>
+       <span class="button-style">
+        <button class="button" style="background-color: black; color: #fff;" routerLink="/login"> Giriş yap</button>
+       </span>
+      </div>
+      <div>
+        <span class="button-style" >
+         <button class="button" style="background-color: black; color: #fff;" routerLink="/register"> Kayıt ol</button>
+        </span>
+      </div>
     </div>
   </div>
   <div
     class="flex align-items-center font-bold text-center p-5 border-round justify-content-center align-self-center w-14"
   >
-    <div class="container border-1 border-300 surface-100 hover:surface-150">
+    <div class="container ">
       <div class="header-social">
         <h3>{{ "startForm.headerSocial" | transloco }}</h3>
       </div>
