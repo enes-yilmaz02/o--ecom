@@ -8,7 +8,11 @@
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 .p-float-label{
-  background-color: #176B87;
+  background-color: #000;
+}
+
+.p-float-label label{
+  margin-left:25px ;
 }
 body{
   width: 100%;
@@ -23,6 +27,7 @@ body{
 }
 input{
   width: 100%;
+  padding: 15px 15px 15px 40px;
 }
 
 p-password-info{
@@ -35,7 +40,7 @@ p-password-info{
 }
 .button-style .button{
   color:white;
-  background: #176B87;
+  background: #000;
   width: 100px;
   height: 50px;
   font-size: 16px;
@@ -45,6 +50,6 @@ p-password-info{
 }
 .button-style .button:hover{
   color:#fff;
-  background: #04364A;
+  background: #176B87;
 }
 

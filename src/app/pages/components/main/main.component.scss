@@ -22,20 +22,26 @@ p{
   color: #000;
 }
 
+.container{
+  border: 2px  rgba(255, 255, 255, 0.5);
+  border-top-style: solid;
+  border-right-style: solid;
+  border-bottom-style: none;
+  border-left-style: solid;
+  border-color: #000;
+
+}
 .card{
   position: relative;
   border-radius: 10px;
   padding: 50px 100px 70px 100px;
 
-
 }
 .flex{
   background: transparent;
 }
-.flex .container{
- padding:20px;
- border-radius: 10px;
-
+.flex .container-social{
+ padding:10px;
 }
 
 

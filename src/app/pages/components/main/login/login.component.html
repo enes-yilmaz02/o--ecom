@@ -1,41 +1,105 @@
 <div class="container">
   <form [formGroup]="userFormLogin">
-    <span class="p-float-label mt-4 ">
-      <input pInputText id="username"  formControlName="username" pTooltip="{{'loginForm.usernameTooltip' | transloco}}"
-        />
-      <label htmlFor="username">{{'loginForm.usernameLabel' | transloco}}</label>
-    </span>
-    <small
-    *ngIf="
-       userFormLogin.get('username')
-            ?.invalid &&
-            userFormLogin.get('username')?.touched"
-    class="text-red-500"
-  >
-  {{ userFormLogin.get('username').errors != null && userFormLogin.get('username').errors['whitespace'] ? ('registerForm.usernameSmall' | transloco) : '' }}
-  {{ userFormLogin.get('username').errors != null && userFormLogin.get('username').errors['required'] ? ('registerForm.usernameSmall' | transloco) : '' }}
-  </small>
+    <div
+      class="block justify-content-center align-content-center text-2xl"
+      style="background: transparent"
+    >
+      <h2>Orion Innovation</h2>
+    </div>
     <span class="p-float-label mt-4">
-      <p-password id="password" formControlName="password" pTooltip="{{'loginForm.passwordTooltip' | transloco}}"
-        ></p-password>
-      <label htmlFor="password">{{'loginForm.passwordLabel' | transloco}}</label>
+      <input
+        pInputText
+        id="username"
+        formControlName="username"
+        pTooltip="{{ 'loginForm.usernameTooltip' | transloco }}"
+      />
+      <label htmlFor="username">{{
+        "loginForm.usernameLabel" | transloco
+      }}</label>
     </span>
     <small
-    *ngIf="
-       userFormLogin.get('password')
-            ?.invalid &&
-            userFormLogin.get('password')?.touched"
-    class="text-red-500"
-  >
-  {{ userFormLogin.get('password').errors != null && userFormLogin.get('password').errors['whitespace'] ? ('registerForm.passwordSmall' | transloco) : '' }}
-  {{ userFormLogin.get('password').errors != null && userFormLogin.get('password').errors['required'] ? ('registerForm.passwordSmall' | transloco) : '' }}
-    <!-- {{userFormLogin.get('password')?.value.lenght() < 8 ? ("Şifre en az 8 karakter uzunluğunda olmalıdır") : '' }} -->
-  </small>
-    <span class="button-style  mt-4 ">
-      <button class="button w-12rem"
-        (onClick)="onSubmitLogin()">{{'loginForm.buttonLabel' | transloco}}</button>
+      *ngIf="
+        userFormLogin.get('username')?.invalid &&
+        userFormLogin.get('username')?.touched
+      "
+      class="text-red-500"
+    >
+      {{
+        userFormLogin.get("username").errors != null &&
+        userFormLogin.get("username").errors["whitespace"]
+          ? ("registerForm.usernameSmall" | transloco)
+          : ""
+      }}
+      {{
+        userFormLogin.get("username").errors != null &&
+        userFormLogin.get("username").errors["required"]
+          ? ("registerForm.usernameSmall" | transloco)
+          : ""
+      }}
+    </small>
+    <span class="p-float-label mt-4">
+      <p-password
+        id="password"
+        formControlName="password"
+        pTooltip="{{ 'loginForm.passwordTooltip' | transloco }}"
+      ></p-password>
+      <label htmlFor="password">{{
+        "loginForm.passwordLabel" | transloco
+      }}</label>
     </span>
-
+    <small
+      *ngIf="
+        userFormLogin.get('password')?.invalid &&
+        userFormLogin.get('password')?.touched
+      "
+      class="text-red-500"
+    >
+      {{
+        userFormLogin.get("password").errors != null &&
+        userFormLogin.get("password").errors["whitespace"]
+          ? ("registerForm.passwordSmall" | transloco)
+          : ""
+      }}
+      {{
+        userFormLogin.get("password").errors != null &&
+        userFormLogin.get("password").errors["required"]
+          ? ("registerForm.passwordSmall" | transloco)
+          : ""
+      }}
+      <!-- {{userFormLogin.get('password')?.value.lenght() < 8 ? ("Şifre en az 8 karakter uzunluğunda olmalıdır") : '' }} -->
+    </small>
+    <span class="mt-4">
+      <div class="remember-forget">
+        <div
+          class="flex flex-row justify-content-center align-content-center align-items-center"
+        >
+          <div>
+            <input
+              id="remember"
+              name="remember"
+              type="checkbox"
+              style="width: 15px; height: 15px"
+            />
+          </div>
+          <div>
+            <label for="remember"> Remember me</label>
+          </div>
+        </div>
+        <div>
+          <a routerLink="/reset-password">Forgot Password?</a>
+        </div>
+      </div>
+    </span>
+    <span class="button-style mt-4">
+      <button class="button w-12rem" (onClick)="onSubmitLogin()">
+        {{ "loginForm.buttonLabel" | transloco }}
+      </button>
+    </span>
+    <span
+      class="register-span flex flex-row mt-2 justify-content-between align-content-center align-items-center"
+    >
+      <p>Don't have an account?</p>
+      <a routerLink="/register">Create now!</a>
+    </span>
   </form>
-
 </div>
