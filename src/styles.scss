@@ -53,3 +53,12 @@ p-password-info{
   background: #176B87;
 }
 
+.p-float-label i{
+  position: absolute;
+  z-index: 1;
+  padding: 5px;
+  color: #000;
+  top: 10px;
+  left: 8px;
+
+}

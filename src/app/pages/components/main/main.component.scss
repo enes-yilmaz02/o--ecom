@@ -33,13 +33,22 @@ p{
 }
 .card{
   position: relative;
+  border: 2px solid  rgba(255, 255, 255, 0.905);
+  background-color: #00000113;
+  width: 600px;
+  border-color: #000;
+  display: flex;
+  justify-content: space-around;
   border-radius: 10px;
   padding: 50px 100px 70px 100px;
 
 }
-.flex{
-  background: transparent;
+h2{
+ display: block;
+ width: 100%;
+ color: #000;
 }
+
 .flex .container-social{
  padding:10px;
 }
