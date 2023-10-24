@@ -48,37 +48,3 @@ h2{
  width: 100%;
  color: #000;
 }
-
-.flex .container-social{
- padding:10px;
-}
-
-
-.pi-google{
-  background: conic-gradient(from -45deg, #ea4335 100deg, #4285f4 90deg 180deg, #34a853 180deg 270deg, #fbbc05 270deg) 73% 55%/150% 150% no-repeat;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  -webkit-text-fill-color: transparent;
-  width: 45px;
-  height: 25px;
-}
-.pi-apple{
-  color: black;
-  width: 65px;
-  height: 25px;
-}
-
-.pi-facebook{
-  color: blue;
-  width: 45px;
-  height: 25px;
-}
-
-.icon-social{
-  justify-content: center;
-}
-
-.text-important button{
-  margin-top: 20px;
-}

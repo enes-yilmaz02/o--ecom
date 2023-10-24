@@ -11,7 +11,7 @@
 
     <div class="wrapper">
       <span class="p-float-label mt-4">
-        <i class="pi pi-user" style="color: #000;"></i>
+        <i class="pi pi-user" style="color: #000"></i>
         <input
           pInputText
           id="name"
@@ -43,10 +43,10 @@
     </div>
     <!-- Name input end-->
 
-     <!-- Username input start-->
+    <!-- Username input start-->
     <div class="wrapper">
       <span class="p-float-label mt-4">
-        <i class="pi pi-user" style="color: #000;"></i>
+        <i class="pi pi-user" style="color: #000"></i>
         <input
           pInputText
           id="username"
@@ -80,10 +80,10 @@
     </div>
     <!-- Username input end-->
 
-     <!-- email input start-->
+    <!-- email input start-->
     <div class="wrapper">
       <span class="p-float-label mt-4">
-        <i class="pi pi-envelope" style="color: #000;"></i>
+        <i class="pi pi-envelope" style="color: #000"></i>
         <input
           pInputText
           id="email"
@@ -120,7 +120,7 @@
     <!-- phone input start-->
     <div class="wrapper">
       <span class="p-float-label mt-4">
-        <i class="pi pi-phone" style="color: #000;"></i>
+        <i class="pi pi-phone" style="color: #000"></i>
         <input
           pInputText
           id="phone"
@@ -154,10 +154,10 @@
     </div>
     <!-- phone input end-->
 
-     <!-- password input start-->
+    <!-- password input start-->
     <div class="wrapper">
       <span class="p-float-label mt-4">
-        <i class="pi pi-lock" style="color: #000;"></i>
+        <i class="pi pi-lock" style="color: #000"></i>
         <p-password
           id="password"
           formControlName="password"
@@ -190,10 +190,10 @@
     </div>
     <!-- password input end-->
 
-     <!-- confirm password input start-->
+    <!-- confirm password input start-->
     <div class="wrapper">
       <span class="p-float-label mt-4">
-        <i class="pi pi-lock" style="color: #000;"></i>
+        <i class="pi pi-lock" style="color: #000"></i>
         <p-password
           id="confirmpassword"
           formControlName="confirmpassword"
@@ -239,13 +239,40 @@
           }}
         </small>
       </span>
-    </div> <!-- confirm password input end-->
-
-     <!-- button start-->
+    </div>
+    <!-- confirm password input end-->
+    <div class="flex flex-row w-full justify-content-center ">
+      <div>
+        <input
+          id="terms"
+          name="terms"
+          type="checkbox"
+          style="width: 15px; height: 15px"
+        />
+      </div>
+      <div>
+        <label for="terms">
+          <a routerLink="/termsservice" target="_self" style="margin: 5px;"> Hizmet şartlarına </a> ilişkin tüm beyanlara
+          katılıyorum</label
+        >
+      </div>
+    </div>
+    <!-- button start-->
     <span class="button-style mt-4">
       <button class="button w-12rem" (onClick)="onSubmit()">
         {{ "registerForm.buttonLabel" | transloco }}
       </button>
-    </span> <!-- button end-->
+    </span>
+    <!-- button end-->
+    <div
+    class="flex flex-row w-full justify-content-center align-content-center align-items-center"
+  >
+    <div>
+      <p>Have already an account ?</p>
+    </div>
+  </div>
+  <div>
+    <a routerLink="/login">Login Here!</a>
+  </div>
   </form>
 </div>
