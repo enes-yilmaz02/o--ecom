@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-orders',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./orders.component.scss']
 })
 export class OrdersComponent {
+constructor(private cart:CartService){}
+ items = this.cart.getItems();
+removeFromCart(item){
+  this.items = [];
+  return this.items;
+}
 
 }

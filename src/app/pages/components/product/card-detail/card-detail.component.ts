@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from 'src/app/models/product';
+import { CartService } from 'src/app/services/cart.service';
 import { ProductsService } from 'src/app/services/products.service';
 
 @Component({
@@ -13,7 +14,7 @@ export class CardDetailComponent {
   product: any;
 
 
-  constructor(private route: ActivatedRoute, private productService: ProductsService) { }
+  constructor(private route: ActivatedRoute, private productService: ProductsService,private cart:CartService) { }
 
   ngOnInit() {
     // ActivatedRoute'i kullanarak ürün kimliğini al
@@ -36,5 +37,9 @@ export class CardDetailComponent {
       default:
         return null;
     }
+  }
+
+  addToCart(product:Product){
+    this.cart.addToCart(product);
   }
 }

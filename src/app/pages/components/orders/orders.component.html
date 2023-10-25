@@ -1,25 +1,46 @@
-<div class="flex w-full h-full">
+<div class="flex flex-wrap gap-3 w-full h-full">
   <div
     class="block align-items-center w-full h-full justify-content-center bg-white font-bold m-2 px-5 py-3 border-round"
+    *ngIf="!items || items.length === 0"
   >
     <div class="header-title block w-full m-3">
-      <h3>{{'ordersForm.title' | transloco}}</h3>
+      <h3>{{ "ordersForm.title" | transloco }}</h3>
     </div>
-    <div class="block m-3 justify-content-center align-content-center align-items-center">
-      <div class="card flex justify-content-center">
-        <p-image  class="img" src="https://www.teknouser.com/wp-content/uploads/2019/05/unlem-isareti.png" alt="Image" width="400" height="400" ></p-image>
+    <div
+      class="block m-3 justify-content-center align-content-center align-items-center"
+    >
+      <div class="card justify-content-center text-xl">
+        <h4>{{ "ordersForm.desc" | transloco }}</h4>
+      </div>
+      <div class="card justify-content-center align-content-center text-lg">
+        <h6>{{ "ordersForm.desc2" | transloco }}</h6>
+      </div>
+      <div class="card justify-content-center align-content-center">
+        <span class="button-style">
+          <button class="button w-full" routerLink="/product">
+            {{ "ordersForm.buttonLabel" | transloco }}
+          </button>
+        </span>
+      </div>
     </div>
-    <div class="card justify-content-center text-xl">
-      <h4>{{'ordersForm.desc' | transloco}}</h4>
+  </div>
+  <div  *ngFor="let item of items" class="container">
+    <div class="flex flex-column border-round">
+      <p-image
+        class="shadow-2 m-3 border-round"
+        [src]="
+          'https://primefaces.org/cdn/primeng/images/demo/product/' + item.image
+        "
+        [alt]="item.name"
+        [preview]="true"
+      />
+      <div class="m-2">
+        <h4>{{ item.name }}</h4>
+      </div>
+      <div class="m-2">
+        <p>Price: {{ item.price }}</p>
+      </div>
     </div>
-    <div class="card justify-content-center align-content-center text-lg ">
-      <h6>{{'ordersForm.desc2' | transloco}}</h6>
-    </div>
-    <div class="card justify-content-center align-content-center ">
-     <span class="button-style">
-      <button class="button w-full">{{'ordersForm.buttonLabel' | transloco}}</button>
-     </span>
-    </div>
-    </div>
+    <!-- <button (click)="removeFromCart(item)">Remove</button> -->
   </div>
 </div>

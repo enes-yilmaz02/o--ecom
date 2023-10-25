@@ -15,51 +15,63 @@ import { CardDetailComponent } from './pages/components/product/card-detail/card
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
-
   {
-    path:'' , component:PagesComponent ,
-     children:[
+    path: '',
+    component: PagesComponent,
+    children: [
       {
-        path:'' , component:MainComponent
+        path: '',
+        component: MainComponent,
       },
 
       {
-        path:'account' , component:AccountComponent
+        path: 'account',
+        component: AccountComponent,
       },
       {
-        path:'favorites' , component:FavoritesComponent
+        path: 'favorites',
+        component: FavoritesComponent,
       },
       {
-        path:'login' , component:LoginComponent
+        path: 'login',
+        component: LoginComponent,
       },
       {
-        path:'register' , component:RegisterComponent
+        path: 'register',
+        component: RegisterComponent,
       },
       {
-        path:'reset-password' , component:ResetpasswordComponent
+        path: 'reset-password',
+        component: ResetpasswordComponent,
       },
       {
-        path:'orders' , component:OrdersComponent
+        path: 'orders',
+        component: OrdersComponent,
       },
       {
-        path:'product' , component:ProductComponent
+        path: 'product',
+        component: ProductComponent,
       },
       { path: 'product/:id', component: CardDetailComponent },
       {
-        path:'support' , component:SupportComponent
+        path: 'support',
+        component: SupportComponent,
       },
       {
-        path:'manager' , component:DashboardComponent , children:[
+        path: 'manager',
+        component: DashboardComponent,
+        children: [
           {
-            path:'' , component:DashboardComponent
-          }
-        ]
+            path: '',
+            component: DashboardComponent,
+          },
+        ],
       },
       {
-        path:'about' , component:AboutComponent
+        path: 'about',
+        component: AboutComponent,
       },
-
-    ]
+    ],
   },
   {
     path: 'pages',
