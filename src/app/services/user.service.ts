@@ -79,6 +79,7 @@ export class UserService {
     name: string,
     username: string,
     email: string,
+    phone:string,
     password: string,
     confirmpassword: string
   ): Promise<void> {
@@ -101,6 +102,7 @@ export class UserService {
                 name: name,
                 username: username,
                 email: email,
+                phone:phone,
                 password: password,
                 confirmpassword: confirmpassword,
               });
@@ -114,7 +116,7 @@ export class UserService {
                 severity: 'warn',
                 summary: 'Hata!',
                 detail:
-                  'E-posta adresi başka bir hesap tarafından kullanılıyor. Lütfen yeni e-posta adresi deneyin.',
+                  'Beklenmeyen bir hata oluştu. Lütfen tekrar deneyin',
               });
               reject(error); // Hata oluştuğunda Promise'i reddedin.
             });

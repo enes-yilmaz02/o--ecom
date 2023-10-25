@@ -14,6 +14,7 @@ export class RegisterComponent {
   name: string;
   username: string;
   email: string;
+  phone:string;
   password: string;
   confirmpassword: string;
   constructor(
@@ -33,12 +34,14 @@ export class RegisterComponent {
   }
 
   onSubmit() {
+
     if (this.userFormRegister.valid) {
       const formValuesArray = this.userFormRegister.value;
       this.userService.registerWithEmail(
           formValuesArray.name,
           formValuesArray.username,
           formValuesArray.email,
+          formValuesArray.phone,
           formValuesArray.password,
           formValuesArray.confirmpassword
         )

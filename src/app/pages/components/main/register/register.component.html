@@ -232,8 +232,8 @@
           class="block text-red-500"
         >
           {{
-            userFormRegister.get("email").errors != null &&
-            userFormRegister.get("email").errors["required"]
+            userFormRegister.get("confirmpassword").errors != null &&
+            userFormRegister.get("confirmpassword").errors["required"]
               ? ("registerForm.confirmSmallSecond" | transloco)
               : ""
           }}
@@ -260,7 +260,7 @@
     </div>
     <!-- button start-->
     <span class="button-style mt-4">
-      <button class="button w-12rem" (onClick)="onSubmit()">
+      <button class="button w-12rem" (click)="onSubmit()">
         {{ "registerForm.buttonLabel" | transloco }}
       </button>
     </span>
