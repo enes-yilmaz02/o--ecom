@@ -5,6 +5,12 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TranslocoRootModule } from './transloco-root.module';
 import { PagesModule } from './pages/pages.module';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { environment } from '../environments/environment';
+
 
 @NgModule({
   declarations: [
@@ -15,7 +21,12 @@ import { PagesModule } from './pages/pages.module';
     AppRoutingModule,
     HttpClientModule,
     TranslocoRootModule,
-    PagesModule
+    PagesModule,
+    AngularFireDatabaseModule,
+    AngularFireStorageModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

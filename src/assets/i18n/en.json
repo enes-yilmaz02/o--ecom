@@ -6,7 +6,11 @@
     "passwordTooltip": "Enter your password",
     "passwordLabel": "Password",
     "passwordSmall": "* Password field cannot be left blank",
-    "buttonLabel": "Login"
+    "buttonLabel": "Login",
+    "rememberme":"Remember me",
+    "dontforget":"Forgot Password?",
+    "haveaccount":"Don't have an account?",
+    "createnow":"Create now!"
   },
 
   "registerForm": {
@@ -29,7 +33,10 @@
     "confirmLabel": "Password (Repeat) ",
     "confirmSmall": "* Password field cannot be left blank",
     "confirmSmallSecond": "* Passwords you entered do not match",
-    "buttonLabel": "Sign up"
+    "buttonLabel": "Sign up",
+    "terms":"I agree with all statements regarding the terms of service",
+    "haveaccount":"Have already an account?",
+    "loginhere":"Login here!"
   },
   "resetForm": {
     "emailTooltip": "Enter your email",

@@ -6,7 +6,11 @@
     "passwordTooltip":"Şifrenizi giriniz",
     "passwordLabel":"Şifre",
     "passwordSmall":"* Şifre alanı boş bırakılamaz",
-    "buttonLabel":"Giriş"
+    "buttonLabel":"Giriş",
+    "rememberme":"Beni hatırla",
+    "dontforget":"Parolanızı mı unuttunuz?",
+    "haveaccount":"Hesabınız yok mu?",
+    "createnow":"Şimdi oluştur!"
   },
 
   "registerForm":{
@@ -29,7 +33,10 @@
     "confirmLabel":"Şifre (Tekrar) ",
     "confirmSmall":"* Şifre  alanı boş bırakılamaz",
     "confirmSmallSecond":"* Girdiğiniz Şifreler eşleşmiyor",
-    "buttonLabel":"Üye ol"
+    "buttonLabel":"Üye ol",
+    "terms":"Hizmet şartlarına ilişkin tüm beyanlara katılıyorum",
+    "haveaccount":"Zaten bir hesabınız var mı?",
+    "loginhere":"Giriş yapın!"
   },
   "resetForm":{
     "emailTooltip":"emailinizi giriniz",

@@ -16,9 +16,9 @@
           pInputText
           id="name"
           formControlName="name"
-          pTooltip="{{ 'registerForm.nameTooltip' | transloco }}"
+          pTooltip="{{'registerForm.nameTooltip' | transloco }}"
         />
-        <label htmlFor="name">{{ "registerForm.nameLabel" | transloco }}</label>
+        <label htmlFor="name"> {{"registerForm.nameLabel" | transloco }} </label>
       </span>
       <small
         *ngIf="
@@ -51,7 +51,7 @@
           pInputText
           id="username"
           formControlName="username"
-          pTooltip="{{ 'registerForm.usernameTooltip' | transloco }}"
+          pTooltip="{{'registerForm.usernameTooltip' | transloco }}"
         />
         <label htmlFor="username">{{
           "registerForm.usernameLabel" | transloco
@@ -88,7 +88,7 @@
           pInputText
           id="email"
           formControlName="email"
-          pTooltip="{{ 'registerForm.emailTooltip' | transloco }}"
+          pTooltip="{{'registerForm.emailTooltip' | transloco }}"
         />
         <label htmlFor="email">{{
           "registerForm.emailLabel" | transloco
@@ -125,7 +125,7 @@
           pInputText
           id="phone"
           formControlName="phone"
-          pTooltip="{{ 'registerForm.phoneTooltip' | transloco }}"
+          pTooltip="{{'registerForm.phoneTooltip' | transloco }}"
         />
         <label htmlFor="phone">{{
           "registerForm.phoneLabel" | transloco
@@ -161,7 +161,7 @@
         <p-password
           id="password"
           formControlName="password"
-          pTooltip="{{ 'registerForm.passwordTooltip' | transloco }}"
+          pTooltip="{{'registerForm.passwordTooltip' | transloco }}"
         ></p-password>
         <label htmlFor="password">{{
           "registerForm.passwordLabel" | transloco
@@ -197,7 +197,7 @@
         <p-password
           id="confirmpassword"
           formControlName="confirmpassword"
-          pTooltip="{{ 'registerForm.confirmTooltip' | transloco }}"
+          pTooltip="{{'registerForm.confirmTooltip' | transloco }}"
         ></p-password>
         <label htmlFor="confirmpassword"
           >{{ "registerForm.confirmLabel" | transloco }}
@@ -241,7 +241,7 @@
       </span>
     </div>
     <!-- confirm password input end-->
-    <div class="flex flex-row w-full justify-content-center ">
+    <div class="flex flex-row w-full justify-content-center">
       <div>
         <input
           id="terms"
@@ -252,9 +252,10 @@
       </div>
       <div>
         <label for="terms">
-          <a routerLink="/termsservice" target="_self" style="margin: 5px;"> Hizmet şartlarına </a> ilişkin tüm beyanlara
-          katılıyorum</label
-        >
+          <a routerLink="/register" target="_self" style="margin: 5px">
+            {{"registerForm.terms" | transloco }}
+          </a>
+        </label>
       </div>
     </div>
     <!-- button start-->
@@ -265,14 +266,14 @@
     </span>
     <!-- button end-->
     <div
-    class="flex flex-row w-full justify-content-center align-content-center align-items-center"
-  >
-    <div>
-      <p>Have already an account ?</p>
+      class="flex flex-row w-full justify-content-center align-content-center align-items-center"
+    >
+      <div>
+        <p>{{ "registerForm.haveaccount" | transloco }}</p>
+      </div>
     </div>
-  </div>
-  <div>
-    <a routerLink="/login">Login Here!</a>
-  </div>
+    <div>
+      <a routerLink="/login">{{ "registerForm.loginhere" | transloco }}</a>
+    </div>
   </form>
 </div>

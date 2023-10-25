@@ -84,11 +84,15 @@
             />
           </div>
           <div>
-            <label for="remember"> Beni hatırla</label>
+            <label for="remember"> {{
+              "loginForm.rememberme" | transloco
+            }}</label>
           </div>
         </div>
         <div>
-          <a routerLink="/reset-password">Parolanızı mı unuttunuz?</a>
+          <a routerLink="/reset-password">{{
+            "loginForm.dontforget" | transloco
+          }}</a>
         </div>
       </div>
     </span>
@@ -100,8 +104,12 @@
     <span
       class="register-span flex flex-row mt-2 justify-content-between align-content-center align-items-center"
     >
-      <p>Hesabınız yok mu?</p>
-      <a routerLink="/register">Şimdi oluştur!</a>
+      <p>{{
+        "loginForm.haveaccount" | transloco
+      }}</p>
+      <a routerLink="/register">{{
+        "loginForm.createnow" | transloco
+      }}</a>
     </span>
   </form>
 </div>
