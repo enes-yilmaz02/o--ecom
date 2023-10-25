@@ -12,6 +12,7 @@ import { ProductComponent } from './pages/components/product/product.component';
 import { SupportComponent } from './pages/components/support/support.component';
 import { MainComponent } from './pages/components/main/main.component';
 import { CardDetailComponent } from './pages/components/product/card-detail/card-detail.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
 
@@ -46,6 +47,13 @@ const routes: Routes = [
       { path: 'product/:id', component: CardDetailComponent },
       {
         path:'support' , component:SupportComponent
+      },
+      {
+        path:'manager' , component:DashboardComponent , children:[
+          {
+            path:'' , component:DashboardComponent
+          }
+        ]
       },
       {
         path:'about' , component:AboutComponent

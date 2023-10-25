@@ -27,8 +27,9 @@ import { ImageModule } from 'primeng/image';
 import { SlideMenuModule } from 'primeng/slidemenu';
 import { ChartModule } from 'primeng/chart';
 import { FormsModule ,ReactiveFormsModule } from '@angular/forms';
-
-
+import { TableModule } from 'primeng/table';
+import { KeyFilterModule } from 'primeng/keyfilter';
+import { MultiSelectModule } from 'primeng/multiselect';
 @NgModule({
   declarations: [],
   imports: [
@@ -60,7 +61,10 @@ import { FormsModule ,ReactiveFormsModule } from '@angular/forms';
     SlideMenuModule,
     ChartModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TableModule,
+    KeyFilterModule,
+    MultiSelectModule
 
   ],
   exports:[
@@ -92,7 +96,10 @@ import { FormsModule ,ReactiveFormsModule } from '@angular/forms';
     SlideMenuModule,
     ChartModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TableModule,
+    KeyFilterModule,
+    MultiSelectModule
   ],
   providers:[MessageService]
 })
