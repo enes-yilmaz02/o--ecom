@@ -29,6 +29,7 @@ import { ChartModule } from 'primeng/chart';
 import { FormsModule ,ReactiveFormsModule } from '@angular/forms';
 import { TableModule } from 'primeng/table';
 import { KeyFilterModule } from 'primeng/keyfilter';
+import { InputNumberModule } from 'primeng/inputnumber';
 import { MultiSelectModule } from 'primeng/multiselect';
 @NgModule({
   declarations: [],
@@ -64,7 +65,8 @@ import { MultiSelectModule } from 'primeng/multiselect';
     ReactiveFormsModule,
     TableModule,
     KeyFilterModule,
-    MultiSelectModule
+    MultiSelectModule,
+    InputNumberModule
 
   ],
   exports:[
@@ -99,7 +101,8 @@ import { MultiSelectModule } from 'primeng/multiselect';
     ReactiveFormsModule,
     TableModule,
     KeyFilterModule,
-    MultiSelectModule
+    MultiSelectModule,
+    InputNumberModule
   ],
   providers:[MessageService]
 })

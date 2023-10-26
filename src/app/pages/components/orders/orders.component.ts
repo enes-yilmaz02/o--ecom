@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { CartService } from 'src/app/services/cart.service';
 
 @Component({
@@ -9,6 +10,8 @@ import { CartService } from 'src/app/services/cart.service';
 export class OrdersComponent {
 constructor(private cart:CartService){}
  items = this.cart.getItems();
+ defaultValue: number = 1;
+
 removeFromCart(item){
   this.items = [];
   return this.items;
