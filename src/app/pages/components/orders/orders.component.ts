@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CartService } from 'src/app/services/cart.service';
 
 @Component({
@@ -7,14 +7,28 @@ import { CartService } from 'src/app/services/cart.service';
   templateUrl: './orders.component.html',
   styleUrls: ['./orders.component.scss']
 })
-export class OrdersComponent {
-constructor(private cart:CartService){}
+export class OrdersComponent implements OnInit {
+  totalPrice:number;
+constructor(private cart:CartService , private router:Router){}
+  ngOnInit(): void {
+    this.totalPrice=this.calculateTotalPrice().valueOf();
+  }
  items = this.cart.getItems();
- defaultValue: number = 1;
 
-removeFromCart(item){
-  this.items = [];
-  return this.items;
+ calculateTotalPrice() {
+  this.totalPrice = this.items.reduce((total,item) => total + item.price, 0);
+  return this.totalPrice;
+}
+
+
+removeFromCart(item) {
+  // Sepetten ürünü kaldırma işlemi
+  // Örnek: CartService kullanarak sepetten ürünü kaldırmak
+  this.cart.removeFromCart(item);
+
+  // Ürünü kaldırdıktan sonra items dizisini güncelleyin
+  this.items = this.cart.getItems();
+  this.calculateTotalPrice();
 }
 
 }

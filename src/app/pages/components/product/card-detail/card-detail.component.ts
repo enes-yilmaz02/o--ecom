@@ -12,11 +12,13 @@ import { ProductsService } from 'src/app/services/products.service';
 export class CardDetailComponent {
   productId: string;
   product: any;
-
+  defaultValue = 0; // Seçilen ürün sayısını tutacak değişken
+  productPrice: number; // Güncellenmiş ürün fiyatını tutacak değişken
 
   constructor(private route: ActivatedRoute, private productService: ProductsService,private cart:CartService) { }
 
   ngOnInit() {
+    console.log(this.defaultValue);
     // ActivatedRoute'i kullanarak ürün kimliğini al
     this.route.params.subscribe(params => {
       this.productId = params['id']; // Bu, "id" parametresine karşılık gelir
@@ -40,6 +42,27 @@ export class CardDetailComponent {
   }
 
   addToCart(product:Product){
-    this.cart.addToCart(product);
+
+    const cartItem = {
+      id:product.id,
+      image:product.image,
+      name: product.name,
+      status:product.inventoryStatus,
+      quantity: this.defaultValue,
+      category:product.category,
+      price: this.productPrice
+    };
+
+    // Bu örnekte varsayılan bir sepet servisi kullanıyoruz, ancak gerçek bir servisi kendi projenize göre ayarlamalısınız.
+    this.cart.addToCart(cartItem);
+
+    // Ekleme işlemi tamamlandığında seçilen ürün sayısını sıfırlayabilirsiniz.
+    this.defaultValue = 0;
   }
+
+  updateProductPrice(): void {
+    this.productPrice = this.defaultValue * this.product.price;
+  }
+
+
 }

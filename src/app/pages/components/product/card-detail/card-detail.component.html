@@ -1,6 +1,8 @@
-<div class="container flex flex-row">
-  <h2>Ürün Detayı</h2>
-  <div class="product-detail">
+<div class="container">
+  <div class="block w-full">
+    <h2>Ürün Detayı</h2>
+  </div>
+  <div class="product-detail flex flex-row">
     <div class="flex flex-column xl:flex-row xl:align-items-start p-4 gap-4">
       <p-image
         class="shadow-2 block xl:block mx-auto border-round"
@@ -51,33 +53,52 @@
           ></p-rating>
           <span class="text-2xl font-semibold">{{ "$" + product.price }}</span>
           <div class="flex flex-column justify-content-end align-content-end">
-            <div class="flex flex-column" style="float: right;">
-             <div class="w-full">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minima
-              officiis inventore rerum omnis cumque quod veniam dignissimos
-              optio laudantium debitis, modi voluptatem tenetur facere
-              consectetur eius earum consequuntur dolore distinctio. Lorem ipsum
-              dolor sit, amet consectetur adipisicing elit. Minima officiis
-              inventore rerum omnis cumque quod veniam dignissimos optio
-              laudantium debitis, modi voluptatem tenetur facere consectetur
-              eius earum consequuntur dolore distinctio. Lorem ipsum dolor sit,
-              amet consectetur adipisicing elit. Minima officiis inventore rerum
-              omnis cumque quod veniam dignissimos optio laudantium debitis,
-              modi voluptatem tenetur facere consectetur eius earum consequuntur
-              dolore distinctio. Lorem ipsum dolor sit, amet consectetur
-              adipisicing elit. Minima officiis inventore rerum omnis cumque
-              quod veniam dignissimos optio laudantium debitis, modi voluptatem
-              tenetur facere consectetur eius earum consequuntur dolore
-              distinctio.
-             </div>
-              <div class=" flex m-3 w-full" >
-                <button
-                  pButton
-                  class="m-3 border-round button w-full justify-content-center text-xl"
-                  style="background-color: #000"
-                  [disabled]="product.inventoryStatus === 'OUTOFSTOCK'"
-                  (click)="addToCart(product)"
-                >Sepete ekle</button>
+            <div class="flex flex-column" style="float: right">
+              <div class="w-full">
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minima
+                officiis inventore rerum omnis cumque quod veniam dignissimos
+                optio laudantium debitis, modi voluptatem tenetur facere
+                consectetur eius earum consequuntur dolore distinctio. Lorem
+                ipsum dolor sit, amet consectetur adipisicing elit. Minima
+                officiis inventore rerum omnis cumque quod veniam dignissimos
+                optio laudantium debitis, modi voluptatem tenetur facere
+                consectetur eius earum consequuntur dolore distinctio. Lorem
+                ipsum dolor sit, amet consectetur adipisicing elit. Minima
+                officiis inventore rerum omnis cumque quod veniam dignissimos
+                optio laudantium debitis, modi voluptatem tenetur facere
+                consectetur eius earum consequuntur dolore distinctio. Lorem
+                ipsum dolor sit, amet consectetur adipisicing elit. Minima
+                officiis inventore rerum omnis cumque quod veniam dignissimos
+                optio laudantium debitis, modi voluptatem tenetur facere
+                consectetur eius earum consequuntur dolore distinctio.
+              </div>
+              <div class="flex flex-row m-3 w-full">
+                <div class="m-3">
+                  <p-inputNumber
+                    [(ngModel)]="defaultValue"
+                    [style]="{ width: 'w-2rem' }"
+                    [showButtons]="true"
+                    buttonLayout="horizontal"
+                    spinnerMode="horizontal"
+                    inputId="horizontal"
+                    decrementButtonClass="p-button-secondary w-2rem "
+                    incrementButtonClass="p-button-secondary w-2rem "
+                    incrementButtonIcon="pi pi-plus"
+                    decrementButtonIcon="pi pi-minus"
+                    (ngModelChange)="updateProductPrice()"
+                  ></p-inputNumber>
+                </div>
+                <div>
+                  <button
+                    pButton
+                    class="m-3 border-round button w-full justify-content-center text-xl"
+                    style="background-color: #000"
+                    [disabled]="product.inventoryStatus === 'OUTOFSTOCK'"
+                    (click)="addToCart(product)"
+                  >
+                    Sepete ekle
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -86,4 +107,3 @@
     </div>
   </div>
 </div>
-

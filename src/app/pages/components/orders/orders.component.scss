@@ -1,10 +1,47 @@
-.container{
-  width:330px;
-  background: transparent;
-  border: 2px solid ;
-  border-color: #000;
-  display: flex;
-  flex-direction: column;
 
+.conatiner{
+  padding: 10px;
 
 }
+
+.p-datatable {
+  width: 100%; /* Tablo genişliği */
+  margin-left: 40px;
+
+}
+/* Tablo başlığı */
+.p-datatable .p-datatable-thead {
+  background-color: #f0f0f0; /* Başlık arka plan rengi */
+  font-weight: bold; /* Başlık metni kalın */
+  width: 100%;
+}
+
+/* Tablo satırları */
+.p-datatable .p-datatable-tbody {
+  background-color: #ffffff; /* Satır arka plan rengi */
+}
+
+/* Seçilen satır */
+.p-datatable .p-datatable-tbody .p-highlight {
+  background-color: #ffffcc; /* Seçilen satırın arka plan rengi */
+}
+
+/* Tablo hücreleri */
+.p-datatable .p-datatable-tbody td {
+  padding: 10px; /* Hücre içi boşluk */
+  border: 1px solid #ddd; /* Hücre sınırları */
+}
+
+/* Sil düğmesi */
+.button {
+  background-color: #000; /* Sil düğmesi arka plan rengi */
+  color: #ffffff; /* Sil düğmesi metin rengi */
+  border: none; /* Sil düğmesi sınırı yok */
+  padding: 5px 10px; /* Sil düğmesi içi boşluk */
+  cursor: pointer; /* Sil düğmesi imleci el işareti yapar */
+}
+
+.button:hover {
+  background-color: #176b87; /* Sil düğmesine fare üzerine gelindiğinde yeni arka plan rengi */
+}
+
