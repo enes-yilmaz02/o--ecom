@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { MessageService } from 'primeng/api';
+import { Observable } from 'rxjs';
+import { Product } from 'src/app/models/product';
 import { CartService } from 'src/app/services/cart.service';
 
 @Component({
@@ -8,11 +10,13 @@ import { CartService } from 'src/app/services/cart.service';
   styleUrls: ['./favorites.component.scss'],
 })
 export class FavoritesComponent {
-  items = this.cart.getItemsFavorites();
+   items$;
   constructor(
     private cart: CartService,
     private messageService: MessageService
-  ) {}
+  ) {
+    this.items$ = this.cart.getItemsFavorites();
+  }
 
   removeFromCartFavorites(item) {
     this.cart.removeFromCartFavorites(item);
@@ -21,6 +25,6 @@ export class FavoritesComponent {
       summary: 'Başarılı',
       detail: 'Seçilen ürün favorilerimden kaldırıldı',
     });
-    this.items = this.cart.getItemsFavorites();
+    this.items$ = this.cart.getItemsFavorites();
   }
 }
