@@ -8,21 +8,21 @@ import { CartService } from 'src/app/services/cart.service';
   styleUrls: ['./favorites.component.scss']
 })
 export class FavoritesComponent {
-  items = this.cart.getItems();
+  items = this.cart.getItemsFavorites();
 
   constructor(private cart:CartService , private messageService:MessageService){}
 
-removeFromCart(item) {
+removeFromCartFavorites(item) {
   // Sepetten ürünü kaldırma işlemi
   // Örnek: CartService kullanarak sepetten ürünü kaldırmak
-  this.cart.removeFromCart(item);
+  this.cart.removeFromCartFavorites(item);
   this.messageService.add({
     severity: 'success',
     summary: 'Başarılı',
     detail: 'Seçilen ürün favorilerimden kaldırıldı',
   });
   // Ürünü kaldırdıktan sonra items dizisini güncelleyin
-  this.items = this.cart.getItems();
+  this.items = this.cart.getItemsFavorites();
 
 }
 

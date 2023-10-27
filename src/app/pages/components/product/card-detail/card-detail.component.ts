@@ -86,4 +86,22 @@ export class CardDetailComponent {
   updateProductPrice(): void {
     this.productPrice = this.defaultValue * this.product.price;
   }
+
+  addToCartFavorites(product: Product) {
+    const cartItemsFavorites = {
+      id: product.id,
+      image: product.image,
+      name: product.name,
+      status: product.inventoryStatus,
+      category: product.category,
+      price: product.price,
+    };
+
+      this.cart.addToCartFavorites(cartItemsFavorites);
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Başarılı',
+        detail: 'Ürün favorilerime eklendi',
+      });
+  }
 }
