@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { CartService } from 'src/app/services/cart.service';
 
@@ -10,11 +9,12 @@ import { CartService } from 'src/app/services/cart.service';
 })
 export class OrdersComponent implements OnInit {
   totalPrice:number;
+  items = this.cart.getItems();
 constructor(private cart:CartService , private messageService:MessageService){}
   ngOnInit(): void {
     this.totalPrice=this.calculateTotalPrice().valueOf();
   }
- items = this.cart.getItems();
+
 
  calculateTotalPrice() {
   this.totalPrice = this.items.reduce((total,item) => total + item.price, 0);
