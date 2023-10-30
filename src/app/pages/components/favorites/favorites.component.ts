@@ -18,7 +18,6 @@ export class FavoritesComponent {
   getFavorites() {
     this.cart.getItemsFavorites().subscribe((data: Product[]) => {
       this.items = data;
-      console.log(data);
     });
 
   }

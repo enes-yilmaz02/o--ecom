@@ -7,7 +7,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CartService {
-  private collectionName = 'orders';
+  private collectionNameOrders = 'orders';
   private collectionNameFavorites = 'favorites';
   private userDocRef = this.afs.collection('users').doc();
   // Siparişler için bir Badge (bildirim sayacı)
@@ -33,7 +33,7 @@ export class CartService {
   // Sepete ürün ekler ve aynı zamanda Badge'i günceller
   addToCart(item: Product): Promise<any> {
     //const userDocRef = this.afs.collection('users').doc();
-    return this.afs.collection(this.collectionName).add(item).then(() => {
+    return this.afs.collection(this.collectionNameOrders).add(item).then(() => {
       // Siparişler Badge'ini artır
       this.orderBadge.next(this.orderBadge.value + 1);
     });
@@ -48,20 +48,18 @@ export class CartService {
     });
   }
 
-  removeFromCartOrders(item: string): Promise<void> {
-    return this.afs.collection(this.collectionName).doc(item).delete().then(() => {
+  removeFromCartOrders(item: string): Promise<any> {
+    return this.afs.collection(this.collectionNameOrders).doc(item).delete().then(() => {
       // Siparişler Badge'ini azalt
       this.orderBadge.next(this.orderBadge.value - 1);
     });
   }
   // Favorilerden ürünü kaldırır ve aynı zamanda Badge'i günceller
-  removeFromCartFavorites(item: string): Promise<void> {
+  removeFromCartFavorites(item: string): Promise<any> {
     return this.afs.collection(this.collectionNameFavorites).doc(item).delete().then(() => {
       // Favoriler Badge'ini azalt
       this.favoritesBadge.next(this.favoritesBadge.value - 1);
-    }).catch((error) => {
-      console.error("Favori ürünü silerken hata oluştu", error);
-    });
+    })
 }
 
   // Favori ürünleri izler ve bu konuda bir Observable döner
@@ -71,6 +69,6 @@ export class CartService {
 
   // Sipariş ürünlerini izler ve bu konuda bir Observable döner
   getItemsOrders(): Observable<Product[]> {
-    return this.afs.collection(this.collectionName).valueChanges();
+    return this.afs.collection(this.collectionNameOrders).valueChanges();
   }
 }

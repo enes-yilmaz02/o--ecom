@@ -14,7 +14,7 @@ export class OrdersComponent {
   constructor(private cart: CartService) {
     // Verileri alıp hesaplamaları burada yapabiliriz
     this.getOrders();
-    console.log(this.getOrders());
+
   }
 
   getOrders() {
