@@ -10,7 +10,7 @@ import { ProductsService } from 'src/app/services/products.service';
 export class CardComponent {
   layout: "grid" | "list" = "grid";
   products!: Product[];
-
+  searchText: string = ''; // Arama metni için bir değişken
   constructor(private productService: ProductsService) {
 
   }
@@ -34,4 +34,13 @@ export class CardComponent {
               return null;
       }
   };
+
+  // Arama metnine göre ürünleri filtrelemek için bu yöntemi kullanabilirsiniz
+  filterProducts(): any[] {
+    const search = this.searchText.toLowerCase();
+    return this.products.filter((product) =>
+      product.name.toLowerCase().includes(search) ||
+      product.category.toLowerCase().includes(search)
+    );
+  }
 }

@@ -1,5 +1,9 @@
 <div class="card">
-  <p-dataView  [value]="products" [layout]="layout">
+  <div class="p-input-icon-left">
+    <i class="pi pi-search"></i>
+    <input pInputText type="text" [(ngModel)]="searchText" placeholder="Ara...">
+  </div>
+  <p-dataView  [value]="filterProducts()" [layout]="layout" [filterBy]="searchText">
       <ng-template pTemplate="header">
           <div class="flex justify-content-end">
               <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
