@@ -1,17 +1,33 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TranslocoService } from '@ngneat/transloco';
 import { Observable } from 'rxjs';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-navbar-list',
   templateUrl: './navbar-list.component.html',
   styleUrls: ['./navbar-list.component.scss']
 })
-export class NavbarListComponent {
+export class NavbarListComponent implements OnInit {
   stateOptions: any[] = [{ label: '🇹🇷 Tr', value: 'tr' }, { label: '🇬🇧 En', value: 'en' }];
   selectedLanguage: string = 'tr';
+  orderBadge: string;
+  favoritesBadge: string;
 
-  constructor( private transloco: TranslocoService ) {}
+
+
+  constructor( private transloco: TranslocoService,private cartService: CartService) {}
+
+
+  ngOnInit(): void {
+    this.cartService.orderBadge.subscribe((badge) => {
+      this.orderBadge = badge.toString();
+    });
+
+    this.cartService.favoritesBadge.subscribe((badge) => {
+      this.favoritesBadge = badge.toString();
+    });
+  }
 
 setLanguage() {
   if(this.selectedLanguage=== 'tr'){

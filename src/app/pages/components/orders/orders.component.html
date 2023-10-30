@@ -36,7 +36,7 @@
   </div>
     <div class="flex w-full">
       <div class="table">
-        <p-table>
+        <p-table [value]="items">
           <ng-template pTemplate="header">
             <tr>
               <th>Id</th>
@@ -67,7 +67,7 @@
               <td>{{ item.status }}</td>
               <td>$ {{ item.price }}</td>
               <td class="button-style">
-                <button class="button w-full border-round" (click)="removeFromCart(item)">Sil</button>
+                <button class="button w-full border-round" (click)="removeFromCartOrders(item)">Sil</button>
               </td>
             </tr>
           </ng-template>

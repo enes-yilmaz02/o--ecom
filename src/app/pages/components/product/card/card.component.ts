@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product';
 import { ProductsService } from 'src/app/services/products.service';
 
@@ -7,16 +7,22 @@ import { ProductsService } from 'src/app/services/products.service';
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss']
 })
-export class CardComponent {
+export class CardComponent implements OnInit {
   layout: "grid" | "list" = "grid";
   products!: Product[];
   searchText: string = ''; // Arama metni için bir değişken
+  filteredProducts: Product[] = []; // Filtrelenmiş ürünleri saklamak için bir dizi
   constructor(private productService: ProductsService) {
 
   }
 
+
   ngOnInit() {
-      this.productService.getProducts().then((data) => (this.products = data.slice(0, 12)));
+    this.productService.getProducts().then((data) => {
+      this.products = data.slice(0, 12);
+      // Sayfa yüklendiğinde tüm ürünleri filtrelenmiş ürünler listesine kopyala
+      this.filteredProducts = [...this.products];
+    });
   }
 
   getSeverity(product: Product) {
@@ -38,7 +44,7 @@ export class CardComponent {
   // Arama metnine göre ürünleri filtrelemek için bu yöntemi kullanabilirsiniz
   filterProducts(): any[] {
     const search = this.searchText.toLowerCase();
-    return this.products.filter((product) =>
+    return this.products?.filter((product) =>
       product.name.toLowerCase().includes(search) ||
       product.category.toLowerCase().includes(search)
     );

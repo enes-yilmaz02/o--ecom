@@ -98,11 +98,19 @@ export class CardDetailComponent {
       price: product.price,
     };
 
-      this.cart.addToCartFavorites(cartItemsFavorites);
-      this.messageService.add({
-        severity: 'success',
-        summary: 'Başarılı',
-        detail: 'Ürün favorilerime eklendi',
-      });
+      if(this.cart.addToCartFavorites(cartItemsFavorites)){
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Başarılı',
+          detail: 'Ürün favorilerime eklendi',
+        });
+      }else{
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Hata!',
+          detail: 'Ürün favorilerime eklenemedi',
+        });
+      }
+
   }
 }

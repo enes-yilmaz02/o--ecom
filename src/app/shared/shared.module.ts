@@ -31,6 +31,7 @@ import { TableModule } from 'primeng/table';
 import { KeyFilterModule } from 'primeng/keyfilter';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { MultiSelectModule } from 'primeng/multiselect';
+import { BadgeModule } from 'primeng/badge';
 @NgModule({
   declarations: [],
   imports: [
@@ -66,7 +67,8 @@ import { MultiSelectModule } from 'primeng/multiselect';
     TableModule,
     KeyFilterModule,
     MultiSelectModule,
-    InputNumberModule
+    InputNumberModule,
+    BadgeModule
 
   ],
   exports:[
@@ -102,7 +104,8 @@ import { MultiSelectModule } from 'primeng/multiselect';
     TableModule,
     KeyFilterModule,
     MultiSelectModule,
-    InputNumberModule
+    InputNumberModule,
+    BadgeModule
   ],
   providers:[MessageService]
 })

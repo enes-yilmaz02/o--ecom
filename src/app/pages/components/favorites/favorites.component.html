@@ -33,9 +33,9 @@
       </div>
     </div>
   </div>
-  <div class="flex w-full" *ngIf="items">
+  <div class="flex w-full">
     <div class="table">
-      <p-table>
+      <p-table [value]="items">
         <ng-template pTemplate="header">
           <tr>
             <th>Id</th>
@@ -52,10 +52,7 @@
             <td>{{ item.id }}</td>
             <td>
               <p-image
-                [src]="
-                  'https://primefaces.org/cdn/primeng/images/demo/product/' +
-                  item.image
-                "
+                [src]="'https://primefaces.org/cdn/primeng/images/demo/product/' + item.image"
                 [alt]="item.name"
                 [preview]="true"
                 width="100px"
@@ -67,10 +64,7 @@
             <td>{{ item.status }}</td>
             <td>$ {{ item.price }}</td>
             <td class="button-style">
-              <button
-                class="button w-full border-round"
-                (click)="removeFromCartFavorites(item.id)"
-              >
+              <button class="button w-full border-round" (click)="removeFromCartFavorites(item)">
                 Sil
               </button>
             </td>

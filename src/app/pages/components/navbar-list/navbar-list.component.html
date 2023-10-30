@@ -10,12 +10,16 @@
         </li>
         <li class="menu-item">
           <a routerLink="/orders">
-            <i class="pi pi-shopping-cart"></i> {{'navigationForm.orders' | transloco}}
+            <i class="pi pi-shopping-cart" style="width: 25px;">
+              <span pBadge [severity]="'success'" [value]="orderBadge"></span>
+            </i> {{'navigationForm.orders' | transloco}}
           </a>
         </li>
         <li class="menu-item">
           <a routerLink="/favorites">
-            <i class="pi pi-heart"></i> {{'navigationForm.favorites' | transloco}}
+            <i class="pi pi-heart">
+              <span pBadge [severity]=" 'danger' "  [value]="favoritesBadge"></span>
+            </i> {{'navigationForm.favorites' | transloco}}
           </a>
         </li>
         <li class="menu-item">

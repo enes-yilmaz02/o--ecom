@@ -11,22 +11,28 @@ import { CartService } from 'src/app/services/cart.service';
 export class FavoritesComponent {
   items: Product[];
 
-  constructor(private cart: CartService) {
+  constructor(private cart: CartService , private messageService:MessageService) {
     this.getFavorites();
   }
 
   getFavorites() {
     this.cart.getItemsFavorites().subscribe((data: Product[]) => {
       this.items = data;
+      console.log(data);
     });
+
   }
 
-  removeFromCartFavorites(item: string) {
+  removeFromCartFavorites(item : string) {
     this.cart.removeFromCartFavorites(item).then(() => {
       // Favorilerden ürünü kaldırdıktan sonra favorileri yeniden al
       this.getFavorites();
     }).catch((error) => {
-      console.error("Ürün favorilerinizden kaldırılırken hata oluştu", error);
+      this.messageService.add({
+        severity: 'error',
+          summary: 'Hata!',
+          detail: 'Ürün favorilerime kaldırılamadı',
+      })
     });
   }
 }
