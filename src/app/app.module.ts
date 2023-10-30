@@ -12,6 +12,7 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { environment } from '../environments/environment';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { CartService } from './services/cart.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
     DashboardModule
 
   ],
-  providers: [],
+  providers: [CartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

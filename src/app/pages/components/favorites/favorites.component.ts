@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { Observable } from 'rxjs';
 import { Product } from 'src/app/models/product';
 import { CartService } from 'src/app/services/cart.service';
 
@@ -10,21 +9,24 @@ import { CartService } from 'src/app/services/cart.service';
   styleUrls: ['./favorites.component.scss'],
 })
 export class FavoritesComponent {
-   items$;
-  constructor(
-    private cart: CartService,
-    private messageService: MessageService
-  ) {
-    this.items$ = this.cart.getItemsFavorites();
+  items: Product[];
+
+  constructor(private cart: CartService) {
+    this.getFavorites();
   }
 
-  removeFromCartFavorites(item) {
-    this.cart.removeFromCartFavorites(item);
-    this.messageService.add({
-      severity: 'success',
-      summary: 'Başarılı',
-      detail: 'Seçilen ürün favorilerimden kaldırıldı',
+  getFavorites() {
+    this.cart.getItemsFavorites().subscribe((data: Product[]) => {
+      this.items = data;
     });
-    this.items$ = this.cart.getItemsFavorites();
+  }
+
+  removeFromCartFavorites(item: string) {
+    this.cart.removeFromCartFavorites(item).then(() => {
+      // Favorilerden ürünü kaldırdıktan sonra favorileri yeniden al
+      this.getFavorites();
+    }).catch((error) => {
+      console.error("Ürün favorilerinizden kaldırılırken hata oluştu", error);
+    });
   }
 }

@@ -1,65 +1,44 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { MessageService } from 'primeng/api';
 import { Product } from '../models/product';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-  private collectionName ='orders';
-  private collectionNameFavorites='favorites';
-  constructor(private afs: AngularFirestore,private messageService:MessageService) {
-  }
-  addToCart(item: Product) :Promise<any>{
-    return this.afs.collection(this.collectionName).doc().set({item}).then(()=>{
-      this.messageService.add({
-        severity: 'success',
-        summary: 'Başarılı!',
-        detail:
-          'Ürün sepete eklendiii',
-      });
-    }).catch((error) => {
-    this.messageService.add({
-      severity: 'warn',
-      summary: 'Hata!',
-      detail:
-        'Beklenmeyen bir hata oluştu. Lütfen tekrar deneyin',
-    });
-  });
+  private collectionName = 'orders';
+  private collectionNameFavorites = 'favorites';
+
+  constructor(private afs: AngularFirestore) {
   }
 
-  addToCartFavorites(item: Product) {
-    return this.afs.collection(this.collectionNameFavorites).doc().set({item}).then(()=>{
-      this.messageService.add({
-        severity: 'success',
-        summary: 'Başarılı!',
-        detail:
-          'Ürün sepete eklendiii',
-      });
-    }).catch((error) => {
-    this.messageService.add({
-      severity: 'warn',
-      summary: 'Hata!',
-      detail:
-        'Beklenmeyen bir hata oluştu. Lütfen tekrar deneyin',
-    });
-  });
+  addToCart(item: Product): Promise<any> {
+    const userDocRef = this.afs.collection('users').doc();
+    return userDocRef.collection('orders').add(item);
   }
 
-  removeFromCart(item) {
+  addToCartFavorites(item: Product): Promise<any> {
+    const userDocRef = this.afs.collection('users').doc();
+    return userDocRef.collection('favorites').add(item);
+  }
+
+  removeFromCart(item: string): Promise<void> {
     return this.afs.collection(this.collectionName).doc(item).delete();
   }
 
-  removeFromCartFavorites(item: any) {
+  removeFromCartFavorites(item: string): Promise<void> {
     return this.afs.collection(this.collectionNameFavorites).doc(item).delete();
   }
 
-  getItemsFavorites() {
-    return this.afs.collection(this.collectionNameFavorites).valueChanges();
+  getItemsFavorites(): Observable<Product[]> {
+    return this.afs.collection<Product>(this.collectionNameFavorites).valueChanges();
   }
 
-  getItems(){
-    return this.afs.collection(this.collectionName).valueChanges();
+  getItems(): Observable<Product[]> {
+    return this.afs
+      .collection<Product>(this.collectionName)
+      .valueChanges();
   }
+
 }

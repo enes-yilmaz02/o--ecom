@@ -23,6 +23,7 @@ import { RegisterComponent } from './components/main/register/register.component
 import { ResetpasswordComponent } from './components/main/resetpassword/resetpassword.component';
 import { PagesComponent } from './pages.component';
 import { RouterModule } from '@angular/router';
+import { CartService } from '../services/cart.service';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,9 @@ import { RouterModule } from '@angular/router';
     RegisterComponent,
     ResetpasswordComponent,
     CardDetailComponent
+  ],
+  providers:[
+    CartService
   ]
 })
 export class PagesModule { }

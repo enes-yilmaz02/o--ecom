@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { Product } from 'src/app/models/product';
+import { Users } from 'src/app/models/users';
 import { CartService } from 'src/app/services/cart.service';
 import { ProductsService } from 'src/app/services/products.service';
 
@@ -15,7 +16,7 @@ export class CardDetailComponent {
   product: any;
   defaultValue = 0; // Seçilen ürün sayısını tutacak değişken
   productPrice: number; // Güncellenmiş ürün fiyatını tutacak değişken
-
+  user:Users;
   constructor(
     private route: ActivatedRoute,
     private productService: ProductsService,
@@ -47,7 +48,7 @@ export class CardDetailComponent {
     }
   }
 
-  addToCart(product: Product) {
+  addToCart(product: Product ) {
     const cartItem = {
       id: product.id,
       image: product.image,
