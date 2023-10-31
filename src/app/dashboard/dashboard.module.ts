@@ -9,13 +9,15 @@ import { AdduserFormComponent } from './components/user-management/adduser-form/
 import { DialogService } from 'primeng/dynamicdialog';
 import { TranslocoModule } from '@ngneat/transloco';
 import { TranslocoRootModule } from '../transloco-root.module';
+import { UpdateuserFormComponent } from './components/user-management/updateuser-form/updateuser-form.component';
 
 @NgModule({
   declarations: [
        DashboardComponent,
        LogsComponent,
        UserManagementComponent,
-       AdduserFormComponent
+       AdduserFormComponent,
+       UpdateuserFormComponent
 
   ],
   imports: [

@@ -49,7 +49,7 @@
               <div class="flex flex-row justify-content-start align-content-center w-21rem">
                 <div>
                   <span class="button-style">
-                    <button class="button"><i class="pi pi-pencil" style="color: white"></i> Düzenle</button>
+                    <button class="button" (click)="showUpdateForm()"><i class="pi pi-pencil" style="color: white"></i> Düzenle</button>
                   </span>
                 </div>
                 <div>
@@ -70,4 +70,5 @@
   </div>
 
   <app-adduser-form  *ngIf="isUserDialogOpen"></app-adduser-form>
+  <app-updateuser-form *ngIf="isUserDialogOpen"></app-updateuser-form>
 </div>

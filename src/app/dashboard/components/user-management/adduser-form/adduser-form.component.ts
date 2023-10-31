@@ -9,8 +9,6 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./adduser-form.component.scss']
 })
 export class AdduserFormComponent {
-  @Output() userAdded = new EventEmitter();
-  newUser: any = {};
   adduserForm:FormGroup;
 
   constructor(private formBuilder:FormBuilder , private messageService:MessageService , private userService : UserService){

@@ -6,6 +6,7 @@ import { Customer, Representative } from 'src/app/models/customer';
 import { Users } from 'src/app/models/users';
 import { UserService } from 'src/app/services/user.service';
 import { AdduserFormComponent } from './adduser-form/adduser-form.component';
+import { UpdateuserFormComponent } from './updateuser-form/updateuser-form.component';
 
 @Component({
   selector: 'app-user-management',
@@ -101,6 +102,16 @@ export class UserManagementComponent implements OnDestroy {
 
   show() {
     this.ref = this.dialogService.open(AdduserFormComponent, {
+      header: 'Orion Innovation',
+      width: '70%',
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+      maximizable: true,
+    });
+  }
+
+  showUpdateForm() {
+    this.ref = this.dialogService.open(UpdateuserFormComponent, {
       header: 'Orion Innovation',
       width: '70%',
       contentStyle: { overflow: 'auto' },
