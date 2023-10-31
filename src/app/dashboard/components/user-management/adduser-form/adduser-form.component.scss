@@ -1,13 +1,17 @@
 
 .container {
   width: 100%;
-  min-height: 100vh;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
+  min-height: 75vh;
   padding: 15px;
   display: flex;
   background: transparent;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(8px);
 }
 
 .container form {
@@ -17,7 +21,7 @@
   padding: 20px;
   width: 650px;
   height: auto;
-  background-color: #00000113;
+  backdrop-filter: blur(8px);
   margin: 15px;
   border: 2px solid rgba(255, 255, 255, 0.5);
   border-color: #000;
@@ -40,7 +44,4 @@ a:hover{
   color:#176b87;
 }
 
-i{
-  display: flex;
 
-}

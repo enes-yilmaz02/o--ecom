@@ -1,13 +1,12 @@
 <div class="conatiner">
-  <div class="card">
+  <div class="card" style="width: 1100px;">
     <p-table
         #dt2
-        [value]="customers"
+        [value]="users"
         dataKey="id"
         [rows]="10"
         [showCurrentPageReport]="true"
         [rowsPerPageOptions]="[10, 25, 50]"
-        [loading]="loading"
         [paginator]="true"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
         [globalFilterFields]="['name', 'country.name', 'representative.name', 'status']"
@@ -18,18 +17,8 @@
       <div class="flex flex-row justify-content-between align-content-center w-21rem">
         <div>
           <span class="button-style">
-            <button class="button"><i class="pi pi-plus" style="color: white"></i>
+            <button class="button" (click)="show()"><i class="pi pi-plus" style="color: white"></i>
               Ekle</button>
-          </span>
-        </div>
-        <div>
-          <span class="button-style">
-            <button class="button"><i class="pi pi-pencil" style="color: white"></i> Düzenle</button>
-          </span>
-        </div>
-        <div>
-          <span class="button-style">
-            <button class="button"><i class="pi pi-trash" style="color: white"></i> Sil</button>
           </span>
         </div>
       </div>
@@ -42,39 +31,35 @@
      </div>
         </ng-template>
         <ng-template pTemplate="header">
-          <tr>
-            <th>
-                <p-columnFilter type="text" field="name"></p-columnFilter>
-            </th>
-            <th>
-                <p-columnFilter type="text" field="country.name"></p-columnFilter>
-            </th>
-            <th>
-                <p-columnFilter field="status" matchMode="equals" [showMenu]="false">
-                    <ng-template pTemplate="filter" let-value let-filter="filterCallback">
-                        <p-dropdown [ngModel]="value" [options]="statuses" (onChange)="filter($event.value)" placeholder="Any" [showClear]="true">
-                            <ng-template let-option pTemplate="item">
-                                <p-tag [value]="option.value" [severity]="getSeverity(option.label)"></p-tag>
-                            </ng-template>
-                        </p-dropdown>
-                    </ng-template>
-                </p-columnFilter>
-            </th>
-            <th>
-                <p-columnFilter type="boolean" field="verified"></p-columnFilter>
-            </th>
-        </tr>
             <tr>
                 <th style="width:22%">Ad</th>
                 <th style="width:22%">Kullanıcı Adı </th>
                 <th style="width:22%">email </th>
                 <th style="width:22%">Telefon</th>
+                <th style="width: 22%;">İşlemler</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-customer>
-            <tr>
-
-            </tr>
+          <tr>
+            <td>{{ customer.name }}</td>
+            <td>{{ customer.username }}</td>
+            <td>{{ customer.email }}</td>
+            <td>{{ customer.phone }}</td>
+            <td>
+              <div class="flex flex-row justify-content-start align-content-center w-21rem">
+                <div>
+                  <span class="button-style">
+                    <button class="button"><i class="pi pi-pencil" style="color: white"></i> Düzenle</button>
+                  </span>
+                </div>
+                <div>
+                  <span class="button-style" style="margin-left: 5px;">
+                    <button class="button"  (click)="deleteUser(customer.email , customer.password)"><i class="pi pi-trash" style="color: white"></i> Sil</button>
+                  </span>
+                </div>
+              </div>
+            </td>
+          </tr>
         </ng-template>
         <ng-template pTemplate="emptymessage">
             <tr>
@@ -84,4 +69,5 @@
     </p-table>
   </div>
 
+  <app-adduser-form  *ngIf="isUserDialogOpen"></app-adduser-form>
 </div>

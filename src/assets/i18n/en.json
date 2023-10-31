@@ -146,6 +146,29 @@
     "content":"Content Management",
     "acessibility":"Access Control",
     "security":"Security Management"
+  },
+  "adduserForm":{
+    "nameTooltip": "Enter your name",
+    "nameLabel": "Name",
+    "nameSmall": "* Name field cannot be left blank",
+    "usernameTooltip": "Enter your username",
+    "usernameLabel": "Username",
+    "usernameSmall": "* Username field cannot be left blank",
+    "emailTooltip": "Enter your email",
+    "emailLabel": "Email",
+    "emailSmall": "* Email field cannot be left blank",
+    "phoneTooltip":"Enter phone number",
+    "phoneLabel":"Phone",
+    "phoneSmall":"Phone number field cannot be left blank",
+    "passwordTooltip": "Enter your password",
+    "passwordLabel": "Password",
+    "passwordSmall": "* Password field cannot be left blank",
+    "confirmTooltip": "Enter your Password (Repeat)",
+    "confirmLabel": "Password (Repeat) ",
+    "confirmSmall": "* Password field cannot be left blank",
+    "confirmSmallSecond": "* Passwords you entered do not match",
+    "buttonLabel": "Add"
+
   }
 }
 

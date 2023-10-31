@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import {  HttpClientModule } from '@angular/common/http';
 import { TranslocoRootModule } from './transloco-root.module';
 import { PagesModule } from './pages/pages.module';
 import { AngularFireModule } from '@angular/fire/compat';
@@ -13,6 +13,9 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { environment } from '../environments/environment';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { CartService } from './services/cart.service';
+import { UserService } from './services/user.service';
+import { TranslocoService } from '@ngneat/transloco';
+import { TranslocoModule } from '@ngneat/transloco';
 
 @NgModule({
   declarations: [
@@ -29,10 +32,12 @@ import { CartService } from './services/cart.service';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     SharedModule,
-    DashboardModule
+    DashboardModule,
+    TranslocoModule
 
   ],
-  providers: [CartService],
+  exports:[TranslocoModule],
+  providers: [CartService,UserService,TranslocoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

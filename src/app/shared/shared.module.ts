@@ -32,6 +32,8 @@ import { KeyFilterModule } from 'primeng/keyfilter';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { BadgeModule } from 'primeng/badge';
+import { DialogModule } from 'primeng/dialog';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
 @NgModule({
   declarations: [],
   imports: [
@@ -68,7 +70,9 @@ import { BadgeModule } from 'primeng/badge';
     KeyFilterModule,
     MultiSelectModule,
     InputNumberModule,
-    BadgeModule
+    BadgeModule,
+    DialogModule,
+    DynamicDialogModule
 
   ],
   exports:[
@@ -105,7 +109,9 @@ import { BadgeModule } from 'primeng/badge';
     KeyFilterModule,
     MultiSelectModule,
     InputNumberModule,
-    BadgeModule
+    BadgeModule,
+    DialogModule,
+    DynamicDialogModule
   ],
   providers:[MessageService]
 })

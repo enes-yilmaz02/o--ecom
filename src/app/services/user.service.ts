@@ -37,17 +37,67 @@ export class UserService {
     return this.afs.collection(this.collectionName).doc(id).valueChanges();
   }
   // add user
-  addUsers(user: Users): Promise<any> {
-    return this.afs.collection(this.collectionName).add(user);
+   // Yeni bir kullanıcı eklemek için otomatik olarak artan sayısal bir ID oluşturun
+   addUsers(user: Users): Promise<void> {
+    return new Promise<void>((resolve, reject) => {
+      // Koleksiyon referansı oluşturun
+      const collectionRef = this.afs.collection(this.collectionName);
+
+      // Otomatik olarak artan bir ID alın
+      collectionRef.add(user).then((documentRef) => {
+        const userId = documentRef.id;
+
+        // Belgeyi güncelleyin ve otomatik kimliği atayın
+        collectionRef.doc(userId).update({ id: userId }).then(() => {
+          resolve();
+        }).catch((error) => {
+          reject(error);
+        });
+      }).catch((error) => {
+        reject(error);
+      });
+    });
   }
+
   //update user
   updateUsers(user: Users): Promise<void> {
     return this.afs.collection(this.collectionName).doc(user.id).update(user);
   }
-  //delete user
-  deleteUsers(id: string): Promise<void> {
-    return this.afs.collection(this.collectionName).doc(id).delete();
-  }
+ //delete user
+ deleteUsers(email: string, password: string):any {
+  // Email ile oturum açmayı deneyin
+  this.afu
+    .signInWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+      const user = userCredential.user;
+
+      // Firestore'dan kullanıcı verilerini silme işlemi
+      this.afs.collection<Users>('users', (ref) =>
+        ref.where('email', '==', email).limit(1)
+      ).get().subscribe((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          const docId = doc.id;
+          doc.ref.delete().then(() => {
+            // Firestore'dan veri başarıyla silindi.
+
+            // Kullanıcıyı kimlik doğrulamadan silme işlemi
+            user.delete().then(() => {
+              // Kullanıcı başarıyla silindi.
+            }).catch((error) => {
+              // Kullanıcıyı silerken hata oluştu.
+            });
+          }).catch((error) => {
+            // Firestore'dan veriyi silerken hata oluştu.
+          });
+        });
+      });
+    })
+    .catch((error) => {
+      // Kullanıcıyı oturum açarak silemezsiniz, hata oluştu.
+    });
+}
+
+
 
   get isUserAnonymousLoggedIn(): boolean {
     return this.authState !== null ? this.authState.isAnonymous : false;
@@ -76,6 +126,7 @@ export class UserService {
   }
 
   registerWithEmail(
+
     name: string,
     username: string,
     email: string,
@@ -99,6 +150,7 @@ export class UserService {
             .createUserWithEmailAndPassword(email, password)
             .then(() => {
               return this.afs.collection('users').doc().set({
+
                 name: name,
                 username: username,
                 email: email,

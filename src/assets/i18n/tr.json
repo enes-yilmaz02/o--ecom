@@ -146,6 +146,29 @@
     "content":"İçerik Yönetimi",
     "acessibility":"Erişim Kontrolü",
     "security":"Güvenlik Yönetimi"
+  },
+  "adduserForm":{
+    "nameTooltip":"Adınızı giriniz",
+    "nameLabel":"Ad",
+    "nameSmall":"* Ad alanı boş bırakılamaz",
+    "usernameTooltip":"Kullanıcı adınızı giriniz",
+    "usernameLabel":"Kullanıcı adı",
+    "usernameSmall":"* Kullanıcı adı alanı boş bırakılamaz",
+    "emailTooltip":"emailinizi giriniz",
+    "emailLabel":"email",
+    "emailSmall":"* email alanı boş bırakılamaz",
+    "phoneTooltip":"Telefon numarası giriniz",
+    "phoneLabel":"Telefon",
+    "phoneSmall":"*Telefon no alanı boş bırakılamaz",
+    "passwordTooltip":"Şifrenizi giriniz",
+    "passwordLabel":"Şifre",
+    "passwordSmall":"* Şifre alanı boş bırakılamaz",
+    "confirmTooltip":"Şifre (Tekrar) giriniz",
+    "confirmLabel":"Şifre (Tekrar) ",
+    "confirmSmall":"* Şifre  alanı boş bırakılamaz",
+    "confirmSmallSecond":"* Girdiğiniz Şifreler eşleşmiyor",
+    "buttonLabel":"Ekle"
+
   }
 
 }
