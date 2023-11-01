@@ -1,0 +1,149 @@
+<div
+  class="container"
+  style="background-image: url('assets/images/net-rd-2-1.jpg')"
+>
+  <form [formGroup]="addproductForm">
+    <div
+      class="register-header block justify-content-center align-content-center align-items-center text-2xl w-full"
+      style="background: transparent"
+    >
+      <h2>Ürün ekle</h2>
+    </div>
+    <!-- Code input start-->
+
+    <div class="wrapper">
+      <span class="p-float-label mt-4">
+        <i class="pi pi-id-card" style="color: #000"></i>
+        <input
+          pInputText
+          id="code"
+          formControlName="code"
+        />
+        <label htmlFor="code"> Code </label>
+      </span>
+    </div>
+    <!-- Code input end-->
+
+    <!-- Name input start-->
+
+    <div class="wrapper">
+      <span class="p-float-label mt-4">
+        <i class="pi pi-user" style="color: #000"></i>
+        <input
+          pInputText
+          id="name"
+          formControlName="name"
+        />
+        <label htmlFor="name"> Name </label>
+      </span>
+    </div>
+    <!-- Name input end-->
+
+    <!-- Image input start-->
+    <div class="wrapper">
+    <span class="p-float-label">
+      <div class="w-full px-6 mt-4 py-1 bg-white border-round">
+        <p-fileUpload
+        mode="basic"
+        name="demo[]"
+        id="image"
+        url="https://www.primefaces.org/cdn/api/upload.php"
+        accept="image/*"
+        [maxFileSize]="1000000"
+        (onUpload)="onBasicUploadAuto($any($event))"
+        [auto]="true"
+        chooseLabel="Resim">
+        </p-fileUpload>
+       </div>
+    </span>
+    </div>
+    <!-- Image input end-->
+
+    <!-- Price input start-->
+    <div class="wrapper">
+      <span class="p-float-label mt-4">
+        <i class="pi pi-dollar" style="color: #000"></i>
+        <input
+          pInputText
+          id="price"
+          formControlName="price"
+        />
+        <label htmlFor="price">Price</label>
+      </span>
+    </div>
+    <!-- Price input end-->
+
+    <!-- Quantitiy input start-->
+    <div class="wrapper">
+      <span class="p-float-label mt-4">
+        <i class="pi pi-slack" style="color: #000"></i>
+        <input
+          pInputText
+          id="quantity"
+          formControlName="quantity"
+        />
+        <label htmlFor="quantity">Quantitiy</label>
+      </span>
+    </div>
+    <!-- Quantitiy input end-->
+
+    <!-- InventoryStatus input start-->
+    <div class="wrapper">
+      <span class="p-float-label mt-4">
+        <i class="pi pi-check-circle" style="color: #000"></i>
+        <input
+          pInputText
+          id="inventoryStatus"
+          formControlName="inventoryStatus"
+        />
+        <label htmlFor="inventoryStatus">Status</label>
+      </span>
+    </div>
+    <!-- InventoryStatus input end-->
+
+    <!-- category  input start-->
+    <div class="wrapper">
+      <span class="p-float-label mt-4">
+        <i class="pi pi-database" style="color: #000"></i>
+        <input
+          pInputText
+          id="category"
+          formControlName="category"
+        />
+        <label htmlFor="category">category</label>
+      </span>
+    </div>
+    <!-- category  input end-->
+    <!-- rating  input start-->
+    <div class="wrapper">
+      <label for="valueRating">Rating</label>
+      <span class="p-float-label mt-2">
+        <div
+          class="flex flex-column justify-content-center bg-white py-2 border-round"
+        >
+          <i class="pi pi-star-fill" style="color: #000"></i>
+          <p-rating
+            id="valueRating"
+            formControlName="valueRating"
+            [cancel]="false"
+            class="w-full mx-6 py-1"
+          ></p-rating>
+        </div>
+      </span>
+    </div>
+    <!-- rating  input end-->
+     <!-- desc  input start-->
+     <div class="wrapper block ">
+      <span class="p-float-label mt-2">
+        <textarea id="float-input" rows="10" cols="70" class="p-3 " pInputTextarea></textarea>
+        <label for="float-input">Description</label>
+      </span>
+    </div>
+    <!-- rating  input end-->
+    <!-- button start-->
+    <span class="button-style mt-4">
+      <button class="button w-12rem"  (click)="onSubmit()">ekle</button>
+    </span>
+    <!-- button end-->
+  </form>
+</div>

@@ -10,14 +10,18 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { TranslocoModule } from '@ngneat/transloco';
 import { TranslocoRootModule } from '../transloco-root.module';
 import { UpdateuserFormComponent } from './components/user-management/updateuser-form/updateuser-form.component';
-
+import { ProductManagementComponent } from './components/product-management/product-management.component';
+import { AddproductFormComponent } from './components/product-management/addproduct-form/addproduct-form.component';
+import { ProductService } from '../services/product.service';
 @NgModule({
   declarations: [
        DashboardComponent,
        LogsComponent,
        UserManagementComponent,
        AdduserFormComponent,
-       UpdateuserFormComponent
+       UpdateuserFormComponent,
+       ProductManagementComponent,
+       AddproductFormComponent
 
   ],
   imports: [
@@ -33,7 +37,8 @@ import { UpdateuserFormComponent } from './components/user-management/updateuser
   providers:[
     UserService,
     DialogService,
-    TranslocoModule
+    TranslocoModule,
+    ProductService
   ]
 })
 export class DashboardModule { }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product';
-import { ProductsService } from 'src/app/services/products.service';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-card',
@@ -12,16 +12,14 @@ export class CardComponent implements OnInit {
   products!: Product[];
   searchText: string = ''; // Arama metni için bir değişken
   filteredProducts: Product[] = []; // Filtrelenmiş ürünleri saklamak için bir dizi
-  constructor(private productService: ProductsService) {
+  constructor(private productService:ProductService) {
 
   }
 
 
   ngOnInit() {
-    this.productService.getProducts().then((data) => {
-      this.products = data.slice(0, 12);
-      // Sayfa yüklendiğinde tüm ürünleri filtrelenmiş ürünler listesine kopyala
-      this.filteredProducts = [...this.products];
+    this.productService.getProducts().subscribe((data: Product[]) => {
+      this.products = data;
     });
   }
 

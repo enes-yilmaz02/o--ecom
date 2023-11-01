@@ -34,6 +34,8 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { BadgeModule } from 'primeng/badge';
 import { DialogModule } from 'primeng/dialog';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { FileUploadModule } from 'primeng/fileupload';
+
 @NgModule({
   declarations: [],
   imports: [
@@ -72,7 +74,8 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
     InputNumberModule,
     BadgeModule,
     DialogModule,
-    DynamicDialogModule
+    DynamicDialogModule,
+    FileUploadModule
 
   ],
   exports:[
@@ -111,7 +114,8 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
     InputNumberModule,
     BadgeModule,
     DialogModule,
-    DynamicDialogModule
+    DynamicDialogModule,
+    FileUploadModule
   ],
   providers:[MessageService]
 })

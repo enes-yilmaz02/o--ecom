@@ -16,6 +16,7 @@ import { CartService } from './services/cart.service';
 import { UserService } from './services/user.service';
 import { TranslocoService } from '@ngneat/transloco';
 import { TranslocoModule } from '@ngneat/transloco';
+import { ProductService } from './services/product.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,7 @@ import { TranslocoModule } from '@ngneat/transloco';
 
   ],
   exports:[TranslocoModule],
-  providers: [CartService,UserService,TranslocoService],
+  providers: [CartService,UserService,TranslocoService,ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

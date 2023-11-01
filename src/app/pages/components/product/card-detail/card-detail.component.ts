@@ -4,7 +4,7 @@ import { MessageService } from 'primeng/api';
 import { Product } from 'src/app/models/product';
 import { Users } from 'src/app/models/users';
 import { CartService } from 'src/app/services/cart.service';
-import { ProductsService } from 'src/app/services/products.service';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-card-detail',
@@ -19,9 +19,9 @@ export class CardDetailComponent {
   user:Users;
   constructor(
     private route: ActivatedRoute,
-    private productService: ProductsService,
     private cart: CartService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private productService:ProductService
   ) {}
 
   ngOnInit() {
@@ -29,7 +29,7 @@ export class CardDetailComponent {
     // ActivatedRoute'i kullanarak ürün kimliğini al
     this.route.params.subscribe((params) => {
       this.productId = params['id']; // Bu, "id" parametresine karşılık gelir
-      this.product = this.productService.getProductById(this.productId);
+      this.product = this.productService.getProduct(this.productId);
     });
   }
   getSeverity(product: Product) {
