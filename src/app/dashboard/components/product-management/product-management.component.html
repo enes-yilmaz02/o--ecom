@@ -32,27 +32,29 @@
         </ng-template>
         <ng-template pTemplate="header">
             <tr>
-                <th style="width:12.5%">Code</th>
-                <th style="width:12.5%">Name</th>
-                <th style="width:12.5%">Image </th>
-                <th style="width:12.5%">Price</th>
-                <th style="width:12.5%;">Quantity</th>
-                <th style="width:12.5%">Status </th>
-                <th style="width:12.5%">Category</th>
-                <th style="width:12.5%;">Rating</th>
-                <th style="width:12.5%;">İşlemler</th>
+                <th style="width:10%">Code</th>
+                <th style="width:10%">Name</th>
+                <th style="width:10%">Image </th>
+                <th style="width:10%">Price</th>
+                <th style="width:10%;">Quantity</th>
+                <th style="width:10%">Status </th>
+                <th style="width:10%">Category</th>
+                <th style="width:10%;">Rating</th>
+                <th style="width:10%;">Description</th>
+                <th style="width:10%;">İşlemler</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-customer>
           <tr>
             <td>{{ customer.code }}</td>
             <td>{{ customer.name }}</td>
-            <td>{{ customer.image }}</td>
-            <td>{{ customer.price }}</td>
+            <td>{{ customer.file }}</td>
+            <td>{{ customer.priceStacked }}</td>
             <td>{{ customer.quantity }}</td>
-            <td>{{ customer.inventoryStatus }}</td>
-            <td>{{ customer.category }}</td>
-            <td> <p-rating [(ngModel)]="customer.rating" [readonly]="true" [cancel]="false"></p-rating></td>
+            <td>{{ customer.selectedStatus.name }}</td>
+            <td>{{ customer.category.name }}</td>
+            <td> <p-rating [(ngModel)]="customer.valueRating" [readonly]="true" [cancel]="false"></p-rating></td>
+            <td>{{ customer.description}}</td>
             <td>
               <div class="flex flex-row justify-content-start align-content-center w-21rem">
                 <div>

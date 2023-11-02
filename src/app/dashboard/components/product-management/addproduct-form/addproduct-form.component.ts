@@ -89,9 +89,9 @@ export class AddproductFormComponent implements OnInit {
         const productData = {
           code: codeValue,
           name: nameValue,
-          file: quantityValue, // Yüklendiğinde alınan URL'i ekleyin
+          file: fileValue, // Yüklendiğinde alınan URL'i ekleyin
           priceStacked: priceStackedValue,
-          quantity: fileValue,
+          quantity: quantityValue,
           selectedStatus: selectedStatusValue,
           category: categoryValue,
           valueRating: valueRatingValue,

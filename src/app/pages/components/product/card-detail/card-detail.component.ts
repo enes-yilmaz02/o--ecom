@@ -25,10 +25,9 @@ export class CardDetailComponent {
   ) {}
 
   ngOnInit() {
-    console.log(this.defaultValue);
-    // ActivatedRoute'i kullanarak ürün kimliğini al
+
     this.route.params.subscribe((params) => {
-      this.productId = params['id']; // Bu, "id" parametresine karşılık gelir
+      this.productId = params['code']; // Bu, "id" parametresine karşılık gelir
       this.product = this.productService.getProduct(this.productId);
     });
   }
@@ -50,13 +49,13 @@ export class CardDetailComponent {
 
   addToCart(product: Product ) {
     const cartItem = {
-      id: product.id,
-      image: product.image,
+      code: product.code,
+      file: product.image,
       name: product.name,
-      status: product.inventoryStatus,
+      selectedStatus: product.inventoryStatus,
       quantity: this.defaultValue,
       category: product.category,
-      price: this.productPrice,
+      priceStacked: this.productPrice,
     };
     if(this.defaultValue>=1){
       this.cart.addToCart(cartItem);
@@ -82,6 +81,7 @@ export class CardDetailComponent {
     }
     // Ekleme işlemi tamamlandığında seçilen ürün sayısını sıfırlayabilirsiniz.
     this.defaultValue = 0;
+    console.log(cartItem);
   }
 
   updateProductPrice(): void {

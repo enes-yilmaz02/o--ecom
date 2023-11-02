@@ -19,6 +19,7 @@ export class ContentTableComponent {
     // Verileri alıp hesaplamaları burada yapabiliriz
     this.getOrders();
 
+
   }
 
   getOrders() {

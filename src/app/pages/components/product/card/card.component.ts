@@ -9,7 +9,7 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class CardComponent implements OnInit {
   layout: "grid" | "list" = "grid";
-  products!: Product[];
+  product: Product[];
   searchText: string = ''; // Arama metni için bir değişken
   filteredProducts: Product[] = []; // Filtrelenmiş ürünleri saklamak için bir dizi
   constructor(private productService:ProductService) {
@@ -19,7 +19,8 @@ export class CardComponent implements OnInit {
 
   ngOnInit() {
     this.productService.getProducts().subscribe((data: Product[]) => {
-      this.products = data;
+      this.product = data;
+      console.log(this.product);
     });
   }
 
@@ -42,7 +43,7 @@ export class CardComponent implements OnInit {
   // Arama metnine göre ürünleri filtrelemek için bu yöntemi kullanabilirsiniz
   filterProducts(): any[] {
     const search = this.searchText.toLowerCase();
-    return this.products?.filter((product) =>
+    return this.product?.filter((product) =>
       product.name.toLowerCase().includes(search) ||
       product.category.toLowerCase().includes(search)
     );

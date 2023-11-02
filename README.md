@@ -33,13 +33,13 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 #######################################################################
 
-* orders gelmiyor firebaseden undefined dönüyor
+* orders gelmiyor firebaseden undefined dönüyor (DONE)
 
-* favorites aynı şekilde 
+* favorites aynı şekilde  (DONE)
 
 * uı çok buyuk 
 
-* stock - lowstock - outstock dropdown vs
+* stock - lowstock - outstock dropdown vs (DONE)
 
 * chart kullan
 
