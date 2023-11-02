@@ -3,8 +3,6 @@
     <!-- Yan çubuk içeriği -->
   </div>
   <div class="content">
-    <div class="container">
-      <div class="flex flex-wrap gap-3">
         <ng-container *ngIf="showLoading; else contentLoading">
           <app-loading></app-loading>
         </ng-container>
@@ -18,5 +16,4 @@
         </ng-template>
       </div>
     </div>
-  </div>
-</div>
+

@@ -49,7 +49,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
  -arama
  -mail 
 
-* orders default sayfası düzenle 
+* orders default sayfası düzenle --> (DONE)
 
 * ürün ekle çıkarma 
 
