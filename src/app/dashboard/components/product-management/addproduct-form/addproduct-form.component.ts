@@ -55,39 +55,41 @@ export class AddproductFormComponent {
   this.addproductForm.get('image').setValue(event.files);
   }
 
-  onSubmit() {
-    const fileToUpload = this.uploadedFile[0]; // İlk yüklenen dosyayı alın
-    const targetPath = 'images/' + fileToUpload.name; // Hedef yolunu belirleyin
+  // onSubmit() {
+  //   const fileToUpload = this.uploadedFile[0]; // İlk yüklenen dosyayı alın
+  //   const targetPath = 'images/' + fileToUpload.name; // Hedef yolunu belirleyin
 
-    this.productService.uploadFile(fileToUpload, targetPath)
-      .then((downloadURL) => {
-        // Dosyanın yüklendiği URL'i aldınız, bunu ürün eklemesi için kullanabilirsiniz
-        const productData = {
-          code: this.addproductForm.value.code,
-          name: this.addproductForm.value.name,
-          image: downloadURL, // Yüklendiğinde alınan URL'i ekleyin
-          price: this.addproductForm.value.price,
-          quantity: this.addproductForm.value.quantity,
-          inventoryStatus: this.addproductForm.value.inventoryStatus,
-          category: this.addproductForm.value.category,
-          valueRating: this.addproductForm.value.valueRating,
-        };
+  //   this.productService.uploadFile(fileToUpload, targetPath)
+  //     .then((downloadURL) => {
+  //       // Dosyanın yüklendiği URL'i aldınız, bunu ürün eklemesi için kullanabilirsiniz
+  //       const productData = {
+  //         code: this.addproductForm.value.code,
+  //         name: this.addproductForm.value.name,
+  //         image: downloadURL, // Yüklendiğinde alınan URL'i ekleyin
+  //         price: this.addproductForm.value.price,
+  //         quantity: this.addproductForm.value.quantity,
+  //         inventoryStatus: this.addproductForm.value.inventoryStatus,
+  //         category: this.addproductForm.value.category,
+  //         valueRating: this.addproductForm.value.valueRating,
 
-        this.productService.addProduct(productData).then(() => {
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Başarılı',
-            detail: 'Ürün yükleme işlemi başarılı',
-          });
-        });
-      })
-      .catch((error) => {
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Hata',
-          detail: 'Ürün yükleme işlemi başarısız: ' + error,
-        });
-      });
-  }
+  //         // Diğer alanlar...
+  //       };
+
+  //       this.productService.addProduct(productData).then(() => {
+  //         this.messageService.add({
+  //           severity: 'success',
+  //           summary: 'Başarılı',
+  //           detail: 'Ürün yükleme işlemi başarılı',
+  //         });
+  //       });
+  //     })
+  //     .catch((error) => {
+  //       this.messageService.add({
+  //         severity: 'error',
+  //         summary: 'Hata',
+  //         detail: 'Ürün yükleme işlemi başarısız: ' + error,
+  //       });
+  //     });
+  // }
 
 }

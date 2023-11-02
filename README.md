@@ -37,3 +37,37 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 * favorites aynı şekilde 
 
+* uı çok buyuk 
+
+* stock - lowstock - outstock dropdown vs
+
+* chart kullan
+
+* excel - pdf 
+
+* yönetici sipariş listesi 
+ -arama
+ -mail 
+
+* orders default sayfası düzenle 
+
+** ürün ekle çıkarma 
+
+*** json veri yükleme 
+
+** footer genişlet sss 
+
+*? top button 
+
+** yönetici için nav bar düzenlemesi  (lazy load ile  ayrı bir layout )  
+
+** işlevsellik oncellikli 
+
+* ui extra bir özen 
+ - Fontlar 
+ - marginler
+ - paddingler
+ - pbutton ezme 
+ - style ezme primeng 
+  
+* logout <-> tr-en

@@ -9,7 +9,6 @@ import { PagesModule } from './pages/pages.module';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
-import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { environment } from '../environments/environment';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { CartService } from './services/cart.service';
@@ -29,7 +28,6 @@ import { ProductService } from './services/product.service';
     TranslocoRootModule,
     PagesModule,
     AngularFireDatabaseModule,
-    AngularFireStorageModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     SharedModule,

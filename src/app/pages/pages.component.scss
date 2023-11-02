@@ -1,0 +1,13 @@
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-content {
+  flex: 1; /* İçerik alanını doldurmak için esneklik ekleyin */
+}
+
+.app-footer {
+  margin-top: auto; /* Footer'ı en alta sabitler */
+}
