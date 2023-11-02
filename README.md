@@ -51,11 +51,11 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 * orders default sayfası düzenle 
 
-** ürün ekle çıkarma 
+* ürün ekle çıkarma 
 
-*** json veri yükleme 
+* json veri yükleme 
 
-** footer genişlet sss 
+* footer genişlet sss --> (DONE)
 
 *? top button 
 

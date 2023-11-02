@@ -1,107 +1,13 @@
-// .conatiner {
-//   padding: 10px;
-// }
-
-// .p-datatable {
-//   width: 100%; /* Tablo genişliği */
-//   margin-left: 40px;
-// }
-// /* Tablo başlığı */
-// .p-datatable .p-datatable-thead {
-//   background-color: #f0f0f0; /* Başlık arka plan rengi */
-//   font-weight: bold; /* Başlık metni kalın */
-//   width: 100%;
-// }
-
-// /* Tablo satırları */
-// .p-datatable .p-datatable-tbody {
-//   background-color: #ffffff; /* Satır arka plan rengi */
-// }
-
-// /* Seçilen satır */
-// .p-datatable .p-datatable-tbody .p-highlight {
-//   background-color: #ffffcc; /* Seçilen satırın arka plan rengi */
-// }
-
-// /* Tablo hücreleri */
-// .p-datatable .p-datatable-tbody td {
-//   padding: 10px; /* Hücre içi boşluk */
-//   border: 1px solid #ddd; /* Hücre sınırları */
-// }
-
-// /* Sil düğmesi */
-// .button {
-//   background-color: #000; /* Sil düğmesi arka plan rengi */
-//   color: #ffffff; /* Sil düğmesi metin rengi */
-//   border: none; /* Sil düğmesi sınırı yok */
-//   padding: 5px 10px; /* Sil düğmesi içi boşluk */
-//   cursor: pointer; /* Sil düğmesi imleci el işareti yapar */
-// }
-
-// .button:hover {
-//   background-color: #176b87; /* Sil düğmesine fare üzerine gelindiğinde yeni arka plan rengi */
-// }
-
-// Define basic colors
-$light-blue: #4dabf5;
-$white: #ffffff;
-$light-gray: #f5f5f5;
-$medium-gray: #b2b2b2;
-$dark-gray: #555555;
-$black: #000000;
-
-
-// Define table style
-.container-price {
-  background-color: $white;
-  padding: 20px;
-  margin-top: 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-// Define price and product quantity text style
-.container-price div {
-  color: $dark-gray;
-  font-size: 16px;
-  margin-bottom: 10px;
-}
-
-.container-price div:last-child {
-  font-size: 24px;
-  font-weight: bold;
-  margin-top: 20px;
-}
-
-.container-price hr {
-  border: none;
-  border-top: 1px 2px dashed #ccc;
-  background-color: $white;
-  padding: 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+.page-layout {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-}
-.price-label {
-  color: $dark-gray;
-  font-size: 16px;
-  font-weight: bold;
+  justify-content: space-between;
 }
 
-.discount-label {
-  color: $light-gray;
-  font-size: 14px;
-  text-decoration: line-through;
+
+
+.content {
+  width: 80%; /* İçerik alanının genişliği, ihtiyaca göre ayarlayın */
+  padding: 1rem;
 }
 
-.total-price-label {
-  color: $dark-gray;
-  font-size: 24px;
-  font-weight: bold;
-}
-
-.table{
-  margin: 30px;
-  width: 100%;
-}
+/* Ekstra stillendirme seçenekleri için kullanılabilir */

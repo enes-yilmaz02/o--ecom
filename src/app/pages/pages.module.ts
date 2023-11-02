@@ -24,6 +24,9 @@ import { ResetpasswordComponent } from './components/main/resetpassword/resetpas
 import { PagesComponent } from './pages.component';
 import { RouterModule } from '@angular/router';
 import { CartService } from '../services/cart.service';
+import { LoadingComponent } from './components/loading/loading.component';
+import { DefaultContentComponent } from './components/orders/default-content/default-content.component';
+import { ContentTableComponent } from './components/orders/content-table/content-table.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +49,9 @@ import { CartService } from '../services/cart.service';
      RegisterComponent,
      ResetpasswordComponent,
      PagesComponent,
+     LoadingComponent,
+     DefaultContentComponent,
+     ContentTableComponent,
 
   ],
   imports: [

@@ -1,101 +1,21 @@
-<div class="container">
-  <div class="flex flex-wrap gap-3">
-    <div
-    class="block align-items-center w-full h-full justify-content-center bg-white font-bold m-2 px-5 py-3 border-round"
-    *ngIf="!items || items.length === 0"
-  >
-    <div class="header-title block w-full m-3">
-      <h3>{{ "favoritesMainForm.header" | transloco }}</h3>
-    </div>
-    <div class="block m-3 justify-content-center">
-      <div class="card flex justify-content-center">
-        <p-image
-          class="img"
-          src="https://cdn.icon-icons.com/icons2/1458/PNG/512/heartbutton_99629.png"
-          alt="Image"
-          width="300"
-          height="100%"
-        ></p-image>
-      </div>
-      <div class="card flex justify-content-center">
-        <h3>{{ "favoritesForm.title" | transloco }}</h3>
-      </div>
-      <div class="card flex justify-content-center text-xl">
-        <h6>
-          {{ "favoritesForm.desc" | transloco }}
-        </h6>
-      </div>
-      <div class="card justify-content-center align-content-center">
-        <span class="button-style">
-          <button class="button w-full" routerLink="/product">
-            {{ "favoritesForm.buttonLabel" | transloco }}
-          </button>
-        </span>
-      </div>
-    </div>
+<div class="page-layout">
+  <div class="sidebar">
+    <!-- Yan çubuk içeriği -->
   </div>
-    <div class="flex w-full" *ngIf="items || items?.length >= 1">
-      <div class="table" >
-        <p-table [value]="items">
-          <ng-template pTemplate="header">
-            <tr>
-              <th>Id</th>
-              <th>Resim</th>
-              <th>Ürün Adı</th>
-              <th>Adet</th>
-              <th>Kategori</th>
-              <th>Durum</th>
-              <th>Fiyat</th>
-              <th>İşlemler</th>
-            </tr>
-          </ng-template>
-          <ng-template pTemplate="body" let-item >
-            <tr>
-              <td>{{ item.id }}</td>
-              <td>
-                <p-image
-                  [src]="'https://primefaces.org/cdn/primeng/images/demo/product/' + item.image"
-                  [alt]="item.name"
-                  [preview]="true"
-                  width="100px"
-                  height="100px"
-                ></p-image>
-              </td>
-              <td>{{ item.name }}</td>
-              <td>{{ item.quantity }}</td>
-              <td>{{ item.category }}</td>
-              <td>{{ item.status }}</td>
-              <td>$ {{ item.price }}</td>
-              <td class="button-style">
-                <button class="button w-full border-round" (click)="removeFromCartOrders(item)">Sil</button>
-              </td>
-            </tr>
-          </ng-template>
-        </p-table>
-      </div>
-      <div class="flex flex-column mx-8 container-price" *ngIf="items || items?.length >= 1">
-        <div>
-          <div>
-            <h3>Sipariş Özeti</h3>
-          </div>
-          <div>
-            Ürünün Toplamı: $ {{ totalPrice }}
-          </div>
-          <div>
-            Kargonun Toplamı: $ 29.90
-          </div>
-          <div>
-            Kargo Bedava (Satıcı Karşılar): -$ 29.90
-          </div>
-          <hr>
-          <div>
-            $ {{ totalPrice }}
-          </div>
-        </div>
-
-        <div class="button-style w-full">
-          <button class="button w-full">Siparişi Tamamla</button>
-        </div>
+  <div class="content">
+    <div class="container">
+      <div class="flex flex-wrap gap-3">
+        <ng-container *ngIf="showLoading; else contentLoading">
+          <app-loading></app-loading>
+        </ng-container>
+        <ng-template #contentLoading>
+          <ng-container *ngIf="hasData; else default">
+            <app-content-table></app-content-table>
+          </ng-container>
+        </ng-template>
+        <ng-template #default>
+          <app-default-content></app-default-content>
+        </ng-template>
       </div>
     </div>
   </div>

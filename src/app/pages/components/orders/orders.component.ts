@@ -2,42 +2,49 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product';
 import { CartService } from 'src/app/services/cart.service';
 
+
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.component.html',
   styleUrls: ['./orders.component.scss'],
 })
-export class OrdersComponent {
-  totalPrice: number;
-  items: Product[];
+export class OrdersComponent implements OnInit {
 
-  constructor(private cart: CartService) {
-    // Verileri alıp hesaplamaları burada yapabiliriz
-    this.getOrders();
+  showLoading = true;
+
+  hasData = true;
+
+  contentData: any;
+
+  constructor(private cart:CartService){}
+
+  ngOnInit() {
+    this.loadData();
+    // 5 saniye sonra "loading" şablonunu gizle
+    setTimeout(() => {
+      this.showLoading = false;
+    }, 3000);
 
   }
 
-  getOrders() {
-    this.cart.getItemsOrders().subscribe((data: Product[]) => {
-      this.items = data;
-      this.calculateTotalPrice();
-    });
-  }
+   loadData() {
+    this.cart.getItemsOrders().subscribe(
+      (data : Product[]) => {
+        this.contentData = data;
+        if(data.length>0){
+          this.hasData = true;
+        }else{
+          this.hasData = false;
+        }
 
-  calculateTotalPrice() {
-    this.totalPrice = this.items.reduce((total, item) => total + item.price, 0);
-  }
+        this.showLoading = false;
+        console.log(data.length)
+      },
+      (error) => {
+        console.error('Veri yüklenirken hata oluştu', error);
+        this.showLoading = false;
 
-  removeFromCartOrders(item: any) {
-    // Sepetten ürünü kaldırma işlemi
-    this.cart
-      .removeFromCartOrders(item)
-      .then(() => {
-        // Ürünü kaldırdıktan sonra items dizisini güncelleyin
-        this.getOrders();
-      })
-      .catch((error) => {
-        console.error('Ürün kaldırılırken hata oluştu', error);
-      });
+      }
+    );
   }
 }
