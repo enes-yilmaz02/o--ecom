@@ -72,8 +72,9 @@ export class ProductManagementComponent {
   show() {
     this.ref = this.dialogService.open(AddproductFormComponent, {
       header: 'Orion Innovation',
-      width: '70%',
-      contentStyle: { overflow: 'auto' },
+      width: '50%',
+      height:'600px',
+      contentStyle: { overflow: 'auto'},
       baseZIndex: 10000,
       maximizable: true,
     });
