@@ -1,8 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { Product } from 'src/app/models/product';
-import { Users } from 'src/app/models/users';
 import { CartService } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/product.service';
 
@@ -11,43 +10,44 @@ import { ProductService } from 'src/app/services/product.service';
   templateUrl: './card-detail.component.html',
   styleUrls: ['./card-detail.component.scss'],
 })
-export class CardDetailComponent {
+export class CardDetailComponent implements OnInit{
   productId: string;
-  product: any;
-  defaultValue = 0; // Seçilen ürün sayısını tutacak değişken
-  productPrice: number; // Güncellenmiş ürün fiyatını tutacak değişken
-  user:Users;
+  item: any;
+  defaultValue = 0;
+  productPrice: number;
+
   constructor(
     private route: ActivatedRoute,
-    private cart: CartService,
+    private productService: ProductService,
     private messageService: MessageService,
-    private productService:ProductService
+    private cartService:CartService
   ) {}
 
   ngOnInit() {
-
     this.route.params.subscribe((params) => {
-      this.productId = params['code']; // Bu, "id" parametresine karşılık gelir
-      this.product = this.productService.getProduct(this.productId);
+      this.productId = params['id'];
+      this.productService.getProductById(this.productId).subscribe((data: Product) => {
+        this.item = data;
+        console.log(data)
+      });
     });
   }
+
+
   getSeverity(product: Product) {
     switch (product.inventoryStatus) {
-      case 'INSTOCK':
+      case 'IS':
         return 'success';
-
-      case 'LOWSTOCK':
+      case 'LS':
         return 'warning';
-
-      case 'OUTOFSTOCK':
+      case 'OS':
         return 'danger';
-
       default:
         return null;
     }
   }
 
-  addToCart(product: Product ) {
+  addToCart(product: Product) {
     const cartItem = {
       code: product.code,
       file: product.image,
@@ -57,60 +57,36 @@ export class CardDetailComponent {
       category: product.category,
       priceStacked: this.productPrice,
     };
-    if(this.defaultValue>=1){
-      this.cart.addToCart(cartItem);
+
+    if (this.defaultValue >= 1) {
+      this.cartService.addToCart(cartItem);
       this.messageService.add({
         severity: 'success',
         summary: 'Başarılı',
         detail: 'Ürün sepete eklendi',
       });
-    }
-    else if(this.defaultValue===0){
+    } else if (this.defaultValue === 0) {
       this.messageService.add({
         severity: 'warn',
         summary: 'Lütfen',
         detail: 'Ürün miktarı giriniz',
       });
-    }
-    else{
+    } else {
       this.messageService.add({
         severity: 'error',
         summary: 'Başarısız',
         detail: 'Ürün sepete eklenemedi',
       });
     }
-    // Ekleme işlemi tamamlandığında seçilen ürün sayısını sıfırlayabilirsiniz.
+
     this.defaultValue = 0;
-    console.log(cartItem);
   }
 
   updateProductPrice(): void {
-    this.productPrice = this.defaultValue * this.product.price;
+    this.productPrice = this.defaultValue * this.item.priceStacked;
   }
 
-  addToCartFavorites(product: Product) {
-    const cartItemsFavorites = {
-      id: product.id,
-      image: product.image,
-      name: product.name,
-      status: product.inventoryStatus,
-      category: product.category,
-      price: product.price,
-    };
-
-      if(this.cart.addToCartFavorites(cartItemsFavorites)){
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Başarılı',
-          detail: 'Ürün favorilerime eklendi',
-        });
-      }else{
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Hata!',
-          detail: 'Ürün favorilerime eklenemedi',
-        });
-      }
-
+  addToCartFavorites(item){
+    this.cartService.addToCartFavorites(item);
   }
 }

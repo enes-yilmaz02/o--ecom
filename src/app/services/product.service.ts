@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Product } from '../models/product';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -30,10 +30,29 @@ getProducts(): Observable<Product[]> {
   return this.firestore.collection<Product>(this.collectionName).valueChanges();
 }
 
-// Belirli bir ürünü getirme
-getProduct(id: string): Observable<Product> {
-  return this.firestore.collection(this.collectionName).doc(id).valueChanges();
+getProductById(code: string): Observable<Product | null> {
+  return this.firestore
+    .collection<Product>(this.collectionName)
+    .doc(code)
+    .valueChanges()
+    .pipe(
+      map((document: Product | null) => {
+        if (document) {
+          // Firestore'dan gelen veriyi Product türüne dönüştürün.
+          return {
+            code,
+            ...document
+          } as Product;
+        } else {
+          return null; // Belirli bir ürün bulunamadıysa null dönün
+        }
+      })
+    );
 }
+
+
+
+
 
 // uploadFile(file: File, targetPath: string): Promise<string> {
 //   const filePath = targetPath; // Firebase Storage'da hedef yol

@@ -13,7 +13,7 @@ import { AddproductFormComponent } from './addproduct-form/addproduct-form.compo
   styleUrls: ['./product-management.component.scss']
 })
 export class ProductManagementComponent {
-  customers!: Customer[];
+  customers!: any[];
 
   representatives!: Representative[];
 

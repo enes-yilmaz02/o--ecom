@@ -20,7 +20,7 @@
     </ng-template>
     <ng-template let-product pTemplate="listItem">
       <div class="col-12">
-        <a [routerLink]="['/product', product.code]" class="product-id">
+        <a [routerLink]="['/product', product.id]" class="product-id">
           <div
             class="flex flex-column xl:flex-row xl:align-items-start p-4 gap-4"
           >
@@ -32,6 +32,7 @@
               >
                 <div class="text-2xl font-bold text-900">
                   {{ product.name }}
+
                 </div>
                 <p-rating
                   [ngModel]="product.valueRating"
@@ -78,38 +79,37 @@
             >
               <span class="flex align-items-center gap-2">
                 <i class="pi pi-tag"></i>
-                <span class="font-semibold">{{ product.category }}</span>
+                <span class="font-semibold">{{ product.category.name }}</span>
               </span>
               <p-tag
-                [value]="product.inventoryStatus"
+                [value]="product.selectedStatus.name"
                 [severity]="getSeverity(product)"
               ></p-tag>
             </div>
             <div class="flex flex-column align-items-center gap-3 py-5">
-              <img
+              <!-- <img
                 class="w-9 shadow-2 border-round"
                 [src]="
-                  'https://primefaces.org/cdn/primeng/images/demo/product/' +
-                  product.image
+                  product.file
                 "
                 [alt]="product.name"
-              />
+              /> -->
               <div class="text-2xl font-bold">{{ product.name }}</div>
               <p-rating
-                [ngModel]="product.rating"
+                [ngModel]="product.valueRating"
                 [readonly]="true"
                 [cancel]="false"
               ></p-rating>
             </div>
             <div class="flex align-items-center justify-content-between">
               <span class="text-2xl font-semibold">{{
-                "$" + product.price
+                "$" + product.priceStacked
               }}</span>
               <button
                 pButton
                 icon="pi pi-shopping-cart"
                 class="p-button-rounded"
-                [disabled]="product.inventoryStatus === 'OUTOFSTOCK'"
+                [disabled]="product.selectedStatus.name === 'OUTOFSTOCK'"
               ></button>
             </div>
           </div>

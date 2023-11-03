@@ -2,18 +2,15 @@
   <div class="block w-full mx-4">
     <h2>Ürün Detayı</h2>
   </div>
-  <div class="product-detail flex flex-row">
+  <div class="item-detail flex flex-row">
     <div class="flex flex-column xl:flex-row xl:align-items-start p-4 gap-4">
-      <p-image
+      <!-- <img
         class="shadow-2 block xl:block mx-auto border-round"
-        [src]="
-          'https://primefaces.org/cdn/primeng/images/demo/product/' +
-          product.image
-        "
-        [alt]="product.name"
+        [src]="item.file"
+        [alt]="item.name"
         width="375"
         height="550"
-      />
+      /> -->
       <div
         class="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4"
       >
@@ -24,54 +21,39 @@
             class="text-2xl flex justify-content-between w-full font-bold text-900"
           >
             <div>
-              {{ product.name }}
+              {{ item.name }}
             </div>
             <div class="button-style">
               <button
                 pButton
                 icon="pi pi-heart"
                 class="button m-1 p-button"
-                (click)="addToCartFavorites(product)"
+                (click)="addToCartFavorites(item)"
               ></button>
             </div>
           </div>
 
           <span class="flex align-items-center gap-2">
             <i class="pi pi-tag"></i>
-            <span class="font-semibold">{{ product.category }}</span>
+            <span class="font-semibold">{{ item.category }}</span>
           </span>
           <p-tag
-            [value]="product.inventoryStatus"
-            [severity]="getSeverity(product)"
+            [value]="item.selectedStatus"
+            [severity]="getSeverity(item)"
           ></p-tag>
           <span class="button-style">
             <p-rating
-              [ngModel]="product.rating"
+              [ngModel]="item.valueRating"
               [readonly]="true"
               [cancel]="false"
               class="button"
             ></p-rating>
           </span>
-          <span class="text-2xl font-semibold">{{ "$" + product.price }}</span>
+          <span class="text-2xl font-semibold">{{ "$" + item.priceStacked }}</span>
           <div class="flex flex-column justify-content-end align-content-end">
             <div class="flex flex-column" style="float: right">
               <div class="w-full">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minima
-                officiis inventore rerum omnis cumque quod veniam dignissimos
-                optio laudantium debitis, modi voluptatem tenetur facere
-                consectetur eius earum consequuntur dolore distinctio. Lorem
-                ipsum dolor sit, amet consectetur adipisicing elit. Minima
-                officiis inventore rerum omnis cumque quod veniam dignissimos
-                optio laudantium debitis, modi voluptatem tenetur facere
-                consectetur eius earum consequuntur dolore distinctio. Lorem
-                ipsum dolor sit, amet consectetur adipisicing elit. Minima
-                officiis inventore rerum omnis cumque quod veniam dignissimos
-                optio laudantium debitis, modi voluptatem tenetur facere
-                consectetur eius earum consequuntur dolore distinctio. Lorem
-                ipsum dolor sit, amet consectetur adipisicing elit. Minima
-                officiis inventore rerum omnis cumque quod veniam dignissimos
-                optio laudantium debitis, modi voluptatem tenetur facere
-                consectetur eius earum consequuntur dolore distinctio.
+                {{ item.description }}
               </div>
               <div
                 class="flex flex-row m-3 w-full justify-content-center align-content-center align-items-center"
@@ -79,13 +61,13 @@
                 <div class="button-style">
                   <p-inputNumber
                     [(ngModel)]="defaultValue"
-                    [style]="{ width: 'w-2rem' }"
+                    [style]="{ width: '2rem' }"
                     [showButtons]="true"
                     buttonLayout="horizontal"
                     spinnerMode="horizontal"
                     inputId="horizontal"
-                    decrementButtonClass="p-button button  w-2rem flex "
-                    incrementButtonClass="p-button button  w-2rem  flex"
+                    decrementButtonClass="p-button button w-2rem flex"
+                    incrementButtonClass="p-button button w-2rem flex"
                     incrementButtonIcon="pi pi-plus"
                     decrementButtonIcon="pi pi-minus"
                     (ngModelChange)="updateProductPrice()"
@@ -95,8 +77,8 @@
                   <button
                     pButton
                     class="m-3 button border-round button w-full justify-content-center text-xl"
-                    [disabled]="product.inventoryStatus === 'OUTOFSTOCK'"
-                    (click)="addToCart(product)"
+                    [disabled]="item.selectedStatus.name === 'Outstock'"
+                    (click)="addToCart(item)"
                   >
                     Sepete ekle
                   </button>
