@@ -1,46 +1,124 @@
+<!-- sidebar.component.html -->
 <div class="card">
-  <p-accordion >
-      <p-accordionTab header="Marka">
-      </p-accordionTab>
-      <p-accordionTab header="Beden">
-      </p-accordionTab>
-      <p-accordionTab header="Cinsiyet">
-      </p-accordionTab>
-      <p-accordionTab header="Yıldızlı Ürünler">
-      </p-accordionTab>
-      <p-accordionTab header="Renk">
-      </p-accordionTab>
-      <p-accordionTab header="Yaka Tipi">
-      </p-accordionTab>
-      <p-accordionTab header="Fiyat">
-      </p-accordionTab>
-      <p-accordionTab header="Kalıp">
-      </p-accordionTab>
-      <p-accordionTab header="Kol Tipi">
-      </p-accordionTab>
-      <p-accordionTab header="Desen">
-      </p-accordionTab>
-      <p-accordionTab header="Materyal">
-      </p-accordionTab>
-      <p-accordionTab header="Kol Boyu">
-      </p-accordionTab>
-      <p-accordionTab header="Model">
-      </p-accordionTab>
-      <p-accordionTab header="Kumaş Tipi">
-      </p-accordionTab>
-      <p-accordionTab header="Kullanım Alanı">
-      </p-accordionTab>
-      <p-accordionTab header="Boy">
-      </p-accordionTab>
-      <p-accordionTab header="Ortam">
-      </p-accordionTab>
-      <p-accordionTab header="Dokuma Tipi">
-      </p-accordionTab>
-      <p-accordionTab header="Yaş">
-      </p-accordionTab>
-      <p-accordionTab header="Satıcı Tipi">
-      </p-accordionTab>
-      <p-accordionTab header="Parça Sayısı">
-      </p-accordionTab>
-  </p-accordion>
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <img src="assets/images/OI_logo.png" alt="Orion Logo"/>
+    </div>
+    <ul class="sidebar-menu">
+      <li class="sidebar-menu-item">Kategoriler
+        <ul class="sub-menu">
+          <li><label><input type="checkbox" (click)="filterByCategory('19-20')"> 19-20</label></li>
+          <li><label><input type="checkbox" (change)="filterByCategory('19-22')"> 19-22</label></li>
+          <li><label><input type="checkbox" (change)="filterByCategory('20')"> 20</label></li>
+          <li><label><input type="checkbox" (change)="filterByCategory('21')"> 21</label></li>
+          <!-- Diğer kategori seçenekleri burada -->
+        </ul>
+      </li>
+
+      <li class="sidebar-menu-item">Avantajlı Ürünler
+        <ul class="sub-menu">
+          <li><label><input type="checkbox" (change)="filterByCategory('electronics')"> Elektronik</label></li>
+          <li><label><input type="checkbox" (change)="filterByCategory('clothing')"> Giyim</label></li>
+          <!-- Diğer avantajlı ürün kategorileri burada -->
+        </ul>
+      </li>
+
+      <li class="sidebar-menu-item">Cinsiyet
+        <ul class="sub-menu">
+          <li><label><input type="checkbox" (change)="filterByCategory('male')"> Erkek</label></li>
+          <li><label><input type="checkbox" (change)="filterByCategory('female')"> Kadın</label></li>
+          <li><label><input type="checkbox" (change)="filterByCategory('unisex')"> Unisex</label></li>
+          <!-- Diğer cinsiyet seçenekleri burada -->
+        </ul>
+      </li>
+
+      <li class="sidebar-menu-item">Fiyat Aralığı
+        <ul class="sub-menu">
+          <li><label><input type="checkbox" (change)="filterByCategory('0-50')"> 0-50 TL</label></li>
+          <li><label><input type="checkbox" (change)="filterByCategory('51-100')"> 51-100 TL</label></li>
+          <li><label><input type="checkbox" (change)="filterByCategory('101-200')"> 101-200 TL</label></li>
+          <!-- Diğer fiyat aralıkları burada -->
+        </ul>
+      </li>
+
+      <li class="sidebar-menu-item">Renk
+        <ul class="sub-menu">
+          <li><label><input type="checkbox" (change)="filterByCategory('red')"> Kırmızı</label></li>
+          <li><label><input type="checkbox" (change)="filterByCategory('blue')"> Mavi</label></li>
+          <li><label><input type="checkbox" (change)="filterByCategory('green')"> Yeşil</label></li>
+          <!-- Diğer renk seçenekleri burada -->
+        </ul>
+      </li>
+
+      <li class="sidebar-menu-item">Materyal
+        <ul class="sub-menu">
+          <li><label><input type="checkbox" (change)="filterByCategory('cotton')"> Pamuk</label></li>
+          <li><label><input type="checkbox" (change)="filterByCategory('leather')"> Deri</label></li>
+          <li><label><input type="checkbox" (change)="filterByCategory('wood')"> Ahşap</label></li>
+          <!-- Diğer malzeme seçenekleri burada -->
+        </ul>
+      </li>
+
+      <!-- Diğer özellikler -->
+      <li class="sidebar-menu-item">Ek Özellik
+        <ul class="sub-menu">
+          <li><label><input type="checkbox" (change)="filterByCategory('waterproof')"> Su Geçirmez</label></li>
+          <li><label><input type="checkbox" (change)="filterByCategory('adjustable')"> Ayarlanabilir</label></li>
+          <!-- Diğer ek özellikler burada -->
+        </ul>
+      </li>
+
+      <li class="sidebar-menu-item">Kullanım Alanı
+        <ul class="sub-menu">
+          <li><label><input type="checkbox" (change)="filterByCategory('sports')"> Spor</label></li>
+          <li><label><input type="checkbox" (change)="filterByCategory('casual')"> Günlük Kullanım</label></li>
+          <!-- Diğer kullanım alanları burada -->
+        </ul>
+      </li>
+
+      <li class="sidebar-menu-item">Satıcı Tipi
+        <ul class="sub-menu">
+          <li><label><input type="checkbox" (change)="filterByCategory('official-store')"> Resmi Mağaza</label></li>
+          <li><label><input type="checkbox" (change)="filterByCategory('marketplace')"> Pazaryeri Satıcısı</label></li>
+          <!-- Diğer satıcı tipleri burada -->
+        </ul>
+      </li>
+
+      <li class="sidebar-menu-item">Topuk Boyu
+        <ul class="sub-menu">
+          <li><label><input type="checkbox" (change)="filterByCategory('low')"> Düşük</label></li>
+          <li><label><input type="checkbox" (change)="filterByCategory('medium')"> Orta</label></li>
+          <li><label><input type="checkbox" (change)="filterByCategory('high')"> Yüksek</label></li>
+          <!-- Diğer topuk boyları burada -->
+        </ul>
+      </li>
+
+      <li class="sidebar-menu-item">Bağlama Şekli
+        <ul class="sub-menu">
+          <li><label><input type="checkbox" (change)="filterByCategory('laces')"> Bağcıklı</label></li>
+          <li><label><input type="checkbox" (change)="filterByCategory('zipper')"> Fermuarlı</label></li>
+          <!-- Diğer bağlama şekilleri burada -->
+        </ul>
+      </li>
+
+      <li class="sidebar-menu-item">Fenomenlerin Seçtikleri
+        <ul class="sub-menu">
+          <li><label><input type="checkbox" (change)="filterByCategory('celebrity-picks')"> Ünlülerin Tercihleri</label></li>
+          <li><label><input type="checkbox" (change)="filterByCategory('influencer-picks')"> Etkileyicilerin Tercihleri</label></li>
+          <!-- Diğer fenomen tercihleri burada -->
+        </ul>
+      </li>
+
+      <li class="sidebar-menu-item">Taban Materyali
+        <ul class="sub-menu">
+          <li><label><input type="checkbox" (change)="filterByCategory('rubber')"> Lastik</label></li>
+          <li><label><input type="checkbox" (change)="filterByCategory('leather')"> Deri</label></li>
+          <!-- Diğer taban malzemeleri burada -->
+        </ul>
+      </li>
+
+      <li class="sidebar-menu-item">Fiyat Geçmişi</li>
+      <li class="sidebar-menu-item">Ortam</li>
+    </ul>
+  </div>
 </div>

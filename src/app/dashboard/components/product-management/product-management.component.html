@@ -39,21 +39,29 @@
                 <th style="width:10%;">Quantity</th>
                 <th style="width:10%">Status </th>
                 <th style="width:10%">Category</th>
-                <th style="width:10%;">Rating</th>
                 <th style="width:10%;">Description</th>
                 <th style="width:10%;">İşlemler</th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-customer>
           <tr>
-            <td>{{ customer.id }}</td>
+            <td>{{ customer.code }}</td>
             <td>{{ customer.name }}</td>
-            <td>{{ customer.file }}</td>
+           <td>
+            <img
+            class="w-9 shadow-2 border-round"
+            [src]="'https://primefaces.org/cdn/primeng/images/demo/product/' + customer.file" [alt]="customer.name"
+          />
+           </td>
             <td>{{ customer.priceStacked }}</td>
             <td>{{ customer.quantity }}</td>
-            <td>{{ customer.selectedStatus.name }}</td>
-            <td>{{ customer.category.name }}</td>
-            <td> <p-rating [(ngModel)]="customer.valueRating" [readonly]="true" [cancel]="false"></p-rating></td>
+            <td >
+              <p-tag
+              [value]="customer.selectedStatus"
+              [severity]="getSeverity(customer.selectedStatus)"
+            ></p-tag>
+            </td>
+            <td>{{ customer.category }}</td>
             <td>{{ customer.description}}</td>
             <td>
               <div class="flex flex-row justify-content-start align-content-center w-21rem">

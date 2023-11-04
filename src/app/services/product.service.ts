@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Product } from '../models/product';
-import { Observable, map } from 'rxjs';
+import { Observable } from 'rxjs';
+import { where} from 'firebase/firestore'
 
 @Injectable({
   providedIn: 'root'
@@ -30,24 +31,15 @@ getProducts(): Observable<Product[]> {
   return this.firestore.collection<Product>(this.collectionName).valueChanges();
 }
 
-getProductById(code: string): Observable<Product | null> {
+patchOrderById() {
+  return this.firestore.collection(this.collectionName).valueChanges();
+}
+
+getProductById(id: string): Observable<Product | null> {
   return this.firestore
     .collection<Product>(this.collectionName)
-    .doc(code)
-    .valueChanges()
-    .pipe(
-      map((document: Product | null) => {
-        if (document) {
-          // Firestore'dan gelen veriyi Product türüne dönüştürün.
-          return {
-            code,
-            ...document
-          } as Product;
-        } else {
-          return null; // Belirli bir ürün bulunamadıysa null dönün
-        }
-      })
-    );
+    .doc(id)
+    .valueChanges();
 }
 
 

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product';
+import { CartService } from 'src/app/services/cart.service';
+import { DataService } from 'src/app/services/data.service';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -9,19 +11,17 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class CardComponent implements OnInit {
   layout: "grid" | "list" = "grid";
-  product: Product[];
+  product: any;
   searchText: string = ''; // Arama metni için bir değişken
   filteredProducts: Product[] = []; // Filtrelenmiş ürünleri saklamak için bir dizi
-  constructor(private productService:ProductService) {
+  defaultValue: any;
+  constructor(private productService:ProductService, private data:DataService,private cart:CartService) {
 
   }
 
 
   ngOnInit() {
-    this.productService.getProducts().subscribe((data: any[]) => {
-      this.product = data;
-      console.log(this.product);
-    });
+    this.data.getProducts().then((data) => (this.product = data.slice(0,100)));
   }
 
   getSeverity(product: Product) {

@@ -1,3 +1,4 @@
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { SharedModule } from './shared/shared.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -17,6 +18,7 @@ import { TranslocoService } from '@ngneat/transloco';
 import { TranslocoModule } from '@ngneat/transloco';
 import { ProductService } from './services/product.service';
 
+
 @NgModule({
   declarations: [
     AppComponent
@@ -27,12 +29,14 @@ import { ProductService } from './services/product.service';
     HttpClientModule,
     TranslocoRootModule,
     PagesModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig, 'reservas'),
     AngularFireDatabaseModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     SharedModule,
     DashboardModule,
-    TranslocoModule
+    TranslocoModule,
+    AngularFireStorageModule,
+
 
   ],
   exports:[TranslocoModule],

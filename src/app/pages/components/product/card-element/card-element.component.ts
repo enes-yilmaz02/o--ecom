@@ -7,4 +7,15 @@ import { Component } from '@angular/core';
 })
 export class CardElementComponent {
 
+product: any;
+
+filterByCategory(filter:string) {
+  console.log('clicked')
+  const search = filter.toLowerCase();
+  return this.product?.filter((product) =>
+    product.name.toLowerCase().includes(search) ||
+    product.category.toLowerCase().includes(search)
+  );
 }
+}
+

@@ -1,8 +1,8 @@
 <div class="flex w-full container-table">
   <div class="table">
-    <p-table [value]="items" >
-      <ng-template pTemplate="header">
-        <tr>
+    <p-table [value]="items" [scrollable]="true" scrollHeight="400px" [style]="{'padding':'30px '}">
+      <ng-template pTemplate="header" >
+        <tr >
           <th>Id</th>
           <th>Resim</th>
           <th>Ürün Adı</th>
@@ -19,8 +19,8 @@
           <td>{{ item.file }}</td>
           <td>{{ item.name }}</td>
           <td>{{ item.quantity }}</td>
-          <td>{{ item.category.name }}</td>
-          <td>{{ item.selectedStatus.name }}</td>
+          <td>{{ item.category }}</td>
+          <td>{{ item.selectedStatus }}</td>
           <td>$ {{ item.priceStacked }}</td>
           <td class="button-style">
             <i class="button pi pi-trash w-full border-round" (click)="removeFromCartOrders(item)"></i>

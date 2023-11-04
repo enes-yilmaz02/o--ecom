@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnChanges, OnInit } from '@angular/core';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { Product } from 'src/app/models/product';
 import { CartService } from 'src/app/services/cart.service';
+import { DataService } from 'src/app/services/data.service';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -10,9 +11,9 @@ import { ProductService } from 'src/app/services/product.service';
   templateUrl: './card-detail.component.html',
   styleUrls: ['./card-detail.component.scss'],
 })
-export class CardDetailComponent implements OnInit{
+export class CardDetailComponent  implements OnInit {
   productId: string;
-  item: any;
+  product: any;
   defaultValue = 0;
   productPrice: number;
 
@@ -20,18 +21,28 @@ export class CardDetailComponent implements OnInit{
     private route: ActivatedRoute,
     private productService: ProductService,
     private messageService: MessageService,
-    private cartService:CartService
-  ) {}
+    private cartService:CartService,
+    private data:DataService,
+    private router:Router
+  ) {
+  }
 
-  ngOnInit() {
+
+  ngOnInit(): void {
     this.route.params.subscribe((params) => {
       this.productId = params['id'];
-      this.productService.getProductById(this.productId).subscribe((data: Product) => {
-        this.item = data;
-        console.log(data)
-      });
-    });
-  }
+      // Ürün detaylarını çekmek için bu fonksiyonu kullanın
+      const data= this.data.getProductById(this.productId);
+      if (data){
+        console.log("ürün bulundu");
+        this.product = data;
+        this.productPrice = Number(this.product?.price);
+        }else{
+          console.log('ürüne erişilemedi');
+        }
+      })
+    }
+
 
 
   getSeverity(product: Product) {
@@ -55,7 +66,7 @@ export class CardDetailComponent implements OnInit{
       selectedStatus: product.inventoryStatus,
       quantity: this.defaultValue,
       category: product.category,
-      priceStacked: this.productPrice,
+      priceStacked: product.price,
     };
 
     if (this.defaultValue >= 1) {
@@ -83,7 +94,7 @@ export class CardDetailComponent implements OnInit{
   }
 
   updateProductPrice(): void {
-    this.productPrice = this.defaultValue * this.item.priceStacked;
+    this.productPrice = this.defaultValue * this.product.priceStacked;
   }
 
   addToCartFavorites(item){

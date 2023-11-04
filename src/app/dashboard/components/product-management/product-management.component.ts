@@ -50,21 +50,18 @@ export class ProductManagementComponent {
     table.clear();
   }
 
-  getSeverity(status: string) {
+  getSeverity(status) {
     switch (status) {
-      case 'unqualified':
-        return 'danger';
-
-      case 'qualified':
+      case 'INSTOCK':
         return 'success';
 
-      case 'new':
-        return 'info';
-
-      case 'negotiation':
+      case 'LOWSTOCK':
         return 'warning';
 
-      case 'renewal':
+      case 'OUTOFSTOCK':
+        return 'danger';
+
+      case ' ':
         return null;
     }
   }
@@ -79,7 +76,6 @@ export class ProductManagementComponent {
       maximizable: true,
     });
   }
-
 
   ngOnDestroy() {
     if (this.ref) {

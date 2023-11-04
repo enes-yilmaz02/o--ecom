@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MessageService, SelectItem } from 'primeng/api';
 import { ProductService } from 'src/app/services/product.service';
+import {Storage , ref , uploadBytesResumable , getDownloadURL} from '@angular/fire/storage'
 interface Rating {
   name: string;
   code: string;
@@ -33,6 +34,8 @@ export class AddproductFormComponent implements OnInit {
 
   idvalue: string;
 
+  public file : any = {} ;
+
   inventoryStatus: any[] = [
     { name: 'Instock', key: 'IS' },
     { name: 'Lowstock', key: 'LS' },
@@ -42,7 +45,8 @@ export class AddproductFormComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private messageService: MessageService,
-    private productService: ProductService
+    private productService: ProductService,
+    public storage:Storage
   ) {
     this.addproductForm = this.formBuilder.group({
       code: ['', Validators.required], // Örnek: Validators ekleyerek girişin zorunlu olup olmadığını belirleyebilirsiniz
@@ -74,6 +78,26 @@ export class AddproductFormComponent implements OnInit {
       { name: 'Clothing', code: 'CLT' },
     ];
   }
+
+// chooseFile(event:any){
+//   this.file = event.target.files[0]
+// }
+
+//   addFile(){
+//     const storageRef=ref(this.storage , this.file.name);
+//     const uploadTask = uploadBytesResumable(storageRef , this.file);
+//     uploadTask.on('state_changed' ,
+//     (snapshot)=>{
+//       const progess= ( snapshot.bytesTransferred / snapshot.totalBytes);
+//       console.log('Upload is ' + progess + ' % done ');
+//     },
+//     ()=>{
+//       getDownloadURL(uploadTask.snapshot.ref).then((downLoandURL)=>{
+//         console.log('File avalaible at ' , downLoandURL)
+//       })
+//     }
+//     )
+//   }
 
   onSubmit() {
     const idvalue = this.idvalue + 1;

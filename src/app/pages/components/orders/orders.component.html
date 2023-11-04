@@ -1,7 +1,4 @@
 <div class="page-layout">
-  <div class="sidebar">
-    <!-- Yan çubuk içeriği -->
-  </div>
   <div class="content">
         <ng-container *ngIf="showLoading; else contentLoading">
           <app-loading></app-loading>
@@ -14,6 +11,7 @@
         <ng-template #default>
           <app-default-content></app-default-content>
         </ng-template>
-      </div>
-    </div>
+   </div>
+</div>
+
 

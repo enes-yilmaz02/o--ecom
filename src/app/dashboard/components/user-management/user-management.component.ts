@@ -29,7 +29,7 @@ export class UserManagementComponent implements OnDestroy {
 
   isUserDialogOpen: boolean = false;
 
-
+  // userId: string= '2';
 
   constructor(
     private user: UserService,
@@ -37,6 +37,7 @@ export class UserManagementComponent implements OnDestroy {
     public  messageService: MessageService
   ) {
     this.getUsers();
+
 
   }
   ref: DynamicDialogRef | undefined;
@@ -75,6 +76,11 @@ export class UserManagementComponent implements OnDestroy {
       });
   }
 
+  // getuser(id:string){
+  //   this.user.getUser(id).subscribe((data:any)=>{
+  //     console.log("DATA",data);
+  //   })
+  // }
 
 
   clear(table: Table) {

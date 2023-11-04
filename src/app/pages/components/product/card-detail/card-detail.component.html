@@ -2,63 +2,60 @@
   <div class="block w-full mx-4">
     <h2>Ürün Detayı</h2>
   </div>
-  <div class="item-detail flex flex-row">
-    <div class="flex flex-column xl:flex-row xl:align-items-start p-4 gap-4">
-      <!-- <img
-        class="shadow-2 block xl:block mx-auto border-round"
-        [src]="item.file"
-        [alt]="item.name"
-        width="375"
-        height="550"
-      /> -->
+  <div class="product-detail flex flex-row">
+    <div class="flex flex-column xl:flex-row xl:align-products-start p-4 gap-4">
+      <img
+                class="w-9 shadow-2 border-round"
+                [src]="'https://primefaces.org/cdn/primeng/images/demo/product/' + product.image" [alt]="product.name"
+              />
       <div
-        class="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4"
+        class="flex flex-column sm:flex-row justify-content-between align-products-center xl:align-products-start flex-1 gap-4"
       >
         <div
-          class="flex flex-column align-items-center sm:align-items-start gap-3"
+          class="flex flex-column align-products-center sm:align-products-start gap-3"
         >
           <div
             class="text-2xl flex justify-content-between w-full font-bold text-900"
           >
             <div>
-              {{ item.name }}
+              {{ product.name }}
             </div>
             <div class="button-style">
               <button
                 pButton
                 icon="pi pi-heart"
                 class="button m-1 p-button"
-                (click)="addToCartFavorites(item)"
+                (click)="addToCartFavorites(product)"
               ></button>
             </div>
           </div>
 
-          <span class="flex align-items-center gap-2">
+          <span class="flex align-products-center gap-2">
             <i class="pi pi-tag"></i>
-            <span class="font-semibold">{{ item.category }}</span>
+            <span class="font-semibold">{{ product.category }}</span>
           </span>
           <p-tag
-            [value]="item.selectedStatus"
-            [severity]="getSeverity(item)"
+            [value]="product.inventoryStatus"
+            [severity]="getSeverity(product)"
           ></p-tag>
           <span class="button-style">
             <p-rating
-              [ngModel]="item.valueRating"
+              [ngModel]="product.rating"
               [readonly]="true"
               [cancel]="false"
               class="button"
             ></p-rating>
           </span>
-          <span class="text-2xl font-semibold">{{ "$" + item.priceStacked }}</span>
+          <span class="text-2xl font-semibold">{{ "$" + product.price }}</span>
           <div class="flex flex-column justify-content-end align-content-end">
             <div class="flex flex-column" style="float: right">
-              <div class="w-full">
-                {{ item.description }}
+              <div class="w-full h-full">
+                {{ product.description }}
               </div>
               <div
-                class="flex flex-row m-3 w-full justify-content-center align-content-center align-items-center"
+                class="flex flex-column m-3 w-full justify-content-center align-content-center align-products-center"
               >
-                <div class="button-style">
+                <div class="button-style block w-full">
                   <p-inputNumber
                     [(ngModel)]="defaultValue"
                     [style]="{ width: '2rem' }"
@@ -73,12 +70,12 @@
                     (ngModelChange)="updateProductPrice()"
                   ></p-inputNumber>
                 </div>
-                <div class="button-style">
+                <div class="button-style w-full block">
                   <button
                     pButton
                     class="m-3 button border-round button w-full justify-content-center text-xl"
-                    [disabled]="item.selectedStatus.name === 'Outstock'"
-                    (click)="addToCart(item)"
+                    [disabled]="product.inventoryStatus === 'Outstock'"
+                    (click)="addToCart(product)"
                   >
                     Sepete ekle
                   </button>

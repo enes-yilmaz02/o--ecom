@@ -9,7 +9,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class CartService {
   private collectionNameOrders = 'orders';
   private collectionNameFavorites = 'favorites';
-  private userDocRef = this.afs.collection('users').doc();
+  private products='products';
+  // private userDocRef = this.afs.collection('users').doc();
   // Siparişler için bir Badge (bildirim sayacı)
   orderBadge: BehaviorSubject<number> = new BehaviorSubject<number>(0);
 
@@ -33,7 +34,7 @@ export class CartService {
   // Sepete ürün ekler ve aynı zamanda Badge'i günceller
   addToCart(item: Product): Promise<any> {
     //const userDocRef = this.afs.collection('users').doc();
-    return this.afs.collection(this.collectionNameOrders).add(item).then(() => {
+    return this.afs.collection(this.products).add(item).then(() => {
       // Siparişler Badge'ini artır
       this.orderBadge.next(this.orderBadge.value + 1);
     });
