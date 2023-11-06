@@ -10,7 +10,6 @@ import { UsercontactComponent } from './components/account/usercontact/userconta
 import { UserinfoComponent } from './components/account/userinfo/userinfo.component';
 import { UserpasswordComponent } from './components/account/userpassword/userpassword.component';
 import { SupportComponent } from './components/support/support.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FavoritesComponent } from './components/favorites/favorites.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { ProductComponent } from './components/product/product.component';
@@ -27,6 +26,7 @@ import { CartService } from '../services/cart.service';
 import { LoadingComponent } from './components/loading/loading.component';
 import { DefaultContentComponent } from './components/orders/default-content/default-content.component';
 import { ContentTableComponent } from './components/orders/content-table/content-table.component';
+import { PagesRoutingModule } from './pages-routing.module';
 
 @NgModule({
   declarations: [
@@ -58,8 +58,8 @@ import { ContentTableComponent } from './components/orders/content-table/content
     CommonModule,
     TranslocoRootModule,
     SharedModule,
-    BrowserAnimationsModule,
-    RouterModule
+    RouterModule,
+    PagesRoutingModule,
   ],
   exports:[
     NavbarListComponent,

@@ -13,6 +13,7 @@ import { UpdateuserFormComponent } from './components/user-management/updateuser
 import { ProductManagementComponent } from './components/product-management/product-management.component';
 import { AddproductFormComponent } from './components/product-management/addproduct-form/addproduct-form.component';
 import { ProductService } from '../services/product.service';
+import { DashboardRoutingModule } from './dashboard-routing.module';
 @NgModule({
   declarations: [
        DashboardComponent,
@@ -28,11 +29,13 @@ import { ProductService } from '../services/product.service';
     CommonModule,
     SharedModule,
     TranslocoRootModule,
-    TranslocoModule
+    TranslocoModule,
+    DashboardRoutingModule
   ],
   exports:[
     AdduserFormComponent,
-    UserManagementComponent
+    UserManagementComponent,
+
   ],
   providers:[
     UserService,
