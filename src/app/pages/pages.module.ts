@@ -27,6 +27,8 @@ import { LoadingComponent } from './components/loading/loading.component';
 import { DefaultContentComponent } from './components/orders/default-content/default-content.component';
 import { ContentTableComponent } from './components/orders/content-table/content-table.component';
 import { PagesRoutingModule } from './pages-routing.module';
+import { ContentFavoritesComponent } from './components/favorites/content-favorites/content-favorites.component';
+import { DefaultFavoritesComponent } from './components/favorites/default-favorites/default-favorites.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +54,8 @@ import { PagesRoutingModule } from './pages-routing.module';
      LoadingComponent,
      DefaultContentComponent,
      ContentTableComponent,
+     ContentFavoritesComponent,
+     DefaultFavoritesComponent,
 
   ],
   imports: [

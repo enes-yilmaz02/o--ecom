@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { MessageService } from 'primeng/api';
-import { Product } from 'src/app/models/product';
 import { CartService } from 'src/app/services/cart.service';
 
 @Component({
@@ -9,29 +7,43 @@ import { CartService } from 'src/app/services/cart.service';
   styleUrls: ['./favorites.component.scss'],
 })
 export class FavoritesComponent {
-  items: Product[];
+  showLoading = true;
 
-  constructor(private cart: CartService , private messageService:MessageService) {
-    this.getFavorites();
+  hasData = true;
+
+  contentData: any;
+
+
+  constructor(private cartService: CartService) {
   }
 
-  getFavorites() {
-    this.cart.getItemsFavorites().subscribe((data: Product[]) => {
-      this.items = data;
-    });
+  ngOnInit() {
+    this.loadData();
+    // 5 saniye sonra "loading" şablonunu gizle
+    setTimeout(() => {
+      this.showLoading = false;
+    }, 3000);
 
   }
 
-  removeFromCartFavorites(item : string) {
-    this.cart.removeFromCartFavorites(item).then(() => {
-      // Favorilerden ürünü kaldırdıktan sonra favorileri yeniden al
-      this.getFavorites();
-    }).catch((error) => {
-      this.messageService.add({
-        severity: 'error',
-          summary: 'Hata!',
-          detail: 'Ürün favorilerime kaldırılamadı',
-      })
-    });
+  loadData() {
+    this.cartService.getItemsFavorites().subscribe(
+      (data :any) => {
+        this.contentData = data;
+        if(data.length>0){
+          this.hasData = true;
+        }else{
+          this.hasData = false;
+        }
+
+        this.showLoading = false;
+        console.log(data.length)
+      },
+      (error) => {
+        console.error('Veri yüklenirken hata oluştu', error);
+        this.showLoading = false;
+
+      }
+    );
   }
 }

@@ -29,7 +29,7 @@ export class OrdersComponent implements OnInit {
 
    loadData() {
     this.cart.getItemsOrders().subscribe(
-      (data : Product[]) => {
+      (data :any) => {
         this.contentData = data;
         if(data.length>0){
           this.hasData = true;

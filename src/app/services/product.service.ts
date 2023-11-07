@@ -1,71 +1,45 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Product } from '../models/product';
 import { Observable } from 'rxjs';
-import { where} from 'firebase/firestore'
+import { CommonService } from './common.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-  private collectionName = 'products';
-  constructor(private firestore: AngularFirestore ) { }
+
+
+
+  productsEndpoint = 'products';
+
+  productIdEndpoint = 'product';
+
+
+  constructor(private commonService:CommonService ) { }
 
 // Ürün ekleme işlemi
-addProduct(product: Product): Promise<any> {
-  return this.firestore.collection(this.collectionName).add(product);
+addProduct(product:any , body:any) {
+  return this.commonService.put( product , body)
 }
 
 // Ürün güncelleme işlemi
-updateProduct(id: string, product: Product): Promise<void> {
-  return this.firestore.collection(this.collectionName).doc(id).update(product);
+updateProduct(id: string, product: string) {
+  return this.commonService.post(id , product)
 }
 
 // Ürün silme işlemi
-deleteProduct(id: string): Promise<void> {
-  return this.firestore.collection(this.collectionName).doc(id).delete();
+deleteProduct(id: string) {
+  return this.commonService.delete(id);
 }
 
 // Tüm ürünleri getirme
 getProducts(): Observable<Product[]> {
-  return this.firestore.collection<Product>(this.collectionName).valueChanges();
+  return this.commonService.get(this.productsEndpoint);
+
 }
 
-patchOrderById() {
-  return this.firestore.collection(this.collectionName).valueChanges();
+patchProductById(id:any) {
+  return this.commonService.get(`${this.productIdEndpoint}/${id}`)
 }
-
-getProductById(id: string): Observable<Product | null> {
-  return this.firestore
-    .collection<Product>(this.collectionName)
-    .doc(id)
-    .valueChanges();
-}
-
-
-
-
-
-// uploadFile(file: File, targetPath: string): Promise<string> {
-//   const filePath = targetPath; // Firebase Storage'da hedef yol
-
-//   const fileRef = this.storage.ref(filePath);
-//   const task = this.storage.upload(filePath, file);
-
-//   return new Promise<string>((resolve, reject) => {
-//     task
-//       .snapshotChanges()
-//       .toPromise()
-//       .then(() => {
-//         // Yükleme tamamlandığında dosyanın URL'sini alabilirsiniz
-//         fileRef.getDownloadURL().subscribe((downloadURL) => {
-//           resolve(downloadURL);
-//         });
-//       })
-//       .catch((error) => {
-//         reject(error);
-//       });
-//   });
-// }
 
 }

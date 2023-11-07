@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Table } from 'primeng/table';
-import { Customer, Representative } from 'src/app/models/customer';
+import {  Representative } from 'src/app/models/customer';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product.service';
 import { AddproductFormComponent } from './addproduct-form/addproduct-form.component';
+import { CommonService } from 'src/app/services/common.service';
 
 @Component({
   selector: 'app-product-management',
@@ -33,8 +34,13 @@ export class ProductManagementComponent {
   constructor(
     private productService: ProductService,
     public  dialogService: DialogService,
-    public  messageService: MessageService
-  ) {}
+    public  messageService: MessageService,
+    private commonService:CommonService
+  ) {
+
+    console.log(this.commonService.get('products'));
+
+  }
 
 
 

@@ -7,16 +7,13 @@ import { AppComponent } from './app.component';
 import {  HttpClientModule } from '@angular/common/http';
 import { TranslocoRootModule } from './transloco-root.module';
 import { PagesModule } from './pages/pages.module';
-import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
-import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
-import { environment } from '../environments/environment';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { CartService } from './services/cart.service';
 import { UserService } from './services/user.service';
 import { TranslocoService } from '@ngneat/transloco';
 import { TranslocoModule } from '@ngneat/transloco';
 import { ProductService } from './services/product.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -29,13 +26,10 @@ import { ProductService } from './services/product.service';
     HttpClientModule,
     TranslocoRootModule,
     PagesModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig, 'reservas'),
-    AngularFireDatabaseModule,
-    AngularFirestoreModule,
     SharedModule,
     DashboardModule,
     TranslocoModule,
-    AngularFireStorageModule,
+    BrowserAnimationsModule
 
 
   ],

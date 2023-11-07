@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MessageService, SelectItem } from 'primeng/api';
+import { SelectItem } from 'primeng/api';
 import { ProductService } from 'src/app/services/product.service';
-import {Storage , ref , uploadBytesResumable , getDownloadURL} from '@angular/fire/storage'
 interface Rating {
   name: string;
   code: string;
@@ -32,6 +31,8 @@ export class AddproductFormComponent implements OnInit {
 
   items: SelectItem[];
 
+  body:any;
+
   idvalue: string;
 
   public file : any = {} ;
@@ -44,9 +45,7 @@ export class AddproductFormComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private messageService: MessageService,
     private productService: ProductService,
-    public storage:Storage
   ) {
     this.addproductForm = this.formBuilder.group({
       code: ['', Validators.required], // Örnek: Validators ekleyerek girişin zorunlu olup olmadığını belirleyebilirsiniz
@@ -79,26 +78,6 @@ export class AddproductFormComponent implements OnInit {
     ];
   }
 
-// chooseFile(event:any){
-//   this.file = event.target.files[0]
-// }
-
-//   addFile(){
-//     const storageRef=ref(this.storage , this.file.name);
-//     const uploadTask = uploadBytesResumable(storageRef , this.file);
-//     uploadTask.on('state_changed' ,
-//     (snapshot)=>{
-//       const progess= ( snapshot.bytesTransferred / snapshot.totalBytes);
-//       console.log('Upload is ' + progess + ' % done ');
-//     },
-//     ()=>{
-//       getDownloadURL(uploadTask.snapshot.ref).then((downLoandURL)=>{
-//         console.log('File avalaible at ' , downLoandURL)
-//       })
-//     }
-//     )
-//   }
-
   onSubmit() {
     const idvalue = this.idvalue + 1;
     const codeValue = this.addproductForm.get('code').value;
@@ -123,13 +102,7 @@ export class AddproductFormComponent implements OnInit {
       valueRating: valueRatingValue,
       descriptionValue: descriptionValue,
     };
-    this.productService.addProduct(productData).then(() => {
-      this.messageService.add({
-        severity: 'success',
-        summary: 'Başarılı',
-        detail: 'Ürün yükleme işlemi başarılı',
-      });
-    });
+    this.productService.addProduct(productData , this.body)
     this.idvalue = idvalue;
     // localStorage'da idvalue'yu güncelleyin
     localStorage.setItem('idvalue', this.idvalue.toString());

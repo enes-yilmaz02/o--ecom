@@ -11,11 +11,11 @@ import { CartService } from 'src/app/services/cart.service';
 export class ContentTableComponent {
   totalPrice: number;
 
-  items: Product[];
+  product: any;
 
   dataAvailable: boolean = false; // Veri var mı yok mu kontrolü
 
-  constructor(private cart: CartService, private messageService:MessageService) {
+  constructor(private cartService: CartService) {
     // Verileri alıp hesaplamaları burada yapabiliriz
     this.getOrders();
 
@@ -23,36 +23,17 @@ export class ContentTableComponent {
   }
 
   getOrders() {
-    this.cart.getItemsOrders().subscribe((data: Product[]) => {
-      this.items = data;
+    return this.cartService.getItemsOrders().subscribe((data:any)=>{
+      this.product=data;
       this.calculateTotalPrice();
-      this.dataAvailable = true; // Veriler başarıyla alındı
-    },
-    (error) => {
-      this.messageService.add({
-        severity:'error',
-        summary:'Hata!',
-        detail:'Veriler alınamadı'
-      })
-      this.dataAvailable = false; // Veriler alınamadı
-    }
-    );
+    });
   }
 
   calculateTotalPrice() {
-    this.totalPrice = this.items.reduce((total, item) => total + item.price, 0);
+    this.totalPrice = this.product.reduce((total, item) => total + item.priceStacked, 0);
   }
 
-  removeFromCartOrders(item: any) {
-    // Sepetten ürünü kaldırma işlemi
-    this.cart
-      .removeFromCartOrders(item)
-      .then(() => {
-        // Ürünü kaldırdıktan sonra items dizisini güncelleyin
-        this.getOrders();
-      })
-      .catch((error) => {
-        console.error('Ürün kaldırılırken hata oluştu', error);
-      });
+  removeFromCartOrders(id: any) {
+    return this.cartService.removeFromCartOrders(id);
   }
 }

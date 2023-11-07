@@ -15,17 +15,23 @@ export class CardComponent implements OnInit {
   searchText: string = ''; // Arama metni için bir değişken
   filteredProducts: Product[] = []; // Filtrelenmiş ürünleri saklamak için bir dizi
   defaultValue: any;
-  constructor(private productService:ProductService, private data:DataService,private cart:CartService) {
+  constructor(private productService:ProductService,private cart:CartService) {
 
   }
 
 
   ngOnInit() {
-    this.data.getProducts().then((data) => (this.product = data.slice(0,100)));
+    this.getAllProducts();
   }
 
-  getSeverity(product: Product) {
-      switch (product.inventoryStatus) {
+  getAllProducts(){
+    this.productService.getProducts().subscribe((data:any) => {
+      this.product = data;
+    });
+  }
+
+  getSeverity(product: any) {
+      switch (product.selectedStatus) {
           case 'INSTOCK':
               return 'success';
 

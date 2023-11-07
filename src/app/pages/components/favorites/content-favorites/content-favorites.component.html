@@ -1,0 +1,40 @@
+<div class="flex w-full">
+  <div class="table">
+    <p-table [value]="product">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Id</th>
+          <th>Resim</th>
+          <th>Ürün Adı</th>
+          <th>Kategori</th>
+          <th>Durum</th>
+          <th>Fiyat</th>
+          <th>İşlemler</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-product>
+        <tr>
+          <td>{{ product?.id }}</td>
+          <td>
+            <p-image
+              [src]="'https://primefaces.org/cdn/primeng/images/demo/product/' + product?.file"
+              [alt]="product?.name"
+              [preview]="true"
+              width="100px"
+              height="100px"
+            ></p-image>
+          </td>
+          <td>{{ product?.name }}</td>
+          <td>{{ product?.category }}</td>
+          <td>{{ product?.status }}</td>
+          <td>$ {{ product?.price }}</td>
+          <td class="button-style">
+            <button class="button w-full border-round" (click)="removeFromCartFavorites(product.id)">
+              Sil
+            </button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>

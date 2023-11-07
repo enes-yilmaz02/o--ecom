@@ -6,7 +6,7 @@
     <div class="flex flex-column xl:flex-row xl:align-products-start p-4 gap-4">
       <img
                 class="w-9 shadow-2 border-round"
-                [src]="'https://primefaces.org/cdn/primeng/images/demo/product/' + product.image" [alt]="product.name"
+                [src]="'https://primefaces.org/cdn/primeng/images/demo/product/' + product?.file" [alt]="product?.name"
               />
       <div
         class="flex flex-column sm:flex-row justify-content-between align-products-center xl:align-products-start flex-1 gap-4"
@@ -18,7 +18,7 @@
             class="text-2xl flex justify-content-between w-full font-bold text-900"
           >
             <div>
-              {{ product.name }}
+              {{ product?.name }}
             </div>
             <div class="button-style">
               <button
@@ -32,25 +32,25 @@
 
           <span class="flex align-products-center gap-2">
             <i class="pi pi-tag"></i>
-            <span class="font-semibold">{{ product.category }}</span>
+            <span class="font-semibold">{{ product?.category }}</span>
           </span>
           <p-tag
-            [value]="product.inventoryStatus"
+            [value]="product?.selectedStatus"
             [severity]="getSeverity(product)"
           ></p-tag>
           <span class="button-style">
             <p-rating
-              [ngModel]="product.rating"
+              [ngModel]="product?.rating"
               [readonly]="true"
               [cancel]="false"
               class="button"
             ></p-rating>
           </span>
-          <span class="text-2xl font-semibold">{{ "$" + product.price }}</span>
+          <span class="text-2xl font-semibold">{{ "$" + product?.priceStacked }}</span>
           <div class="flex flex-column justify-content-end align-content-end">
             <div class="flex flex-column" style="float: right">
               <div class="w-full h-full">
-                {{ product.description }}
+                {{ product?.description }}
               </div>
               <div
                 class="flex flex-column m-3 w-full justify-content-center align-content-center align-products-center"
@@ -74,7 +74,7 @@
                   <button
                     pButton
                     class="m-3 button border-round button w-full justify-content-center text-xl"
-                    [disabled]="product.inventoryStatus === 'Outstock'"
+                    [disabled]="product?.selectedStatus === 'Outstock'"
                     (click)="addToCart(product)"
                   >
                     Sepete ekle

@@ -1,9 +1,7 @@
-import { Component, OnChanges, OnInit } from '@angular/core';
-import { ActivatedRoute, Route, Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute} from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { Product } from 'src/app/models/product';
 import { CartService } from 'src/app/services/cart.service';
-import { DataService } from 'src/app/services/data.service';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -16,37 +14,33 @@ export class CardDetailComponent  implements OnInit {
   product: any;
   defaultValue = 0;
   productPrice: number;
+  body:any;
 
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
     private messageService: MessageService,
-    private cartService:CartService,
-    private data:DataService,
-    private router:Router
+    private cartService:CartService
   ) {
+
+
   }
 
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       this.productId = params['id'];
-      // Ürün detaylarını çekmek için bu fonksiyonu kullanın
-      const data= this.data.getProductById(this.productId);
-      if (data){
-        console.log("ürün bulundu");
+       this.productService.patchProductById(this.productId).subscribe((data:any)=>{
         this.product = data;
-        this.productPrice = Number(this.product?.price);
-        }else{
-          console.log('ürüne erişilemedi');
-        }
+        this.productPrice = Number(this.product?.priceStacked);
+      });
       })
     }
 
 
 
-  getSeverity(product: Product) {
-    switch (product.inventoryStatus) {
+  getSeverity(product: any) {
+    switch (product?.selectedStatus) {
       case 'IS':
         return 'success';
       case 'LS':
@@ -58,19 +52,19 @@ export class CardDetailComponent  implements OnInit {
     }
   }
 
-  addToCart(product: Product) {
+  addToCart(product: any) {
     const cartItem = {
       code: product.code,
-      file: product.image,
+      file: product.file,
       name: product.name,
-      selectedStatus: product.inventoryStatus,
+      selectedStatus: product.selectedStatus,
       quantity: this.defaultValue,
       category: product.category,
-      priceStacked: product.price,
+      priceStacked: product.priceStacked,
     };
 
     if (this.defaultValue >= 1) {
-      this.cartService.addToCart(cartItem);
+      this.cartService.addToCart(cartItem,this.body);
       this.messageService.add({
         severity: 'success',
         summary: 'Başarılı',
@@ -98,6 +92,6 @@ export class CardDetailComponent  implements OnInit {
   }
 
   addToCartFavorites(item){
-    this.cartService.addToCartFavorites(item);
+    this.cartService.addToCartFavorites(item,this.body);
   }
 }

@@ -1,8 +1,13 @@
 <div class="flex w-full container-table">
   <div class="table">
-    <p-table [value]="items" [scrollable]="true" scrollHeight="400px" [style]="{'padding':'30px '}">
-      <ng-template pTemplate="header" >
-        <tr >
+    <p-table
+      [value]="product"
+      [scrollable]="true"
+      scrollHeight="400px"
+      [style]="{ padding: '30px ' }"
+    >
+      <ng-template pTemplate="header">
+        <tr>
           <th>Id</th>
           <th>Resim</th>
           <th>Ürün Adı</th>
@@ -13,40 +18,49 @@
           <th>İşlemler</th>
         </tr>
       </ng-template>
-      <ng-template pTemplate="body" let-item >
+      <ng-template pTemplate="body" let-product>
         <tr>
-          <td>{{ item.code }}</td>
-          <td>{{ item.file }}</td>
-          <td>{{ item.name }}</td>
-          <td>{{ item.quantity }}</td>
-          <td>{{ item.category }}</td>
-          <td>{{ item.selectedStatus }}</td>
-          <td>$ {{ item.priceStacked }}</td>
+          <td>{{ product.id }}</td>
+          <td>
+            <img
+              class="w-9 shadow-2 border-round"
+              [src]="
+                'https://primefaces.org/cdn/primeng/images/demo/product/' +
+                product?.file
+              "
+              [alt]="product.name"
+              width="40px"
+              height="40px"
+            />
+          </td>
+          <td>{{ product.name }}</td>
+          <td>{{ product.quantity }}</td>
+          <td>{{ product.category }}</td>
+          <td>{{ product.selectedStatus }}</td>
+          <td>$ {{ product.priceStacked }}</td>
           <td class="button-style">
-            <i class="button pi pi-trash w-full border-round" (click)="removeFromCartOrders(item)"></i>
+            <i
+              class="button pi pi-trash w-full border-round"
+              (click)="removeFromCartOrders(product)"
+            ></i>
           </td>
         </tr>
       </ng-template>
     </p-table>
   </div>
-  <div class="flex flex-column mx-4 container-price" *ngIf="items || items?.length >= 1">
+  <div
+    class="flex flex-column mx-4 container-price"
+    *ngIf="product || product?.length >= 1"
+  >
     <div>
       <div>
         <h3>Sipariş Özeti</h3>
       </div>
-      <div>
-        Ürünün Toplamı: $ {{ totalPrice }}
-      </div>
-      <div>
-        Kargonun Toplamı: $ 29.90
-      </div>
-      <div>
-        Kargo Bedava (Satıcı Karşılar): -$ 29.90
-      </div>
-      <hr>
-      <div>
-        $ {{ totalPrice }}
-      </div>
+      <div>Ürünün Toplamı: $ {{ totalPrice }}</div>
+      <div>Kargonun Toplamı: $ 29.90</div>
+      <div>Kargo Bedava (Satıcı Karşılar): -$ 29.90</div>
+      <hr />
+      <div>$ {{ totalPrice }}</div>
     </div>
     <div class="button-style w-full">
       <button class="button w-full">Siparişi Tamamla</button>
