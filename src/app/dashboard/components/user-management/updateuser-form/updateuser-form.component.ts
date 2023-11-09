@@ -1,9 +1,8 @@
-import { ActivatedRoute } from '@angular/router';
-import { Component, OnInit  } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { MessageService } from 'primeng/api';
+import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit , Input } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
-import { DynamicDialogRef, DynamicDialogConfig } from 'primeng/dynamicdialog';
 
 @Component({
   selector: 'app-updateuser-form',
@@ -12,19 +11,17 @@ import { DynamicDialogRef, DynamicDialogConfig } from 'primeng/dynamicdialog';
 })
 export class UpdateuserFormComponent implements OnInit {
 
-  id: any;
+  @Input() id: any;
 
   updateuserForm: FormGroup;
 
   selectedUser: any;
 
   constructor(
-    private route: ActivatedRoute,
-    private messageService: MessageService,
     private formBuilder:FormBuilder,
     private userService: UserService,
-    private config: DynamicDialogConfig,
-    private ref: DynamicDialogRef,
+    private route:ActivatedRoute,
+    private messageService:MessageService
   ) {
     this.updateuserForm =this.formBuilder.group({
       name: [''],
@@ -39,8 +36,8 @@ export class UpdateuserFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.id = this.config.data.id;
-    if (this.id) {
+    this.route.params.subscribe((params) => {
+      this.id = params['id'];
       this.userService.getUser(this.id).subscribe((userData: any) => {
         this.selectedUser = userData;
         this.updateuserForm.patchValue({
@@ -52,12 +49,9 @@ export class UpdateuserFormComponent implements OnInit {
           confirmpassword: this.selectedUser.confirmpassword,
         });
       });
-    }
+      })
   }
 
-  closeDialog(updatedData: any) {
-    this.ref.close(updatedData);  // Dialog kapatılırken güncellenmiş veriyi iletiyoruz
-  }
 
   editUser(id: any) {
     this.userService.getUser(id).subscribe((data: any) => {
@@ -66,6 +60,31 @@ export class UpdateuserFormComponent implements OnInit {
   }
 
   updateUser(user: any) {
-    this.userService.updateUser(user);
-  }
+    debugger
+    this.route.params.subscribe((params)=>{
+      this.id=params['id'];
+      if (this.updateuserForm.valid) {
+        const formValuesArray = this.updateuserForm.value;
+        this.userService.updateUser(this.id , formValuesArray).subscribe((res:any)=>{
+          this.messageService.add({
+            severity:'success', summary: 'Successful!', detail: res.msg
+          })
+        },
+        (error: any) => {
+          this.messageService.add({
+            severity:'error', summary: error?.errorMessage, detail: error?.errorDescription
+          });
+        }
+        );
+        window.location.reload();
+      } else {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error!',
+          detail: 'Please fill all the fields',
+        });
+      }
+    })
+
+}
 }

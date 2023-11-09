@@ -34,12 +34,11 @@ export class UserService {
   }
 
   addUsers(user:any){
-
     return this.commonService.post(this.userEndPoint, user);
   }
 
-  updateUser(user:any){
-    return this.commonService.post(this.userEndPoint, user);
+  updateUser(id:any , body:any){
+    return this.commonService.put(this.userEndPoint+`/${id}` , body);
   }
 
   deleteUser(id:any) {
@@ -48,7 +47,6 @@ export class UserService {
 
 
   registerWithEmail(user:any){
-    debugger
     return this.commonService.post(this.userEndPoint , user );
   }
 

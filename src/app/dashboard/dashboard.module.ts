@@ -14,6 +14,12 @@ import { ProductManagementComponent } from './components/product-management/prod
 import { AddproductFormComponent } from './components/product-management/addproduct-form/addproduct-form.component';
 import { ProductService } from '../services/product.service';
 import { DashboardRoutingModule } from './dashboard-routing.module';
+import { GetProductComponent } from './components/product-management/get-product/get-product.component';
+import { ProductSidebarComponent } from './components/product-management/product-sidebar/product-sidebar.component';
+import { DashboardSidebarComponent } from './components/dashboard-sidebar/dashboard-sidebar.component';
+import { UpdateProductComponent } from './components/product-management/update-product/update-product.component';
+import { GetUserComponent } from './components/user-management/get-user/get-user.component';
+import { UserSidebarComponent } from './components/user-management/user-sidebar/user-sidebar.component';
 @NgModule({
   declarations: [
        DashboardComponent,
@@ -22,7 +28,13 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
        AdduserFormComponent,
        UpdateuserFormComponent,
        ProductManagementComponent,
-       AddproductFormComponent
+       AddproductFormComponent,
+       GetProductComponent,
+       ProductSidebarComponent,
+       DashboardSidebarComponent,
+       UpdateProductComponent,
+       GetUserComponent,
+       UserSidebarComponent
 
   ],
   imports: [

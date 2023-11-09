@@ -1,0 +1,73 @@
+<div class="conatiner">
+  <div class="card" style="width: 1100px;">
+    <p-table
+        #dt2
+        [value]="users"
+        dataKey="id"
+        [rows]="5"
+        [showCurrentPageReport]="true"
+        [rowsPerPageOptions]="[5,10,20]"
+        [paginator]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [globalFilterFields]="['name', 'country.name', 'representative.name', 'status']"
+        [tableStyle]="{ 'min-width': '75rem'  }"
+        >
+        <ng-template pTemplate="caption">
+     <div class="flex flex-row justify-content-between align-items-center">
+      <div class="flex flex-row justify-content-between align-content-center w-21rem">
+        <div>
+          <span class="button-style">
+            <button class="button"[routerLink]="['/user-management', 'add-user']" ><i class="pi pi-plus" style="color: white"></i>
+              Ekle</button>
+          </span>
+        </div>
+      </div>
+            <div class="flex">
+                <span class="p-input-icon-left ml-auto">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="dt2.filterGlobal($any($event.target).value, 'contains')" placeholder="Search keyword" />
+                </span>
+            </div>
+     </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width:22%">Id</th>
+                <th style="width:22%">Ad</th>
+                <th style="width:22%">Kullanıcı Adı </th>
+                <th style="width:22%">email </th>
+                <th style="width:22%">Telefon</th>
+                <th style="width: 22%;">İşlemler</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-user>
+          <tr>
+            <td>{{ user.id }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.phone }}</td>
+            <td>
+              <div class="flex flex-row justify-content-start align-content-center w-21rem">
+                <div>
+                  <span class="button-style">
+                    <button class="button" [routerLink]="['/user-management', 'update-user' , user.id]"><i class="pi pi-pencil" style="color: white"></i> Düzenle</button>
+                  </span>
+                </div>
+                <div>
+                  <span class="button-style" style="margin-left: 5px;">
+                    <button class="button"  (click)="deleteUser(user.id)"><i class="pi pi-trash" style="color: white"></i> Sil</button>
+                  </span>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="5">No customers found.</td>
+            </tr>
+        </ng-template>
+    </p-table>
+  </div>
+</div>

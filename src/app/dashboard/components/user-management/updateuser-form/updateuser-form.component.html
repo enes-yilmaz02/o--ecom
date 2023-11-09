@@ -1,4 +1,4 @@
-<div class="container" style="background-image: url('assets/images/net-rd-2-1.jpg');">
+<div class="container" >
   <form [formGroup]="updateuserForm">
     <div
       class="register-header block justify-content-center align-content-center align-items-center text-2xl w-full"
@@ -16,7 +16,6 @@
           pInputText
           id="name"
           formControlName="name"
-          pTooltip="{{'updateuserForm.nameTooltip' | transloco }}"
         />
         <label htmlFor="name">{{'updateuserForm.nameLabel' | transloco}}</label>
       </span>
@@ -51,7 +50,6 @@
           pInputText
           id="username"
           formControlName="username"
-          pTooltip="{{'updateuserForm.usernameTooltip' | transloco }}"
         />
         <label htmlFor="username">{{'updateuserForm.usernameLabel' | transloco}}</label>
       </span>
@@ -86,7 +84,6 @@
           pInputText
           id="email"
           formControlName="email"
-          pTooltip="{{'updateuserForm.emailTooltip' | transloco }}"
         />
         <label htmlFor="email">{{'updateuserForm.emailLabel' | transloco}}</label>
       </span>
@@ -121,7 +118,6 @@
           pInputText
           id="phone"
           formControlName="phone"
-          pTooltip="{{'updateuserForm.phoneTooltip' | transloco }}"
         />
         <label htmlFor="phone">{{'updateuserForm.phoneLabel' | transloco}}</label>
       </span>
@@ -155,7 +151,6 @@
         <p-password
           id="password"
           formControlName="password"
-          pTooltip="{{'updateuserForm.passwordTooltip' | transloco }}"
         ></p-password>
         <label htmlFor="password">{{'updateuserForm.passwordLabel' | transloco}}</label>
       </span>
@@ -189,7 +184,6 @@
         <p-password
           id="confirmpassword"
           formControlName="confirmpassword"
-          pTooltip="{{'updateuserForm.confirmTooltip' | transloco }}"
         ></p-password>
         <label htmlFor="confirmpassword"
           >{{'updateuserForm.confirmLabel' | transloco}}

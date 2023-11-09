@@ -14,8 +14,6 @@ import { ProductComponent } from './components/product/product.component';
 import { SupportComponent } from './components/support/support.component';
 import { PagesComponent } from './pages.component';
 
-
-
 @NgModule({
   declarations: [],
   imports: [
@@ -64,20 +62,12 @@ import { PagesComponent } from './pages.component';
             component: SupportComponent,
           },
           {
-            path: 'manager',
-            loadChildren: () =>
-                            import('../dashboard/dashboard.module').then(
-                                (m) => m.DashboardModule
-                            ),
-
-          },
-          {
             path: 'about',
             component: AboutComponent,
           },
         ],
-      }
-    ])
-  ]
+      },
+    ]),
+  ],
 })
-export class PagesRoutingModule { }
+export class PagesRoutingModule {}

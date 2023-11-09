@@ -12,14 +12,15 @@ export class ProductService {
 
   productsEndpoint = 'products';
 
-  productIdEndpoint = 'product';
+  productEndpoint = 'product';
 
 
   constructor(private commonService:CommonService ) { }
 
 // Ürün ekleme işlemi
-addProduct(product:any , body:any) {
-  return this.commonService.put( product , body)
+addProduct(product:any ) {
+  debugger
+  return this.commonService.post(this.productEndpoint , product )
 }
 
 // Ürün güncelleme işlemi
@@ -29,7 +30,7 @@ updateProduct(id: string, product: string) {
 
 // Ürün silme işlemi
 deleteProduct(id: string) {
-  return this.commonService.delete(id);
+  return this.commonService.delete(this.productsEndpoint+`/${id}`);
 }
 
 // Tüm ürünleri getirme
@@ -39,7 +40,7 @@ getProducts(): Observable<Product[]> {
 }
 
 patchProductById(id:any) {
-  return this.commonService.get(`${this.productIdEndpoint}/${id}`)
+  return this.commonService.get(`${this.productEndpoint}/${id}`)
 }
 
 }
