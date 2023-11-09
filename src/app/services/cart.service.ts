@@ -8,11 +8,20 @@ import { CommonService } from './common.service';
 })
 export class CartService {
 
-  private collectionNameOrders = 'orders';
 
   getFavoritesEndPoint = 'favorites' ;
 
   getOrdersEndPoint = 'orders' ;
+
+  deleteFavorites = 'favorites' ;
+
+  deleteOrders= 'orders';
+
+  addOrder= 'order';
+
+  addFavorite= 'favorite';
+
+  body:any;
 
 
   // private userDocRef = this.afs.collection('users').doc();
@@ -37,9 +46,9 @@ export class CartService {
   }
 
   // Sepete ürün ekler ve aynı zamanda Badge'i günceller
-  addToCart(item: any , body:any ){
-    //const userDocRef = this.afs.collection('users').doc();
-    return this.commonService.put(item , body);
+  addToCart(product :any ){
+debugger
+    return this.commonService.post(this.addOrder , product);
 
     // .then(() => {
     //   // Siparişler Badge'ini artır
@@ -50,7 +59,7 @@ export class CartService {
   // Favorilere ürün ekler ve aynı zamanda Badge'i günceller
   addToCartFavorites(item: any , body:any){
     // const userDocRef = this.afs.collection('users').doc();
-    return this.commonService.put(item , body)
+    return this.commonService.post(item , body)
 
     // then(() => {
     //   // Favoriler  Badge'ini artır
@@ -58,16 +67,18 @@ export class CartService {
     // });
   }
 
-  removeFromCartOrders(id: any){
-    return this.commonService.delete(id )
+  removeFromCartOrders(id:any){
+    return this.commonService.delete(this.deleteOrders+`/${id}`);
     // .then(() => {
     //   // Siparişler Badge'ini azalt
     //   this.orderBadge.next(this.orderBadge.value - 1);
     // });
   }
   // Favorilerden ürünü kaldırır ve aynı zamanda Badge'i günceller
-  removeFromCartFavorites(id: any) {
-    return this.commonService.delete(id)
+  removeFromCartFavorites(id:any) {
+    return this.commonService.delete(this.deleteFavorites+`/${id}`);
+
+
     // .then(() => {
     //   // Favoriler Badge'ini azalt
     //   this.favoritesBadge.next(this.favoritesBadge.value - 1);

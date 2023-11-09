@@ -36,12 +36,15 @@
           <td>{{ product.name }}</td>
           <td>{{ product.quantity }}</td>
           <td>{{ product.category }}</td>
-          <td>{{ product.selectedStatus }}</td>
+          <td><p-tag
+            [value]="product?.selectedStatus"
+            [severity]="getSeverity(product)"
+          ></p-tag></td>
           <td>$ {{ product.priceStacked }}</td>
           <td class="button-style">
             <i
               class="button pi pi-trash w-full border-round"
-              (click)="removeFromCartOrders(product)"
+              (click)="removeFromCartOrders(product.id)"
             ></i>
           </td>
         </tr>

@@ -14,6 +14,7 @@ export class CommonService {
       this.baseUrl = environment.baseUrl;
   }
   post<T>(endPoint: string, body: any): Observable<T> {
+      console.log(this.baseUrl+endPoint , body)
       return this.http.post<T>(this.baseUrl + endPoint, body);
   }
   get<T>(endPoint: string): Observable<T> {
@@ -22,7 +23,7 @@ export class CommonService {
   put<T>(endPoint: string, body: any): Observable<T> {
       return this.http.put<T>(this.baseUrl + endPoint, body);
   }
-  delete<T>(endPoint: string): Observable<T> {
+  delete<T>(endPoint: string ): Observable<T> {
       return this.http.delete<T>(this.baseUrl + endPoint);
   }
   patch<T>(endPoint: string, body: any): Observable<T> {

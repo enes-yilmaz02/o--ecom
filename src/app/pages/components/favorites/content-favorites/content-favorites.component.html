@@ -1,7 +1,7 @@
 <div class="flex w-full">
   <div class="table">
-    <p-table [value]="product">
-      <ng-template pTemplate="header">
+    <p-table [value]="product" >
+      <ng-template pTemplate="header" >
         <tr>
           <th>Id</th>
           <th>Resim</th>
@@ -26,12 +26,16 @@
           </td>
           <td>{{ product?.name }}</td>
           <td>{{ product?.category }}</td>
-          <td>{{ product?.status }}</td>
-          <td>$ {{ product?.price }}</td>
+          <td> <p-tag
+            [value]="product?.selectedStatus"
+            [severity]="getSeverity(product)"
+          ></p-tag></td>
+          <td>$ {{ product?.priceStacked }}</td>
           <td class="button-style">
-            <button class="button w-full border-round" (click)="removeFromCartFavorites(product.id)">
-              Sil
-            </button>
+            <i
+              class="button pi pi-trash w-full border-round"
+              (click)="removeFromCartFavorites(product.id)"
+            ></i>
           </td>
         </tr>
       </ng-template>

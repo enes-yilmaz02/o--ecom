@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { UserService } from 'src/app/services/user.service';
 
@@ -10,18 +9,13 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent {
+
   userFormRegister: FormGroup;
-  name: string;
-  username: string;
-  email: string;
-  phone:string;
-  password: string;
-  confirmpassword: string;
+
   constructor(
     private formBuilder: FormBuilder,
     private messageService: MessageService,
-    private userService:UserService ,
-    private router: Router
+    private userService:UserService
   ) {
     this.userFormRegister = this.formBuilder.group({
       name: ['', Validators.required],
@@ -34,32 +28,10 @@ export class RegisterComponent {
   }
 
   onSubmit() {
-
+    debugger
     if (this.userFormRegister.valid) {
       const formValuesArray = this.userFormRegister.value;
-      this.userService.registerWithEmail(
-          formValuesArray.name,
-          formValuesArray.username,
-          formValuesArray.email,
-          formValuesArray.phone,
-          formValuesArray.password,
-          formValuesArray.confirmpassword
-        )
-        .then(() => {
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Başarılı',
-            detail: 'Kayıt Başarılı.',
-          });
-        })
-        .catch((_error) => {
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Hata!',
-            detail: 'Beklenmeyen bir hata oluştu',
-          });
-          this.router.navigate(['/register']);
-        });
+      this.userService.registerWithEmail(formValuesArray);
     } else {
       this.messageService.clear();
       this.messageService.add({

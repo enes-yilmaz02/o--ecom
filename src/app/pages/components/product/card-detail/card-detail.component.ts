@@ -53,18 +53,8 @@ export class CardDetailComponent  implements OnInit {
   }
 
   addToCart(product: any) {
-    const cartItem = {
-      code: product.code,
-      file: product.file,
-      name: product.name,
-      selectedStatus: product.selectedStatus,
-      quantity: this.defaultValue,
-      category: product.category,
-      priceStacked: product.priceStacked,
-    };
-
     if (this.defaultValue >= 1) {
-      this.cartService.addToCart(cartItem,this.body);
+      this.cartService.addToCart(product);
       this.messageService.add({
         severity: 'success',
         summary: 'Başarılı',

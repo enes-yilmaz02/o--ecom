@@ -4,9 +4,9 @@
         #dt2
         [value]="users"
         dataKey="id"
-        [rows]="10"
+        [rows]="5"
         [showCurrentPageReport]="true"
-        [rowsPerPageOptions]="[10, 25, 50]"
+        [rowsPerPageOptions]="[5,10,20]"
         [paginator]="true"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
         [globalFilterFields]="['name', 'country.name', 'representative.name', 'status']"
@@ -32,6 +32,7 @@
         </ng-template>
         <ng-template pTemplate="header">
             <tr>
+                <th style="width:22%">Id</th>
                 <th style="width:22%">Ad</th>
                 <th style="width:22%">Kullanıcı Adı </th>
                 <th style="width:22%">email </th>
@@ -39,22 +40,23 @@
                 <th style="width: 22%;">İşlemler</th>
             </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-customer>
+        <ng-template pTemplate="body" let-user>
           <tr>
-            <td>{{ customer.name }}</td>
-            <td>{{ customer.username }}</td>
-            <td>{{ customer.email }}</td>
-            <td>{{ customer.phone }}</td>
+            <td>{{ user.id }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.phone }}</td>
             <td>
               <div class="flex flex-row justify-content-start align-content-center w-21rem">
                 <div>
                   <span class="button-style">
-                    <button class="button" (click)="showUpdateForm()"><i class="pi pi-pencil" style="color: white"></i> Düzenle</button>
+                    <button class="button" (click)="showUpdateForm(user.id)"><i class="pi pi-pencil" style="color: white"></i> Düzenle</button>
                   </span>
                 </div>
                 <div>
                   <span class="button-style" style="margin-left: 5px;">
-                    <button class="button"  (click)="deleteUser(customer.email , customer.password)"><i class="pi pi-trash" style="color: white"></i> Sil</button>
+                    <button class="button"  (click)="deleteUser(user.id)"><i class="pi pi-trash" style="color: white"></i> Sil</button>
                   </span>
                 </div>
               </div>

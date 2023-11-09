@@ -30,6 +30,7 @@ export class FavoritesComponent {
     this.cartService.getItemsFavorites().subscribe(
       (data :any) => {
         this.contentData = data;
+        console.log(data)
         if(data.length>0){
           this.hasData = true;
         }else{
@@ -37,7 +38,7 @@ export class FavoritesComponent {
         }
 
         this.showLoading = false;
-        console.log(data.length)
+
       },
       (error) => {
         console.error('Veri yüklenirken hata oluştu', error);

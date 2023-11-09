@@ -18,7 +18,7 @@
           formControlName="name"
           pTooltip="{{'updateuserForm.nameTooltip' | transloco }}"
         />
-        <label htmlFor="name"> {{selectedUser.name}} </label>
+        <label htmlFor="name">{{'updateuserForm.nameLabel' | transloco}}</label>
       </span>
       <small
         *ngIf="
@@ -53,7 +53,7 @@
           formControlName="username"
           pTooltip="{{'updateuserForm.usernameTooltip' | transloco }}"
         />
-        <label htmlFor="username">{{ selectedUser.username}}</label>
+        <label htmlFor="username">{{'updateuserForm.usernameLabel' | transloco}}</label>
       </span>
       <small
         *ngIf="
@@ -88,9 +88,7 @@
           formControlName="email"
           pTooltip="{{'updateuserForm.emailTooltip' | transloco }}"
         />
-        <label htmlFor="email">{{
-          selectedUser.email
-        }}</label>
+        <label htmlFor="email">{{'updateuserForm.emailLabel' | transloco}}</label>
       </span>
       <small
         *ngIf="
@@ -125,9 +123,7 @@
           formControlName="phone"
           pTooltip="{{'updateuserForm.phoneTooltip' | transloco }}"
         />
-        <label htmlFor="phone">{{
-         selectedUser.phone
-        }}</label>
+        <label htmlFor="phone">{{'updateuserForm.phoneLabel' | transloco}}</label>
       </span>
       <small
         *ngIf="
@@ -161,9 +157,7 @@
           formControlName="password"
           pTooltip="{{'updateuserForm.passwordTooltip' | transloco }}"
         ></p-password>
-        <label htmlFor="password">{{
-          selectedUser.password
-        }}</label>
+        <label htmlFor="password">{{'updateuserForm.passwordLabel' | transloco}}</label>
       </span>
       <small
         *ngIf="
@@ -198,7 +192,7 @@
           pTooltip="{{'updateuserForm.confirmTooltip' | transloco }}"
         ></p-password>
         <label htmlFor="confirmpassword"
-          >{{ selectedUser.confirmpassword}}
+          >{{'updateuserForm.confirmLabel' | transloco}}
         </label>
       </span>
       <small

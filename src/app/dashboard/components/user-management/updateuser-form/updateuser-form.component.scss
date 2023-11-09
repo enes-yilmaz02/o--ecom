@@ -5,12 +5,8 @@
   padding: 15px;
   display: flex;
   background: transparent;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
   backdrop-filter: blur(8px);
 }
 

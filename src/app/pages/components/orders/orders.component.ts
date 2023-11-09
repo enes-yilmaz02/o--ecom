@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from 'src/app/models/product';
 import { CartService } from 'src/app/services/cart.service';
 
 
@@ -38,7 +37,7 @@ export class OrdersComponent implements OnInit {
         }
 
         this.showLoading = false;
-        console.log(data.length)
+
       },
       (error) => {
         console.error('Veri yüklenirken hata oluştu', error);

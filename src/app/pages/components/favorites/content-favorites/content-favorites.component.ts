@@ -1,3 +1,4 @@
+import { MessageService } from 'primeng/api';
 import { Component } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';
 
@@ -11,7 +12,7 @@ export class ContentFavoritesComponent {
 
 
 
-  constructor(private cartService: CartService) {
+  constructor(private cartService: CartService , private messageService:MessageService) {
     this.getFavorites();
   }
 
@@ -22,6 +23,24 @@ export class ContentFavoritesComponent {
   }
 
   removeFromCartFavorites(id :any) {
-      return this.cartService.removeFromCartFavorites(id);
+    this.cartService.removeFromCartFavorites(id).subscribe(()=>{
+     this.messageService.add({
+          severity:'success', summary: 'Başarılı', detail: 'ürün favorilerden kaldırıldı'
+        });
+    });
+    this.getFavorites();
+  }
+
+  getSeverity(product: any) {
+    switch (product?.selectedStatus) {
+      case 'INSTOCK':
+        return 'success';
+      case 'LOWSTOCK':
+        return 'warning';
+      case 'OUTOFSTOCK':
+        return 'danger';
+      default:
+        return null;
+    }
   }
 }

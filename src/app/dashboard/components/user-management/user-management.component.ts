@@ -3,17 +3,17 @@ import { MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Table } from 'primeng/table';
 import { Customer, Representative } from 'src/app/models/customer';
-import { Users } from 'src/app/models/users';
 import { UserService } from 'src/app/services/user.service';
 import { AdduserFormComponent } from './adduser-form/adduser-form.component';
 import { UpdateuserFormComponent } from './updateuser-form/updateuser-form.component';
-
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-user-management',
   templateUrl: './user-management.component.html',
   styleUrls: ['./user-management.component.scss'],
 })
-export class UserManagementComponent implements OnDestroy {
+export class UserManagementComponent implements OnDestroy{
+
 
   customers!: Customer[];
 
@@ -25,62 +25,47 @@ export class UserManagementComponent implements OnDestroy {
 
   activityValues: number[] = [0, 100];
 
-  users: Users[];
+  users: any;
+
+  user : any;
 
   isUserDialogOpen: boolean = false;
 
-  // userId: string= '2';
-
-  constructor(
-    private user: UserService,
-    public  dialogService: DialogService,
-    public  messageService: MessageService
-  ) {
-    this.getUsers();
-
-
-  }
   ref: DynamicDialogRef | undefined;
 
+  constructor(
+    private userService: UserService,
+    public  dialogService: DialogService,
+    public  messageService: MessageService,
+
+  ) {
+
+    this.getUsers();
+
+  }
+
+
+
   getUsers() {
-    this.user.getUsers().subscribe((data: Users[]) => {
+    this.userService.getUsers().subscribe((data:any) => {
       this.users = data;
     });
   }
 
-  deleteUser(email: string, password: string) {
-    this.user.loginWithEmail(email, password)
-      .then(() => {
-        this.user.deleteUsers(email, password)
-          .then(() => {
-            this.getUsers();
-            this.messageService.add({
-              severity: 'success',
-              summary: 'Başarılı!',
-              detail: 'Kullanıcı başarıyla silindi.'
-            });
-          })
-          .catch((error) => {
-            this.messageService.add({
-              severity: 'error',
-              summary: 'Hata!',
-              detail: 'Kullanıcı silinirken bir hata oluştu. Lütfen tekrar deneyin.'
-            });
-          });
-      }).finally(()=>{
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Başarılı!',
-          detail: 'Kullanıcı başarıyla silindi.'
-        });
-      });
+  deleteUser(id:any) {
+    this.userService.deleteUser(id).subscribe(()=>{
+      this.messageService.add({severity:'success', summary: 'Successful', detail: 'User Deleted Successfully'});
+    });
+    this.getUsers();
   }
 
-  // getuser(id:string){
-  //   this.user.getUser(id).subscribe((data:any)=>{
-  //     console.log("DATA",data);
-  //   })
-  // }
+  getuser(id:string){
+    this.userService.getUser(id).subscribe((data:any)=>{
+      this.user=data;
+
+    });
+
+  }
 
 
   clear(table: Table) {
@@ -116,13 +101,16 @@ export class UserManagementComponent implements OnDestroy {
     });
   }
 
-  showUpdateForm() {
+  showUpdateForm(id:any) {
     this.ref = this.dialogService.open(UpdateuserFormComponent, {
       header: 'Orion Innovation',
-      width: '70%',
+      width: '50%',
+      height:'900px',
+      position:'absolute',
       contentStyle: { overflow: 'auto' },
       baseZIndex: 10000,
       maximizable: true,
+      data: { id },
     });
   }
 
