@@ -7,7 +7,7 @@
       <h2>Orion Innovation</h2>
     </div>
     <span class="p-float-label mt-4">
-      <i class="pi pi-user" style="color: #000;"></i>
+      <i class="pi pi-user" style="color: #000"></i>
       <input
         pInputText
         id="username"
@@ -39,10 +39,11 @@
       }}
     </small>
     <span class="p-float-label mt-4">
-      <i class="pi pi-lock" style="color: #000;"></i>
+      <i class="pi pi-lock" style="color: #000"></i>
       <p-password
         id="password"
         formControlName="password"
+        styleClass="password"
         pTooltip="{{ 'loginForm.passwordTooltip' | transloco }}"
       ></p-password>
       <label htmlFor="password">{{
@@ -70,24 +71,20 @@
       }}
       <!-- {{userFormLogin.get('password')?.value.lenght() < 8 ? ("Şifre en az 8 karakter uzunluğunda olmalıdır") : '' }} -->
     </small>
-    <span class="mt-4" style="width:35%;">
-      <div class="remember-forget">
-        <div
-          class="flex flex-row mb-2"
-          style="float: left;"
-        >
-          <div>
+   <div class="mb-2">
+    <span class="mt-4">
+      <div class="remember-forget align-content-center align-content-center">
+        <div class="flex flex-row mr-3">
+          <div class="flex">
             <input
               id="remember"
               name="remember"
               type="checkbox"
               style="width: 15px; height: 15px"
             />
-          </div>
-          <div>
-            <label for="remember"> {{
-              "loginForm.rememberme" | transloco
-            }}</label>
+            <label for="remember">
+              {{ "loginForm.rememberme" | transloco }}</label
+            >
           </div>
         </div>
         <div>
@@ -97,59 +94,70 @@
         </div>
       </div>
     </span>
+   </div>
+   <div>
     <span class="button-style mt-4">
-      <button class="button w-12rem" (onClick)="onSubmitLogin()">
+      <button pButton class="button" (onClick)="onSubmitLogin()">
         {{ "loginForm.buttonLabel" | transloco }}
       </button>
     </span>
-    <span
+   </div>
+    <div>
+      <span
       class="register-span flex flex-row mt-2 justify-content-between align-content-center align-items-center"
     >
-      <p>{{
-        "loginForm.haveaccount" | transloco
-      }}</p>
-      <a routerLink="/register">{{
-        "loginForm.createnow" | transloco
-      }}</a>
+      <p>{{ "loginForm.haveaccount" | transloco }}</p>
+      <a routerLink="/register">{{ "loginForm.createnow" | transloco }}</a>
     </span>
-  </form>
-</div>
-<div
-    class="flex align-items-center font-bold text-center py-6 border-round  justify-content-center align-self-center w-14"
-  >
-    <div class="container-social ">
-      <div class="header-social">
-        <h3>{{ "startForm.headerSocial" | transloco }}</h3>
-      </div>
-      <div class="description-social">
-        <p>{{ "startForm.descSocialOne" | transloco }}</p>
-        <p>{{ "startForm.descSocialTwo" | transloco }}</p>
-      </div>
-      <div class="icon-social flex">
-        <a href="/login">
-          <div
-            class="flex-1 font-bold text-center p-4 "
-          >
-            <i class="pi pi-google"></i>
-            <p>{{ "startForm.piGoogle" | transloco }}</p>
-          </div>
-        </a>
-        <a href="/login">
-          <div
-            class="flex-1 font-bold text-center p-4 "
-          >
-            <i class="pi pi-apple"></i>
-            <p>{{ "startForm.piApple" | transloco }}</p>
-          </div>
-        </a>
-        <a href="/login">
-          <div
-            class="flex-1 font-bold text-center p-4 "
-          >
-            <i class="pi pi-facebook"></i>
-            <p>{{ "startForm.piFacebook" | transloco }}</p>
-          </div>
-        </a>
+    </div>
+    <div
+      class="social block align-items-center text-center justify-content-center align-self-center"
+    >
+      <div class="container-social">
+        <div class="header-social">
+          <h3>{{ "startForm.headerSocial" | transloco }}</h3>
+        </div>
+        <div class="description-social">
+          <p>{{ "startForm.descSocialOne" | transloco }}</p>
+          <p>{{ "startForm.descSocialTwo" | transloco }}</p>
+        </div>
+        <div class="icon-social flex">
+          <a href="/login">
+            <div class="flex-1 font-bold text-center p-4">
+              <i
+                class="pi pi-google"
+                style="
+                  background: conic-gradient(
+                      from -45deg,
+                      #ea4335 110deg,
+                      #4285f4 90deg 180deg,
+                      #34a853 180deg 270deg,
+                      #fbbc05 270deg
+                    )
+                    73% 55%/150% 150% no-repeat;
+                  -webkit-background-clip: text;
+                  background-clip: text;
+                  color: transparent;
+                  -webkit-text-fill-color: transparent;
+                "
+              ></i>
+              <p>{{ "startForm.piGoogle" | transloco }}</p>
+            </div>
+          </a>
+          <a href="/login">
+            <div class="flex-1 font-bold text-center p-4">
+              <i class="pi pi-apple" style="color: #000"></i>
+              <p>{{ "startForm.piApple" | transloco }}</p>
+            </div>
+          </a>
+          <a href="/login">
+            <div class="flex-1 font-bold text-center p-4">
+              <i class="pi pi-facebook" style="color: #316ff6"></i>
+              <p>{{ "startForm.piFacebook" | transloco }}</p>
+            </div>
+          </a>
+        </div>
       </div>
     </div>
-  </div>
+  </form>
+</div>

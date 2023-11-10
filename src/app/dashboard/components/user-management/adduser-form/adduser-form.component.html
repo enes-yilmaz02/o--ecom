@@ -150,13 +150,15 @@
     </div>
     <!-- phone input end-->
 
+<div class="flex flex-row">
     <!-- password input start-->
-    <div class="wrapper">
+    <div class="wrapper ml-4">
       <span class="p-float-label mt-4">
         <i class="pi pi-lock" style="color: #000"></i>
         <p-password
           id="password"
           formControlName="password"
+          styleClass="password"
         ></p-password>
         <label htmlFor="password">{{
           "adduserForm.passwordLabel" | transloco
@@ -186,12 +188,13 @@
     <!-- password input end-->
 
     <!-- confirm password input start-->
-    <div class="wrapper">
+    <div class="wrapper ">
       <span class="p-float-label mt-4">
         <i class="pi pi-lock" style="color: #000"></i>
         <p-password
           id="confirmpassword"
           formControlName="confirmpassword"
+          styleClass="password"
         ></p-password>
         <label htmlFor="confirmpassword"
           >{{ "adduserForm.confirmLabel" | transloco }}
@@ -235,6 +238,7 @@
       </span>
     </div>
     <!-- confirm password input end-->
+</div>
     <!-- button start-->
     <span class="button-style mt-4">
       <button class="button w-12rem" (click)="onSubmit()">

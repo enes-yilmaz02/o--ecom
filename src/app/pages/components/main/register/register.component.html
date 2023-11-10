@@ -159,6 +159,7 @@
         <p-password
           id="password"
           formControlName="password"
+          styleClass="password"
           pTooltip="{{'registerForm.passwordTooltip' | transloco }}"
         ></p-password>
         <label htmlFor="password">{{
@@ -195,6 +196,7 @@
         <p-password
           id="confirmpassword"
           formControlName="confirmpassword"
+          styleClass="password"
           pTooltip="{{'registerForm.confirmTooltip' | transloco }}"
         ></p-password>
         <label htmlFor="confirmpassword"
@@ -239,39 +241,37 @@
       </span>
     </div>
     <!-- confirm password input end-->
-    <div class="flex flex-row w-full justify-content-center">
-      <div>
+    <div class="flex flex-row align-content-center w-full mt-4">
         <input
           id="terms"
           name="terms"
           type="checkbox"
           style="width: 15px; height: 15px"
         />
-      </div>
-      <div>
-        <label for="terms">
-          <a routerLink="/register" target="_self" style="margin: 5px">
+        <p for="terms">
+          <a routerLink="/register" target="_self">
             {{"registerForm.terms" | transloco }}
           </a>
-        </label>
-      </div>
+        </p>
     </div>
     <!-- button start-->
     <span class="button-style mt-4">
-      <button class="button w-12rem" (click)="onSubmit()">
+      <button class="button " (click)="onSubmit()">
         {{ "registerForm.buttonLabel" | transloco }}
       </button>
     </span>
     <!-- button end-->
     <div
-      class="flex flex-row w-full justify-content-center align-content-center align-items-center"
+      class="flex flex-row justify-content-between"
     >
-      <div>
+    <div class="flex">
         <p>{{ "registerForm.haveaccount" | transloco }}</p>
-      </div>
     </div>
-    <div>
+
+    <div class="flex">
       <a routerLink="/login">{{ "registerForm.loginhere" | transloco }}</a>
     </div>
+    </div>
+
   </form>
 </div>

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslocoService } from '@ngneat/transloco';
-import { Observable } from 'rxjs';
 import { CartService } from 'src/app/services/cart.service';
 
 @Component({
@@ -9,7 +8,7 @@ import { CartService } from 'src/app/services/cart.service';
   styleUrls: ['./navbar-list.component.scss']
 })
 export class NavbarListComponent implements OnInit {
-  stateOptions: any[] = [{ label: '🇹🇷 Tr', value: 'tr' }, { label: '🇬🇧 En', value: 'en' }];
+  stateOptions: any[] = [{ label: '🇹🇷 TR', value: 'tr' }, { label: '🇬🇧 EN', value: 'en' }];
   selectedLanguage: string = 'tr';
   orderBadge: string;
   favoritesBadge: string;

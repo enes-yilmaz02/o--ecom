@@ -3,8 +3,8 @@
     <p-table
       [value]="product"
       [scrollable]="true"
-      scrollHeight="400px"
-      [style]="{ padding: '30px ' }"
+      scrollHeight="800px"
+      styleClass="table"
     >
       <ng-template pTemplate="header">
         <tr>
@@ -65,8 +65,8 @@
       <hr />
       <div>$ {{ totalPrice }}</div>
     </div>
-    <div class="button-style w-full">
-      <button class="button w-full">Siparişi Tamamla</button>
+    <div class="button-style w-full mt-4">
+      <button pButton class="button w-full">Siparişi Tamamla</button>
     </div>
   </div>
 </div>

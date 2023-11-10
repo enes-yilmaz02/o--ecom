@@ -8,10 +8,6 @@
 *{
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   box-sizing: border-box;
-
-}
-.p-float-label{
-  background-color: #000;
 }
 
 .p-float-label label{
@@ -23,48 +19,12 @@ body{
   width: 100%;
   min-height: 100vh;
   background-image: url('assets/images/net-rd-2-1.jpg');
-  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-attachment: fixed;
-  justify-content: center;
-  align-items: center;
   backdrop-filter: blur(8px);
 }
 
 
-p-password-info{
-  width: 100%;
-}
-.button-style button {
-  background-color: #4dabf5;
-  color: #fff;
-  border: none;
-  padding: 10px 15px; /* Yatay iç boşlukları ayarlayın */
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 18px;
-  margin: 4px 2px;
-  transition-duration: 0.4s;
-  border-radius: 5px;
-  width: 100%; /* Genişliği otomatik boyuta ayarlayın */
-  height: auto;
-}
-.button-style button:hover {
-  background-color: #555;
-  color: #fff;
-}
-
-.p-float-label i{
-  position: absolute;
-  z-index: 1;
-  padding: 5px;
-  color: #000;
-  top: 10px;
-  left: 8px;
-}
 
 input{
   padding-left: 40px;

@@ -1,54 +1,110 @@
-
 .container {
-  width: 100%;
-  min-height: 75vh;
-  padding: 15px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  backdrop-filter: blur(8px);
-}
-
-.container form {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+  max-width: 600px;
+  margin: 0 auto;
   padding: 20px;
-  width: 650px;
-  margin: 15px;
-  align-items: center;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
-   // Ekran daraldıkça genişliği sıfırla
-   @media screen and (max-width: 768px) {
-    width: 100%;
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .register-header {
+      width: 100%;
+      text-align: center;
+      margin-bottom: 20px;
+      h2 {
+        font-size: 1.5rem;
+        color: #333;
+      }
+    }
+
+    .wrapper {
+      width: 100%;
+      max-width: 400px;
+      margin-bottom: 20px;
+      position: relative;
+
+      .p-float-label {
+        width: 100%;
+
+        input {
+          width: 100%;
+          padding: 15px;
+          font-size: 0.7rem;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          transition: border-color 0.3s;
+          box-sizing: border-box;
+
+          &:focus {
+            outline: none;
+            border-color: #007bff;
+          }
+        }
+
+        label {
+          font-size: 1rem;
+          color: #333;
+        }
+
+        .pi {
+          position: absolute;
+          left: 10px;
+          top: 50%;
+          transform: translateY(-50%);
+          font-size: 1rem;
+          color: #333;
+        }
+      }
+
+      small {
+        font-size: 0.8rem;
+        color: #ff0000;
+        margin-top: 5px;
+        display: block;
+      }
+    }
+
+    .button-style {
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+      margin-top: 20px;
+
+      button {
+        width: 100%;
+        padding: 15px;
+        background-color: #007bff;
+        color: #fff;
+        font-size: 1rem;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+
+        &:hover {
+          background-color: #0056b3;
+        }
+      }
+    }
   }
 }
 
-.container form input{
-  padding-left: 40px;
-}
-.register-header h2{
-  margin-left: 150px;
+:host ::ng-deep{
+  .password.p-password{
+    .p-password-panel{
+      background-color: #fff;
+    }
+    .p-element {
+      width: 90%;
+      &:focus {
+        outline: none;
+        border-color: #007bff;
 
-   // Ekran daraldıkça sola kaydır
-   @media screen and (max-width: 768px) {
-    margin-left: 0;
+      }
+    }
   }
 }
-.container form .wrapper{
-  margin: 15px;
-
-  // Ekran daraldıkça boşlukları azalt
-  @media screen and (max-width: 768px) {
-    margin: 10px;
-  }
-}
-a {
-  text-decoration: underline;
-  color: #000;
-}
-
-a:hover{
-  color:#176b87;
-}
-

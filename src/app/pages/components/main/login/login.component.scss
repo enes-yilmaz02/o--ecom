@@ -1,100 +1,186 @@
-.p-component {
-  justify-content: center;
-}
-.error-border {
-  border: 1px solid red;
-}
-
-a {
-  text-decoration: underline;
-  color: #000;
-}
-a:hover{
-  color:#176b87;
-}
+$primary-color: #3498db;
+$secondary-color: #1071b3;
+$danger-color: #e74c3c;
+$dark-text: #34495e;
+$light-text: #ecf0f1;
+$background-color: #ecf0f1;
 
 .container {
-  width: 100%;
-  height: auto;
+  display: flex;
   justify-content: center;
   align-items: center;
-  align-content: center;
-  padding: 15px;
-  display: flex;
-  background: transparent;
+  max-height: 100vh;
+
+
+  form {
+    width: 100%;
+    max-width: 600px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+
+    h2 {
+      text-align: center;
+      color: $dark-text;
+      margin-bottom: 20px;
+    }
+
+    .p-float-label {
+      position: relative;
+      margin-top: 20px;
+      width: 100%;
+      input{
+        width: 100%;
+        padding: 15px;
+        padding-left: 40px;
+        font-size: 1rem;
+        border: none;
+        border-bottom: 2px solid $primary-color;
+        background-color: transparent;
+        color: $dark-text;
+        transition: border-color 0.3s;
+
+        &:focus {
+          outline: none;
+          border-bottom: 2px solid $secondary-color;
+        }
+      }
+
+      label {
+        font-size: 0.9rem;
+        color: $dark-text;
+        margin-left: 25px;
+      }
+
+      .pi {
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1rem;
+        color: $dark-text;
+      }
+
+      i{
+        position: absolute;
+        z-index: 1;
+        padding: 5px;
+        color: #000;
+        top: 10px;
+        left: 8px;
+      }
+    }
+
+    small {
+      font-size: 0.8rem;
+      color: $danger-color;
+      margin-top: 5px;
+      display: block;
+    }
+
+    .remember-forget {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 20px;
+
+      input {
+        margin-right: 5px;
+        width: 15px;
+        height: 15px;
+      }
+
+      a {
+        text-decoration: none;
+        color: $primary-color;
+        cursor: pointer;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    .button-style {
+      text-align: center;
+      margin-top: 20px;
+      width: 100%;
+      button {
+        width: 100%;
+        padding: 15px;
+        background-color: $primary-color;
+        justify-content: center;
+        color: $light-text;
+        font-size: 1rem;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+
+        &:hover {
+          background-color: $secondary-color;
+        }
+      }
+    }
+
+    .register-span {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 20px;
+      font-size: 0.9rem;
+
+      p {
+        margin-right: 5px;
+      }
+
+      a {
+        text-decoration: none;
+        color: $primary-color;
+        cursor: pointer;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+    .social{
+      a{
+        text-decoration: none;
+        color: #3498db;
+        font-size: 13px;
+      }
+    }
 }
 
-.container form {
-  display: flex;
-  flex-direction: column;
-  width: 600px;
-  background-color: transparent;
-  margin: 15px;
-  padding: 50px;
-  justify-content: center;
-  align-items: center;
+@media (max-width: 768px) {
+  .container {
+    form {
+      max-width: 100%;
+    }
+  }
 }
 
-.remember-forget {
-  margin: 0;
-  font-size: 15px;
-  display: flex;
-  flex-direction: column;
-}
-.remember-forget label {
-  margin-right: 10px;
-  color: #000;
-  font-size: 15px;
-  cursor: pointer;
 }
 
-.remember-forget a {
-  text-decoration: underline;
+:host ::ng-deep {
+  .password.p-password {
+    position: relative;
+    width: 100%;
+    font-size: 1rem;
+    border: none;
+    border-bottom: 2px solid $primary-color;
+    background-color: transparent;
+    color: $dark-text;
+    transition: border-color 0.3s;
+    &:focus {
+      outline: none;
+      border-bottom: 2px solid $secondary-color;
+    }
+    .p-element {
+      width: 100%;
+      border: none;
+    }
+  }
 }
-.remember-forget a:hover {
-  color: #176b87;
-}
-.register-span p {
-  margin: 10px;
-}
-
-.flex .container-social{
-  padding:10px;
- }
-
- .flex-1{
-  border-color: #000;
-  border: 2px solid rgb(0, 0, 0);
-  margin: 2px;
-  border-radius: 10px;
-  margin-bottom: 10px;
- }
-
- .pi-google{
-   background: conic-gradient(from -45deg, #ea4335 100deg, #4285f4 90deg 180deg, #34a853 180deg 270deg, #fbbc05 270deg) 73% 55%/150% 150% no-repeat;
-   -webkit-background-clip: text;
-   background-clip: text;
-   color: transparent;
-   -webkit-text-fill-color: transparent;
-   width: 45px;
-   height: 25px;
- }
- .pi-apple{
-   color: black;
-   width: 65px;
-   height: 25px;
- }
-
- .pi-facebook{
-   color: blue;
-   width: 45px;
-   height: 25px;
- }
-
- .icon-social{
-   justify-content: center;
- }
-
- .text-important button{
-   margin-top: 20px;
- }
