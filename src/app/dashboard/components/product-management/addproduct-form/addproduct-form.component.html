@@ -1,4 +1,4 @@
-<form [formGroup]="addproductForm">
+<form [formGroup]="addproductForm" (ngSubmit)="onSubmit()">
   <div class="mb-1 block w-full">
     <h4>Ürün ekle</h4>
   </div>
@@ -148,7 +148,7 @@
   <!-- button start-->
   <div class="wrapper w-full justify-content-center">
     <span class="button-style mt-4">
-      <button class="button w-12rem" (click)="onSubmit()">ekle</button>
+      <button class="button w-12rem" type="submit">ekle</button>
     </span>
   </div>
   <!-- button end-->

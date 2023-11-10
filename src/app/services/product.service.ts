@@ -19,7 +19,7 @@ export class ProductService {
 
 // Ürün ekleme işlemi
 addProduct(product:any ) {
-  debugger
+
   return this.commonService.post(this.productEndpoint , product )
 }
 
@@ -42,5 +42,4 @@ getProducts(): Observable<Product[]> {
 patchProductById(id:any) {
   return this.commonService.get(`${this.productEndpoint}/${id}`)
 }
-
 }

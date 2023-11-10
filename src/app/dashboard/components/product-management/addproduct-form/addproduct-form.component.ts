@@ -2,10 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SelectItem } from 'primeng/api';
 import { ProductService } from 'src/app/services/product.service';
-interface Rating {
-  name: string;
-  code: string;
-}
 interface Category {
   name: string;
   code: string;
@@ -21,14 +17,14 @@ export class AddproductFormComponent implements OnInit {
 
   ingredient!: string;
 
-  categorys: Category[] | undefined;
+  categorys: any;
 
   items: SelectItem[];
 
-  inventoryStatus: any[] = [
-    { name: 'Instock', key: 'IS' },
-    { name: 'Lowstock', key: 'LS' },
-    { name: 'Outstock', key: 'OS' },
+  inventoryStatus: any = [
+    { name: 'INSTOCK', key: 'IS' },
+    { name: 'LOWSTOCK', key: 'LS' },
+    { name: 'OUTOFSTOCK', key: 'OS' },
   ];
 
   constructor(
@@ -62,10 +58,19 @@ export class AddproductFormComponent implements OnInit {
   }
 
   onSubmit() {
-    debugger
    const productData= this.addproductForm.value;
     if(this.addproductForm.valid){
-      this.productService.addProduct(productData);
+      this.productService.addProduct(productData).subscribe(()=>{
+      //   const formData = new FormData();
+      //    formData.append('file', this.addproductForm.get('file').value);
+
+      //    this.productService.post('API_URL/upload', formData).subscribe((response) => {
+      //     console.log('Dosya yükleme başarılı', response);
+      //   // Burada gelen dosya URL'sini kullanarak ürünü güncelleyebilirsiniz
+      // });
+        window.location.reload();
+      });
     }
+
   }
 }

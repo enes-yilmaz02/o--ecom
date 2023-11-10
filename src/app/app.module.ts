@@ -1,4 +1,4 @@
-import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { MessageService } from 'primeng/api';
 import { SharedModule } from './shared/shared.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -34,7 +34,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
   ],
   exports:[TranslocoModule],
-  providers: [CartService,UserService,TranslocoService,ProductService],
+  providers: [CartService,UserService,TranslocoService,ProductService,MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

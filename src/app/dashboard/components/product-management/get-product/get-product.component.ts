@@ -15,7 +15,7 @@ export class GetProductComponent {
 
   isUserDialogOpen: boolean = false;
 
-  ref: DynamicDialogRef | undefined;
+
 
   constructor(
     private productService: ProductService,
@@ -28,11 +28,17 @@ export class GetProductComponent {
   }
 
   getAllProducts() {
-    this.productService.getProducts().subscribe((data: Product[]) => {
+    this.productService.getProducts().subscribe((data: any) => {
       this.products = data;
     });
   }
+  // getCategoryName(product: any): string {
+  //   return product.category ? product.category.name : '';
+  // }
 
+  // getSelectedStatusName(product: any): string {
+  //   return product.selectedStatus ? product.selectedStatus.name : '';
+  // }
   deleteProduct(id: any) {
     this.productService.deleteProduct(id).subscribe(() => {
       this.messageService.add({
@@ -61,23 +67,6 @@ export class GetProductComponent {
 
       case ' ':
         return null;
-    }
-  }
-
-  show() {
-    this.ref = this.dialogService.open(AddproductFormComponent, {
-      header: 'Orion Innovation',
-      width: '50%',
-      height: '600px',
-      contentStyle: { overflow: 'auto' },
-      baseZIndex: 10000,
-      maximizable: true,
-    });
-  }
-
-  ngOnDestroy() {
-    if (this.ref) {
-      this.ref.close();
     }
   }
 }

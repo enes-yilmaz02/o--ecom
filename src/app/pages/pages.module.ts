@@ -1,3 +1,4 @@
+import { MessageService } from 'primeng/api';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavbarListComponent } from './components/navbar-list/navbar-list.component';
@@ -29,7 +30,6 @@ import { ContentTableComponent } from './components/orders/content-table/content
 import { PagesRoutingModule } from './pages-routing.module';
 import { ContentFavoritesComponent } from './components/favorites/content-favorites/content-favorites.component';
 import { DefaultFavoritesComponent } from './components/favorites/default-favorites/default-favorites.component';
-
 @NgModule({
   declarations: [
     NavbarListComponent,
@@ -82,7 +82,8 @@ import { DefaultFavoritesComponent } from './components/favorites/default-favori
     CardDetailComponent
   ],
   providers:[
-    CartService
+    CartService,
+    MessageService
   ]
 })
 export class PagesModule { }

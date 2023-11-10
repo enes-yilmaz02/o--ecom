@@ -54,6 +54,11 @@ export class UserService {
     return this.commonService.get(user);
   }
 
+  //  // E-posta kontrolü için API çağrısı yapar
+  //  checkEmailAvailability(email: string): Observable<boolean> {
+  //   return this.commonService.get<boolean>(`/user/check-email/${email}`);
+  // }
+
   singout(): void {
     this.router.navigate(['/']);
   }
