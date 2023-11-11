@@ -42,10 +42,13 @@
           ></p-tag></td>
           <td>$ {{ product.priceStacked }}</td>
           <td class="button-style">
+           <div>
             <i
-              class="button pi pi-trash w-full border-round"
-              (click)="removeFromCartOrders(product.id)"
-            ></i>
+            class="button pi pi-trash"
+            style="color: #3498db;"
+            (click)="removeFromCartOrders(product.id)"
+          ></i>
+           </div>
           </td>
         </tr>
       </ng-template>

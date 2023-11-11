@@ -13,6 +13,9 @@ import { CardDetailComponent } from './components/product/card-detail/card-detai
 import { ProductComponent } from './components/product/product.component';
 import { SupportComponent } from './components/support/support.component';
 import { PagesComponent } from './pages.component';
+import { UserinfoComponent } from './components/account/userinfo/userinfo.component';
+import { UserpasswordComponent } from './components/account/userpassword/userpassword.component';
+import { UsercontactComponent } from './components/account/usercontact/usercontact.component';
 
 @NgModule({
   declarations: [],
@@ -31,6 +34,20 @@ import { PagesComponent } from './pages.component';
           {
             path: 'account',
             component: AccountComponent,
+            children:[
+              {
+                path:'' , component:UserinfoComponent
+              },
+              {
+                path:'change-password' , component:UserpasswordComponent
+              },
+              {
+                path:'user-info' , component:UserinfoComponent
+              },
+              {
+                path:'user-contact' , component:UsercontactComponent
+              }
+            ]
           },
           {
             path: 'favorites',

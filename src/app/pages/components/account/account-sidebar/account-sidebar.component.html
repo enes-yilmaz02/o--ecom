@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="column">
+    <a [routerLink]="['/account', 'user-info']">
+      <div>
+        {{'accountForm.userInfoPanel' | transloco}}
+      </div>
+    </a>
+    <a [routerLink]="['/account', 'change-password']">
+      <div>
+        {{'accountForm.changePassPanel' | transloco}}
+      </div>
+    </a>
+    <a [routerLink]="['/account', 'user-contact']">
+      <div>
+        {{'accountForm.contactPanel' | transloco}}
+      </div>
+    </a>
+  </div>
+</div>

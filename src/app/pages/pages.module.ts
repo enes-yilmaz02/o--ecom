@@ -30,6 +30,7 @@ import { ContentTableComponent } from './components/orders/content-table/content
 import { PagesRoutingModule } from './pages-routing.module';
 import { ContentFavoritesComponent } from './components/favorites/content-favorites/content-favorites.component';
 import { DefaultFavoritesComponent } from './components/favorites/default-favorites/default-favorites.component';
+import { AccountSidebarComponent } from './components/account/account-sidebar/account-sidebar.component';
 @NgModule({
   declarations: [
     NavbarListComponent,
@@ -56,6 +57,7 @@ import { DefaultFavoritesComponent } from './components/favorites/default-favori
      ContentTableComponent,
      ContentFavoritesComponent,
      DefaultFavoritesComponent,
+     AccountSidebarComponent,
 
   ],
   imports: [

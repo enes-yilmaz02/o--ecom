@@ -1,22 +1,12 @@
-<div class="flex">
-  <div
-    class="block align-items-center w-full h-full justify-content-center bg-white font-bold m-2 px-5 py-3 border-round"
-  >
-    <div class="header-title block w-full m-3">
-      <h3>{{'accountForm.accountHeader' | transloco}}</h3>
-    </div>
-    <div class="block m-3 w-full">
-      <p-tabView>
-        <p-tabPanel header="{{'accountForm.userInfoPanel' | transloco}}">
-          <app-userinfo></app-userinfo>
-        </p-tabPanel>
-        <p-tabPanel header="{{'accountForm.changePassPanel' | transloco}}">
-          <app-userpassword></app-userpassword>
-        </p-tabPanel>
-        <p-tabPanel header="{{'accountForm.contactPanel' | transloco}}">
-          <app-usercontact></app-usercontact>
-        </p-tabPanel>
-      </p-tabView>
+<div class="block w-full">
+  <div class="container">
+    <div class="product-body">
+      <div class="product-filter">
+        <app-account-sidebar></app-account-sidebar>
+      </div>
+      <div class="product-list">
+        <router-outlet></router-outlet>
+      </div>
     </div>
   </div>
 </div>

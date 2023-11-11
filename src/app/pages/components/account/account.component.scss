@@ -1,0 +1,51 @@
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 992px;
+$primary-color: #3498db;
+$secondary-color: #1071b3;
+$danger-color: #e74c3c;
+$dark-text: #34495e;
+$light-text: #ecf0f1;
+$background-color: #ecf0f1;
+.header-title {
+  display: flex;
+  width: 100%;
+  margin: 1rem;
+}
+
+.container {
+  padding: 1%; // Oranlı padding
+  width: 100%;
+  align-items: center;
+  background-color: #f6f6f6;
+}
+
+.product-body {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+
+  @media (min-width: $breakpoint-tablet) {
+    flex-direction: row; // Mobilde sütun düzeni
+  }
+}
+
+.product-filter {
+  max-width: 100%; // Maksimum genişlik
+  height: auto; // Yüksekliği otomatik
+  margin-bottom: 10px; // Mobilde biraz boşluk bırak
+
+  @media (min-width: $breakpoint-tablet) {
+    max-width: 250px; // Tablet ve üstü için maksimum genişlik
+    height: 100%;
+    margin-bottom: 0; // Tablet ve üstü için boşluk olmasın
+  }
+}
+
+.product-list {
+  width: 100%; // Tam genişlik
+
+  @media (min-width: $breakpoint-desktop) {
+    width: calc(100% - 250px); // Desktop için filtre genişliği çıkarılsın
+    margin-left: 250px; // Desktop için filtre genişliği kadar sola kaydırılsın
+  }
+}

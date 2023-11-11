@@ -1,0 +1,14 @@
+:host ::ng-deep{
+
+  .accordion{
+    .p-accordion-header-link{
+      color:#3498db;
+      background-color: #e7ebed;
+      font-weight: 500;
+
+      .p-icon-wrapper{
+        color: #000;
+      }
+    }
+  }
+}

@@ -1,0 +1,158 @@
+$primary-color: #3498db;
+$secondary-color: #1071b3;
+$danger-color: #e74c3c;
+$dark-text: #34495e;
+$light-text: #ecf0f1;
+$background-color: #ecf0f1;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 600px; // Özel bir genişlik belirleyebilirsiniz
+  margin: 0 auto; // Sayfanın ortalanması için
+
+  .row {
+    display: flex;
+    flex-direction: column;
+
+    .header {
+      h3 {
+        margin: 10px;
+        text-align: center;
+        color: $dark-text;
+      }
+
+      p {
+        margin: 10px;
+        text-align: center;
+      }
+    }
+
+    .content {
+      .align-content-center {
+        margin: 10px;
+
+        h4 {
+          margin: 0;
+        }
+
+        .flex {
+          display: flex;
+          flex-direction: row;
+          align-content: center;
+          align-items: center;
+          justify-content: space-evenly;
+
+          .w-20rem {
+            width: 20rem;
+          }
+
+          p-inputSwitch {
+            margin: 4px;
+          }
+        }
+      }
+    }
+
+    .border-round {
+      border-radius: 8px;
+    }
+
+    .m-2 {
+      margin: 2px;
+    }
+
+    .m-4 {
+      margin: 4px;
+    }
+
+    .p-4 {
+      padding: 4px;
+    }
+
+    .flex-wrap {
+      flex-wrap: wrap;
+    }
+
+    .bg-gray-200 {
+      background-color: #ecf0f1;
+    }
+
+    .border-1 {
+      border: 1px solid $dark-text;
+    }
+
+    .w-full {
+      width: 100%;
+    }
+
+    .pInputText {
+      width: calc(100% - 30px);
+      padding: 10px;
+      padding-left: 30px;
+      font-size: 1rem;
+      border: none;
+      border-bottom: 2px solid $primary-color;
+      background-color: transparent;
+      color: $dark-text;
+      transition: border-color 0.3s;
+
+      &:focus {
+        outline: none;
+        border-bottom: 2px solid $secondary-color;
+      }
+    }
+
+    label {
+      font-size: 0.9rem;
+      color: $dark-text;
+      margin-left: 10px;
+    }
+
+    .button-style {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 10px;
+
+      button {
+        max-width: 100%;
+        padding: 15px;
+        background-color: $primary-color;
+        justify-content: center;
+        color: $light-text;
+        font-size: 1rem;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+
+        &:hover {
+          background-color: $secondary-color;
+        }
+      }
+    }
+
+    .calendar {
+      input {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 10px;
+        padding-left: 30px;
+        font-size: 1rem;
+        border: none;
+        border-bottom: 2px solid $primary-color;
+        background-color: transparent;
+        color: $dark-text;
+        transition: border-color 0.3s;
+
+        &:focus {
+          outline: none;
+          border-bottom: 2px solid $secondary-color;
+        }
+      }
+    }
+  }
+}

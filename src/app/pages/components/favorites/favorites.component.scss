@@ -1,5 +1,37 @@
 
-.table{
-  margin: 30px;
-  width: 100%;
+.page-layout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-height: 100vh; // Sayfa yüksekliğine uyumlu
+
+  .content {
+    text-align: center;
+    margin-left: 10px;
+    app-loading {
+      // app-loading bileşeni için özel stil ekleyebilirsiniz
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      img {
+        width: 100px; // Örnek bir resim genişliği
+        height: 100px; // Örnek bir resim yüksekliği
+      }
+    }
+
+    app-content-table {
+      // app-content-table bileşeni için özel stil ekleyebilirsiniz
+      width: 100%; // Tam genişlik
+      padding: 20px; // Kenar boşlukları
+    
+     
+    }
+
+    app-default-content {
+      // app-default-content bileşeni için özel stil ekleyebilirsiniz
+      font-size: 18px; // Örnek bir font boyutu
+      color: #333; // Örnek bir metin rengi
+    }
+  }
 }

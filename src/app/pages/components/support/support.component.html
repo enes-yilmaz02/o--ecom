@@ -8,7 +8,7 @@
     </div>
     <div class="block m-3 justify-content-center align-content-center align-items-center">
     <div class="card justify-content-center">
-      <p-accordion [activeIndex]="0">
+      <p-accordion [activeIndex]="0" styleClass="accordion">
         <p-accordionTab header="{{'helpsupportForm.accordion1' | transloco}}">
           <p>
             1. İptal ettiğiniz ürünün ücret iadesi bankanıza bağlı olarak değişkenlik
@@ -82,7 +82,7 @@
     </div>
     <div class="card justify-content-center align-content-center ">
      <span class="button-style">
-      <button class="button w-full">{{'helpsupportForm.buttonLabel' | transloco}}</button>
+      <button pButton routerLink="/product" class="button w-full justify-content-center mt-2">{{'helpsupportForm.buttonLabel' | transloco}}</button>
      </span>
     </div>
     </div>

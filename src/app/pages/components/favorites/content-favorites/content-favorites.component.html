@@ -1,4 +1,4 @@
-<div class="flex w-full">
+<div class="container">
   <div class="table">
     <p-table [value]="product" >
       <ng-template pTemplate="header" >
@@ -20,8 +20,8 @@
               [src]="'https://primefaces.org/cdn/primeng/images/demo/product/' + product?.file"
               [alt]="product?.name"
               [preview]="true"
-              width="100px"
-              height="100px"
+              width="50px"
+              height="50px"
             ></p-image>
           </td>
           <td>{{ product?.name }}</td>
@@ -32,10 +32,13 @@
           ></p-tag></td>
           <td>$ {{ product?.priceStacked }}</td>
           <td class="button-style">
-            <i
-              class="button pi pi-trash w-full border-round"
+            <div>
+              <i
+              class="button pi pi-trash"
+              style="color: #3498db;"
               (click)="removeFromCartFavorites(product.id)"
             ></i>
+            </div>
           </td>
         </tr>
       </ng-template>

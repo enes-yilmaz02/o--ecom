@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product';
 import { CartService } from 'src/app/services/cart.service';
-import { DataService } from 'src/app/services/data.service';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -46,12 +45,14 @@ export class CardComponent implements OnInit {
       }
   };
 
-  // Arama metnine göre ürünleri filtrelemek için bu yöntemi kullanabilirsiniz
   filterProducts(): any[] {
     const search = this.searchText.toLowerCase();
-    return this.product?.filter((product) =>
-      product.name.toLowerCase().includes(search) ||
-      product.category.toLowerCase().includes(search)
-    );
+    return this.product?.filter((product: any) => {
+      const productNameIncludes = product.name.toLowerCase().includes(search);
+      // Kontrol ekleniyor: Eğer product.category bir dize değilse, false döndür
+      const categoryIncludes = typeof product.category === 'string' && product.category.toLowerCase().includes(search);
+  
+      return productNameIncludes || categoryIncludes ;
+    });
   }
 }
