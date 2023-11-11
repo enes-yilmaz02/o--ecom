@@ -32,6 +32,11 @@ $background-color: #ecf0f1;
         align-items: center;
         width: 50%; // Tam genişlikte olacak
 
+        .p-float-radio{
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+        }
         .p-float-label {
           margin: 10px;
           position: relative;
@@ -167,6 +172,19 @@ $background-color: #ecf0f1;
       }
     }
   }
+ .ng-star-inserted{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+
+      label{
+        margin-left: 5px;
+      }
+    }
+    
+
+ 
 }
 
 @media (max-width: $breakpoint-tablet) {
