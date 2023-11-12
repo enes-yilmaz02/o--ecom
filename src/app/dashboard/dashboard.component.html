@@ -1,9 +1,45 @@
 <p-toast></p-toast>
 <div class="container">
-  <div class="product-body">
-    <div class="product-filter">
-      <app-dashboard-sidebar></app-dashboard-sidebar>
+  <div class="header">
+    <div class="header__logo">
+      <strong>LOGO</strong>
     </div>
+    <nav class="navbar">
+      <ul class="navbar__menu">
+        <li class="navbar__item">
+          <a routerLink="/user-management" class="navbar__link"
+            ><i class="pi pi-home"></i><span>Home</span>
+          </a>
+        </li>
+        <li class="navbar__item">
+          <a routerLink="/product-management" class="navbar__link"
+            ><i class="pi pi-inbox"></i><span>Messages</span></a
+          >
+        </li>
+        <li class="navbar__item">
+          <a routerLink="/order-management" class="navbar__link"
+            ><i class="pi pi-users"></i><span>Customers</span></a
+          >
+        </li>
+        <li class="navbar__item">
+          <a routerLink="/reporting" class="navbar__link"
+            ><i class="pi pi-file"></i><span>Projects</span></a
+          >
+        </li>
+        <li class="navbar__item">
+          <a routerLink="/profil-management" class="navbar__link"
+            ><i class="pi pi-server"></i><span>Resources</span></a
+          >
+        </li>
+        <li class="navbar__item">
+          <a href="#" class="navbar__link"
+            ><i class="pi pi-cog"></i><span>Settings</span></a
+          >
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="product-body">
     <div class="product-list">
       <router-outlet></router-outlet>
     </div>

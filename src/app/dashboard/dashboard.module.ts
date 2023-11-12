@@ -20,6 +20,9 @@ import { DashboardSidebarComponent } from './components/dashboard-sidebar/dashbo
 import { UpdateProductComponent } from './components/product-management/update-product/update-product.component';
 import { GetUserComponent } from './components/user-management/get-user/get-user.component';
 import { UserSidebarComponent } from './components/user-management/user-sidebar/user-sidebar.component';
+import { OrdersManagementComponent } from './components/orders-management/orders-management.component';
+import { ProfilManagementComponent } from './components/profil-management/profil-management.component';
+import { ReportingComponent } from './components/reporting/reporting.component';
 @NgModule({
   declarations: [
        DashboardComponent,
@@ -34,7 +37,10 @@ import { UserSidebarComponent } from './components/user-management/user-sidebar/
        DashboardSidebarComponent,
        UpdateProductComponent,
        GetUserComponent,
-       UserSidebarComponent
+       UserSidebarComponent,
+       OrdersManagementComponent,
+       ProfilManagementComponent,
+       ReportingComponent
 
   ],
   imports: [

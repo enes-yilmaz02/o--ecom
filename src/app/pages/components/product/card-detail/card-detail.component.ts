@@ -15,6 +15,16 @@ export class CardDetailComponent  implements OnInit {
   defaultValue = 0;
   productPrice: number;
   body:any;
+  
+
+  liked: boolean = false;
+
+  images: string[] = [];
+
+  selectedImageIndex: number = 0;
+
+  quantity: number = 1;
+        
 
   constructor(
     private route: ActivatedRoute,
@@ -25,7 +35,7 @@ export class CardDetailComponent  implements OnInit {
 
 
   }
-
+  
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
@@ -34,7 +44,14 @@ export class CardDetailComponent  implements OnInit {
         this.product = data;
         this.productPrice = Number(this.product?.priceStacked);
       });
-      })
+      });
+
+      this.images = [
+        'product-overview-3-1.png',
+        'product-overview-3-2.png',
+        'product-overview-3-3.png',
+        'product-overview-3-4.png'
+    ];
     }
 
 
@@ -53,14 +70,16 @@ export class CardDetailComponent  implements OnInit {
   }
 
   addToCart(product: any) {
+    debugger
     if (this.defaultValue >= 1) {
-      this.cartService.addToCart(product);
-      this.messageService.add({
-        severity: 'success',
-        summary: 'Başarılı',
-        detail: 'Ürün sepete eklendi',
+      this.cartService.addToCart(product).subscribe(()=>{
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Başarılı',
+          detail: 'Ürün sepete eklendi',
+        });
       });
-    } else if (this.defaultValue === 0) {
+    } if (this.defaultValue === 0) {
       this.messageService.add({
         severity: 'warn',
         summary: 'Lütfen',

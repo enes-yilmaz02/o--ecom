@@ -3,11 +3,16 @@ import { Users } from '../models/users';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { CommonService } from './common.service';
-
+import { tap } from 'rxjs/operators'
+import { AuthService } from './auth/auth.service';
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
+
+  private authToken: string | null = null;
+
+
 
   userEndPoint='user';
 
@@ -15,14 +20,15 @@ export class UserService {
 
   getAllUsersEndPoint='users';
 
-
+  loginuser= 'login';
 
 
   constructor(
     private router: Router,
-    private commonService:CommonService
+    private commonService:CommonService,
+    private authService:AuthService
   ) {
-
+    
   }
 
   getUsers(): Observable<Users[]> {
@@ -54,10 +60,24 @@ export class UserService {
     return this.commonService.get(user);
   }
 
-  //  // E-posta kontrolü için API çağrısı yapar
-  //  checkEmailAvailability(email: string): Observable<boolean> {
-  //   return this.commonService.get<boolean>(`/user/check-email/${email}`);
-  // }
+  loginUser(user: any): Observable<{ token: string }> {
+    return this.commonService.post<{ token: string }>(this.loginuser, user)
+      .pipe(
+        tap(response => {
+          this.authToken = response.token;
+          this.authService.setAuthToken(response.token);
+          this.router.navigate(['/product']);
+          
+        })
+      );
+  }
+
+  
+
+  getAuthToken(): string | null {
+    return this.authToken;
+  }
+  
 
   singout(): void {
     this.router.navigate(['/']);

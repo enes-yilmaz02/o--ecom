@@ -16,6 +16,7 @@ import { PagesComponent } from './pages.component';
 import { UserinfoComponent } from './components/account/userinfo/userinfo.component';
 import { UserpasswordComponent } from './components/account/userpassword/userpassword.component';
 import { UsercontactComponent } from './components/account/usercontact/usercontact.component';
+import { AuthGuard } from '../services/auth/auth.guard';
 
 @NgModule({
   declarations: [],
@@ -34,6 +35,7 @@ import { UsercontactComponent } from './components/account/usercontact/userconta
           {
             path: 'account',
             component: AccountComponent,
+            canActivate: [AuthGuard],
             children:[
               {
                 path:'' , component:UserinfoComponent
@@ -51,6 +53,7 @@ import { UsercontactComponent } from './components/account/usercontact/userconta
           },
           {
             path: 'favorites',
+            canActivate: [AuthGuard],
             component: FavoritesComponent,
           },
           {
@@ -67,13 +70,15 @@ import { UsercontactComponent } from './components/account/usercontact/userconta
           },
           {
             path: 'orders',
+            canActivate: [AuthGuard],
             component: OrdersComponent,
           },
           {
             path: 'product',
+            canActivate: [AuthGuard],
             component: ProductComponent,
           },
-          { path: 'product/:id', component: CardDetailComponent },
+          { path: 'product/:id',canActivate: [AuthGuard], component: CardDetailComponent },
           {
             path: 'support',
             component: SupportComponent,

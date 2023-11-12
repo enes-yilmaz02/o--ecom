@@ -1,0 +1,30 @@
+.container {
+  display: flex;
+  height: 100vh;
+  margin-top: -10px;
+  margin-left: -20px;
+  
+
+  .column {
+    min-width: 200px;
+    background-color: #555; /* Yan menü arka plan rengi */
+    padding: 20px;
+    color: #fff; /* Yan menü metin rengi */
+
+    div {
+      text-decoration: none;
+      color: #fff;
+      margin: 10px;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      background-color:#3498db;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: #fff; /* Hover efekti */
+        color: #555;
+      }
+    }
+  }
+}

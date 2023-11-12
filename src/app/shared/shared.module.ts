@@ -35,6 +35,7 @@ import { BadgeModule } from 'primeng/badge';
 import { DialogModule } from 'primeng/dialog';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { FileUploadModule } from 'primeng/fileupload';
+
 @NgModule({
   declarations: [],
   imports: [
@@ -74,7 +75,8 @@ import { FileUploadModule } from 'primeng/fileupload';
     BadgeModule,
     DialogModule,
     DynamicDialogModule,
-    FileUploadModule
+    FileUploadModule,
+    
 
   ],
   exports:[
@@ -114,7 +116,8 @@ import { FileUploadModule } from 'primeng/fileupload';
     BadgeModule,
     DialogModule,
     DynamicDialogModule,
-    FileUploadModule
+    FileUploadModule,
+    
   ],
   providers:[MessageService]
 })

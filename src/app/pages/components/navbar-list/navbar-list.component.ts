@@ -1,22 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslocoService } from '@ngneat/transloco';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-navbar-list',
   templateUrl: './navbar-list.component.html',
-  styleUrls: ['./navbar-list.component.scss']
+  styleUrls: ['./navbar-list.component.scss'],
 })
 export class NavbarListComponent implements OnInit {
-  stateOptions: any[] = [{ label: '🇹🇷 TR', value: 'tr' }, { label: '🇬🇧 EN', value: 'en' }];
+  stateOptions: any[] = [
+    { label: '🇹🇷 TR', value: 'tr' },
+    { label: '🇬🇧 EN', value: 'en' },
+  ];
   selectedLanguage: string = 'tr';
   orderBadge: string;
   favoritesBadge: string;
 
-
-
-  constructor( private transloco: TranslocoService,private cartService: CartService) {}
-
+  constructor(
+    private transloco: TranslocoService,
+    private cartService: CartService,
+    private authService:AuthService
+  ) {}
 
   ngOnInit(): void {
     this.cartService.orderBadge.subscribe((badge) => {
@@ -28,12 +33,17 @@ export class NavbarListComponent implements OnInit {
     });
   }
 
-setLanguage() {
-  if(this.selectedLanguage=== 'tr'){
-    this.transloco.setActiveLang('tr');
+  logout() {
+    this.authService.logout();
+    window.location.reload();
   }
-  if(this.selectedLanguage=== 'en'){
-    this.transloco.setActiveLang('en');
+
+  setLanguage() {
+    if (this.selectedLanguage === 'tr') {
+      this.transloco.setActiveLang('tr');
+    }
+    if (this.selectedLanguage === 'en') {
+      this.transloco.setActiveLang('en');
+    }
   }
-}
 }

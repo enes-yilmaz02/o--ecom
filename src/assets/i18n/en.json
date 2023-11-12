@@ -1,8 +1,8 @@
 {
   "loginForm": {
-    "usernameTooltip": "Enter your username",
-    "usernameLabel": "Username",
-    "usernameSmall": "* Username field cannot be left blank",
+    "emailTooltip": "Enter your email",
+    "emailLabel": "email",
+    "emailSmall": "* Email field cannot be left blank",
     "passwordTooltip": "Enter your password",
     "passwordLabel": "Password",
     "passwordSmall": "* Password field cannot be left blank",

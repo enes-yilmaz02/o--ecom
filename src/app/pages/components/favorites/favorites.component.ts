@@ -1,3 +1,4 @@
+import { MessageService } from 'primeng/api';
 import { Component } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';
 
@@ -14,7 +15,7 @@ export class FavoritesComponent {
   contentData: any;
 
 
-  constructor(private cartService: CartService) {
+  constructor(private cartService: CartService , private messageService:MessageService) {
   }
 
   ngOnInit() {
@@ -30,7 +31,6 @@ export class FavoritesComponent {
     this.cartService.getItemsFavorites().subscribe(
       (data :any) => {
         this.contentData = data;
-        console.log(data)
         if(data.length>0){
           this.hasData = true;
         }else{
@@ -41,7 +41,7 @@ export class FavoritesComponent {
 
       },
       (error) => {
-        console.error('Veri yüklenirken hata oluştu', error);
+        this.messageService.add({severity:'error', summary:'Error', detail:"Could not fetch favorites."});
         this.showLoading = false;
 
       }

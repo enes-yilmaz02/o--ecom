@@ -1,17 +1,26 @@
 <div class="card">
-  <div class="p-input-icon-left search-text">
-    <i class="pi pi-search"></i>
-    <input
-      pInputText
-      type="text"
-      [(ngModel)]="searchText"
-      placeholder="Ara..."
-    />
+  <div class="flex flex-row search">
+    <div class="p-input-icon-left search-text mr-3">
+      <i class="pi pi-search"></i>
+      <input
+        pInputText
+        type="text"
+        [(ngModel)]="searchText"
+        placeholder="Ara..."
+      />
+    </div>
   </div>
   <p-dataView
     [value]="filterProducts()"
     [layout]="layout"
     [filterBy]="searchText"
+    [paginator]="true"
+    [rows]="9"
+    [sortField]="sortField"
+    [sortOrder]="sortOrder"
+    [showCurrentPageReport]="true"
+     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [rowsPerPageOptions]="[10, 25, 50]"
   >
     <ng-template pTemplate="header">
       <div class="flex justify-content-end">

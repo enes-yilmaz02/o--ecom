@@ -1,8 +1,8 @@
 {
   "loginForm":{
-    "usernameTooltip": "Kullanıcı adını giriniz" ,
-    "usernameLabel":"Kullanıcı adı",
-    "usernameSmall":"* Kullanıcı adı alanı boş bırakılamaz",
+    "emailTooltip": "Emaili giriniz" ,
+    "emailLabel":"Email",
+    "emailSmall":"* Email alanı boş bırakılamaz",
     "passwordTooltip":"Şifrenizi giriniz",
     "passwordLabel":"Şifre",
     "passwordSmall":"* Şifre alanı boş bırakılamaz",

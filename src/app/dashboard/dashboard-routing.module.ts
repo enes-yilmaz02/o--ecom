@@ -10,8 +10,9 @@ import { GetUserComponent } from './components/user-management/get-user/get-user
 import { AdduserFormComponent } from './components/user-management/adduser-form/adduser-form.component';
 import { UpdateProductComponent } from './components/product-management/update-product/update-product.component';
 import { UpdateuserFormComponent } from './components/user-management/updateuser-form/updateuser-form.component';
-
-
+import { OrdersManagementComponent } from './components/orders-management/orders-management.component';
+import { ProfilManagementComponent } from './components/profil-management/profil-management.component';
+import { ReportingComponent } from './components/reporting/reporting.component';
 
 @NgModule({
   declarations: [],
@@ -54,6 +55,15 @@ import { UpdateuserFormComponent } from './components/user-management/updateuser
                 path:'update-product' , component:UpdateProductComponent
               }
             ]
+          },
+          {
+            path: 'order-management', component: OrdersManagementComponent
+          },
+          {
+            path: 'profil-management', component: ProfilManagementComponent
+          },
+          {
+            path: 'reporting', component: ReportingComponent
           }
         ]
       },

@@ -1,10 +1,11 @@
+import { AuthGuard } from './services/auth/auth.guard';
 import { MessageService } from 'primeng/api';
 import { SharedModule } from './shared/shared.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {  HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { TranslocoRootModule } from './transloco-root.module';
 import { PagesModule } from './pages/pages.module';
 import { DashboardModule } from './dashboard/dashboard.module';
@@ -15,11 +16,8 @@ import { TranslocoModule } from '@ngneat/transloco';
 import { ProductService } from './services/product.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -29,12 +27,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     SharedModule,
     DashboardModule,
     TranslocoModule,
-    BrowserAnimationsModule
-
-
+    BrowserAnimationsModule,
   ],
-  exports:[TranslocoModule],
-  providers: [CartService,UserService,TranslocoService,ProductService,MessageService],
-  bootstrap: [AppComponent]
+  exports: [TranslocoModule],
+  providers: [
+    CartService,
+    UserService,
+    TranslocoService,
+    ProductService,
+    MessageService,
+    AuthGuard
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

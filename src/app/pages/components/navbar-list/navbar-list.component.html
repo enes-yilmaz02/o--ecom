@@ -41,7 +41,7 @@
           <option *ngFor="let option of stateOptions" [ngValue]="option.value">{{ option.label }}</option>
         </select>
         <li class="menu-item">
-          <a routerLink="/">
+          <a (click)="logout()" >
             <i class="pi pi-sign-out"></i> {{'navigationForm.logout' | transloco}}
           </a>
         </li>
