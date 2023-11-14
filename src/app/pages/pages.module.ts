@@ -17,10 +17,6 @@ import { ProductComponent } from './components/product/product.component';
 import { CardComponent } from './components/product/card/card.component';
 import { CardDetailComponent } from './components/product/card-detail/card-detail.component';
 import { CardElementComponent } from './components/product/card-element/card-element.component';
-import { MainComponent } from './components/main/main.component';
-import { LoginComponent } from './components/main/login/login.component';
-import { RegisterComponent } from './components/main/register/register.component';
-import { ResetpasswordComponent } from './components/main/resetpassword/resetpassword.component';
 import { PagesComponent } from './pages.component';
 import { RouterModule } from '@angular/router';
 import { CartService } from '../services/cart.service';
@@ -47,10 +43,6 @@ import { AccountSidebarComponent } from './components/account/account-sidebar/ac
      CardComponent,
      CardDetailComponent,
      CardElementComponent,
-     MainComponent,
-     LoginComponent,
-     RegisterComponent,
-     ResetpasswordComponent,
      PagesComponent,
      LoadingComponent,
      DefaultContentComponent,
@@ -76,11 +68,7 @@ import { AccountSidebarComponent } from './components/account/account-sidebar/ac
     FavoritesComponent,
     OrdersComponent,
     ProductComponent,
-    MainComponent,
     PagesComponent,
-    LoginComponent,
-    RegisterComponent,
-    ResetpasswordComponent,
     CardDetailComponent
   ],
   providers:[

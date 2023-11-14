@@ -15,7 +15,9 @@ import { TranslocoService } from '@ngneat/transloco';
 import { TranslocoModule } from '@ngneat/transloco';
 import { ProductService } from './services/product.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { HomeModule } from './home/home.module';
+import { HasRoleGuard } from './services/auth/has-role.guard';
+import { AdminGuard } from './services/auth/admin.guard';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -28,15 +30,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     DashboardModule,
     TranslocoModule,
     BrowserAnimationsModule,
+    HomeModule
   ],
-  exports: [TranslocoModule],
+  exports: [BrowserModule],
   providers: [
     CartService,
     UserService,
     TranslocoService,
     ProductService,
     MessageService,
-    AuthGuard
+    AuthGuard,
+    HasRoleGuard,
+    AdminGuard
   ],
   bootstrap: [AppComponent],
 })

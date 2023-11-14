@@ -1,71 +1,62 @@
 import { Injectable } from '@angular/core';
 import * as JWT from 'jwt-decode';
-import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
-import { UserRole } from 'src/app/models/role.enum';
+import { Router } from 'express';
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private isauth: boolean = false;
 
-  private userRoleSubject = new BehaviorSubject<UserRole>(UserRole.User);
+  private auth: boolean = false;
 
   private authTokenKey = 'authToken';
-
+  
   private authTokenExpirationKey = 'authTokenExpiration';
 
-  constructor() {}
+  constructor(private router:Router) {}
+  public decodeToken() {
+    const token = localStorage.getItem(this.authTokenKey) || '';
+    if (token) {
+      try {
+        // Decode the token
+        let decoded = JWT.jwtDecode(token);
+        
+        // Get the expiration time from the token
+        let expDate = new Date(decoded['exp'] * 1000); // Convert from UNIX timestamp to JavaScript timestamp
+        
+        let nowDate= new Date();
 
-  public getUserRole(): BehaviorSubject<UserRole> {
-    return this.userRoleSubject;
+        let tokenInfo = [ decoded , expDate , nowDate ];
+        // If the token is expired, remove it and return null
+        if (nowDate.getTime() > expDate.getTime()) {
+          this.logout();
+          return null;
+        }
+        else{
+          this.isAuth();
+          return tokenInfo ;
+        }
+      } catch (err) {
+        console.error('Error while decoding the token', err);
+      }
+    }
+
+    // If there's no token, or an error occurred, return null
+    return null;
   }
 
-  // public decodeToken() {
-  //   // LocalStorage'tan token'ı al veya boş bir string kullan
-  //   const token = localStorage.getItem(this.authTokenKey) || '';
-  
-  //   // Eğer token varsa
-  //   if (token) {
-  //     try {
-  //       // Token'ı çöz ve içeriğini al
-  //       let decoded = JWT.jwtDecode(token);
-  
-  //       // Token'ın süresini temsil eden "exp" (expiration) değerini al
-  //       let expDate = new Date();
-  //       expDate.setTime(decoded['exp'] * 1000); // UNIX zaman damgası cinsinden saniye cinsinden tarih
-  
-  //       // Eğer şu anki zaman, token'ın geçerlilik süresini aşıyorsa
-  //       if (new Date().getTime() > expDate.getTime()) {
-  //         // Token'ı localStorage'tan kaldır
-  //         localStorage.removeItem(this.authTokenKey);
-  //         // null değeri döndür (token geçersiz olduğu için)
-  //         return null;
-  //       }
-  
-  //       // Token geçerli ise, çözülmüş token'ı döndür
-  //       return decoded;
-  //     } catch (err) {
-  //       // Token çözme sırasında bir hata olursa, hatayı konsola yazdır
-  //       console.error('Error while decoding the token', err);
-  //     }
-  //   }
-  
-  //   // Eğer token yoksa veya bir hata oluşmuşsa null döndür
-  //   return null;
-  // }
-  
+ 
 
   public isAuth(): boolean {
-    return this.isauth;
+    return this.auth;
   }
 
   public login(): void {
-    this.isauth = true;
+      this.auth = true;
   }
 
   public logout(): void {
-    this.isauth = false;
-    localStorage.clear();
+    this.removeAuthToken();
+    this.auth = false;
   }
 
   public setAuthToken(token: string): void {
@@ -89,37 +80,20 @@ export class AuthService {
     localStorage.removeItem(this.authTokenExpirationKey);
   }
 
-  public isAuthenticated():boolean {
-     // LocalStorage'tan token'ı al veya boş bir string kullan
-     const token = localStorage.getItem(this.authTokenKey) || '';
-  
-     // Eğer token varsa
-     if (token) {
-       try {
-         // Token'ı çöz ve içeriğini al
-         let decoded = JWT.jwtDecode(token);
-   
-         // Token'ın süresini temsil eden "exp" (expiration) değerini al
-         let expDate = new Date();
-         expDate.setTime(decoded['exp'] * 1000); // UNIX zaman damgası cinsinden saniye cinsinden tarih
-   
-         // Eğer şu anki zaman, token'ın geçerlilik süresini aşıyorsa
-         if (new Date().getTime() > expDate.getTime()) {
-           // Token'ı localStorage'tan kaldır
-           localStorage.removeItem(this.authTokenKey);
-           // null değeri döndür (token geçersiz olduğu için)
-           return null;
-         }
-   
-       } catch (err) {
-         // Token çözme sırasında bir hata olursa, hatayı konsola yazdır
-         console.error('Error while decoding the token', err);
-       }
-     }
-   
-     // Eğer token yoksa veya bir hata oluşmuşsa null döndür
-     return null;
-  }
+  public isAuthenticated(): boolean {
+    const authToken = this.getAuthToken();
+    const expirationDate = this.getAuthTokenExpiration();
 
+    if (authToken && expirationDate) {
+      const now = new Date().getTime();
+      const expirationTime = new Date(expirationDate).getTime();
+
+      // Return true only if the token is not expired
+      return expirationTime > now;
+    }
+
+    // If there's no token or expiration date, or the token is expired, return false
+    return false;
+  }
  
 }

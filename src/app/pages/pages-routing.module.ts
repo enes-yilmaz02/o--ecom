@@ -4,10 +4,6 @@ import { RouterModule } from '@angular/router';
 import { AboutComponent } from './components/about/about.component';
 import { AccountComponent } from './components/account/account.component';
 import { FavoritesComponent } from './components/favorites/favorites.component';
-import { LoginComponent } from './components/main/login/login.component';
-import { MainComponent } from './components/main/main.component';
-import { RegisterComponent } from './components/main/register/register.component';
-import { ResetpasswordComponent } from './components/main/resetpassword/resetpassword.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { CardDetailComponent } from './components/product/card-detail/card-detail.component';
 import { ProductComponent } from './components/product/product.component';
@@ -16,7 +12,6 @@ import { PagesComponent } from './pages.component';
 import { UserinfoComponent } from './components/account/userinfo/userinfo.component';
 import { UserpasswordComponent } from './components/account/userpassword/userpassword.component';
 import { UsercontactComponent } from './components/account/usercontact/usercontact.component';
-import { AuthGuard } from '../services/auth/auth.guard';
 
 @NgModule({
   declarations: [],
@@ -28,14 +23,11 @@ import { AuthGuard } from '../services/auth/auth.guard';
         component: PagesComponent,
         children: [
           {
-            path: '',
-            component: MainComponent,
+            path:'' , component:ProductComponent
           },
-
           {
             path: 'account',
             component: AccountComponent,
-            canActivate: [AuthGuard],
             children:[
               {
                 path:'' , component:UserinfoComponent
@@ -53,32 +45,17 @@ import { AuthGuard } from '../services/auth/auth.guard';
           },
           {
             path: 'favorites',
-            canActivate: [AuthGuard],
             component: FavoritesComponent,
           },
           {
-            path: 'login',
-            component: LoginComponent,
-          },
-          {
-            path: 'register',
-            component: RegisterComponent,
-          },
-          {
-            path: 'reset-password',
-            component: ResetpasswordComponent,
-          },
-          {
             path: 'orders',
-            canActivate: [AuthGuard],
             component: OrdersComponent,
           },
           {
             path: 'product',
-            canActivate: [AuthGuard],
             component: ProductComponent,
           },
-          { path: 'product/:id',canActivate: [AuthGuard], component: CardDetailComponent },
+          { path: 'product/:id', component: CardDetailComponent },
           {
             path: 'support',
             component: SupportComponent,

@@ -45,13 +45,6 @@ export class CardDetailComponent  implements OnInit {
         this.productPrice = Number(this.product?.priceStacked);
       });
       });
-
-      this.images = [
-        'product-overview-3-1.png',
-        'product-overview-3-2.png',
-        'product-overview-3-3.png',
-        'product-overview-3-4.png'
-    ];
     }
 
 

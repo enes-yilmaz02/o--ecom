@@ -23,15 +23,15 @@
           }}</label>
         </span>
         <span class="p-float-radio m-4" >
-          <div *ngFor="let gender of Genders" class="mx-2">
+          <!-- <div *ngFor="let gender of Genders" class="mr-2">
             <p-radioButton
               [inputId]="gender.key"
               [value]="gender"
               formControlName="gender"
               styleClass="radio"
             ></p-radioButton>
-            <label [for]="gender.key">{{ gender.name }}</label>
-          </div>
+            <label [for]="gender.key" class="mr-4">{{ gender.name }}</label>
+          </div> -->
         </span>
         <span class="p-float-label m-4">
           <i class="pi pi-calendar" style="color: #000"></i>

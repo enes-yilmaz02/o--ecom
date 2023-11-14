@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { AdminComponent } from './admin.component';
+import { UserMangementComponent } from './user-mangement/user-mangement.component';
 
 
 
@@ -9,7 +10,9 @@ import { AdminComponent } from './admin.component';
     {
       path:'' , component:AdminComponent ,
       children:[
-        //{path:'',redirectTo:'dashboard' },
+        {
+          path:'' , component:UserMangementComponent
+        }
       ]
     }
   ])],

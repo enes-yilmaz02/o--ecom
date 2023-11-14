@@ -93,21 +93,6 @@
   <div class="grid mb-7">
     <div class="col-12 lg:col-7">
       <div class="flex">
-        <div
-          class="flex flex-column w-2 justify-content-between"
-          style="row-gap: 1rem"
-        >
-          <img
-            *ngFor="let image of images; let i = index"
-            [ngClass]="{ 'border-primary': selectedImageIndex === i }"
-            [src]="
-              'https://primefaces.org/cdn/primeng/images/demo/product/' +
-              product.file
-            "
-            class="w-full cursor-pointer border-2 border-transparent transition-colors transition-duration-150 border-round"
-            (click)="selectedImageIndex = i"
-          />
-        </div>
         <div class="pl-3 w-10 flex">
           <img
             [src]="
@@ -128,12 +113,8 @@
           >${{ product.priceStacked }}</span
         >
         <div class="flex align-items-center">
-          <span class="mr-3">
-            <i class="pi pi-star-fill text-yellow-500 mr-1"></i>
-            <i class="pi pi-star-fill text-yellow-500 mr-1"></i>
-            <i class="pi pi-star-fill text-yellow-500 mr-1"></i>
-            <i class="pi pi-star-fill text-yellow-500 mr-1"></i>
-            <i class="pi pi-star text-600 mr-1"></i>
+          <span class="mr-2">
+            <p-rating formControlName="value" [cancel]="false"></p-rating>
           </span>
           <span class="text-sm"
             ><b class="text-900 mr-1">24</b>

@@ -10,22 +10,20 @@
   box-sizing: border-box;
 }
 
-.p-float-label label{
-  margin-left:25px ;
-}
+
 body{
   margin: 0;
   padding: 0;
   width: 100%;
-  min-height: 100vh;
+  min-height: 120vh;
   background-image: url('assets/images/net-rd-2-1.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   backdrop-filter: blur(8px);
 }
 
-
-
-input{
-  padding-left: 40px;
+@media (max-width: 768px) {
+  body {
+      min-height: 120vh;
+  }
 }

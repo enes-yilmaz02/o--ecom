@@ -18,22 +18,21 @@ export class AuthGuard implements CanActivate {
     private messageService: MessageService
   ) {}
 
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): boolean {
-    // Kullanıcının oturum açıp açmadığını AuthService kullanarak kontrol ediyor
-    if (this.authService.isAuth()) {
-      return true; // Kullanıcı oturum açmışsa true döndürüyor
+  canActivate(): boolean {
+    // Kullanıcının oturum açıp açmadığını ve tokenın var olup olmadığını kontrol ediyor
+    if (this.authService.isAuth() || this.authService.getAuthToken()) {
+      return true; // Eğer kullanıcı oturum açıksa ve token varsa, işlemi devam ettir
     } else {
-      // Kullanıcı oturum açmamışsa giriş yapma sayfasına yönlendiriyor
+      // Token süresi bitmişse veya hiç token yoksa
+      // Otomatik olarak login sayfasına yönlendiriyor
+
+      // Bu kısım token süresi bitmiş ise çalışacak
       this.router.navigate(['login']);
       this.messageService.add({
         severity: 'info',
         summary: 'Giriş Yapmanız Gerekiyor!',
         detail: 'Lütfen Giriş Yaptıktan Sonra Tekrar Deneyiniz.',
       });
-
       return false;
     }
   }

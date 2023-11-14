@@ -1,22 +1,18 @@
 <div class="container">
   <div class="column">
-    <div routerLink="/user-management">
-      <i class="pi pi-users"></i>
-      User-Management
-    </div>
-    <div routerLink="/product-management">
+    <div [routerLink]="['/creoter','product-management']">
       <i class="pi pi-shopping-cart"></i>
       Product-Management
     </div>
-    <div routerLink="/order-management">
+    <div [routerLink]="['/creoter','order-management']">
       <i class="pi pi-file"></i>
       Orders-Management
     </div>
-    <div routerLink="/reporting">
+    <div [routerLink]="['/creoter','reporting']">
       <i class="pi pi-chart-bar"></i>
       Reporting
       </div>
-    <div routerLink="/profil-management">
+    <div [routerLink]="['/creoter','profil-management']">
       <i class="pi pi-id-card"></i>
       Profil-Management
     </div>

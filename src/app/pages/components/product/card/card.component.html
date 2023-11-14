@@ -29,7 +29,7 @@
     </ng-template>
     <ng-template let-product pTemplate="listItem">
       <div class="col-12">
-        <a [routerLink]="['/product', product.id]" class="product-id">
+        <a [routerLink]="['/pages/product',product.id]" class="product-id">
           <div
             class="flex flex-column xl:flex-row xl:align-items-start p-4 gap-4"
           >
@@ -86,7 +86,7 @@
     </ng-template>
     <ng-template let-product pTemplate="gridItem">
       <div class="col-12 sm:col-6 lg:col-12 xl:col-4 p-2">
-        <a [routerLink]="['/product', product.id]" class="product-id">
+        <a [routerLink]="['/pages/product',product.id]" class="product-id">
           <div class="p-4 border-1 surface-border surface-card border-round">
             <div
               class="flex flex-wrap align-items-center justify-content-between gap-2"
