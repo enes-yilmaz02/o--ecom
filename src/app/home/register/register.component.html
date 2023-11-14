@@ -4,7 +4,7 @@
       class="register-header block justify-content-center align-content-center align-items-center text-2xl w-full"
       style="background: transparent"
     >
-      <h2>Orion Innovation</h2>
+      <h2>{{'registerForm.header' | transloco}}</h2>
     </div>
     <!-- Name input start-->
     <div class="wrapper">
@@ -35,6 +35,41 @@
           userFormRegister.get("name").errors != null &&
           userFormRegister.get("name").errors["required"]
             ? ("registerForm.nameSmall" | transloco)
+            : ""
+        }}
+      </small>
+    </div>
+    <!-- Name input end-->
+
+     <!-- Surname input start-->
+     <div class="wrapper">
+      <span class="p-float-label mt-4">
+        <i class="pi pi-user" style="color: #000"></i>
+        <input
+          pInputText
+          id="surname"
+          formControlName="surname"
+          pTooltip="{{'registerForm.surnameTooltip' | transloco }}"
+        />
+        <label htmlFor="surname"> {{"registerForm.surnameLabel" | transloco }} </label>
+      </span>
+      <small
+        *ngIf="
+          userFormRegister.get('surname')?.invalid &&
+          userFormRegister.get('surname')?.touched
+        "
+        class="text-red-500"
+      >
+        {{
+          userFormRegister.get("surname").errors != null &&
+          userFormRegister.get("surname").errors["whitespace"]
+            ? ("registerForm.surnameSmall" | transloco)
+            : ""
+        }}
+        {{
+          userFormRegister.get("surname").errors != null &&
+          userFormRegister.get("surname").errors["required"]
+            ? ("registerForm.surnameSmall" | transloco)
             : ""
         }}
       </small>
@@ -152,6 +187,123 @@
     </div>
     <!-- phone input end-->
 
+    <!-- adres input start-->
+    <div class="wrapper">
+      <span class="p-float-label mt-4">
+        <i class="pi pi-map" style="color: #000"></i>
+        <input
+          pInputText
+          id="address"
+          formControlName="address"
+          pTooltip="{{'registerForm.addressTooltip' | transloco }}"
+        />
+        <label htmlFor="address">{{
+          "registerForm.addressLabel" | transloco
+        }}</label>
+      </span>
+      <small
+        *ngIf="
+          userFormRegister.get('address')?.invalid &&
+          userFormRegister.get('address')?.touched
+        "
+        class="text-red-500"
+      >
+        {{
+          userFormRegister.get("address").errors != null &&
+          userFormRegister.get("address").errors["whitespace"]
+            ? ("registerForm.addressSmall" | transloco)
+            : ""
+        }}
+        {{
+          userFormRegister.get("address").errors != null &&
+          userFormRegister.get("address").errors["required"]
+            ? ("registerForm.addressSmall" | transloco)
+            : ""
+        }}
+      </small>
+    </div>
+    <!-- address input end-->
+
+       <!-- bDate input start-->
+       <div class="wrapper">
+        <span class="p-float-label mt-5">
+          <i class="pi pi-calendar" style="color: #000"></i>
+          <p-calendar
+            id="bDate"
+            formControlName="bDate"
+            styleClass="calendar"
+            [showIcon]="false"
+            id="calendar"
+            pTooltip="{{'registerForm.bDateTooltip' | transloco }}"
+          ></p-calendar>
+          <label htmlFor="calendar">{{
+            "registerForm.bDateLabel" | transloco
+          }}</label>
+          </span>
+        <small
+          *ngIf="
+            userFormRegister.get('bDate')?.invalid &&
+            userFormRegister.get('bDate')?.touched
+          "
+          class="text-red-500"
+        >
+          {{
+            userFormRegister.get("bDate").errors != null &&
+            userFormRegister.get("bDate").errors["whitespace"]
+              ? ("registerForm.bDateSmall" | transloco)
+              : ""
+          }}
+          {{
+            userFormRegister.get("bDate").errors != null &&
+            userFormRegister.get("bDate").errors["required"]
+              ? ("registerForm.bDateSmall" | transloco)
+              : ""
+          }}
+        </small>
+      </div>
+      <!-- bDate input end-->
+
+      <!-- bDate input start-->
+      <div class="wrapper">
+        <span class="p-float-radio mt-4" >
+          <div>
+            <i class="pi pi-user"></i>
+            <label for="gender" class="mr-4">{{'registerForm.genderLabel' | transloco}}</label>
+          </div>
+          <div *ngFor="let gender of Genders" class="mr-2">
+            <p-radioButton
+              [inputId]="gender.key"
+              [value]="gender"
+              id="gender"
+              formControlName="gender"
+              styleClass="radio"
+            ></p-radioButton>
+            <label [for]="gender.key">{{ gender.name }}</label>
+          </div>
+        </span>
+        <small
+          *ngIf="
+            userFormRegister.get('gender')?.invalid &&
+            userFormRegister.get('gender')?.touched
+          "
+          class="text-red-500"
+        >
+          {{
+            userFormRegister.get("gender").errors != null &&
+            userFormRegister.get("gender").errors["whitespace"]
+              ? ("registerForm.genderSmall" | transloco)
+              : ""
+          }}
+          {{
+            userFormRegister.get("gender").errors != null &&
+            userFormRegister.get("gender").errors["required"]
+              ? ("registerForm.genderSmall" | transloco)
+              : ""
+          }}
+        </small>
+      </div>
+      <!-- gender input end-->
+
     <!-- password input start-->
     <div class="wrapper">
       <span class="p-float-label mt-4">
@@ -160,6 +312,7 @@
           id="password"
           formControlName="password"
           styleClass="password"
+          [toggleMask]="true"
           pTooltip="{{'registerForm.passwordTooltip' | transloco }}"
         ></p-password>
         <label htmlFor="password">{{
@@ -196,6 +349,7 @@
         <p-password
           id="confirmpassword"
           formControlName="confirmpassword"
+          [toggleMask]="true"
           styleClass="password"
           pTooltip="{{'registerForm.confirmTooltip' | transloco }}"
         ></p-password>

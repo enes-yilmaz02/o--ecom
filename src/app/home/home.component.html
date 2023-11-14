@@ -1,0 +1,17 @@
+<header class="header">
+  <div>
+    <h1> Orion Innovation</h1>
+  </div>
+
+  <div>
+    <select (change)="setLanguage()" [(ngModel)]="selectedLanguage" class="custom-select flex border-0 text-lg ml-3">
+      <option *ngFor="let option of stateOptions" [ngValue]="option.value">{{ option.label }}</option>
+    </select>
+  </div>
+</header>
+<div>
+  <router-outlet></router-outlet>
+</div>
+<footer class="footer">
+  <p>&copy;2023 Copyright | All Rights Reserved</p>
+</footer>

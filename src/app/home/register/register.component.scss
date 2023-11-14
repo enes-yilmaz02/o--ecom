@@ -9,8 +9,7 @@ $background-color: #ecf0f1;
   display: flex;
   justify-content: center;
   align-items: center;
-  max-height: 100vh;
-
+  max-height: 200vh;
 
   form {
     width: 100%;
@@ -26,15 +25,16 @@ $background-color: #ecf0f1;
       margin-bottom: 20px;
     }
 
-    .p-float-label {
+    .wrapper {
       position: relative;
-      margin-top: 20px;
-      width: 100%;
-      input{
-        width: 100%;
+
+      .p-float-radio {
+        display: flex;
+        flex-direction: row;
         padding: 15px;
         padding-left: 40px;
-        font-size: 1rem;
+        justify-content: space-between;
+        align-items: center;
         border: none;
         border-bottom: 2px solid $primary-color;
         background-color: transparent;
@@ -45,50 +45,74 @@ $background-color: #ecf0f1;
           outline: none;
           border-bottom: 2px solid $secondary-color;
         }
+        i {
+          position: absolute;
+          z-index: 1;
+          padding: 5px;
+          color: #000;
+          top: 10px;
+          left: 8px;
+        }
       }
 
-      label {
-        font-size: 0.9rem;
-        color: $dark-text;
-        margin-left: 25px;
+      .p-float-label {
+        position: relative;
+
+        input {
+          width: 100%;
+          padding: 15px;
+          padding-left: 40px;
+          font-size: 1rem;
+          border: none;
+          border-bottom: 2px solid $primary-color;
+          background-color: transparent;
+          color: $dark-text;
+          transition: border-color 0.3s;
+
+          &:focus {
+            outline: none;
+            border-bottom: 2px solid $secondary-color;
+          }
+        }
+
+        label {
+          font-size: 0.9rem;
+          color: $dark-text;
+          margin-left: 25px;
+        }
+
+        .pi {
+          position: absolute;
+          left: 10px;
+          top: 50%;
+          transform: translateY(-50%);
+          font-size: 1rem;
+          color: $dark-text;
+        }
+        i {
+          position: absolute;
+          z-index: 1;
+          padding: 5px;
+          color: #000;
+          top: 10px;
+          left: 8px;
+        }
       }
 
-      .pi {
-        position: absolute;
-        left: 10px;
-        top: 50%;
-        transform: translateY(-50%);
-        font-size: 1rem;
-        color: $dark-text;
-      }
-
-      i{
-        position: absolute;
-        z-index: 1;
-        padding: 5px;
-        color: #000;
-        top: 10px;
-        left: 8px;
+      small {
+        font-size: 0.8rem;
+        color: $danger-color;
+        margin-top: 5px;
+        display: block;
       }
     }
 
-    small {
-      font-size: 0.8rem;
-      color: $danger-color;
-      margin-top: 5px;
-      display: block;
-    }
-
-    .remember-forget {
+    .flex-row {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      margin-top: 20px;
 
       input {
-        margin-right: 5px;
-        width: 15px;
-        height: 15px;
+        margin-right: 10px;
       }
 
       a {
@@ -105,12 +129,11 @@ $background-color: #ecf0f1;
     .button-style {
       text-align: center;
       margin-top: 20px;
-      width: 100%;
+
       button {
         width: 100%;
         padding: 15px;
         background-color: $primary-color;
-        justify-content: center;
         color: $light-text;
         font-size: 1rem;
         border: none;
@@ -125,10 +148,7 @@ $background-color: #ecf0f1;
     }
 
     .register-span {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 20px;
+      margin-top: 10px;
       font-size: 0.9rem;
 
       p {
@@ -145,14 +165,9 @@ $background-color: #ecf0f1;
         }
       }
     }
-    .social{
-      a{
-        text-decoration: none;
-        color: #3498db;
-        font-size: 13px;
-      }
-    }
+  }
 }
+
 
 @media (max-width: 768px) {
   .container {
@@ -162,25 +177,71 @@ $background-color: #ecf0f1;
   }
 }
 
-}
-
 :host ::ng-deep {
+  .radio {
+    margin-right: 5px;
+  }
+
   .password.p-password {
+    width: 100%;
+    input{
     position: relative;
     width: 100%;
     font-size: 1rem;
     border: none;
     border-bottom: 2px solid $primary-color;
     background-color: transparent;
+    padding-left: 35px;
     color: $dark-text;
     transition: border-color 0.3s;
     &:focus {
       outline: none;
       border-bottom: 2px solid $secondary-color;
     }
-    .p-element {
+
+
+      .pi {
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1rem;
+        color: $dark-text;
+      }
+      i {
+        position: absolute;
+        z-index: 1;
+        padding: 5px;
+        color: #000;
+        top: 10px;
+        left: 8px;
+      }
+
+    }
+
+  }
+
+
+
+  .calendar {
+    width: 100%;
+    input {
+      display: flex;
+      flex-direction: column;
       width: 100%;
+      padding: 10px;
+      padding-left: 35px;
+      font-size: 1rem;
       border: none;
+      border-bottom: 2px solid #3498db;
+      background-color: transparent;
+      color: #34495e;
+      transition: border-color 0.3s;
+
+      &:focus {
+        outline: none;
+        border-bottom: 2px solid #1071b3;
+      }
     }
   }
 }

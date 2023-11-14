@@ -4,37 +4,38 @@
       class="block justify-content-center align-content-center text-2xl"
       style="background: transparent"
     >
-      <h2>Orion Innovation</h2>
+      <h2>{{'loginForm.header' | transloco}}</h2>
     </div>
     <span class="p-float-label mt-4">
-      <i class="pi pi-user" style="color: #000"></i>
+      <i class="pi pi-envelope" style="color: #000"></i>
       <input
         pInputText
-        id="username"
-        formControlName="username"
-        pTooltip="{{ 'loginForm.usernameTooltip' | transloco }}"
+        type="email"
+        id="email"
+        formControlName="email"
+        pTooltip="{{ 'loginForm.emailTooltip' | transloco }}"
       />
-      <label htmlFor="username">{{
-        "loginForm.usernameLabel" | transloco
+      <label htmlFor="email">{{
+        "loginForm.emailLabel" | transloco
       }}</label>
     </span>
     <small
       *ngIf="
-        userFormLogin.get('username')?.invalid &&
-        userFormLogin.get('username')?.touched
+        userFormLogin.get('email')?.invalid &&
+        userFormLogin.get('email')?.touched
       "
       class="text-red-500"
     >
       {{
-        userFormLogin.get("username").errors != null &&
-        userFormLogin.get("username").errors["whitespace"]
-          ? ("registerForm.usernameSmall" | transloco)
+        userFormLogin.get("email").errors != null &&
+        userFormLogin.get("email").errors["whitespace"]
+          ? ("registerForm.emailSmall" | transloco)
           : ""
       }}
       {{
-        userFormLogin.get("username").errors != null &&
-        userFormLogin.get("username").errors["required"]
-          ? ("registerForm.usernameSmall" | transloco)
+        userFormLogin.get("email").errors != null &&
+        userFormLogin.get("email").errors["required"]
+          ? ("registerForm.emailSmall" | transloco)
           : ""
       }}
     </small>
@@ -97,7 +98,7 @@
    </div>
    <div>
     <span class="button-style mt-4">
-      <button pButton class="button" (onClick)="onSubmitLogin()">
+      <button pButton class="button" (click)="onSubmitLogin()">
         {{ "loginForm.buttonLabel" | transloco }}
       </button>
     </span>
@@ -122,7 +123,7 @@
           <p>{{ "startForm.descSocialTwo" | transloco }}</p>
         </div>
         <div class="icon-social flex">
-          <a href="/login">
+          <a [routerLink] = "['login']">
             <div class="flex-1 font-bold text-center p-4">
               <i
                 class="pi pi-google"
@@ -144,13 +145,13 @@
               <p>{{ "startForm.piGoogle" | transloco }}</p>
             </div>
           </a>
-          <a href="/login">
+          <a [routerLink] = "['login']">
             <div class="flex-1 font-bold text-center p-4">
               <i class="pi pi-apple" style="color: #000"></i>
               <p>{{ "startForm.piApple" | transloco }}</p>
             </div>
           </a>
-          <a href="/login">
+          <a [routerLink] = "['login']">
             <div class="flex-1 font-bold text-center p-4">
               <i class="pi pi-facebook" style="color: #316ff6"></i>
               <p>{{ "startForm.piFacebook" | transloco }}</p>

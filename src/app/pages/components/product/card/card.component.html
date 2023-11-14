@@ -1,17 +1,26 @@
 <div class="card">
-  <div class="p-input-icon-left search-text">
-    <i class="pi pi-search"></i>
-    <input
-      pInputText
-      type="text"
-      [(ngModel)]="searchText"
-      placeholder="Ara..."
-    />
+  <div class="flex flex-row search">
+    <div class="p-input-icon-left search-text mr-3">
+      <i class="pi pi-search"></i>
+      <input
+        pInputText
+        type="text"
+        [(ngModel)]="searchText"
+        placeholder="Ara..."
+      />
+    </div>
   </div>
   <p-dataView
     [value]="filterProducts()"
     [layout]="layout"
     [filterBy]="searchText"
+    [paginator]="true"
+    [rows]="9"
+    [sortField]="sortField"
+    [sortOrder]="sortOrder"
+    [showCurrentPageReport]="true"
+     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [rowsPerPageOptions]="[10, 25, 50]"
   >
     <ng-template pTemplate="header">
       <div class="flex justify-content-end">
@@ -20,7 +29,7 @@
     </ng-template>
     <ng-template let-product pTemplate="listItem">
       <div class="col-12">
-        <a [routerLink]="['/product', product.id]" class="product-id">
+        <a [routerLink]="['/pages/product',product.id]" class="product-id">
           <div
             class="flex flex-column xl:flex-row xl:align-items-start p-4 gap-4"
           >
@@ -77,7 +86,7 @@
     </ng-template>
     <ng-template let-product pTemplate="gridItem">
       <div class="col-12 sm:col-6 lg:col-12 xl:col-4 p-2">
-        <a [routerLink]="['/product', product.id]" class="product-id">
+        <a [routerLink]="['/pages/product',product.id]" class="product-id">
           <div class="p-4 border-1 surface-border surface-card border-round">
             <div
               class="flex flex-wrap align-items-center justify-content-between gap-2"

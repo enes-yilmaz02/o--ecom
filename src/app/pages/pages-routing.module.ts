@@ -4,10 +4,6 @@ import { RouterModule } from '@angular/router';
 import { AboutComponent } from './components/about/about.component';
 import { AccountComponent } from './components/account/account.component';
 import { FavoritesComponent } from './components/favorites/favorites.component';
-import { LoginComponent } from './components/main/login/login.component';
-import { MainComponent } from './components/main/main.component';
-import { RegisterComponent } from './components/main/register/register.component';
-import { ResetpasswordComponent } from './components/main/resetpassword/resetpassword.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { CardDetailComponent } from './components/product/card-detail/card-detail.component';
 import { ProductComponent } from './components/product/product.component';
@@ -27,10 +23,8 @@ import { UsercontactComponent } from './components/account/usercontact/userconta
         component: PagesComponent,
         children: [
           {
-            path: '',
-            component: MainComponent,
+            path:'' , component:ProductComponent
           },
-
           {
             path: 'account',
             component: AccountComponent,
@@ -52,18 +46,6 @@ import { UsercontactComponent } from './components/account/usercontact/userconta
           {
             path: 'favorites',
             component: FavoritesComponent,
-          },
-          {
-            path: 'login',
-            component: LoginComponent,
-          },
-          {
-            path: 'register',
-            component: RegisterComponent,
-          },
-          {
-            path: 'reset-password',
-            component: ResetpasswordComponent,
           },
           {
             path: 'orders',
