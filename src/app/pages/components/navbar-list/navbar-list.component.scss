@@ -21,6 +21,10 @@
   margin-left: auto;
   margin-right: auto;
   list-style-type: none;
+
+  i{
+    font-size: 20px;
+  }
 }
 .menu-item a{
   text-decoration: none;
@@ -37,4 +41,19 @@
 
   .menu-item i{
     margin-right: 5px;
+  }
+
+
+  :host ::ng-deep{
+
+    #pn_id_2_badge{
+      background-color: #3498db;
+
+    }
+    #pn_id_3_badge{
+      background-color: green;
+    }
+    #pn_id_4_badge{
+      background-color: red;
+    }
   }

@@ -1,18 +1,19 @@
 import { Component } from '@angular/core';
-import { MessageService } from 'primeng/api';
-import { Product } from 'src/app/models/product';
+import { MessageService, SelectItem } from 'primeng/api';
 import { CartService } from 'src/app/services/cart.service';
 
 @Component({
-  selector: 'app-content-table',
-  templateUrl: './content-table.component.html',
-  styleUrls: ['./content-table.component.scss']
+  selector: 'app-carts',
+  templateUrl: './carts.component.html',
+  styleUrls: ['./carts.component.scss']
 })
-export class ContentTableComponent {
-
+export class CartsComponent {
   totalPrice: number;
 
   product: any;
+
+  quantityOptions: SelectItem[] = [{ label: '1', value: 1 }, { label: '2', value: 2 }, { label: '3', value: 3 }, { label: '4', value: 4 }];
+
 
   dataAvailable: boolean = false; // Veri var mı yok mu kontrolü
 

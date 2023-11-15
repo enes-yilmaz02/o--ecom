@@ -86,6 +86,7 @@
     "whatsappP": "Messages will be sent via Whatsapp application to your mobile phone number registered in your Orion Innovation account."
   },
   "navigationForm": {
+    "cart":"Shopping Cart",
     "account": "Account",
     "orders": "Orders",
     "favorites": "Favorites",
@@ -140,7 +141,8 @@
   "favoritesForm":{
     "title":"You Don't Have Favorites",
     "desc":"You can immediately add the products to your favorites and share them with your loved ones!",
-    "buttonLabel":"Add product"
+    "buttonLabel":"Add product",
+    "populerText": " Favorite Products"
   },
   "collectionForm":{
     "title":"You Don't Have a Collection",
@@ -151,7 +153,15 @@
     "title":"Orders",
     "desc":"You don't have any orders, but now is a great time to start shopping...",
     "desc2":"Millions of products are waiting for you at Orion Innovation.",
-    "buttonLabel":"Start shopping"
+    "buttonLabel":"Start shopping",
+    "id":"Order ID",
+    "image":"İmage",
+    "name":"Product Name",
+    "stock":"Quantity",
+    "category":"Category",
+    "status":"Status",
+    "totalPrice":"Total Price",
+    "actions":"Action"
   },
   "managerSidebar":{
     "profile":"Profile Management",
@@ -209,7 +219,7 @@
     "confirmSmall": "* Password field cannot be left blank",
     "confirmSmallSecond": "* Passwords you entered do not match",
     "buttonLabel": "update"
-
   }
+
 }
 

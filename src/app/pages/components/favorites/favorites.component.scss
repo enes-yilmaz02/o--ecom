@@ -8,6 +8,8 @@
   .content {
     text-align: center;
     margin-left: 10px;
+    width: 100%;
+    margin: auto;
     app-loading {
       // app-loading bileşeni için özel stil ekleyebilirsiniz
       display: flex;
@@ -24,8 +26,8 @@
       // app-content-table bileşeni için özel stil ekleyebilirsiniz
       width: 100%; // Tam genişlik
       padding: 20px; // Kenar boşlukları
-    
-     
+
+
     }
 
     app-default-content {

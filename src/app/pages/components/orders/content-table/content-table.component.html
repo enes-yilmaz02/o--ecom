@@ -8,14 +8,14 @@
     >
       <ng-template pTemplate="header">
         <tr>
-          <th>Id</th>
-          <th>Resim</th>
-          <th>Ürün Adı</th>
-          <th>Adet</th>
-          <th>Kategori</th>
-          <th>Durum</th>
-          <th>Fiyat</th>
-          <th>İşlemler</th>
+          <th>{{'ordersForm.id' | transloco}}</th>
+          <th>{{'ordersForm.image' | transloco}}</th>
+          <th>{{'ordersForm.name' | transloco}}</th>
+          <th>{{'ordersForm.stock' | transloco}}</th>
+          <th>{{'ordersForm.category' | transloco}}</th>
+          <th>{{'ordersForm.status' | transloco}}</th>
+          <th>{{'ordersForm.totalPrice' | transloco}}</th>
+          <th>{{'ordersForm.actions' | transloco}}</th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-product>
@@ -53,23 +53,5 @@
         </tr>
       </ng-template>
     </p-table>
-  </div>
-  <div
-    class="flex flex-column mx-4 container-price"
-    *ngIf="product || product?.length >= 1"
-  >
-    <div>
-      <div>
-        <h3>Sipariş Özeti</h3>
-      </div>
-      <div>Ürünün Toplamı: $ {{ totalPrice }}</div>
-      <div>Kargonun Toplamı: $ 29.90</div>
-      <div>Kargo Bedava (Satıcı Karşılar): -$ 29.90</div>
-      <hr />
-      <div>$ {{ totalPrice }}</div>
-    </div>
-    <div class="button-style w-full mt-4">
-      <button pButton class="button w-full">Siparişi Tamamla</button>
-    </div>
   </div>
 </div>

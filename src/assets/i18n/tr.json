@@ -86,6 +86,7 @@
     "whatsappP":"Orion Innovation hesabınızda kayıtlı olan cep telefon numaranıza Whatsapp uygulaması aracılığıyla gelecek olan iletiler"
   },
   "navigationForm":{
+    "cart":"Sepetim",
     "account":"Hesabım",
     "orders":"Siparişlerim",
     "favorites":"Favorilerim",
@@ -140,7 +141,8 @@
   "favoritesForm":{
     "title":"Favorileriniz Yok",
     "desc":"Hemen ürünleri favorilere ekleyebilir , sevdiklerinizle paylaşabilirsiniz!",
-    "buttonLabel":"Ürün ekle"
+    "buttonLabel":"Ürün ekle",
+    "populerText": " Favori Ürünler"
   },
   "collectionForm":{
     "title":"Koleksiyonunuz Yok",
@@ -151,7 +153,15 @@
     "title":"Siparişlerim",
     "desc":"Hiç siparişin yok ama şimdi alışverişe başlamak için çok güzel bir an…",
     "desc2":"Orion Innovation’da milyonlarca ürün seni bekliyor.",
-    "buttonLabel":"Alışverişe başla"
+    "buttonLabel":"Alışverişe başla",
+    "id":"Sipariş ID",
+    "image":"Resim",
+    "name":"Ürün Adı",
+    "stock":"Adet",
+    "category":"Kategori",
+    "status":"Durumu",
+    "totalPrice":"Toplam Tutar",
+    "actions":"İşlem"
   },
   "managerSidebar":{
     "profile":"Profil Yönetimi",
@@ -209,8 +219,5 @@
     "confirmSmall":"* Şifre  alanı boş bırakılamaz",
     "confirmSmallSecond":"* Girdiğiniz Şifreler eşleşmiyor",
     "buttonLabel":"Ekle"
-
   }
-
-
 }

@@ -1,9 +1,39 @@
-<p-toast></p-toast>
 <div class="container">
-  <div class="product-body">
-    <div class="product-filter">
-      <app-dashboard-sidebar></app-dashboard-sidebar>
+  <div class="header">
+    <div class="header__logo">
+      <strong [routerLink]="['/' , 'pages']" style="cursor: pointer;">pages</strong>
     </div>
+    <nav class="navbar">
+      <ul class="navbar__menu">
+        <li class="navbar__item">
+          <a [routerLink]="['product-management']" class="navbar__link"
+            ><i class="pi pi-inbox"></i><span>Product-Management</span></a
+          >
+        </li>
+        <li class="navbar__item">
+          <a [routerLink]="['order-management']" class="navbar__link"
+            ><i class="pi pi-server"></i><span>Orders-Management</span></a
+          >
+        </li>
+        <li class="navbar__item">
+          <a [routerLink]="['reporting']" class="navbar__link"
+            ><i class="pi pi-file"></i><span>Reporting</span></a
+          >
+        </li>
+        <li class="navbar__item">
+          <a [routerLink]="['profil-management']" class="navbar__link"
+            ><i class="pi pi-users"></i><span>Profil-Management</span></a
+          >
+        </li>
+        <li class="navbar__item">
+          <a class="navbar__link"
+            ><i class="pi pi-cog"></i><span>Settings</span></a
+          >
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="product-body">
     <div class="product-list">
       <router-outlet></router-outlet>
     </div>

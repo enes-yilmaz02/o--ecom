@@ -12,6 +12,7 @@ import { PagesComponent } from './pages.component';
 import { UserinfoComponent } from './components/account/userinfo/userinfo.component';
 import { UserpasswordComponent } from './components/account/userpassword/userpassword.component';
 import { UsercontactComponent } from './components/account/usercontact/usercontact.component';
+import { CartsComponent } from './components/carts/carts.component';
 
 @NgModule({
   declarations: [],
@@ -50,6 +51,10 @@ import { UsercontactComponent } from './components/account/usercontact/userconta
           {
             path: 'orders',
             component: OrdersComponent,
+          },
+          {
+            path: 'shopping-cart',
+            component: CartsComponent,
           },
           {
             path: 'product',
