@@ -11,21 +11,21 @@
         <li class="menu-item ">
           <a [routerLink]="['/pages','shopping-cart']">
             <i class="pi pi-shopping-cart">
-              <span pBadge [severity]="'success'" [value]="orderBadge"></span>
+              <span pBadge  [value]="orderBadge"></span>
             </i> {{'navigationForm.cart' | transloco}}
           </a>
         </li>
         <li class="menu-item ">
           <a [routerLink]="['/pages','orders']">
-            <i class="pi pi-shopping-cart">
-              <span pBadge [severity]="'success'" [value]="orderBadge"></span>
+            <i class="pi pi-shopping-bag">
+              <span pBadge  [value]="orderBadge"></span>
             </i> {{'navigationForm.orders' | transloco}}
           </a>
         </li>
         <li class="menu-item">
           <a [routerLink]="['/pages','favorites']">
             <i class="pi pi-heart">
-              <span pBadge [severity]=" 'danger' "  [value]="favoritesBadge"></span>
+              <span pBadge  [value]="favoritesBadge"></span>
             </i> {{'navigationForm.favorites' | transloco}}
           </a>
         </li>

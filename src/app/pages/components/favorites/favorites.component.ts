@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { Observable, tap } from 'rxjs';
 import { CartService } from 'src/app/services/cart.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-favorites',
@@ -7,14 +9,17 @@ import { CartService } from 'src/app/services/cart.service';
   styleUrls: ['./favorites.component.scss'],
 })
 export class FavoritesComponent {
+
   showLoading = true;
 
   hasData = true;
 
   contentData: any;
 
+  userId: any;
 
-  constructor(private cartService: CartService) {
+
+  constructor(private userService: UserService) {
   }
 
   ngOnInit() {
@@ -26,8 +31,17 @@ export class FavoritesComponent {
 
   }
 
+  getUserId(): Observable<any> {
+    return this.userService.getTokenId().pipe(
+      tap((id: any) => {
+        this.userId = id;
+        console.log(this.userId);
+      })
+    );
+  }
+
   loadData() {
-    this.cartService.getItemsFavorites().subscribe(
+    this.userService.getFavorites(this.userId).subscribe(
       (data :any) => {
         this.contentData = data;
         console.log(data)

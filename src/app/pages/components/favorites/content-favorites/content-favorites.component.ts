@@ -1,6 +1,7 @@
 import { MessageService } from 'primeng/api';
 import { Component } from '@angular/core';
-import { CartService } from 'src/app/services/cart.service';
+import { UserService } from 'src/app/services/user.service';
+import { Observable, tap } from 'rxjs';
 
 @Component({
   selector: 'app-content-favorites',
@@ -8,25 +9,43 @@ import { CartService } from 'src/app/services/cart.service';
   styleUrls: ['./content-favorites.component.scss']
 })
 export class ContentFavoritesComponent {
+
   product: any;
 
+  userId: any;
 
+  liked: boolean = true;
 
-  constructor(private cartService: CartService , private messageService:MessageService) {
-    this.getFavorites();
+  constructor(private userService: UserService , private messageService:MessageService) {
+    this.getUserId().subscribe(()=>{
+      this.getFavorites();
+    })
   }
-
+  getUserId(): Observable<any> {
+    return this.userService.getTokenId().pipe(
+      tap((id: any) => {
+        this.userId = id;
+      })
+    );
+  }
   getFavorites() {
-    return this.cartService.getItemsFavorites().subscribe((data:any)=>{
+    return this.userService.getFavorites(this.userId).subscribe((data:any)=>{
       this.product=data;
     });
   }
 
-  removeFromCartFavorites(id :any) {
-    this.cartService.removeFromCartFavorites(id).subscribe(()=>{
-     this.messageService.add({
-          severity:'success', summary: 'Başarılı', detail: 'ürün favorilerden kaldırıldı'
+  deleteFavorites(favoriteId:any) {
+
+    this.getUserId().subscribe(()=>{
+      this.userService.deleteFavorite(this.userId , favoriteId).subscribe(()=>{
+        this.messageService.add({
+          severity:'success',
+          summary:'Favori silindi!',
         });
+      },
+      (error)=>{
+        console.log(error);
+      });
     });
     this.getFavorites();
   }

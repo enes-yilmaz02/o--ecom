@@ -1,51 +1,3 @@
-<!-- <div class="container">
-  <div class="table">
-    <p-table [value]="product" >
-      <ng-template pTemplate="header" >
-        <tr>
-          <th>Id</th>
-          <th>Resim</th>
-          <th>Ürün Adı</th>
-          <th>Kategori</th>
-          <th>Durum</th>
-          <th>Fiyat</th>
-          <th>İşlemler</th>
-        </tr>
-      </ng-template>
-      <ng-template pTemplate="body" let-product>
-        <tr>
-          <td>{{ product?.id }}</td>
-          <td>
-            <p-image
-              [src]="'https://primefaces.org/cdn/primeng/images/demo/product/' + product?.file"
-              [alt]="product?.name"
-              [preview]="true"
-              width="50px"
-              height="50px"
-            ></p-image>
-          </td>
-          <td>{{ product?.name }}</td>
-          <td>{{ product?.category }}</td>
-          <td> <p-tag
-            [value]="product?.selectedStatus"
-            [severity]="getSeverity(product)"
-          ></p-tag></td>
-          <td>$ {{ product?.priceStacked }}</td>
-          <td class="button-style">
-            <div>
-              <i
-              class="button pi pi-trash"
-              style="color: #3498db;"
-              (click)="removeFromCartFavorites(product.id)"
-            ></i>
-            </div>
-          </td>
-        </tr>
-      </ng-template>
-    </p-table>
-  </div>
-</div> -->
-
 <div
   class="surface-section px-4 py-8 md:px-6 lg:px-8 border-1 surface-border border-round"
 >
@@ -79,9 +31,20 @@
           <p class="mt-0 mb-3 text-700 line-height-3">
             {{product.description}}
           </p>
-          <span class="text-xl font-medium"> ${{
-            product.priceStacked
-          }}</span>
+
+          <div class="flex flex-row w-full justify-content-between">
+            <span class="text-xl font-medium"> ${{
+              product.priceStacked
+            }}</span>
+            <i
+            class="pi text-2xl cursor-pointer ml-3"
+            [ngClass]="{
+              'pi-heart text-600': !liked,
+              'pi-heart-fill text-blue-500': liked
+            }"
+            (click)="!liked =liked; deleteFavorites(product.id)"
+          ></i>
+          </div>
         </div>
       </div>
     </div>

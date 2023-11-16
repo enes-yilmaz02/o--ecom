@@ -46,14 +46,14 @@
 
   :host ::ng-deep{
 
-    #pn_id_2_badge{
+    .pi-shopping-bag .p-badge{
       background-color: #3498db;
 
     }
-    #pn_id_3_badge{
+    .pi-shopping-bag .p-badge{
       background-color: green;
     }
-    #pn_id_4_badge{
+    .pi-heart .p-badge{
       background-color: red;
     }
   }

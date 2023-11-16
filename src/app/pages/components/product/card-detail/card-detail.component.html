@@ -1,94 +1,3 @@
-<!-- <div class="container">
-  <div class="block w-full mx-4">
-    <h2>Ürün Detayı</h2>
-  </div>
-  <div class="product-detail flex flex-row">
-    <div class="flex flex-column xl:flex-row xl:align-products-start p-4 gap-4">
-      <img
-                class="w-9 shadow-2 border-round"
-                [src]="'https://primefaces.org/cdn/primeng/images/demo/product/' + product?.file" [alt]="product?.name"
-              />
-      <div
-        class="flex flex-column sm:flex-row justify-content-between align-products-center xl:align-products-start flex-1 gap-4"
-      >
-        <div
-          class="flex flex-column align-products-center sm:align-products-start gap-3"
-        >
-          <div
-            class="text-2xl flex justify-content-between w-full font-bold text-900"
-          >
-            <div>
-              {{ product?.name }}
-            </div>
-            <div class="button-style">
-              <button
-                pButton
-                icon="pi pi-heart"
-                class="button m-1 p-button"
-                (click)="addToCartFavorites(product)"
-              ></button>
-            </div>
-          </div>
-
-          <span class="flex align-products-center gap-2">
-            <i class="pi pi-tag"></i>
-            <span class="font-semibold">{{ product?.category }}</span>
-          </span>
-          <p-tag
-            [value]="product?.selectedStatus"
-            [severity]="getSeverity(product)"
-          ></p-tag>
-          <span class="button-style">
-            <p-rating
-              [ngModel]="product?.rating"
-              [readonly]="true"
-              [cancel]="false"
-              class="button"
-            ></p-rating>
-          </span>
-          <span class="text-2xl font-semibold">{{ "$" + product?.priceStacked }}</span>
-          <div class="flex flex-column justify-content-end align-content-end">
-            <div class="flex flex-column" style="float: right">
-              <div class="w-full h-full">
-                {{ product?.description }}
-              </div>
-              <div
-                class="flex flex-column m-3 w-full justify-content-center align-content-center align-products-center"
-              >
-                <div class="button-style block w-full">
-                  <p-inputNumber
-                    [(ngModel)]="defaultValue"
-                    [style]="{ width: '2rem' }"
-                    [showButtons]="true"
-                    buttonLayout="horizontal"
-                    spinnerMode="horizontal"
-                    inputId="horizontal"
-                    decrementButtonClass="p-button button w-2rem flex"
-                    incrementButtonClass="p-button button w-2rem flex"
-                    incrementButtonIcon="pi pi-plus"
-                    decrementButtonIcon="pi pi-minus"
-                    (ngModelChange)="updateProductPrice()"
-                  ></p-inputNumber>
-                </div>
-                <div class="button-style w-full block">
-                  <button
-                    pButton
-                    class="m-3 button border-round button w-full justify-content-center text-xl"
-                    [disabled]="product?.selectedStatus === 'Outstock'"
-                    (click)="addToCart(product)"
-                  >
-                    Sepete ekle
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->
-
 <div class="surface-section px-6 py-6 border-1 surface-border border-round">
   <div class="grid mb-7">
     <div class="col-12 lg:col-7">
@@ -97,7 +6,7 @@
           <img
             [src]="
               'https://primefaces.org/cdn/primeng/images/demo/product/' +
-              product.file
+              product?.file
             "
             class="w-full border-2 border-transparent border-round"
           />
@@ -106,15 +15,15 @@
     </div>
     <div class="col-12 lg:col-4 py-3 lg:pl-6">
       <div class="flex align-items-center text-xl font-medium text-900 mb-4">
-        {{ product.name }}
+        {{ product?.name }}
       </div>
       <div class="flex align-items-center justify-content-between mb-5">
         <span class="text-900 font-medium text-3xl block"
-          >${{ product.priceStacked }}</span
+          >${{ product?.priceStacked }}</span
         >
         <div class="flex align-items-center">
           <span class="mr-2">
-            <p-rating formControlName="value" [cancel]="false"></p-rating>
+            <p-rating  [cancel]="false"></p-rating>
           </span>
           <span class="text-sm"
             ><b class="text-900 mr-1">24</b>
@@ -126,26 +35,27 @@
       <div
         class="flex flex-column"
       >
-        <div class="flex align-items-center mb-2">
+        <div class="flex mb-2">
           <p-inputNumber
             [(ngModel)]="defaultValue"
             [showButtons]="true"
             buttonLayout="horizontal"
             spinnerMode="horizontal"
             inputId="horizontal"
-            decrementButtonClass="p-button button w-3rem flex ml-2"
-            incrementButtonClass="p-button button w-3rem flex mr-2"
+            decrementButtonClass="p-button button w-3rem flex"
+            incrementButtonClass="p-button button w-3rem flex"
             incrementButtonIcon="pi pi-plus"
             decrementButtonIcon="pi pi-minus"
+            styleClass="valueInput"
             (ngModelChange)="updateProductPrice()"
           ></p-inputNumber>
         </div>
-        <div class="flex align-items-center">
+        <div class="flex align-items-center w-full">
           <button
             pButton
             pRipple
             label="Add to Cart"
-            class="flex-1 mr-5"
+            class="flex-1 mr-5 p-add-button"
             [disabled]="product?.selectedStatus === 'Outstock'"
             (click)="addToCart(product)"
           ></button>
@@ -155,7 +65,7 @@
               'pi-heart text-600': !liked,
               'pi-heart-fill text-blue-500': liked
             }"
-            (click)="liked = !liked"
+            (click)="liked = !liked; addToCartFavorites()"
           ></i>
         </div>
       </div>
@@ -230,80 +140,6 @@
               <span>Dry flat</span>
             </li>
           </ul>
-        </div>
-      </div>
-    </p-tabPanel>
-    <p-tabPanel header="Reviews">
-      <div class="text-900 font-bold text-3xl mb-4 mt-2">Customer Reviews</div>
-      <ul class="list-none p-0 m-0">
-        <li class="pb-5 border-bottom-1 surface-border">
-          <span>
-            <i class="pi pi-star-fill text-yellow-500 mr-1"></i>
-            <i class="pi pi-star-fill text-yellow-500 mr-1"></i>
-            <i class="pi pi-star-fill text-yellow-500 mr-1"></i>
-            <i class="pi pi-star-fill text-yellow-500 mr-1"></i>
-            <i class="pi pi-star-fill text-gray-500"></i>
-          </span>
-          <div class="text-900 font-bold text-xl my-3">
-            Absolute Perfection!
-          </div>
-          <p class="mx-0 mt-0 mb-3 text-600 line-height-3">
-            Blandit libero volutpat sed cras ornare arcu dui vivamus. Arcu
-            dictum varius duis at consectetur lorem donec massa. Imperdiet proin
-            fermentum leo vel orci porta non. Porttitor rhoncus dolor purus non.
-          </p>
-          <span class="font-medium">Darlene Robertson, 2 days ago</span>
-        </li>
-        <li class="py-5 border-bottom-1 surface-border">
-          <span>
-            <i class="pi pi-star-fill text-yellow-500 mr-1"></i>
-            <i class="pi pi-star-fill text-yellow-500 mr-1"></i>
-            <i class="pi pi-star-fill text-yellow-500 mr-1"></i>
-            <i class="pi pi-star-fill text-yellow-500 mr-1"></i>
-            <i class="pi pi-star-fill text-yellow-500"></i>
-          </span>
-          <div class="text-900 font-bold text-xl my-3">Classy</div>
-          <p class="mx-0 mt-0 mb-3 text-600 line-height-3">
-            Venenatis cras sed felis eget. Proin nibh nisl condimentum id
-            venenatis a condimentum.
-          </p>
-          <span class="font-medium">Kristin Watson, 2 days ago</span>
-        </li>
-      </ul>
-    </p-tabPanel>
-    <p-tabPanel header="Shipping and Returns">
-      <div class="text-900 font-bold text-3xl mb-4 mt-2">
-        Shipping Placeholder
-      </div>
-      <p class="line-height-3 text-600 p-0 mx-0 mt-0 mb-4">
-        Mattis aliquam faucibus purus in massa tempor nec feugiat nisl. Justo
-        donec enim diam vulputate ut pharetra. Tempus egestas sed sed risus.
-        Feugiat sed lectus vestibulum mattis. Tristique nulla aliquet enim
-        tortor at auctor urna nunc. Habitant morbi tristique senectus et.
-        Facilisi nullam vehicula ipsum.
-      </p>
-
-      <div class="grid">
-        <div class="col-12 md:col-6">
-          <span class="text-900 block font-bold mb-3 font-bold"
-            >Shipping Costs</span
-          >
-          <ul class="py-0 pl-3 m-0 text-600 mb-3">
-            <li class="mb-2">Japan - JPY 2,500.</li>
-            <li class="mb-2">Europe - EUR 10</li>
-            <li class="mb-2">Switzerland - CHF 10</li>
-            <li class="mb-2">Canada - CAD 25</li>
-            <li class="mb-2">USA - USD 20</li>
-            <li class="mb-2">Australia - AUD 30</li>
-            <li class="mb-2">United Kingdom - GBP 10</li>
-          </ul>
-        </div>
-        <div class="col-12 md:col-6">
-          <span class="text-900 block font-bold mb-3">Return Policy</span>
-          <p class="line-height-3 text-600 p-0 m-0">
-            Pharetra et ultrices neque ornare aenean euismod elementum nisi.
-            Diam phasellus vestibulum lorem sed. Mattis molestie a iaculis at.
-          </p>
         </div>
       </div>
     </p-tabPanel>

@@ -45,15 +45,9 @@ export class CartService {
     });
   }
 
-  // Sepete ürün ekler ve aynı zamanda Badge'i günceller
+  // Sepete ürün ekler
   addToCart(product :any ){
-debugger
     return this.commonService.post(this.addOrder , product);
-
-    // .then(() => {
-    //   // Siparişler Badge'ini artır
-    //   this.orderBadge.next(this.orderBadge.value + 1);
-    // });
   }
 
   // Favorilere ürün ekler ve aynı zamanda Badge'i günceller

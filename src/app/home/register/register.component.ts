@@ -1,10 +1,12 @@
-import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
+import { EMPTY, Observable } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { UserService } from 'src/app/services/user.service';
 import { UserRole } from 'src/app/models/role.enum';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -21,7 +23,8 @@ export class RegisterComponent {
   constructor(
     private formBuilder: FormBuilder,
     private messageService: MessageService,
-    private userService: UserService
+    private userService: UserService,
+    private router:Router
   ) {
     this.userFormRegister = this.formBuilder.group({
       name: ['', Validators.required],
@@ -53,43 +56,42 @@ export class RegisterComponent {
       // Add the role property to the formValuesArray
       formValuesArray.role = UserRole.User;
       console.log(formValuesArray);
-      this.checkEmailAvailability(email)
-        .pipe(
-          switchMap((result) => {
-            if (result.available) {
-              return this.userService.registerWithEmail(formValuesArray);
-            } else {
-              this.messageService.clear();
-              this.messageService.add({
-                severity: 'error',
-                summary: 'Hata',
-                detail:
-                  'Bu e-posta adresi zaten kullanılmaktadır. Lütfen başka bir e-posta adresi seçin.',
-              });
-              // Benzer bir e-posta adresi bulunduğunda da bir hata mesajı göster
-              return [];
-            }
-          })
-          // İkinci bir subscribe bloğu ekleyerek kayıt başarılı olduğunda bildirimi alabilirsiniz
-        )
-        .subscribe(
-          () => {
-            // Başarılı kayıt mesajı göster
+      this.checkEmailAvailability(email).pipe(
+        switchMap((result) => {
+          if (result.available) {
+            return this.userService.registerWithEmail(formValuesArray);
+          } else {
             this.messageService.clear();
             this.messageService.add({
-              severity: 'success',
-              summary: 'Başarılı',
-              detail: 'Kayıt işlemi başarıyla tamamlandı.',
+              severity: 'error',
+              summary: 'Hata',
+              detail: 'Bu e-posta adresi zaten kullanılmaktadır. Lütfen başka bir e-posta adresi seçin.',
             });
-          },
-          (error) => {
-            // Eğer hata oluşursa burada işlem yapabilirsiniz
-            console.error(
-              'Kayıt başarılı, ancak bildirim gönderilemedi. Hata:',
-              error
-            );
+            // Benzer bir e-posta adresi bulunduğunda da bir hata mesajı göster
+            return EMPTY; // Boş bir Observable döndür
           }
-        );
+        })
+      ).subscribe({
+        next: () => {
+          // Başarılı kayıt mesajı göster
+          this.messageService.clear();
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Başarılı',
+            detail: 'Kayıt işlemi başarıyla tamamlandı.',
+          });
+          this.router.navigate(['login']);
+        },
+        error: (error) => {
+          // Eğer hata oluşursa burada işlem yapabilirsiniz
+          console.error('Kayıt başarılı, ancak bildirim gönderilemedi. Hata:', error);
+        },
+        complete: () => {
+          // Observable tamamlandığında yapılacak işlemler
+          console.log('Observable tamamlandı');
+        },
+      });
+
     } else {
       this.messageService.clear();
       this.messageService.add({

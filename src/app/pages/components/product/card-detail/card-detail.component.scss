@@ -1,7 +1,48 @@
+$primary-color: #3498db;
+$secondary-color: #1071b3;
+$danger-color: #e74c3c;
+$dark-text: #34495e;
+$light-text: #ecf0f1;
+$background-color: #ecf0f1;
 .container{
   width: 80%;
   float: right;
   margin: 10px;
   padding: 10px;
   background: transparent;
+}
+
+:host ::ng-deep{
+
+  p-inputnumber , .p-inputnumber{
+    width: 85%;
+  }
+
+  .valueInput{
+    width: 100%;
+     input{
+      width: 100%;
+      font-size: 1rem;
+      border:1px solid $primary-color;
+      background-color: transparent;
+      color: $dark-text;
+      transition: border-color 0.3s;
+
+      &:focus {
+        outline: none;
+        border-bottom: 2px solid $secondary-color;
+      }
+     }
+
+     .p-button{
+      background-color: #3498db;
+      border:1px solid $primary-color;
+      width: 100%;
+     }
+  }
+
+  .p-add-button{
+    background-color:#3498db ;
+    border: none;
+  }
 }
