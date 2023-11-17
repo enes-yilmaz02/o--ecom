@@ -7,27 +7,16 @@
       class="flex flex-column md:flex-row py-6 border-top-1 border-bottom-1 surface-border md:align-items-center"
     >
       <img
-        [src]="
-          'https://primefaces.org/cdn/primeng/images/demo/product/' +
-          product?.file
-        "
+        [src]="getFileUrl(product?.file)"
         class="w-12rem flex-shrink-0 mx-auto md:mx-0"
       />
       <div class="flex-auto py-5 md:pl-5">
         <div
           class="flex flex-wrap align-items-start sm:align-items-center sm:flex-row sm:justify-content-between surface-border pb-6"
         >
-          <div class="w-full sm:w-6 flex flex-column">
-            <span class="text-900 text-xl font-medium mb-3">{{
-              product.name
-            }}</span>
-          </div>
           <div
-            class="w-full sm:w-6 flex align-items-start justify-content-between mt-3 sm:mt-0"
+            class="w-full sm:w-6 flex align-items-end justify-content-end mt-3 sm:mt-0"
           >
-            <div>
-              {{product.quantity}}
-            </div>
             <div class="flex flex-column sm:align-items-end">
               <span class="text-900 text-xl font-medium mb-2 sm:mb-3">{{
                 "$" + product.priceStacked
@@ -42,20 +31,31 @@
           </div>
         </div>
         <div class="flex flex-column">
+            <span class="inline-flex align-items-center mb-3">
+              <i class="pi pi-envelope text-700 mr-2"></i>
+              <span class="text-700 mr-2">{{
+                product?.name
+              }}</span>
+            </span>
           <span class="inline-flex align-items-center mb-3">
             <i class="pi pi-envelope text-700 mr-2"></i>
-            <span class="text-700 mr-2">Order today.</span>
+            <span class="text-700 mr-2">{{product?.email}}</span>
           </span>
           <span class="inline-flex align-items-center mb-3">
             <i class="pi pi-send text-700 mr-2"></i>
             <span class="text-700 mr-2"
-              >Delivery by <span class="font-bold">Dec 23.</span></span
+              >Company Name:  <span class="font-bold">{{product?.companyName}}</span></span
             >
           </span>
           <span class="flex align-items-center">
             <i class="pi pi-exclamation-triangle text-700 mr-2"></i>
-            <span class="text-700">Only {{ product.quantity }} Available.</span>
+            <span class="text-700">Only Available.</span>
           </span>
+          <span class="flex align-items-center">
+            <h6>Quantity:</h6>
+            <span class="text-900"> {{product?.quantity | number}}</span>
+          </span>
+
         </div>
       </div>
     </li>

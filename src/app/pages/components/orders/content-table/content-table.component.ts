@@ -50,6 +50,11 @@ export class ContentTableComponent {
     });
   }
 
+  getFileUrl(fileName: string): string {
+    // Update the URL template based on your file structure in Google Cloud Storage
+    return `http://localhost:8080/files/${fileName}`;
+  }
+
   deleteOrders(orderId:any){
    this.getUserId().subscribe(()=>{
     this.userService.deleteOrder(this.userId , orderId).subscribe(()=>{
@@ -69,7 +74,7 @@ export class ContentTableComponent {
 
   // Ürün durumuna göre uygun olan "severity"yi döndüren fonksiyon
   getSeverity(product: any) {
-    switch (product?.selectedStatus) {
+    switch (product?.selectedStatus.name) {
       case 'INSTOCK':
         return 'success';
       case 'LOWSTOCK':

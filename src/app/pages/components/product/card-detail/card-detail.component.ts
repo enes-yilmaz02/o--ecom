@@ -50,6 +50,11 @@ export class CardDetailComponent  implements OnInit {
     });
   }
 
+  getFileUrl(fileName: string): string {
+    // Update the URL template based on your file structure in Google Cloud Storage
+    return `http://localhost:8080/files/${fileName}`;
+  }
+
   getUserId(): Observable<any> {
     return this.userService.getTokenId().pipe(
       tap((id: any) => {
@@ -92,7 +97,9 @@ export class CardDetailComponent  implements OnInit {
                 summary: 'Başarılı',
                 detail: 'Ürün sepete eklendi',
               });
-              window.location.reload();
+              setTimeout(() => {
+                window.location.reload();
+              }, 1500);
             } else {
               // HTTP durum kodu başarısızsa hata mesajı göster
               this.messageService.add({

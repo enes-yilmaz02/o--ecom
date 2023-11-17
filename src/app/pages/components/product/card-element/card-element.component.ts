@@ -17,5 +17,7 @@ filterByCategory(filter:string) {
     product.category.toLowerCase().includes(search)
   );
 }
+
+
 }
 

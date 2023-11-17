@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product';
-import { CartService } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/product.service';
 import { DataView } from 'primeng/dataview';
 import { SelectItem } from 'primeng/api';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
@@ -18,7 +18,9 @@ export class CardComponent implements OnInit {
   sortOrder: number = 0;
   sortField: string = '';
   sortOptions: SelectItem[] = [];
-  constructor(private productService:ProductService,private cart:CartService) {
+  files: any[] = [];
+
+  constructor(private productService:ProductService,private http: HttpClient) {
 
   }
 
@@ -31,14 +33,20 @@ export class CardComponent implements OnInit {
   ];
   }
 
+  getFileUrl(fileName: string): string {
+    // Update the URL template based on your file structure in Google Cloud Storage
+    return `http://localhost:8080/files/${fileName}`;
+  }
+
   getAllProducts(){
     this.productService.getProducts().subscribe((data:any) => {
       this.product = data;
+      console.log(this.product);
     });
   }
 
   getSeverity(product: any) {
-      switch (product.selectedStatus) {
+      switch (product.selectedStatus.name) {
           case 'INSTOCK':
               return 'success';
 

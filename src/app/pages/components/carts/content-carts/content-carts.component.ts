@@ -40,6 +40,7 @@ export class ContentCartsComponent {
   getCarts() {
     return this.userService.getCarts(this.userId).subscribe((data:any)=>{
       this.products = data ;
+      console.log(this.products)
       this.calculateTotalPrice();
     })
   }
@@ -71,6 +72,11 @@ export class ContentCartsComponent {
         }
       );
     });
+  }
+
+  getFileUrl(fileName: string): string {
+    // Update the URL template based on your file structure in Google Cloud Storage
+    return `http://localhost:8080/files/${fileName}`;
   }
 
   completeOrder() {

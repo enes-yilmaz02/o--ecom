@@ -4,10 +4,13 @@ export interface Product {
   code?: string;
   name?: string;
   description?: string;
-  price?: number;
+  priceStacked?: number;
   quantity?: number;
-  inventoryStatus?: string;
+  selecteStatus?: string;
   category?: string;
-  image?: string;
-  rating?: number;
+  file?: string;
+  valueRating?: number;
+  taxNumber?:string;
+  compantName?:string;
+  userId?:string;
 }

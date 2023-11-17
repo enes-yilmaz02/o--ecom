@@ -35,7 +35,6 @@ export class ContentFavoritesComponent {
   }
 
   deleteFavorites(favoriteId:any) {
-
     this.getUserId().subscribe(()=>{
       this.userService.deleteFavorite(this.userId , favoriteId).subscribe(()=>{
         this.messageService.add({
@@ -50,8 +49,13 @@ export class ContentFavoritesComponent {
     this.getFavorites();
   }
 
+  getFileUrl(fileName: string): string {
+    // Update the URL template based on your file structure in Google Cloud Storage
+    return `http://localhost:8080/files/${fileName}`;
+  }
+
   getSeverity(product: any) {
-    switch (product?.selectedStatus) {
+    switch (product?.selectedStatus.name) {
       case 'INSTOCK':
         return 'success';
       case 'LOWSTOCK':

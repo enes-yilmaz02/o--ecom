@@ -269,7 +269,6 @@ export class UserService {
     return this.getUser(userId).pipe(
       map((data: any) => {
         this.userData = data['role'];
-        console.log(this.userData);
         return this.userData;
       }),
       catchError((error) => {

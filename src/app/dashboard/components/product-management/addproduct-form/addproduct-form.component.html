@@ -1,119 +1,122 @@
-<form [formGroup]="addproductForm" (ngSubmit)="onSubmit()">
-  <div class="mb-1 block w-full">
-    <h4>Ürün ekle</h4>
-  </div>
-  <!-- Code input start-->
-  <div class="wrapper">
-    <div class="flex-auto mt-4">
-      <label class="mb-2 block" for="code">Product Code</label>
-      <p-inputNumber
-        formControlName="code"
-        [showButtons]="false"
-        inputId="code"
-        mode="decimal"
-        class="w-full"
-      >
-      </p-inputNumber>
-    </div>
-  </div>
-  <!-- Code input end-->
 
-  <!-- Name input start-->
-  <div class="wrapper">
-    <div class="flex-auto mt-4">
-      <label htmlFor="name" class="mb-2 block">Name</label>
-      <input
-        pInputText
-        id="name"
-        aria-describedby="name"
-        formControlName="name"
-        class="w-full"
-      />
+<div class="bg-white p-4">
+  <form [formGroup]="addproductForm">
+    <div class="flex w-full align-items-center justify-content-center">
+      <h4>Ürün ekle</h4>
     </div>
-  </div>
-  <!-- Name input end-->
-  <!-- Quantitiy input start-->
-  <div class="wrapper">
-    <div class="flex-auto mt-4">
-      <label class="mb-2 block" for="quantity">Quantity</label>
-      <p-inputNumber
-        formControlName="quantity"
-        [showButtons]="false"
-        inputId="quantity"
-        mode="decimal"
-        class="w-full"
-      >
-      </p-inputNumber>
-    </div>
-  </div>
-  <!-- Quantitiy input end-->
 
-  <!-- Price input start-->
-  <div class="wrapper">
-    <div class="flex-auto mt-4">
-      <label class="mb-2 block" for="priceStacked">Price</label>
-      <p-inputNumber
-        formControlName="priceStacked"
-        [showButtons]="false"
-        inputId="priceStacked"
-        mode="currency"
-        currency="USD"
-        class="w-full"
-      >
-      </p-inputNumber>
+      <!-- Name input start-->
+      <div class="wrapper">
+        <div class="flex-auto mt-4">
+          <label htmlFor="name" class="mb-2 block">Name</label>
+          <input
+            pInputText
+            id="name"
+            aria-describedby="name"
+            formControlName="name"
+            class="w-full"
+          />
+        </div>
+      </div>
+      <!-- Name input end-->
+       <!-- desc  input start-->
+    <div class="wrapper mt-4 block">
+      <label for="float-input">Description</label>
+      <span class="flex-auto mt-2">
+        <textarea
+          id="float-input"
+          rows="10"
+          cols="70"
+          class="p-3 w-full"
+          formControlName="description"
+          pInputTextarea
+        ></textarea>
+      </span>
     </div>
-  </div>
-  <!-- Price input end-->
-
-  <!-- Image input start-->
-  <div class="wrapper block w-full">
-    <div class="flex-auto mt-4">
-      <label htmlFor="file" class="mb-2 block">File</label>
-      <input
-        type="file"
-        pInputText
-        id="file"
-        formControlName="file"
-        class="custom-file-input"
-      />
-    </div>
-  </div>
-  <!-- Image input end-->
-
-  <!-- category  input start-->
-  <div class="wrapper block w-full">
-    <div class="flex-auto mt-4">
-      <label htmlFor="category" class="mb-2 block">Category</label>
-      <p-dropdown
-        id="category"
-        formControlName="category"
-        [options]="categorys"
-        optionLabel="name"
-        class="w-full"
-      ></p-dropdown>
-    </div>
-  </div>
-  <!-- category  input end-->
-
-  <!-- InventoryStatus input start-->
-  <div class="wrapper mt-4 flex flex-column">
-    <div>
-      <label htmlFor="selectedStatus" class="mb-2 block w-full">Status</label>
-    </div>
-    <div class="flex  flex-row">
-      <div *ngFor="let status of inventoryStatus" class="field-checkbox">
-        <p-radioButton
-          [inputId]="status.key"
-          [value]="status"
-          formControlName="selectedStatus"
-          class="flex flex-row ml-2"
-        ></p-radioButton>
-        <label [for]="status.key" class="ml-2">{{ status.name }}</label>
+    <!-- input end-->
+   <div class="flex flex-row">
+     <!-- Code input start-->
+     <div class="wrapper">
+      <div class="flex-auto mt-4">
+        <label class="mb-2 block" for="code">Product Code</label>
+        <p-inputNumber
+          formControlName="code"
+          [showButtons]="false"
+          inputId="code"
+          mode="decimal"
+          class="w-full"
+        >
+        </p-inputNumber>
       </div>
     </div>
-  </div>
-  <!-- InventoryStatus input end-->
+    <!-- Code input end-->
 
+    <!-- Quantitiy input start-->
+    <div class="wrapper">
+      <div class="flex-auto mt-4">
+        <label class="mb-2 block" for="quantity">Quantity</label>
+        <p-inputNumber
+          formControlName="quantity"
+          [showButtons]="false"
+          inputId="quantity"
+          mode="decimal"
+          class="w-full"
+        >
+        </p-inputNumber>
+      </div>
+    </div>
+    <!-- Quantitiy input end-->
+
+    <!-- Price input start-->
+    <div class="wrapper">
+      <div class="flex-auto mt-4">
+        <label class="mb-2 block" for="priceStacked">Price</label>
+        <p-inputNumber
+          formControlName="priceStacked"
+          [showButtons]="false"
+          inputId="priceStacked"
+          mode="currency"
+          currency="USD"
+          class="w-full"
+        >
+        </p-inputNumber>
+      </div>
+    </div>
+    <!-- Price input end-->
+   </div>
+
+    <!-- Image input start-->
+    <div class="wrapper block w-full">
+      <div class="flex-auto mt-4">
+        <label htmlFor="file" class="mb-2 block">File</label>
+        <input
+          type="file"
+          pInputText
+          id="file"
+          formControlName="file"
+          (change)="onFileSelected($event)"
+          class="custom-file-input"
+        />
+      </div>
+    </div>
+    <!-- Image input end-->
+
+   <div class="flex flex-row align-items-center">
+     <!-- category  input start-->
+     <div class="wrapper block w-full">
+      <div class="flex-auto mt-4">
+        <label htmlFor="category" class="mb-2 block">Category</label>
+        <p-dropdown
+          id="category"
+          formControlName="category"
+          placeholder="Select category"
+          [options]="categorys"
+          optionLabel="name"
+          class="w-full"
+        ></p-dropdown>
+      </div>
+    </div>
+    <!-- category  input end-->
   <!-- rating  input start-->
   <div class="wrapper block w-full">
     <div class="flex-auto mt-4">
@@ -130,26 +133,34 @@
     </div>
   </div>
   <!-- rating  input end-->
-  <!-- desc  input start-->
-  <div class="wrapper mt-4 block">
-    <span class="p-float-label mt-2">
-      <textarea
-        id="float-input"
-        rows="10"
-        cols="70"
-        class="p-3 w-full"
-        formControlName="description"
-        pInputTextarea
-      ></textarea>
-      <label for="float-input">Description</label>
-    </span>
-  </div>
-  <!-- rating  input end-->
-  <!-- button start-->
-  <div class="wrapper w-full justify-content-center">
-    <span class="button-style mt-4">
-      <button class="button w-12rem" type="submit">ekle</button>
-    </span>
-  </div>
-  <!-- button end-->
-</form>
+    <!-- InventoryStatus input start-->
+    <div class="wrapper mt-4 flex flex-column">
+      <div>
+        <label htmlFor="selectedStatus" class="mb-2 block w-full">Status</label>
+      </div>
+      <div class="flex  flex-row">
+        <div *ngFor="let status of inventoryStatus" class="field-checkbox">
+          <p-radioButton
+            [inputId]="status.key"
+            [value]="status"
+            formControlName="selectedStatus"
+            class="flex flex-row ml-2"
+          ></p-radioButton>
+          <label [for]="status.key" class="ml-2">{{ status.name }}</label>
+        </div>
+      </div>
+    </div>
+    <!-- InventoryStatus input end-->
+
+   </div>
+
+
+    <!-- button start-->
+    <div class="wrapper w-full justify-content-center mt-4">
+      <span class="button-style mt-4">
+        <button class="button w-12rem" (click)="onSubmit()">Ekle</button>
+      </span>
+    </div>
+    <!-- button end-->
+  </form>
+</div>

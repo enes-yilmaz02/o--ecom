@@ -4,11 +4,10 @@
       <div class="flex">
         <div class="pl-3 w-10 flex">
           <img
-            [src]="
-              'https://primefaces.org/cdn/primeng/images/demo/product/' +
-              product?.file
-            "
-            class="w-full border-2 border-transparent border-round"
+            [src]="getFileUrl(product?.file)"
+            class="border-2 border-transparent border-round"
+            width="500px"
+            height="400px"
           />
         </div>
       </div>
@@ -23,7 +22,12 @@
         >
         <div class="flex align-items-center">
           <span class="mr-2">
-            <p-rating  [cancel]="false"></p-rating>
+            <p-rating
+            [ngModel]="product?.valueRating"
+            [readonly]="true"
+            [cancel]="false"
+            starStyleClass="custom-star"
+          ></p-rating>
           </span>
           <span class="text-sm"
             ><b class="text-900 mr-1">24</b>
