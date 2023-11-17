@@ -4,19 +4,18 @@
       class="register-header block justify-content-center align-content-center align-items-center text-2xl w-full"
       style="background: transparent"
     >
-    <h3>to be creoter</h3>
+    <h3>{{'creoterForm.header' | transloco }}</h3>
     </div>
     <!-- Company Name input start-->
     <div class="wrapper">
       <span class="p-float-label mt-4">
-        <i class="pi pi-user" style="color: #000"></i>
+        <i class="pi pi-building" style="color: #000"></i>
         <input
           pInputText
           id="companyName"
           formControlName="companyName"
-          pTooltip="{{'registerForm.nameTooltip' | transloco }}"
         />
-        <label htmlFor="companyName"> {{"registerForm.nameLabel" | transloco }} </label>
+        <label htmlFor="companyName"> {{"creoterForm.nameLabel" | transloco }} </label>
       </span>
       <small
         *ngIf="
@@ -28,13 +27,13 @@
         {{
           creoterForm.get("companyName").errors != null &&
           creoterForm.get("companyName").errors["whitespace"]
-            ? ("registerForm.nameSmall" | transloco)
+            ? ("creoterForm.nameSmall" | transloco)
             : ""
         }}
         {{
           creoterForm.get("companyName").errors != null &&
           creoterForm.get("companyName").errors["required"]
-            ? ("registerForm.nameSmall" | transloco)
+            ? ("creoterForm.nameSmall" | transloco)
             : ""
         }}
       </small>
@@ -44,15 +43,14 @@
     <!-- Tax number input start-->
     <div class="wrapper">
       <span class="p-float-label mt-4">
-        <i class="pi pi-user" style="color: #000"></i>
+        <i class="pi pi-id-card" style="color: #000"></i>
         <input
           pInputText
           id="taxNumber"
           formControlName="taxNumber"
-          pTooltip="{{'registerForm.usernameTooltip' | transloco }}"
         />
         <label htmlFor="taxNumber">{{
-          "registerForm.usernameLabel" | transloco
+          "creoterForm.taxNumberLabel" | transloco
         }}</label>
       </span>
       <small
@@ -65,13 +63,13 @@
         {{
           creoterForm.get("taxNumber").errors != null &&
           creoterForm.get("taxNumber").errors["whitespace"]
-            ? ("registerForm.usernameSmall" | transloco)
+            ? ("creoterForm.taxNumberSmall" | transloco)
             : ""
         }}
         {{
           creoterForm.get("taxNumber").errors != null &&
           creoterForm.get("taxNumber").errors["required"]
-            ? ("registerForm.usernameSmall" | transloco)
+            ? ("creoterForm.taxNumberSmall" | transloco)
             : ""
         }}
       </small>
@@ -86,10 +84,9 @@
           pInputText
           id="email"
           formControlName="email"
-          pTooltip="{{'registerForm.emailTooltip' | transloco }}"
         />
         <label htmlFor="email">{{
-          "registerForm.emailLabel" | transloco
+          "creoterForm.emailLabel" | transloco
         }}</label>
       </span>
       <small
@@ -102,13 +99,13 @@
         {{
           creoterForm.get("email").errors != null &&
           creoterForm.get("email").errors["whitespace"]
-            ? ("registerForm.emailSmall" | transloco)
+            ? ("creoterForm.emailSmall" | transloco)
             : ""
         }}
         {{
           creoterForm.get("email").errors != null &&
           creoterForm.get("email").errors["required"]
-            ? ("registerForm.emailSmall" | transloco)
+            ? ("creoterForm.emailSmall" | transloco)
             : ""
         }}
       </small>
@@ -118,24 +115,23 @@
     <!-- button start-->
     <span class="button-style mt-4">
       <button class="button" (click)="onSubmit()">
-        {{ "registerForm.buttonLabel" | transloco }}
+        {{ "creoterForm.buttonLabel" | transloco }}
       </button>
     </span>
     <!-- button end-->
 
 
-    <div class="verifyCode" >
+    <div class="verifyCode" *ngIf="senderMail | async">
        <!-- code  input start-->
     <div class="wrapper">
       <span class="p-float-label mt-4">
-        <i class="pi pi-user" style="color: #000"></i>
+        <i class="pi pi-key" style="color: #000"></i>
         <input
           pInputText
           id="code"
           formControlName="code"
-          pTooltip="{{'registerForm.nameTooltip' | transloco }}"
         />
-        <label htmlFor="code"> {{"registerForm.nameLabel" | transloco }} </label>
+        <label htmlFor="code"> {{"creoterForm.codeLabel" | transloco }} </label>
       </span>
       <small
         *ngIf="
@@ -147,13 +143,13 @@
         {{
           creoterForm.get("code").errors != null &&
           creoterForm.get("code").errors["whitespace"]
-            ? ("registerForm.nameSmall" | transloco)
+            ? ("creoterForm.codeSmall" | transloco)
             : ""
         }}
         {{
           creoterForm.get("code").errors != null &&
           creoterForm.get("code").errors["required"]
-            ? ("registerForm.nameSmall" | transloco)
+            ? ("creoterForm.codeSmall" | transloco)
             : ""
         }}
       </small>
@@ -162,7 +158,7 @@
     <!-- button start-->
     <span class="button-style mt-4">
       <button class="button" (click)="verifyCode()">
-        {{ "registerForm.buttonLabel" | transloco }}
+        {{ "creoterForm.codeButton" | transloco }}
       </button>
     </span>
     <!-- button end-->

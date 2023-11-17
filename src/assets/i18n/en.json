@@ -90,6 +90,7 @@
     "account": "Account",
     "orders": "Orders",
     "favorites": "Favorites",
+    "seller":"Become a seller",
     "about": "About",
     "help&support": "Help & Support",
     "manager": "Manager",
@@ -219,6 +220,19 @@
     "confirmSmall": "* Password field cannot be left blank",
     "confirmSmallSecond": "* Passwords you entered do not match",
     "buttonLabel": "update"
+  },
+  "creoterForm":{
+    "header":"Become a Seller",
+    "nameLabel":"Brand name",
+    "nameSmall":"* Brand name field cannot be left blank",
+    "taxNumberLabel":"Tax number",
+    "taxNumberSmall":"* Tax number field cannot be left blank",
+    "emailLabel":"email",
+    "emailSmall":"* Email field cannot be left blank",
+    "buttonLabel":"Become a Seller",
+    "codeLabel":"Verification Code",
+    "codeSmall":"* Code field cannot be left blank",
+    "codeButton":"Send"
   }
 
 }

@@ -90,6 +90,7 @@
     "account":"Hesabım",
     "orders":"Siparişlerim",
     "favorites":"Favorilerim",
+    "seller":"Satıcı Ol",
     "about":"Hakkımızda",
     "help&support":"Yardım & Destek",
     "manager":"Yönetici",
@@ -219,5 +220,18 @@
     "confirmSmall":"* Şifre  alanı boş bırakılamaz",
     "confirmSmallSecond":"* Girdiğiniz Şifreler eşleşmiyor",
     "buttonLabel":"Ekle"
+  },
+  "creoterForm":{
+    "header":"Satıcı Ol",
+    "nameLabel":"Marka adı",
+    "nameSmall":"* Marka adı alanı boş bırakılamaz",
+    "taxNumberLabel":"Vergi no",
+    "taxNumberSmall":"* Vergi no alanı boş bırakılamaz",
+    "emailLabel":"email",
+    "emailSmall":"* email alanı boş bırakılamaz",
+    "buttonLabel":"Satıcı ol",
+    "codeLabel":"Doğrulama Kodu",
+    "codeSmall":"* Kod alanı boş bırakılamaz",
+    "codeButton":"Gönder"
   }
 }
