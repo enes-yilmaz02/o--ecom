@@ -28,6 +28,9 @@ import { ContentFavoritesComponent } from './components/favorites/content-favori
 import { DefaultFavoritesComponent } from './components/favorites/default-favorites/default-favorites.component';
 import { AccountSidebarComponent } from './components/account/account-sidebar/account-sidebar.component';
 import { CartsComponent } from './components/carts/carts.component';
+import { ContentCartsComponent } from './components/carts/content-carts/content-carts.component';
+import { DefaultCartsComponent } from './components/carts/default-carts/default-carts.component';
+import { CreoterFormComponent } from './components/creoter-form/creoter-form.component';
 @NgModule({
   declarations: [
     NavbarListComponent,
@@ -52,6 +55,10 @@ import { CartsComponent } from './components/carts/carts.component';
      DefaultFavoritesComponent,
      AccountSidebarComponent,
      CartsComponent,
+     ContentCartsComponent,
+     DefaultCartsComponent,
+     CreoterFormComponent,
+
 
   ],
   imports: [

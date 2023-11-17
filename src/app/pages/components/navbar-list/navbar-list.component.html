@@ -11,7 +11,7 @@
         <li class="menu-item ">
           <a [routerLink]="['/pages','shopping-cart']">
             <i class="pi pi-shopping-cart">
-              <span pBadge  [value]="orderBadge"></span>
+              <span pBadge  [value]="cartsBadge"></span>
             </i> {{'navigationForm.cart' | transloco}}
           </a>
         </li>
@@ -27,6 +27,11 @@
             <i class="pi pi-heart">
               <span pBadge  [value]="favoritesBadge"></span>
             </i> {{'navigationForm.favorites' | transloco}}
+          </a>
+        </li>
+        <li class="menu-item">
+          <a [routerLink]="['/pages','creoter-form']">
+            To be Creoter
           </a>
         </li>
         <li class="menu-item">

@@ -13,6 +13,7 @@ import { UserinfoComponent } from './components/account/userinfo/userinfo.compon
 import { UserpasswordComponent } from './components/account/userpassword/userpassword.component';
 import { UsercontactComponent } from './components/account/usercontact/usercontact.component';
 import { CartsComponent } from './components/carts/carts.component';
+import { CreoterFormComponent } from './components/creoter-form/creoter-form.component';
 
 @NgModule({
   declarations: [],
@@ -55,6 +56,10 @@ import { CartsComponent } from './components/carts/carts.component';
           {
             path: 'shopping-cart',
             component: CartsComponent,
+          },
+          {
+            path: 'creoter-form',
+            component: CreoterFormComponent,
           },
           {
             path: 'product',

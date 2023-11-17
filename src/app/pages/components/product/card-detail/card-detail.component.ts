@@ -45,7 +45,6 @@ export class CardDetailComponent  implements OnInit {
     this.getProductId().subscribe(productId => {
       this.productService.patchProductById(productId).subscribe(async (data: any) => {
         this.product = await data;
-        console.log(this.product);
         this.productPrice = Number(this.product?.priceStacked);
       });
     });
@@ -55,7 +54,6 @@ export class CardDetailComponent  implements OnInit {
     return this.userService.getTokenId().pipe(
       tap((id: any) => {
         this.userId = id;
-        console.log(this.userId);
       })
     );
   }
@@ -83,6 +81,8 @@ export class CardDetailComponent  implements OnInit {
     if (this.defaultValue >= 1) {
      this.getUserId().subscribe(()=>{
       this.getProductId().subscribe(productId=>{
+        // body içindeki quantity değerini güncelle
+        body.quantity = this.defaultValue;
         this.userService.addCart(this.userId , productId , body).subscribe(
           (response: any) => {
             if (response) {
@@ -92,6 +92,7 @@ export class CardDetailComponent  implements OnInit {
                 summary: 'Başarılı',
                 detail: 'Ürün sepete eklendi',
               });
+              window.location.reload();
             } else {
               // HTTP durum kodu başarısızsa hata mesajı göster
               this.messageService.add({
@@ -134,6 +135,7 @@ export class CardDetailComponent  implements OnInit {
           summary:'Başarılı',
           detail:"Favorilere eklendi"
         });
+        setTimeout(()=>{window.location.reload()},1500);
       });
     })
    })

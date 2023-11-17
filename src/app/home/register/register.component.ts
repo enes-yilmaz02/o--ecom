@@ -55,7 +55,6 @@ export class RegisterComponent {
       const email = formValuesArray.email;
       // Add the role property to the formValuesArray
       formValuesArray.role = UserRole.User;
-      console.log(formValuesArray);
       this.checkEmailAvailability(email).pipe(
         switchMap((result) => {
           if (result.available) {

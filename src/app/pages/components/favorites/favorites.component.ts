@@ -41,11 +41,11 @@ export class FavoritesComponent {
   }
 
   loadData() {
+   this.getUserId().subscribe(()=>{
     this.userService.getFavorites(this.userId).subscribe(
       (data :any) => {
         this.contentData = data;
-        console.log(data)
-        if(data.length>0){
+        if(data != null && data.length>0){
           this.hasData = true;
         }else{
           this.hasData = false;
@@ -55,10 +55,11 @@ export class FavoritesComponent {
 
       },
       (error) => {
-        console.error('Veri yüklenirken hata oluştu', error);
+        console.error(error);
         this.showLoading = false;
 
       }
     );
+   })
   }
 }

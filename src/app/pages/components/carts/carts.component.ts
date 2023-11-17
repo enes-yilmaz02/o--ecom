@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MessageService, SelectItem } from 'primeng/api';
 import { Observable, tap } from 'rxjs';
-import { CartService } from 'src/app/services/cart.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -9,7 +8,8 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './carts.component.html',
   styleUrls: ['./carts.component.scss'],
 })
-export class CartsComponent {
+export class CartsComponent implements OnInit {
+
   totalPrice: number;
 
   product: any;
@@ -25,6 +25,15 @@ export class CartsComponent {
 
   userId: any ; //Tokenden gelen user için tanımlı değişken
 
+  showLoading = true;
+
+  hasData = true;
+
+  contentData: any;
+
+
+
+
   constructor(
     private messageService: MessageService,
     private userService:UserService
@@ -34,6 +43,16 @@ export class CartsComponent {
       this.getCarts();
     });
   }
+
+  ngOnInit() {
+    this.loadData();
+    // 5 saniye sonra "loading" şablonunu gizle
+    setTimeout(() => {
+      this.showLoading = false;
+    }, 3000);
+
+  }
+
 
   getUserId(): Observable<any> {
     return this.userService.getTokenId().pipe(
@@ -47,48 +66,31 @@ export class CartsComponent {
   getCarts() {
     return this.userService.getCarts(this.userId).subscribe((data:any)=>{
       this.product = data ;
-      this.calculateTotalPrice();
+
     })
   }
 
-  calculateTotalPrice() {
-    this.totalPrice = this.product.reduce(
-      (total, item) => total + item.priceStacked,
-      0
-    );
-  }
+  loadData() {
+    this.getUserId().subscribe(()=>{
+     this.userService.getCarts(this.userId).subscribe(
+       (data :any) => {
+         this.contentData = data;
+         if(data != null && data.length>0){
+           this.hasData = true;
+         }else{
+           this.hasData = false;
+         }
 
-  deleteCarts(cartId: any) {
-    this.getUserId().subscribe(() => {
-      this.userService.deleteCart(this.userId, cartId).subscribe(
-        async () => {
-          await this.messageService.add({ severity: 'success', summary: 'Ürün sepetten kaldırıldı' });
-          console.log(this.userId, cartId);
-          this.getCarts();
-        },
-        (error) => {
-          // Hata durumunda mesaj göster
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Sipariş silinemedi!',
-            detail: error.error.detail || 'Bilinmeyen bir hata oluştu.',
-          });
-          // Hatanın nedenini konsola yazdır
-          console.error('Sipariş silinemedi!', error);
-        }
-      );
-    });
-  }
-  getSeverity(product: any) {
-    switch (product?.selectedStatus) {
-      case 'INSTOCK':
-        return 'success';
-      case 'LOWSTOCK':
-        return 'warning';
-      case 'OUTOFSTOCK':
-        return 'danger';
-      default:
-        return null;
-    }
-  }
+         this.showLoading = false;
+
+       },
+       (error) => {
+         console.error(error);
+         this.showLoading = false;
+
+       }
+     );
+    })
+   }
+
 }

@@ -12,7 +12,9 @@ export class ContentTableComponent {
 
   totalPrice: number; // Sipariş toplam fiyatını saklamak için değişken
 
-  product: any; // Sipariş ürünlerini saklamak için değişken
+  products: any; // Sipariş ürünlerini saklamak için değişken
+
+  orders: any;
 
   dataAvailable: boolean = false; // Veri var mı yok mu kontrolü
 
@@ -42,7 +44,9 @@ export class ContentTableComponent {
   // Kullanıcının siparişlerini getiren fonksiyon
   getOrders() {
     return this.userService.getOrders(this.userId).subscribe((data: any) => {
-      this.product = data;
+      this.products = data;
+      console.log(this.products);
+
     });
   }
 

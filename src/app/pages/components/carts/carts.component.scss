@@ -1,81 +1,40 @@
-$primary-color: #3498db;
-$secondary-color: #1071b3;
-$danger-color: #e74c3c;
-$dark-text: #34495e;
-$light-text: #ecf0f1;
-$background-color: #ecf0f1;
-$breakpoint-tablet: 768px;
 
-:host ::ng-deep {
-  .table {
-    margin-left: 25px;
-    margin-right: 25px;
+.page-layout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-height: auto; // Sayfa yüksekliğine uyumlu
+
+  .content {
+    text-align: center;
+    margin-left: 10px;
     width: 100%;
-    max-height: 100vh;
+    margin: auto;
 
-    th {
-      background-color: #333;
-      color: #fff;
-      padding: 20px;
-    }
+    app-loading {
+      // app-loading bileşeni için özel stil ekleyebilirsiniz
+      display: flex;
+      flex-direction: column;
+      align-items: center;
 
-    td {
-      border: none;
-      border-bottom: 1px solid $primary-color;
-      padding-left: 15px;
-      cursor: pointer;
-      div{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .button-style {
-        max-height: 100%; // Sil butonunu dikey eksende ortala
-        i {
-          cursor: pointer;
-          font-size: 1.5em;
-        }
+      img {
+        width: 100px; // Örnek bir resim genişliği
+        height: 100px; // Örnek bir resim yüksekliği
       }
     }
-  }
 
-  .container-price {
-    width: 100%; // Özet bölümü tam genişlikte olsun
-    padding: 20px; // Kenar boşlukları
+    app-content-table {
+      // app-content-table bileşeni için özel stil ekleyebilirsiniz
+      width: 100%; // Tam genişlik
+      padding: 20px; // Kenar boşlukları
 
-    h3 {
-      font-size: 1.5rem;
-      margin-bottom: 10px;
+
     }
 
-    div {
-      margin-bottom: 10px;
-    }
-
-    hr {
-      border: none;
-      height: 1px;
-      background-color: #ddd;
-      margin: 10px 0;
-    }
-
-    .button-style {
-      button {
-        width: 100%; // Tam genişlikte olacak
-        justify-content: center;
-      }
-    }
-  }
-
-  // Ekran genişliği 768px ve üzeri için özel stiller
-  @media (min-width: $breakpoint-tablet) {
-    .table {
-      margin-left: 50px;
-      margin-right: 50px;
-    }
-
-    .container-price {
-      width: 30%; // Özet bölümünün genişliği
+    app-default-content {
+      // app-default-content bileşeni için özel stil ekleyebilirsiniz
+      font-size: 18px; // Örnek bir font boyutu
+      color: #333; // Örnek bir metin rengi
     }
   }
 }

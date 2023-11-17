@@ -20,7 +20,6 @@ export class OrdersComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private messageService: MessageService
   ) {}
 
   ngOnInit() {
@@ -40,27 +39,24 @@ export class OrdersComponent implements OnInit {
     );
   }
 
-  loadData() {
-    this.getUserId().subscribe(()=>{
-      this.userService.getOrders(this.userId).subscribe(
-        (data: any) => {
-          this.contentData = data;
-          if (data != null && empty) {
-            this.hasData = true;
-          } else {
-            this.hasData = false;
-          }
-          this.showLoading = false;
-        },
-        (error) => {
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Hata!',
-            detail: error.error.detail,
-          });
-          this.showLoading = false;
+ loadData() {
+  this.getUserId().subscribe(() => {
+    this.userService.getOrders(this.userId).subscribe(
+      (data: any) => {
+        this.contentData = data;
+        if (data != null && data.length > 0) {
+          this.hasData = true;
+        } else {
+          this.hasData = false;
         }
-      );
-    })
-  }
+        this.showLoading = false;
+      },
+      (error) => {
+        console.log(error);
+        this.showLoading = false;
+      }
+    );
+  });
+}
+
 }
