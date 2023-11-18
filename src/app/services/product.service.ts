@@ -10,6 +10,10 @@ export class ProductService {
 
   productsEndpoint = 'products';
 
+  creoterOrdersEndPoint= 'orders';
+
+  creoter= 'creoter';
+
   uploadEndPoint= 'upload';
 
   constructor(private commonService:CommonService ) { }
@@ -18,6 +22,17 @@ export class ProductService {
 addProduct(product:any) {
   return this.commonService.post(`${this.productsEndpoint}`,product)
 }
+
+// orders ekleme işlemi
+addProductOrders(product:any) {
+  return this.commonService.post(`${this.creoterOrdersEndPoint}`,product)
+}
+
+// get allorders  işlemi
+getAllProductOrders() {
+  return this.commonService.get(`${this.creoterOrdersEndPoint}`)
+}
+
 uploadFile(file: File): Observable<any> {
   const formData: FormData = new FormData();
   formData.append('file', file, file.name);
@@ -38,6 +53,21 @@ deleteProduct(id: string) {
 getProducts(): Observable<Product[]> {
   return this.commonService.get(this.productsEndpoint);
 
+}
+
+// Tüm creoter ürünleri getirme
+getCreoterProducts(creoterId:string): Observable<Product[]> {
+  return this.commonService.get(`${this.productsEndpoint}/${this.creoter}/${creoterId}`);
+}
+
+// Tüm creoter ürünleri getirme
+getCreoterProduct(creoterId:string,productId:string): Observable<Product[]> {
+  return this.commonService.get(`${this.productsEndpoint}/${this.creoter}/${creoterId}/${productId}`);
+}
+
+// id göre creoter ürün silme
+deleteCreoterProduct(creoterId:string,productId:string): Observable<Product[]> {
+  return this.commonService.delete(`${this.productsEndpoint}/${this.creoter}/${creoterId}/${productId}`);
 }
 
 // Bir ürünü getirme

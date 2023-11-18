@@ -16,6 +16,7 @@ import { TranslocoModule } from '@ngneat/transloco';
 import { ProductService } from './services/product.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { JwtModule } from '@auth0/angular-jwt';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [

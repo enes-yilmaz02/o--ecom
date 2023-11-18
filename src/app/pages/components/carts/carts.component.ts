@@ -66,7 +66,6 @@ export class CartsComponent implements OnInit {
   getCarts() {
     return this.userService.getCarts(this.userId).subscribe((data:any)=>{
       this.product = data ;
-
     })
   }
 

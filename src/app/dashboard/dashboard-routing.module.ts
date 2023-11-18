@@ -36,7 +36,7 @@ import { ReportingComponent } from './components/reporting/reporting.component';
                 path:'get-product' , component:GetProductComponent
               },
               {
-                path:'update-product' , component:UpdateProductComponent
+                path:'update-product/:id' , component:UpdateProductComponent
               }
             ]
           },

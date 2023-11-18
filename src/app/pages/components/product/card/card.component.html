@@ -113,6 +113,8 @@
                 class="w-9 shadow-2 border-round"
                 [src]="getFileUrl(product?.file)"
                 [alt]="product?.name"
+                width="200px"
+                height="200px"
               />
               <!-- <ng-template #defaultImage>
                   <img
@@ -121,7 +123,7 @@
                     alt="Default Image"
                   />
                 </ng-template> -->
-              <div class="text-2xl font-bold">{{ product?.name }}</div>
+              <div class="text-2xl font-bold">{{ product?.name | truncate:15 }}</div>
               <p-rating
                 [ngModel]="product.valueRating"
                 [readonly]="true"
@@ -130,9 +132,11 @@
             </div>
             <div>
               <h6 class="mb-3 mt-3">{{ product?.companyName }}</h6>
+             <div class="description">
               <p class="line-height-base">
-                {{ product?.description }}
+                {{ product?.description | truncate: 100}}
               </p>
+             </div>
             </div>
             <div class="flex align-items-center justify-content-between">
               <span class="text-2xl font-semibold">{{

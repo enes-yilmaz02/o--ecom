@@ -1,1 +1,139 @@
-<p>update-product works!</p>
+
+<div class="bg-white p-4 w-full">
+  <form [formGroup]="updateProductForm">
+    <div class="flex w-full align-items-center justify-content-center">
+      <h4>Ürünü Güncelle</h4>
+    </div>
+
+      <!-- Name input start-->
+      <div class="wrapper">
+        <div class="flex-auto mt-4">
+          <label htmlFor="name" class="mb-2 block">Name</label>
+          <input
+            pInputText
+            id="name"
+            aria-describedby="name"
+            formControlName="name"
+            class="w-full"
+          />
+        </div>
+      </div>
+      <!-- Name input end-->
+       <!-- desc  input start-->
+    <div class="wrapper mt-4 block">
+      <label for="float-input">Description</label>
+      <span class="flex-auto mt-2">
+        <textarea
+          id="float-input"
+          rows="10"
+          cols="70"
+          class="p-3 w-full"
+          formControlName="description"
+          pInputTextarea
+        ></textarea>
+      </span>
+    </div>
+    <!-- input end-->
+   <div class="flex flex-row">
+     <!-- Code input start-->
+     <div class="wrapper">
+      <div class="flex-auto mt-4">
+        <label class="mb-2 block" for="code">Product Code</label>
+        <input
+          pInputText
+          formControlName="code"
+          inputId="code"
+          class="w-full"
+        >
+      </div>
+    </div>
+    <!-- Code input end-->
+
+    <!-- Quantitiy input start-->
+    <div class="wrapper">
+      <div class="flex-auto mt-4">
+        <label class="mb-2 block" for="quantity">Quantity</label>
+        <input
+          pInputText
+          formControlName="quantity"
+          inputId="quantity"
+          class="w-full"
+        >
+
+      </div>
+    </div>
+    <!-- Quantitiy input end-->
+
+    <!-- Price input start-->
+    <div class="wrapper">
+      <div class="flex-auto mt-4">
+        <label class="mb-2 block" for="priceStacked">Price</label>
+        <p-inputNumber
+          formControlName="priceStacked"
+          [showButtons]="false"
+          inputId="priceStacked"
+          mode="currency"
+          currency="USD"
+          class="w-full"
+        >
+        </p-inputNumber>
+      </div>
+    </div>
+    <!-- Price input end-->
+   </div>
+
+    <!-- Image input start-->
+    <div class="wrapper block w-full">
+      <div class="flex-auto mt-4">
+        <img
+        [src]="getFileUrl(file)"
+        class="w-12rem flex-shrink-0 mx-auto md:mx-0"
+      />
+      </div>
+    </div>
+    <!-- Image input end-->
+
+   <div class="flex flex-row align-items-center">
+     <!-- category  input start-->
+     <div class="wrapper block w-full">
+      <div class="flex-auto mt-4">
+        <label htmlFor="category" class="mb-2 block">Category</label>
+        <p-dropdown
+          id="category"
+          formControlName="category"
+          placeholder="Select..."
+          [options]="categorys"
+          optionLabel="name"
+          class="w-full"
+        ></p-dropdown>
+      </div>
+    </div>
+    <!-- category  input end-->
+  <!-- rating  input start-->
+  <div class="wrapper block w-full">
+    <div class="flex-auto mt-4">
+      <div class="flex flex-column justify-content-center border-round">
+        <label for="valueRating" class="mb-2 block">Rating</label>
+        <p-dropdown
+          [options]="items"
+          formControlName="valueRating"
+          placeholder="Select..."
+          [virtualScroll]="true"
+          [virtualScrollItemSize]="38"
+        ></p-dropdown>
+      </div>
+    </div>
+  </div>
+  <!-- rating  input end-->
+</div>
+
+
+    <!-- button start-->
+    <div class="wrapper w-full justify-content-center mt-4">
+      <span class="button-style mt-4">
+        <button class="button w-12rem" >Güncelle</button>
+      </span>
+    </div>
+    <!-- button end-->
+  </form>
+</div>

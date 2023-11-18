@@ -23,6 +23,7 @@ import { UserSidebarComponent } from './components/user-management/user-sidebar/
 import { OrdersManagementComponent } from './components/orders-management/orders-management.component';
 import { ProfilManagementComponent } from './components/profil-management/profil-management.component';
 import { ReportingComponent } from './components/reporting/reporting.component';
+import { GetOrdersComponent } from './components/orders-management/get-orders/get-orders.component';
 @NgModule({
   declarations: [
        DashboardComponent,
@@ -40,7 +41,8 @@ import { ReportingComponent } from './components/reporting/reporting.component';
        UserSidebarComponent,
        OrdersManagementComponent,
        ProfilManagementComponent,
-       ReportingComponent
+       ReportingComponent,
+       GetOrdersComponent
 
   ],
   imports: [

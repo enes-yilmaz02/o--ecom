@@ -9,13 +9,14 @@
   margin-top: 10px;
 }
 .product-filter{
-  width: 300px;
+  min-width: 200px;
+  width: auto;
   height: 100%;
   float: left;
 
 }
 .product-list{
   position: relative;
-  left: 50px;
-  width: 1000px;
+  left: auto;
+  width: auto;
 }

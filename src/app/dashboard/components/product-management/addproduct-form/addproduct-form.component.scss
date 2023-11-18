@@ -73,6 +73,22 @@ input ,textarea , .custom-file-input{
   }
 }
 
+.custom-file-input{
+  width: 90%;
+  padding: 15px;
+  padding-left: 10px;
+  font-size: 1rem;
+  border: 1px solid $primary-color;
+  background-color: transparent;
+  color: $dark-text;
+  transition: border-color 0.3s;
+
+  &:focus {
+    outline: none;
+    border-bottom: 2px solid $secondary-color;
+  }
+}
+
 :host ::ng-deep{
   .p-element{
     input {

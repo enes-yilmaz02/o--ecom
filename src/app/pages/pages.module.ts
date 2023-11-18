@@ -31,6 +31,7 @@ import { CartsComponent } from './components/carts/carts.component';
 import { ContentCartsComponent } from './components/carts/content-carts/content-carts.component';
 import { DefaultCartsComponent } from './components/carts/default-carts/default-carts.component';
 import { CreoterFormComponent } from './components/creoter-form/creoter-form.component';
+import { TruncatePipe } from '../services/pipes/truncate.pipe';
 @NgModule({
   declarations: [
     NavbarListComponent,
@@ -58,6 +59,7 @@ import { CreoterFormComponent } from './components/creoter-form/creoter-form.com
      ContentCartsComponent,
      DefaultCartsComponent,
      CreoterFormComponent,
+     TruncatePipe
 
 
   ],

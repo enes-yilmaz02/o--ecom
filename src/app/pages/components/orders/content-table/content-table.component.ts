@@ -46,7 +46,6 @@ export class ContentTableComponent {
     return this.userService.getOrders(this.userId).subscribe((data: any) => {
       this.products = data;
       console.log(this.products);
-
     });
   }
 

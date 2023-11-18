@@ -1,0 +1,78 @@
+.orders-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 100%;
+  width: 100%;
+  background-color: #ffffff;
+  padding: 30px;
+}
+
+.order-item {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 100%; /* Ayarlamak istediğiniz genişliği belirleyebilirsiniz */
+  transition: transform 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(0.95);
+  }
+}
+
+.order-info {
+  padding: 16px;
+
+  div {
+    margin-bottom: 8px;
+  }
+}
+
+.product-list {
+  padding: 16px;
+
+  .product-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+
+    .product-image {
+      width: 300px;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 4px;
+      margin-right: 12px;
+    }
+
+    .product-details {
+      h3 {
+        font-size: 18px;
+        margin-bottom: 6px;
+      }
+
+      p {
+        color: #666666;
+        margin-bottom: 8px;
+      }
+
+      .product-meta {
+        div {
+          margin-bottom: 4px;
+        }
+      }
+    }
+  }
+}
+
+.total-price {
+  background-color: #f8f8f8;
+  padding: 16px;
+  text-align: center;
+  border-top: 1px solid #e0e0e0;
+  border-radius: 0 0 8px 8px;
+
+  h3 {
+    margin: 0;
+  }
+}

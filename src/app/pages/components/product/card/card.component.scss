@@ -16,10 +16,16 @@
 .product-card{
   overflow: hidden;
   transition: transform 0.3s ease-in-out;
+  height: 100%;
 
   &:hover {
     transform: translateY(-5px);
   }
+}
+
+.description{
+  width: auto;
+  height: 150px;
 }
 
 .card {

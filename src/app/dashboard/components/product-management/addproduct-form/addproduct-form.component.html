@@ -1,5 +1,5 @@
 
-<div class="bg-white p-4">
+<div class="bg-white p-4 w-full">
   <form [formGroup]="addproductForm">
     <div class="flex w-full align-items-center justify-content-center">
       <h4>Ürün ekle</h4>
@@ -39,14 +39,12 @@
      <div class="wrapper">
       <div class="flex-auto mt-4">
         <label class="mb-2 block" for="code">Product Code</label>
-        <p-inputNumber
+        <input
+          pInputText
           formControlName="code"
-          [showButtons]="false"
           inputId="code"
-          mode="decimal"
           class="w-full"
         >
-        </p-inputNumber>
       </div>
     </div>
     <!-- Code input end-->
@@ -109,7 +107,7 @@
         <p-dropdown
           id="category"
           formControlName="category"
-          placeholder="Select category"
+          placeholder="Select..."
           [options]="categorys"
           optionLabel="name"
           class="w-full"
@@ -125,7 +123,7 @@
         <p-dropdown
           [options]="items"
           formControlName="valueRating"
-          placeholder="Select rating point"
+          placeholder="Select..."
           [virtualScroll]="true"
           [virtualScrollItemSize]="38"
         ></p-dropdown>

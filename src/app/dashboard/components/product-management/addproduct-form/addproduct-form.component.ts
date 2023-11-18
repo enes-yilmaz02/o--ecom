@@ -114,7 +114,7 @@ export class AddproductFormComponent implements OnInit {
         const productData = this.addproductForm.value;
         if (this.addproductForm.valid) {
           productData.file = this.selectedFile.name;
-          productData.userId = this.userId;
+          productData.creoterId = this.userId;
           productData.companyName = data.companyName;
           productData.email = data.email;
           this.productService.addProduct(productData).subscribe(

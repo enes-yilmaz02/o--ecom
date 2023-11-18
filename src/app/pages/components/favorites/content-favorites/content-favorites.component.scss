@@ -142,3 +142,36 @@
     margin-right: -15px;
   }
 }
+
+a {
+  color: inherit;
+  text-decoration: none;
+
+  .border-round {
+    border-radius: 8px;
+  }
+
+  .surface-border {
+    border: 1px solid #ddd;
+
+  }
+
+  .surface-card {
+    background-color: #fff;
+
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .p-rating {
+    margin-top: 10px;
+  }
+
+  button {
+    margin-top: 10px;
+  }
+}
+

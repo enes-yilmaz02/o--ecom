@@ -1,0 +1,41 @@
+<!-- get-orders.component.html -->
+
+<div class="orders-list">
+  <h2>Sipariş Listesi</h2>
+
+    <div class="flex">
+         <button type="button" pButton pRipple icon="pi pi-file-pdf" (click)="exportPdf()" class="p-button-success mx-2 my-2" pTooltip="PDF" tooltipPosition="bottom">PDF</button>
+         <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="exportExcel()" class="p-button-success mr-2" pTooltip="XLS" tooltipPosition="bottom">XLS</button>
+        </div>
+
+  <div *ngFor="let order of orders" class="order-item">
+    <div class="order-info">
+      <div><strong>Sipariş ID:</strong> {{ order.id }}</div>
+      <div><strong>Müşteri ID:</strong> {{ order.userId }}</div>
+    </div>
+
+    <div class="product-list">
+      <div *ngFor="let product of order.orders" class="product-item">
+        <img [src]="getFileUrl(product.file)" alt="{{ product.name }}" class="product-image" />
+        <div class="product-details">
+          <div><strong>Ad: </strong> {{product.name}}</div>
+            <div><strong>Açıklama: </strong>{{ product.description }}</div>
+          <div class="product-meta">
+            <div><strong>Fiyat: </strong> {{ product.priceStacked | currency:'TRY':'symbol' }}</div>
+            <div><strong>Adet: </strong> {{ product.quantity }}</div>
+            <div><strong>Durum: </strong> {{ product.selectedStatus.name }}</div>
+                <!-- Kullanıcının Adı -->
+          <div><strong>Müşteri Adı: </strong> {{ userData?.name }}</div>
+          <!-- Kullanıcının E-posta Adresi -->
+          <div><strong>Müşteri E-posta: </strong> {{ userData?.email }}</div>
+            <div><strong>Müşteri Address: </strong> {{ userData?.address }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="total-price">
+      <h3>Toplam Tutar: {{ order.totalAmount | currency:'USD':'symbol' }}</h3>
+    </div>
+  </div>
+</div>

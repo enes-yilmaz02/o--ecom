@@ -1,16 +1,20 @@
 import { Component } from '@angular/core';
 import { MessageService } from 'primeng/api';
-import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DialogService } from 'primeng/dynamicdialog';
 import { Table } from 'primeng/table';
+import { Observable, tap } from 'rxjs';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product.service';
-import { AddproductFormComponent } from '../addproduct-form/addproduct-form.component';
+import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-get-product',
   templateUrl: './get-product.component.html',
   styleUrls: ['./get-product.component.scss'],
 })
 export class GetProductComponent {
+
+  creoterId: any;
+
   products: Product[];
 
   isUserDialogOpen: boolean = false;
@@ -20,31 +24,44 @@ export class GetProductComponent {
   constructor(
     private productService: ProductService,
     public dialogService: DialogService,
-    public messageService: MessageService
+    public messageService: MessageService,
+    private userService:UserService
   ) {}
 
   ngOnInit() {
     this.getAllProducts();
   }
 
-  getAllProducts() {
-    this.productService.getProducts().subscribe((data: any) => {
-      this.products = data;
-    });
+  getUserId(): Observable<any> {
+    return this.userService.getTokenId().pipe(
+      tap((id: any) => {
+        this.creoterId = id;
+        console.log(this.creoterId);
+      })
+    );
   }
-  // getCategoryName(product: any): string {
-  //   return product.category ? product.category.name : '';
-  // }
+  getAllProducts() {
+    this.getUserId().subscribe(()=>{
+      this.productService.getCreoterProducts(this.creoterId).subscribe((data: any) => {
+        this.products = data;
+        console.log(this.products);
+      });
+    })
+  }
 
-  // getSelectedStatusName(product: any): string {
-  //   return product.selectedStatus ? product.selectedStatus.name : '';
-  // }
-  deleteProduct(id: any) {
-    this.productService.deleteProduct(id).subscribe(() => {
-      this.messageService.add({
-        severity: 'success',
-        summary: 'Successful',
-        detail: 'Deleted Successfully',
+  getFileUrl(fileName: string): string {
+    // Update the URL template based on your file structure in Google Cloud Storage
+    return `http://localhost:8080/files/${fileName}`;
+  }
+
+  deleteProduct(productId:any) {
+    this.getUserId().subscribe((userId:any)=>{
+      this.productService.deleteCreoterProduct(userId,productId).subscribe(() => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Successful',
+          detail: 'Deleted Successfully',
+        });
       });
     });
     this.getAllProducts();

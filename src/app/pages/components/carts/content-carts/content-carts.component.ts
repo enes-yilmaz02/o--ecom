@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MessageService, SelectItem } from 'primeng/api';
 import { Observable, tap } from 'rxjs';
+import { ProductService } from 'src/app/services/product.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -20,7 +21,8 @@ export class ContentCartsComponent {
 
   constructor(
     private messageService: MessageService,
-    private userService:UserService
+    private userService:UserService,
+    private productServie:ProductService
   ) {
     // Verileri alıp hesaplamaları burada yapabiliriz
     this.getUserId().subscribe(() => {
@@ -40,7 +42,6 @@ export class ContentCartsComponent {
   getCarts() {
     return this.userService.getCarts(this.userId).subscribe((data:any)=>{
       this.products = data ;
-      console.log(this.products)
       this.calculateTotalPrice();
     })
   }
@@ -83,21 +84,27 @@ export class ContentCartsComponent {
     // Toplam tutarı ve diğer siparişle ilgili bilgileri içeren ana sipariş nesnesini oluşturun
     const orderData = {
       totalAmount: this.totalPrice,
-      orders: this.products
+      orders: this.products,
+      userId: this.userId // Kullanıcı ID'sini ekleyin
     };
-
     this.getUserId().subscribe(() => {
       this.userService.addOrder(this.userId, orderData).subscribe(
         (response: any) => {
           if (response) {
-            // HTTP durum kodu kontrolü
-            this.messageService.add({
-              severity: 'success',
-              summary: 'Başarılı',
-              detail: 'Sipariş tamamlandı',
-            });
-            // Sipariş tamamlandıktan sonra sepeti boşalt
-          this.clearCart();
+            this.productServie.addProductOrders(orderData).subscribe(()=>{
+              this.messageService.add({
+                severity: 'success',
+                summary: 'Başarılı',
+                detail: 'Sipariş tamamlandı',
+              });
+              // Sipariş tamamlandıktan sonra sepeti boşalt
+            this.clearCart();
+            setTimeout(() => {
+              window.location.reload();
+            }, 1500);
+            })
+
+
           } else {
             // HTTP durum kodu başarısızsa hata mesajı göster
             this.messageService.add({

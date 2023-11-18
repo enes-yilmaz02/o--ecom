@@ -45,6 +45,7 @@ export class CardDetailComponent  implements OnInit {
     this.getProductId().subscribe(productId => {
       this.productService.patchProductById(productId).subscribe(async (data: any) => {
         this.product = await data;
+        console.log(this.product.email)
         this.productPrice = Number(this.product?.priceStacked);
       });
     });
@@ -88,6 +89,8 @@ export class CardDetailComponent  implements OnInit {
       this.getProductId().subscribe(productId=>{
         // body içindeki quantity değerini güncelle
         body.quantity = this.defaultValue;
+        body.creoterId=this.product.creoterId;
+        body.email=this.product.email;
         this.userService.addCart(this.userId , productId , body).subscribe(
           (response: any) => {
             if (response) {

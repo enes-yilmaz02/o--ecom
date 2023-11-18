@@ -56,6 +56,7 @@ export class CreoterFormComponent {
   }
 
   onSubmit() {
+    debugger
     if (this.creoterForm.valid) {
       this.generatedCode = this.generateRandomCode();
       const email = this.creoterForm.get('email').value;
