@@ -1,0 +1,84 @@
+/* Stil dosyası (örneğin, styles.scss) */
+$primary-color: #3498db;
+$secondary-color: #1071b3;
+$danger-color: #e74c3c;
+$dark-text: #34495e;
+$light-text: #ecf0f1;
+$light-text-hover: #91c9d7;
+$background-color: #ecf0f1;
+/* Dialog Penceresi */
+:host ::ng-deep{
+  .p-dialog{
+    width: 400px;
+  }
+  .p-button-add{
+    position: relative;
+    background-color: $primary-color;
+    border: none;
+    width: auto;
+    font-size: 12px;
+  }
+
+  .p-button-text{
+    color:$secondary-color;
+
+  }
+
+
+  .trash{
+    color: $danger-color;
+  }
+}
+
+/* Form Alanları */
+.p-field {
+  margin-bottom: 1.5rem; /* Form alanları arasındaki boşluk */
+}
+
+/* Label Stilleri */
+label {
+  display: block; /* Label'ı blok element olarak görüntüle, alt alta sıralanmalarını sağla */
+  margin-bottom: 0.5rem; /* Label ile input arasındaki boşluk */
+  font-weight: bold; /* Kalın font ağırlığı */
+}
+
+/* Input Stilleri */
+form{
+  .p-inputtext {
+    width: 100%; /* Input'ların genişliği */
+    padding: 0.5rem; /* Input içerisindeki içerik ile kenar arasındaki boşluk */
+    border: 1px solid #ced4da; /* Kenarlık rengi */
+    border-radius: 0.25rem; /* Kenarlık köşe yuvarlaklığı */
+  }
+}
+/* CSS dosyanızda */
+.p-input-icon-left {
+  display: flex;
+  align-items: center;
+}
+
+.p-input-icon-left .pi {
+  margin-right: 5px; /* İkon ile input arasındaki boşluk */
+}
+/* Dropdown Stilleri */
+.p-dropdown {
+  width: 100%; /* Dropdown'ın genişliği */
+  margin-top: 0.5rem; /* Dropdown ile üstteki öğe arasındaki boşluk */
+}
+
+/* Button Stilleri */
+.p-button {
+  margin-right: 0.5rem; /* Button'lar arasındaki boşluk */
+}
+
+/* Success Button */
+.p-button-success {
+  background-color: #28a745; /* Başarı rengi (Bootstrap success rengi) */
+  color: #fff; /* Yazı rengi */
+}
+
+/* Danger Button */
+.p-button-danger {
+  background-color: #dc3545; /* Tehlike rengi (Bootstrap danger rengi) */
+  color: #fff; /* Yazı rengi */
+}

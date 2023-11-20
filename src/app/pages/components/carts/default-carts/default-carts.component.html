@@ -3,30 +3,24 @@
     class="block align-items-center w-full h-full justify-content-center bg-white font-bold m-2 px-5 py-3 border-round"
   >
     <div class="header-title block w-full m-3">
-      <h3>{{ "favoritesMainForm.header" | transloco }}</h3>
+      <h3>{{ "cartsForm.header" | transloco }}</h3>
     </div>
     <div class="block m-3 justify-content-center">
       <div class="card flex justify-content-center">
-        <!-- <p-image
-          class="img"
-          src="https://cdn.icon-icons.com/icons2/1458/PNG/512/heartbutton_99629.png"
-          alt="Image"
-          width="300"
-          height="100%"
-        ></p-image> -->
+
       </div>
       <div class="card flex justify-content-center">
-        <h3>{{ "favoritesForm.title" | transloco }}</h3>
+        <h3>{{ "cartsForm.title" | transloco }}</h3>
       </div>
       <div class="card flex justify-content-center text-xl">
         <h6>
-          {{ "favoritesForm.desc" | transloco }}
+          {{ "cartsForm.desc" | transloco }}
         </h6>
       </div>
       <div class="card justify-content-center align-content-center">
         <span class="button-style">
-          <button class="button w-full" [routerLink]="['/pages/product']">
-            {{ "favoritesForm.buttonLabel" | transloco }}
+          <button class="button" [routerLink]="['/pages/product']">
+            {{ "cartsForm.buttonLabel" | transloco }}
           </button>
         </span>
       </div>

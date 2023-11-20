@@ -18,7 +18,8 @@ export class UserService {
   ordersEndPoint = 'orders';
   favoritesEndPoint = 'favorites';
   cartsEndPoint = 'carts';
-  sendEmailEndPoint= 'sendEmail' ;
+  sendEmailEndPoint = 'sendEmail';
+  usersAdminEndPoint = 'users-admin';
 
   // Rol ve kullanıcı verilerini saklamak için değişkenler
   role: any;
@@ -38,12 +39,13 @@ export class UserService {
     private commonService: CommonService,
     private authService: AuthService,
     private jwtHelper: JwtHelperService
-  ) {
+  ) {}
 
-  }
-
-  sendEmail(userId:any , body:any){
-    return this.commonService.post(`${this.usersEndPoint}/${userId}/${this.sendEmailEndPoint}`,body);
+  sendEmail(userId: any, body: any) {
+    return this.commonService.post(
+      `${this.usersEndPoint}/${userId}/${this.sendEmailEndPoint}`,
+      body
+    );
   }
 
   // Sipariş badge'ini güncelleyen fonksiyon
@@ -197,6 +199,11 @@ export class UserService {
   // Yeni bir kullanıcı ekleyen fonksiyon
   addUsers(user: any) {
     return this.commonService.post(this.usersEndPoint, user);
+  }
+
+  // admin tarafında Yeni bir kullanıcı ekleyen fonksiyon
+  addUsersAdmin(user: any) {
+    return this.commonService.post(this.usersAdminEndPoint, user);
   }
 
   // Belirli bir kullanıcının bilgilerini güncelleyen fonksiyon

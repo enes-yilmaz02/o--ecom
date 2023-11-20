@@ -4,16 +4,6 @@
   </div>
   <div class="block m-3 justify-content-center">
     <div class="card flex justify-content-center">
-      <p-image
-        class="img"
-        src="assets/images/cart-icon-transparent.png"
-        alt="Image"
-        width="300"
-        height="100%"
-      ></p-image>
-    </div>
-    <div class="card flex justify-content-center">
-      <h3>{{ "ordersForm.title" | transloco }}</h3>
     </div>
     <div class="card flex justify-content-center text-xl">
       <h6>
@@ -21,7 +11,7 @@
         {{ "ordersForm.desc2" | transloco }}
       </h6>
     </div>
-    <div class="card justify-content-center align-content-center w-full">
+    <div class="flex card justify-content-center align-content-center w-full">
       <span class="button-style flex">
         <button class="button " [routerLink]="['/pages/product']">
           {{ "ordersForm.buttonLabel" | transloco }}

@@ -1,0 +1,37 @@
+<div class="card">
+  <p-table [value]="orders" [tableStyle]="{'min-width': '60rem'}">
+    <ng-template pTemplate="caption">
+      <div class="flex align-items-center justify-content-between">
+        Orders
+        <p-button icon="pi pi-refresh"></p-button>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Name</th>
+        <th>Image</th>
+        <th>Price</th>
+        <th>Category</th>
+        <th>Reviews</th>
+        <th>Creoter</th>
+        <th>Status</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product>
+      <tr *ngFor="let order of product.orders">
+        <td>{{ order.name }}</td>
+        <td><img [src]="getFileUrl(order?.file)" [alt]="order.name" width="100" class="shadow-4" /></td>
+        <td>{{ order.priceStacked | currency:'USD' }}</td>
+        <td>{{ order.category.name }}</td>
+        <td><p-rating [ngModel]="order.valueRating" [readonly]="true" [cancel]="false"></p-rating></td>
+        <td>{{ order.companyName }}</td>
+        <td><p-tag [value]="order.selectedStatus.name" [severity]="getSeverity(order.selectedStatus.name)"></p-tag></td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+      <div class="flex align-items-center justify-content-between">
+        In total there are {{ orders ? orders.length : 0 }} products.
+      </div>
+    </ng-template>
+  </p-table>
+</div>

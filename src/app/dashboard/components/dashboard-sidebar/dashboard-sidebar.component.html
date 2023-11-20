@@ -1,8 +1,18 @@
-<div class="container">
-  <div class="column flex flex-column">
-    <div routerLink="/product-management">Product-Management</div>
-    <div>another</div>
-    <div>another</div>
-    <div>another</div>
-  </div>
-</div>
+<aside>
+  <p [routerLink]="['/' , 'pages']"> Menu </p>
+  <a [routerLink]="['product-management']" >
+    <i class="fa fa-laptop" aria-hidden="true"></i>
+    Product Management  </a>
+  <a [routerLink]="['order-management']">
+    <i class="fa fa-clone" aria-hidden="true"></i>
+    Order Management
+  </a>
+  <a [routerLink]="['reporting']">
+    <i class="fa fa-star-o" aria-hidden="true"></i>
+    Reporting
+  </a>
+  <a [routerLink]="['profil-management']">
+    <i class="fa fa-trash-o" aria-hidden="true"></i>
+    Profil Management
+  </a>
+</aside>

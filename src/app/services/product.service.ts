@@ -14,6 +14,8 @@ export class ProductService {
 
   creoter= 'creoter';
 
+  orders= 'orders';
+
   uploadEndPoint= 'upload';
 
   constructor(private commonService:CommonService ) { }
@@ -58,6 +60,11 @@ getProducts(): Observable<Product[]> {
 // Tüm creoter ürünleri getirme
 getCreoterProducts(creoterId:string): Observable<Product[]> {
   return this.commonService.get(`${this.productsEndpoint}/${this.creoter}/${creoterId}`);
+}
+
+// Tüm creoter ürünleri getirme
+getAllCreoterOrders(): Observable<Product[]> {
+  return this.commonService.get(`${this.orders}`);
 }
 
 // Tüm creoter ürünleri getirme

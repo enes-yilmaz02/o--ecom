@@ -80,3 +80,12 @@ $background-color: #ecf0f1;
   }
 }
 
+:host ::ng-deep{
+
+  .button{
+    background-color: $secondary-color;
+    border: none;
+    padding: 10px;
+    color:#fff;
+  }
+}

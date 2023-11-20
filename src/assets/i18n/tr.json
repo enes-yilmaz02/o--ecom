@@ -134,16 +134,17 @@
     "accordion5":"Ürün veya siparişim ile ilgili taleplerimi/sorularımı nasıl iletebilirim?",
     "buttonLabel":"Anasayfa"
   },
-  "favoritesMainForm":{
-    "header":"Favorilerim",
-    "favPanel":"Favorilerim",
-    "colPanel":"Kolleksiyonlarım"
+  "cartsForm":{
+    "title":"Sepetiniz Boş",
+    "desc":"Hemen ürünleri sepete ekleyebilir , Satın alabilirsiniz!",
+    "buttonLabel":"Ürün ekle",
+    "header": " Sepettim"
   },
   "favoritesForm":{
     "title":"Favorileriniz Yok",
     "desc":"Hemen ürünleri favorilere ekleyebilir , sevdiklerinizle paylaşabilirsiniz!",
     "buttonLabel":"Ürün ekle",
-    "populerText": " Favori Ürünler"
+    "header": " Favori Ürünler"
   },
   "collectionForm":{
     "title":"Koleksiyonunuz Yok",

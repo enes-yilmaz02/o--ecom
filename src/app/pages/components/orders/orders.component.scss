@@ -3,11 +3,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  max-height: auto; // Sayfa yüksekliğine uyumlu
+  width: 100%;
+  height: auto;
 
   .content {
     text-align: center;
     margin-left: 10px;
+    width: 100%;
+    height: auto;
     app-loading {
       // app-loading bileşeni için özel stil ekleyebilirsiniz
       display: flex;
@@ -23,6 +26,7 @@
     app-content-table {
       // app-content-table bileşeni için özel stil ekleyebilirsiniz
       width: 100%; // Tam genişlik
+      height: 100%;
       padding: 20px; // Kenar boşlukları
 
 

@@ -134,16 +134,17 @@
     "accordion5": "How can I submit my requests/questions regarding my product or order?",
     "buttonLabel": "Home page"
   },
-  "favoritesMainForm":{
-    "header":"Favorites",
-    "favPanel":"Favorites",
-    "colPanel":"Collections"
+  "cartsForm":{
+    "title":"Your Cart is Empty",
+    "desc":"You can add the products to the cart and buy immediately!",
+    "buttonLabel":"Add product",
+    "header": "Carts"
   },
   "favoritesForm":{
     "title":"You Don't Have Favorites",
     "desc":"You can immediately add the products to your favorites and share them with your loved ones!",
     "buttonLabel":"Add product",
-    "populerText": " Favorite Products"
+    "header": " Favorite Products"
   },
   "collectionForm":{
     "title":"You Don't Have a Collection",

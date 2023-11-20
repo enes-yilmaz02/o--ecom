@@ -15,7 +15,6 @@ import { AddproductFormComponent } from './components/product-management/addprod
 import { ProductService } from '../services/product.service';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { GetProductComponent } from './components/product-management/get-product/get-product.component';
-import { ProductSidebarComponent } from './components/product-management/product-sidebar/product-sidebar.component';
 import { DashboardSidebarComponent } from './components/dashboard-sidebar/dashboard-sidebar.component';
 import { UpdateProductComponent } from './components/product-management/update-product/update-product.component';
 import { GetUserComponent } from './components/user-management/get-user/get-user.component';
@@ -34,7 +33,6 @@ import { GetOrdersComponent } from './components/orders-management/get-orders/ge
        ProductManagementComponent,
        AddproductFormComponent,
        GetProductComponent,
-       ProductSidebarComponent,
        DashboardSidebarComponent,
        UpdateProductComponent,
        GetUserComponent,
