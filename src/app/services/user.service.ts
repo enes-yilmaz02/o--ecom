@@ -48,6 +48,13 @@ export class UserService {
     );
   }
 
+  sendEmailGlobal(body: any) {
+    return this.commonService.post(
+      `${this.usersEndPoint}/${this.sendEmailEndPoint}`,
+      body
+    );
+  }
+
   // Sipariş badge'ini güncelleyen fonksiyon
   updateOrderBadge(userId: string) {
     this.getOrders(userId).subscribe((items: any) => {

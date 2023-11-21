@@ -16,8 +16,10 @@ aside {
 }
 
 aside a {
+  margin-top: 40px;
   font-size: 14px;
   color: $dark-text;
+  cursor: pointer;
   display: block;
   padding: 12px;
   padding-left: 30px;

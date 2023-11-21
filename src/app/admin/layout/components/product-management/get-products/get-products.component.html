@@ -2,29 +2,22 @@
   <p-table
     [value]="products"
     dataKey="name"
+    [rows]="10"
+    [rowsPerPageOptions]="[10, 25, 50]"
+    [paginator]="true"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
     [tableStyle]="{ 'min-width': '60rem' }"
   >
     <ng-template pTemplate="header">
-      <tr>
+      <tr class="main">
         <th style="width: 5rem"></th>
-        <th pSortableColumn="name">
-          Name <p-sortIcon field="name"></p-sortIcon>
-        </th>
+        <th pSortableColumn="name">Name</th>
         <th>Image</th>
-        <th pSortableColumn="price">
-          Price <p-sortIcon field="price"></p-sortIcon>
-        </th>
-        <th pSortableColumn="category">
-          Category <p-sortIcon field="category"></p-sortIcon>
-        </th>
-        <th pSortableColumn="rating">
-          Reviews <p-sortIcon field="rating"></p-sortIcon>
-        </th>
-        <th pSortableColumn="inventoryStatus">
-          Status <p-sortIcon field="inventoryStatus"></p-sortIcon>
-        </th>
-        <th>Düzenle <p-sortIcon></p-sortIcon></th>
-        <th>Sil <p-sortIcon></p-sortIcon></th>
+        <th pSortableColumn="price">Price</th>
+        <th pSortableColumn="category">Category</th>
+        <th pSortableColumn="rating">Rating</th>
+        <th pSortableColumn="inventoryStatus">Status</th>
+        <th>Sil</th>
       </tr>
     </ng-template>
     <ng-template
@@ -122,40 +115,6 @@
               ></p-tag>
             </ng-template>
           </p-cellEditor>
-        </td>
-        <td>
-          <div class="flex align-items-center justify-content-center gap-2">
-            <button
-              *ngIf="!editing"
-              pButton
-              pRipple
-              type="button"
-              pInitEditableRow
-              icon="pi pi-pencil"
-              (click)="onRowEditInit(product)"
-              class="p-button-rounded p-button-text"
-            ></button>
-            <button
-              *ngIf="editing"
-              pButton
-              pRipple
-              type="button"
-              pSaveEditableRow
-              icon="pi pi-check"
-              (click)="onRowEditSave(product)"
-              class="p-button-rounded p-button-text p-button-success mr-2"
-            ></button>
-            <button
-              *ngIf="editing"
-              pButton
-              pRipple
-              type="button"
-              pCancelEditableRow
-              icon="pi pi-times"
-              (click)="onRowEditCancel(product, ri)"
-              class="p-button-rounded p-button-text p-button-danger"
-            ></button>
-          </div>
         </td>
         <td>
           <div class="flex align-items-center justify-content-center gap-2">

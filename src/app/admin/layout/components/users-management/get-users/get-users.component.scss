@@ -19,6 +19,20 @@ $background-color: #ecf0f1;
     font-size: 12px;
   }
 
+  th{
+    background-color: $dark-text;
+    color: #fff;
+  }
+
+  .p-icon{
+    color: #fff;
+  }
+
+  .p-dropdown-trigger{
+    .p-icon{
+      color: #666;
+    }
+  }
   .p-button-text{
     color:$secondary-color;
 

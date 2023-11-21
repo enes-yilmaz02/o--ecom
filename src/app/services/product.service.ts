@@ -4,81 +4,106 @@ import { Observable } from 'rxjs';
 import { CommonService } from './common.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProductService {
-
   productsEndpoint = 'products';
 
-  creoterOrdersEndPoint= 'orders';
+  creoterOrdersEndPoint = 'orders';
 
-  creoter= 'creoter';
+  creoter = 'creoter';
 
-  orders= 'orders';
+  orders = 'orders';
 
-  uploadEndPoint= 'upload';
+  uploadEndPoint = 'upload';
 
-  constructor(private commonService:CommonService ) { }
+  constructor(private commonService: CommonService) {}
 
-// Ürün ekleme işlemi
-addProduct(product:any) {
-  return this.commonService.post(`${this.productsEndpoint}`,product)
-}
+  calculateTotalRevenue(orders: any[]): number {
+    return orders.reduce((acc, current) => acc + current.totalAmount, 0);
+  }
 
-// orders ekleme işlemi
-addProductOrders(product:any) {
-  return this.commonService.post(`${this.creoterOrdersEndPoint}`,product)
-}
+  // Ürün ekleme işlemi
+  addProduct(product: any) {
+    return this.commonService.post(`${this.productsEndpoint}`, product);
+  }
 
-// get allorders  işlemi
-getAllProductOrders() {
-  return this.commonService.get(`${this.creoterOrdersEndPoint}`)
-}
+  // orders ekleme işlemi
+  addProductOrders(product: any) {
+    return this.commonService.post(`${this.creoterOrdersEndPoint}`, product);
+  }
 
-uploadFile(file: File): Observable<any> {
-  const formData: FormData = new FormData();
-  formData.append('file', file, file.name);
+  // get all orders  işlemi
+  getAllProductOrders() {
+    return this.commonService.get(`${this.creoterOrdersEndPoint}`);
+  }
 
-  return this.commonService.post( `${this.productsEndpoint}/${this.uploadEndPoint}` ,formData);
-}
-// Ürün güncelleme işlemi
-updateProduct(productId:any,body:any) {
-  return this.commonService.put(`${this.productsEndpoint}/${productId}`,body)
-}
+  uploadFile(file: File): Observable<any> {
+    const formData: FormData = new FormData();
+    formData.append('file', file, file.name);
 
-// Ürün silme işlemi
-deleteProduct(id: string) {
-  return this.commonService.delete(`${this.productsEndpoint}/${id}`);
-}
+    return this.commonService.post(
+      `${this.productsEndpoint}/${this.uploadEndPoint}`,
+      formData
+    );
+  }
+  // Ürün güncelleme işlemi
+  updateProduct(productId: any, body: any) {
+    return this.commonService.put(
+      `${this.productsEndpoint}/${productId}`,
+      body
+    );
+  }
 
-// Tüm ürünleri getirme
-getProducts(): Observable<Product[]> {
-  return this.commonService.get(this.productsEndpoint);
+  // Ürün silme işlemi
+  deleteProduct(id: string) {
+    return this.commonService.delete(`${this.productsEndpoint}/${id}`);
+  }
 
-}
+  // Tüm ürünleri getirme
+  getProducts(): Observable<Product[]> {
+    return this.commonService.get(this.productsEndpoint);
+  }
 
-// Tüm creoter ürünleri getirme
-getCreoterProducts(creoterId:string): Observable<Product[]> {
-  return this.commonService.get(`${this.productsEndpoint}/${this.creoter}/${creoterId}`);
-}
+  // Tüm creoter ürünleri getirme
+  getCreoterProducts(creoterId: string): Observable<Product[]> {
+    return this.commonService.get(
+      `${this.productsEndpoint}/${this.creoter}/${creoterId}`
+    );
+  }
 
-// Tüm creoter ürünleri getirme
-getAllCreoterOrders(): Observable<Product[]> {
-  return this.commonService.get(`${this.orders}`);
-}
+  // Tüm creoter ürünleri getirme
+  getAllCreoterOrders(): Observable<Product[]> {
+    return this.commonService.get(`${this.orders}`);
+  }
 
-// Tüm creoter ürünleri getirme
-getCreoterProduct(creoterId:string,productId:string): Observable<Product[]> {
-  return this.commonService.get(`${this.productsEndpoint}/${this.creoter}/${creoterId}/${productId}`);
-}
+   // Tüm creoter ürünleri getirme
+   getAllCreoterOrdersById(id:string): Observable<Product[]> {
+    return this.commonService.get(`${this.orders}/${id}`);
+  }
 
-// id göre creoter ürün silme
-deleteCreoterProduct(creoterId:string,productId:string): Observable<Product[]> {
-  return this.commonService.delete(`${this.productsEndpoint}/${this.creoter}/${creoterId}/${productId}`);
-}
+  // Tüm creoter ürünleri getirme
+  getCreoterProduct(
+    creoterId: string,
+    productId: string
+  ): Observable<Product[]> {
+    return this.commonService.get(
+      `${this.productsEndpoint}/${this.creoter}/${creoterId}/${productId}`
+    );
+  }
 
-// Bir ürünü getirme
-patchProductById(id:any) {
-  return this.commonService.get(`${this.productsEndpoint}/${id}`)
-}
+  // id göre creoter ürün silme
+  deleteCreoterProduct(
+    creoterId: string,
+    productId: string
+  ): Observable<Product[]> {
+    return this.commonService.delete(
+      `${this.productsEndpoint}/${this.creoter}/${creoterId}/${productId}`
+    );
+  }
+
+  // Bir ürünü getirme
+  patchProductById(id: any) {
+    return this.commonService.get(`${this.productsEndpoint}/${id}`);
+  }
 }

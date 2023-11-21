@@ -13,6 +13,10 @@ export class GetOrdersComponent {
 
   userData:any;
 
+  product: any;
+
+
+
   constructor(private productService:ProductService,private userService:UserService){
     this.getAllCreoterOrders();
   }
@@ -26,20 +30,23 @@ export class GetOrdersComponent {
       })
     });
   }
+
   getFileUrl(fileName: string): string {
     // Update the URL template based on your file structure in Google Cloud Storage
     return `http://localhost:8080/files/${fileName}`;
   }
 
 
+
+
   getSeverity(status: string) {
     switch (status) {
-        case 'INSTOCK':
-            return 'success';
-        case 'LOWSTOCK':
-            return 'warning';
-        case 'OUTOFSTOCK':
-            return 'danger';
+      case 'INSTOCK':
+        return 'success';
+      case 'LOWSTOCK':
+        return 'warning';
+      case 'OUTOFSTOCK':
+        return 'danger';
     }
-}
+  }
 }

@@ -1,6 +1,15 @@
+$primary-color: #3498db;
+$secondary-color: #1071b3;
+$danger-color: #e74c3c;
+$dark-text: #34495e;
+$light-text-second: #c0ddfb;
+$light-text: #ecf0f1;
+$light-text-hover: #91c9d7;
+$background-color: #ecf0f1;
 .card {
   float: left;
   width: 100%;
+
 }
 .product-id {
   text-decoration: none;
@@ -10,7 +19,7 @@
   position: absolute;
   z-index: 1;
   margin-top: 15px;
-  left: 1.5%;
+  left: 4%;
 }
 
 .product-card{
@@ -153,4 +162,26 @@
       color: RGB(255, 170, 74);
     }
   }
+  .p-button-rounded{
+    background-color: $secondary-color;
+    border: $primary-color;
+
+    &:hover{
+      background-color: $primary-color;
+    }
+  }
+
+  .p-dataview-layout-options{
+    .p-button{
+      background-color: $secondary-color;
+      border:none;
+      color:#fff;
+    }
+  }
+
+   .p-dataview-header {
+    background-color: $secondary-color;
+      border:none;
+      color:#fff;
+   }
 }

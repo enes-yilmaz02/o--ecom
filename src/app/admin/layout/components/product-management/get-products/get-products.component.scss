@@ -3,6 +3,7 @@ $primary-color: #3498db;
 $secondary-color: #1071b3;
 $danger-color: #e74c3c;
 $dark-text: #34495e;
+$dark-text-second: #c0ddfb;
 $light-text: #ecf0f1;
 $light-text-hover: #91c9d7;
 $background-color: #ecf0f1;
@@ -19,14 +20,28 @@ $background-color: #ecf0f1;
     font-size: 12px;
   }
 
+  .p-paginator{
+    .p-icon{
+      color: #666;
+    }
+  }
+
   .p-button-text{
     color:$secondary-color;
+  }
 
+  th{
+    background-color: $dark-text;
+    color:#fff;
   }
 
 
   .trash{
     color: $danger-color;
+  }
+
+  .p-icon{
+    color: RGB(255,170,74);
   }
 }
 

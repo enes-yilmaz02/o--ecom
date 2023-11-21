@@ -1,37 +1,85 @@
 <div class="card">
-  <p-table [value]="orders" [tableStyle]="{'min-width': '60rem'}">
-    <ng-template pTemplate="caption">
-      <div class="flex align-items-center justify-content-between">
-        Orders
-        <p-button icon="pi pi-refresh"></p-button>
-      </div>
-    </ng-template>
+  <p-table
+    [value]="orders"
+     dataKey="order"
+    [rows]="2"
+    [rowsPerPageOptions]="[2, 5, 10]"
+    [paginator]="true"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+    [tableStyle]="{ 'min-width': '60rem' }"
+    styleClass="table"
+  >
     <ng-template pTemplate="header">
+      <tr class="main">
+        <th style="width: 5rem"></th>
+        <th pSortableColumn="orderId">Order Id</th>
+        <th pSortableColumn="price">Amount</th>
+        <th pSortableColumn="userId">User Id</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-order let-expanded="expanded">
       <tr>
-        <th>Name</th>
-        <th>Image</th>
-        <th>Price</th>
-        <th>Category</th>
-        <th>Reviews</th>
-        <th>Creoter</th>
-        <th>Status</th>
+        <td>
+          <button
+            type="button"
+            pButton
+            pRipple
+            [pRowToggler]="order"
+            class="p-button-text p-button-rounded p-button-plain"
+            [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"
+          ></button>
+        </td>
+        <td>{{ order.id }}</td>
+        <td>{{ order.totalAmount | currency : "USD" }}</td>
+        <td>{{ order.userId }}</td>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-product>
-      <tr *ngFor="let order of product.orders">
-        <td>{{ order.name }}</td>
-        <td><img [src]="getFileUrl(order?.file)" [alt]="order.name" width="100" class="shadow-4" /></td>
-        <td>{{ order.priceStacked | currency:'USD' }}</td>
-        <td>{{ order.category.name }}</td>
-        <td><p-rating [ngModel]="order.valueRating" [readonly]="true" [cancel]="false"></p-rating></td>
-        <td>{{ order.companyName }}</td>
-        <td><p-tag [value]="order.selectedStatus.name" [severity]="getSeverity(order.selectedStatus.name)"></p-tag></td>
+    <ng-template pTemplate="rowexpansion" let-order>
+      <tr class="bodyOrder">
+        <td colspan="7">
+          <div class="p-3">
+            <p-table [value]="order.orders" dataKey="id">
+              <ng-template pTemplate="header">
+                <tr>
+                  <th pSortableColumn="id">Id</th>
+                  <th pSortableColumn="name">Name</th>
+                  <th pSortableColumn="image">Image</th>
+                  <th pSortableColumn="price">Price</th>
+                  <th pSortableColumn="quantity">Quantity</th>
+                  <th style="width: 4rem">Status</th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-product>
+                <tr>
+                  <td>{{ product.id }}</td>
+                  <td>{{ product.name }}</td>
+                  <td>
+                    <img
+                      [src]="getFileUrl(product?.file)"
+                      [alt]="product.name"
+                      width="50"
+                      class="shadow-4"
+                    />
+                  </td>
+                  <td>{{ product.priceStacked | currency : "USD" }}</td>
+                  <td>{{ product.quantity }}</td>
+                  <td>
+                    <p-tag
+                      [value]="product.selectedStatus.name"
+                      [severity]="getSeverity(product.selectedStatus.name)"
+                    ></p-tag>
+                  </td>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="emptymessage">
+                <tr>
+                  <td colspan="6">There are no order for this product yet.</td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+        </td>
       </tr>
-    </ng-template>
-    <ng-template pTemplate="summary">
-      <div class="flex align-items-center justify-content-between">
-        In total there are {{ orders ? orders.length : 0 }} products.
-      </div>
     </ng-template>
   </p-table>
 </div>

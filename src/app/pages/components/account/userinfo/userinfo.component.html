@@ -36,12 +36,12 @@
         <span class="p-float-label m-4">
           <i class="pi pi-calendar" style="color: #000"></i>
           <p-calendar
-            formControlName="calendar"
+            formControlName="bDate"
             styleClass="calendar"
             [showIcon]="false"
             id="calendar"
           ></p-calendar>
-          <label htmlFor="calendar">{{
+          <label htmlFor="bDate">{{
             "userinfoForm.date" | transloco
           }}</label>
         </span>
@@ -78,7 +78,7 @@
       </div>
       <div class="flex w-full justify-content-center">
         <span class="button-style">
-          <button pButton type="submit" class="button">
+          <button pButton type="submit" (click)="updateUser()" class="button">
             {{ "userinfoForm.buttonLabel" | transloco }}
           </button>
         </span>

@@ -43,10 +43,10 @@
                 class="flex flex-column align-items-center sm:align-items-start gap-3"
               >
                 <img
-                  class="w-9 shadow-2 border-round"
+                  class="shadow-2 border-round"
                   [src]="getFileUrl(product?.file)"
                   [alt]="product?.name"
-                  width="200px"
+                  width="250px"
                   height="200px"
                 />
                 <div class="text-2xl font-bold text-900">
@@ -69,7 +69,7 @@
                 </div>
               </div>
               <div>
-                <h6 class="mb-3 mt-3">{{product?.companyName}}</h6>
+                <h6 class="mb-3 mt-3 font-bold">{{product?.companyName}}</h6>
                 <p class="line-height-base">
                   {{ product?.description }}
                 </p>
@@ -113,16 +113,9 @@
                 class="w-9 shadow-2 border-round"
                 [src]="getFileUrl(product?.file)"
                 [alt]="product?.name"
-                width="200px"
+                width="300px"
                 height="200px"
               />
-              <!-- <ng-template #defaultImage>
-                  <img
-                    class="w-9 shadow-2 border-round"
-                    src="assets/images/angular.jpeg"
-                    alt="Default Image"
-                  />
-                </ng-template> -->
               <div class="text-2xl font-bold">{{ product?.name | truncate:15 }}</div>
               <p-rating
                 [ngModel]="product.valueRating"
@@ -131,7 +124,7 @@
               ></p-rating>
             </div>
             <div>
-              <h6 class="mb-3 mt-3">{{ product?.companyName }}</h6>
+              <h6 class="mb-3 mt-3 font-bold">{{ product?.companyName }}</h6>
              <div class="description">
               <p class="line-height-base">
                 {{ product?.description | truncate: 100}}

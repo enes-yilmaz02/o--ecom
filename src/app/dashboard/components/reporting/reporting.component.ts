@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { Table } from 'primeng/table';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription, tap } from 'rxjs';
 import { ProductService } from 'src/app/services/product.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-reporting',
@@ -10,175 +11,134 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class ReportingComponent {
 
-  knobValue: number = 90;
+  chartData: any;
 
-  selectedWeek: any;
+  chartDataProduct:any;
 
-  weeks: any[] = [];
+  chartOptions: any;
 
-  barData: any;
+  usersCount: any;
 
-  barOptions: any;
+  ordersCount: any;
 
-  pieData: any;
+  productsCount: any;
 
-  pieOptions: any;
+  revenue: any;
 
-  products: any[] = [];
+  creoterId:any;
 
-  subscription: Subscription;
-
-  cols: any[] = [];
-
-  constructor(private productService: ProductService) {
-
-  }
+  constructor(
+    private userService: UserService,
+    private productService: ProductService
+  ) {}
 
   ngOnInit(): void {
-      this.weeks = [{
-          label: 'Last Week',
-          value: 0,
-          data: [[65, 59, 80, 81, 56, 55, 40], [28, 48, 40, 19, 86, 27, 90]]
-      },
-      {
-          label: 'This Week',
-          value: 1,
-          data: [[35, 19, 40, 61, 16, 55, 30], [48, 78, 10, 29, 76, 77, 10]]
-      }];
+    this.getUsersCount();
+    this.getOrdersCount();
+    this.getProductsCount();
 
-      this.selectedWeek = this.weeks[0];
-      this.initCharts();
-
-      this.cols = [
-          {header: 'Name', field: 'name'},
-          {header: 'Category', field: 'category'},
-          {header: 'Price', field: 'price'},
-          {header: 'Status', field: 'inventoryStatus'}
-      ]
   }
 
-  initCharts() {
+  getUserId(): Observable<any> {
+    return this.userService.getTokenId().pipe(
+      tap((id: any) => {
+        this.creoterId = id;
+      })
+    );
+  }
+
+  getUsersCount() {
+    this.userService.getUsers().subscribe((data: any) => {
+      this.usersCount = data.length;
+
+      const roleCountMap = new Map();
+
+      data.forEach(user => {
+        const role = user.role;
+        roleCountMap.set(role, (roleCountMap.get(role) || 0) + 1);
+      });
+
+      //ADMİN CREOTER ve USER sayıları
+      const creoterCount = roleCountMap.get("CREOTER") || 0;
+      const userCount = roleCountMap.get("USER") || 0;
+      const adminCount=roleCountMap.get('ADMİN') || 0;
+
+      // Diğer işlemleri yapabilirsiniz
       const documentStyle = getComputedStyle(document.documentElement);
-      const textColor = documentStyle.getPropertyValue('--text-color');
-      const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
-      const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
 
-      this.barData = {
-          labels: ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'],
-          datasets: [
-              {
-                  label: 'Revenue',
-                  backgroundColor: documentStyle.getPropertyValue('--primary-500'),
-                  barThickness: 12,
-                  borderRadius: 12,
-                  data: this.selectedWeek.data[0]
-              },
-              {
-                  label: 'Profit',
-                  backgroundColor: documentStyle.getPropertyValue('--primary-200'),
-                  barThickness: 12,
-                  borderRadius: 12,
-                  data: this.selectedWeek.data[1]
-              }
-          ]
-      };
-
-      this.pieData = {
-          labels: ['Electronics', 'Fashion', 'Household'],
-          datasets: [
-              {
-                  data: [300, 50, 100],
-                  backgroundColor: [
-                      documentStyle.getPropertyValue('--primary-700'),
-                      documentStyle.getPropertyValue('--primary-400'),
-                      documentStyle.getPropertyValue('--primary-100')
-                  ],
-                  hoverBackgroundColor: [
-                      documentStyle.getPropertyValue('--primary-600'),
-                      documentStyle.getPropertyValue('--primary-300'),
-                      documentStyle.getPropertyValue('--primary-200')
-                  ]
-              }
-          ]
-      };
-
-      this.barOptions = {
-          animation: {
-              duration: 0
+      // chartData'yı güncelle
+      this.chartData = {
+        labels: ['Admin', 'Creoter', 'User'],
+        datasets: [
+          {
+            label: 'First Dataset',
+            data: [adminCount,creoterCount, userCount],
+            fill: false,
+            backgroundColor: documentStyle.getPropertyValue('--bluegray-700'),
+            borderColor: documentStyle.getPropertyValue('--bluegray-700'),
+            tension: 0.4,
           },
-          plugins: {
-              legend: {
-                  labels: {
-                      color: textColor,
-                      usePointStyle: true,
-                      font: {
-                          weight: 700,
-                      },
-                      padding: 28
-                  },
-                  position: 'bottom'
-              }
-          },
-          scales: {
-              x: {
-                  ticks: {
-                      color: textColorSecondary,
-                      font: {
-                          weight: 500
-                      }
-                  },
-                  grid: {
-                      display: false,
-                      drawBorder: false
-                  }
-              },
-              y: {
-                  ticks: {
-                      color: textColorSecondary
-                  },
-                  grid: {
-                      color: surfaceBorder,
-                      drawBorder: false
-                  }
-              }
-          }
+        ],
       };
-
-      this.pieOptions = {
-          animation: {
-              duration: 0
-          },
-          plugins: {
-              legend: {
-                  labels: {
-                      color: textColor,
-                      usePointStyle: true,
-                      font: {
-                          weight: 700,
-                      },
-                      padding: 28
-                  },
-                  position: 'bottom'
-              }
-          }
-      };
+    });
   }
 
-  onWeekChange() {
-      let newBarData = {...this.barData};
-      newBarData.datasets[0].data = this.selectedWeek.data[0];
-      newBarData.datasets[1].data = this.selectedWeek.data[1];
-      this.barData = newBarData;
+
+  getOrdersCount() {
+    this.getUserId().subscribe(()=>{
+      this.productService.getAllCreoterOrdersById(this.creoterId).subscribe((data:any) => {
+        this.ordersCount = data.length;
+        console.log(data);
+        // Assuming 'totalAmount' is the key for the price in each order
+      const totalAmounts = data.map(order => order.totalAmount);
+
+      // Calculate total revenue by summing up the 'totalAmount' values
+      this.revenue = this.calculateTotalRevenue(totalAmounts);
+      console.log('Total revenue:', this.revenue);
+    });
+  });
+
   }
 
-  onGlobalFilter(table: Table, event: Event) {
-      table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
+  calculateTotalRevenue(amounts: number[]): number {
+    // Use reduce to sum up all amounts
+    return amounts.reduce((total, amount) => total + amount, 0);
   }
 
-  ngOnDestroy(): void {
-      if (this.subscription) {
-          this.subscription.unsubscribe();
-      }
-  }
+  getProductsCount() {
+    this.productService.getProducts().subscribe(async (data:any) => {
+      this.productsCount = data.length;
+      console.log(this.productsCount);
+      console.log(data);
+      const roleCountMap = new Map();
 
+      data.forEach(product => {
+        const categoryCount =product.category?.name ;
+        roleCountMap.set(categoryCount, (roleCountMap.get(categoryCount) || 0) + 1);
+      });
+
+      const eltCount = roleCountMap.get("Electronics") || 0;
+      const cloCount = roleCountMap.get("Clothing") || 0;
+      const acsCount = roleCountMap.get('Accessories') || 0;
+      const fitCount = roleCountMap.get('Fitness') || 0;
+
+       // Diğer işlemleri yapabilirsiniz
+       const documentStyle = getComputedStyle(document.documentElement);
+
+       // chartData'yı güncelle
+       this.chartDataProduct = {
+         labels: ['Electronics', 'Clothing', 'Accessories','Fitness'],
+         datasets: [
+           {
+             label: 'First Dataset',
+             data: [eltCount,cloCount, acsCount, fitCount],
+             fill: false,
+             backgroundColor: documentStyle.getPropertyValue('--bluegray-700'),
+             borderColor: documentStyle.getPropertyValue('--bluegray-700'),
+             tension: 0.4,
+           },
+         ],
+       };
+    });
+  }
 }
