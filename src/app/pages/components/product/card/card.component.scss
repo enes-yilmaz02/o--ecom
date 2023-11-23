@@ -7,34 +7,29 @@ $light-text: #ecf0f1;
 $light-text-hover: #91c9d7;
 $background-color: #ecf0f1;
 .card {
-  float: left;
-  width: 100%;
-
+  width: auto;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
 }
 .product-id {
   text-decoration: none;
   color: black;
 }
 .search {
-  position: absolute;
+  position: relative;
   z-index: 1;
-  margin-top: 15px;
-  left: 4%;
 }
 
 .product-card{
   overflow: hidden;
   transition: transform 0.3s ease-in-out;
-  height: 100%;
+  height: 500px;
+  width: 300px;
 
   &:hover {
     transform: translateY(-5px);
   }
-}
-
-.description{
-  width: auto;
-  height: 150px;
 }
 
 .card {
@@ -185,3 +180,4 @@ $background-color: #ecf0f1;
       color:#fff;
    }
 }
+

@@ -159,6 +159,8 @@
           id="phone"
           formControlName="phone"
           pTooltip="{{'registerForm.phoneTooltip' | transloco }}"
+          (keypress)="validateNumericInput($event)"
+          maxlength="11"
         />
         <label htmlFor="phone">{{
           "registerForm.phoneLabel" | transloco

@@ -234,5 +234,28 @@
     "codeLabel":"Doğrulama Kodu",
     "codeSmall":"* Kod alanı boş bırakılamaz",
     "codeButton":"Gönder"
+  },
+  "cardElementForm":{
+    "category":"Kategoriler",
+    "advantage":"Avantajlı Ürünler",
+    "electronics":"Elektronik",
+    "clothing":"Giyim",
+    "gender":"Cinsiyet",
+    "male":"Erkek",
+    "female":"Kadın",
+    "unisex":"Unisex",
+    "price":"Fiyat Aralığı",
+    "color":"Renk",
+    "size":"Topuk Boyu",
+    "buyertype":"Satıcı Tipi",
+    "usearea":"Kullanım Alanı",
+    "material":"Materyal",
+    "property":"Ek Özellik",
+    "bsize":"Bağlama Şekli",
+    "fenomen":"Fenomenlerin Seçtikleri",
+    "taban":"Taban Materyali",
+    "priceHistory":"Fiyat Geçmişi",
+    "region":"Ortam"
   }
+
 }

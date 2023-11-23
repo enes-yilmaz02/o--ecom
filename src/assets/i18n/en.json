@@ -234,7 +234,30 @@
     "codeLabel":"Verification Code",
     "codeSmall":"* Code field cannot be left blank",
     "codeButton":"Send"
+  },
+  "cardElementForm":{
+    "category":"Categorys",
+    "advantage":"Advantageous Products",
+    "electronics":"Elektronics",
+    "clothing":"Clothing",
+    "gender":"Gender",
+    "male":"Male",
+    "female":"Female",
+    "unisex":"Unisex",
+    "price":"Price range",
+    "color":"Color",
+    "size":"Heel Height",
+    "buyertype":"Seller Type",
+    "usearea":"Area of Use",
+    "material":"Material",
+    "property":"Additional Feature",
+    "bsize":"Binding Type",
+    "fenomen":"Phenomenon's Choices",
+    "taban":"Base Material",
+    "priceHistory":"Price History",
+    "region":"Environment"
   }
+
 
 }
 

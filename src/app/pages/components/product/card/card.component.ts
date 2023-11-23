@@ -20,6 +20,8 @@ export class CardComponent implements OnInit {
   sortOptions: SelectItem[] = [];
   files: any[] = [];
 
+  liked: boolean = true;
+
   constructor(private productService:ProductService,private http: HttpClient) {
 
   }
