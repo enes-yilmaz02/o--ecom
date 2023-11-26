@@ -67,7 +67,7 @@
             class="pi text-2xl cursor-pointer"
             [ngClass]="{
               'pi-heart text-600': !liked,
-              'pi-heart-fill text-blue-500': liked
+              'pi-heart-fill text-red-500': liked
             }"
             (click)="liked = !liked; addToCartFavorites()"
           ></i>

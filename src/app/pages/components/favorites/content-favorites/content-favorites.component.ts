@@ -41,6 +41,7 @@ export class ContentFavoritesComponent {
           severity:'success',
           summary:'Favori silindi!',
         });
+        this.getFavorites();
       },
       (error)=>{
         console.log(error);
@@ -50,7 +51,6 @@ export class ContentFavoritesComponent {
   }
 
   getFileUrl(fileName: string): string {
-    // Update the URL template based on your file structure in Google Cloud Storage
     return `http://localhost:8080/files/${fileName}`;
   }
 

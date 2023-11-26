@@ -14,6 +14,9 @@ import { StaticsComponent } from './layout/components/statics/statics.component'
       path:'' , component:LayoutComponent ,
       children:[
         {
+          path:'', component:UsersManagementComponent
+        },
+        {
           path:'users-management' , component:UsersManagementComponent
         },
         {

@@ -6,178 +6,100 @@ $light-text-second: #c0ddfb;
 $light-text: #ecf0f1;
 $light-text-hover: #91c9d7;
 $background-color: #ecf0f1;
-.card {
-  width: auto;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-}
-.product-id {
-  text-decoration: none;
-  color: black;
-}
-.search {
-  position: relative;
-  z-index: 1;
+
+.product-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  padding: 30px;
 }
 
-.product-card{
+.product-card {
+  width: 300px;
+  margin: 16px;
+  padding: 16px;
+  background-color: #ffffff;
+  box-shadow: 0 0 10px $dark-text;
+  border-radius: 8px;
   overflow: hidden;
   transition: transform 0.3s ease-in-out;
-  height: 500px;
-  width: 300px;
 
   &:hover {
-    transform: translateY(-5px);
+    transform: scale(1.05);
   }
-}
 
-.card {
-  .flex {
+  .product-image {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-  }
+    justify-content: center;
 
-  .product-id {
-    text-decoration: none;
-    color: inherit;
-  }
-
-  .listItem,
-  .gridItem {
-    a {
-      color: inherit;
-      text-decoration: none;
-
-      .border-round {
-        border-radius: 8px;
-      }
-
-      .surface-border {
-        border: 1px solid #ddd;
-
-      }
-
-      .surface-card {
-        background-color: #fff;
-
-      }
-
-      img {
-        max-width: 100%;
-        height: auto;
-      }
-
-      .p-rating {
-        margin-top: 10px;
-      }
-
-      button {
-        margin-top: 10px;
-      }
+    img {
+      max-width: 100%;
+      width: auto;
+      max-height: 150px;
+      height: auto;
+      object-fit: cover;
+      border-radius: 8px;
     }
   }
 
-  .listItem {
-    .product-id {
-      .flex {
-        flex-direction: column;
-      }
+  .product-info {
+    margin-top: 16px;
 
-      .align-items-center {
-        align-items: center;
-      }
-
-      .justify-content-between {
-        justify-content: space-between;
-      }
-
-      .align-self-end {
-        align-self: flex-end;
-      }
-
-      .text-2xl {
-        font-size: 1.5rem;
-      }
-    }
-  }
-
-  .gridItem {
-    .p-2 {
-      padding: 8px;
+    .product-title {
+      font-size: 1rem;
+      margin-bottom: 8px;
     }
 
-    .col-12 {
+    .product-description {
+      margin-bottom: 16px;
+      font-size: 0.8rem;
+    }
+
+    .product-price {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 16px;
+    }
+
+    .add-to-cart {
+      display: block;
       width: 100%;
-
-    }
-
-    .col-6 {
-      width: 50%;
-    }
-
-    .col-12,
-    .col-6 {
       padding: 8px;
-    }
-
-    .py-5 {
-      padding-top: 1.25rem;
-      padding-bottom: 1.25rem;
-    }
-
-    .gap-2 {
-      gap: 0.5rem;
-    }
-
-    .gap-3 {
-      gap: 0.75rem;
-    }
-
-    .gap-4 {
-      gap: 1rem;
-    }
-
-    .flex-wrap {
-      flex-wrap: wrap;
-    }
-  }
-
-  @media (max-width: 767px) {
-    .flex {
-      flex-direction: column;
-    }
-  }
-}
-
-:host ::ng-deep {
-  .p-rating{
-    .p-icon {
-      color: RGB(255, 170, 74);
-    }
-  }
-  .p-button-rounded{
-    background-color: $secondary-color;
-    border: $primary-color;
-
-    &:hover{
       background-color: $primary-color;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease-in-out;
+
+      &:hover {
+        background-color: $secondary-color;
+      }
+    }
+    .more-cart {
+      display: block;
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 16px;
+      background-color: $dark-text;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease-in-out;
+
+      &:hover {
+        background-color: #3b3d3f;
+      }
     }
   }
-
-  .p-dataview-layout-options{
-    .p-button{
-      background-color: $secondary-color;
-      border:none;
-      color:#fff;
-    }
-  }
-
-   .p-dataview-header {
-    background-color: $secondary-color;
-      border:none;
-      color:#fff;
-   }
 }
 
+:host ::ng-deep{
+  .p-rating{
+    .p-icon{
+      color: RGB(255,170,74);
+    }
+  }
+}

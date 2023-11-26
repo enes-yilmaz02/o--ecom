@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute} from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { Observable, map, tap } from 'rxjs';
 import { ProductService } from 'src/app/services/product.service';
@@ -10,8 +10,7 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './card-detail.component.html',
   styleUrls: ['./card-detail.component.scss'],
 })
-export class CardDetailComponent  implements OnInit {
-
+export class CardDetailComponent implements OnInit {
   productId: string;
 
   product: any;
@@ -20,7 +19,7 @@ export class CardDetailComponent  implements OnInit {
 
   productPrice: number;
 
-  body:any;
+  body: any;
 
   liked: boolean = false;
 
@@ -30,29 +29,53 @@ export class CardDetailComponent  implements OnInit {
 
   quantity: number = 1;
 
-  userId: any ;
+  userId: any;
 
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
     private messageService: MessageService,
-    private userService:UserService
-  ) {
-  }
-
+    private userService: UserService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    this.getProductId().subscribe(productId => {
-      this.productService.patchProductById(productId).subscribe(async (data: any) => {
-        this.product = await data;
-        console.log(this.product.email)
-        this.productPrice = Number(this.product?.priceStacked);
+    this.getProductId().subscribe((productId) => {
+      this.productService
+        .patchProductById(productId)
+        .subscribe(async (data: any) => {
+          this.product = await data;
+          this.productPrice = Number(this.product?.priceStacked);
+          this.checkIfProductIsLiked();
+        });
+    });
+    this.route.queryParams.subscribe((params) => {
+      this.liked = params['liked'] === 'true';
+    });
+  }
+
+  updateUrlWithLikedParam(liked: boolean) {
+    // Router parametrelerini güncelle
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { liked: liked.toString() },
+      queryParamsHandling: 'merge',
+    });
+  }
+
+  checkIfProductIsLiked() {
+    this.getUserId().subscribe(() => {
+      this.userService.getFavorites(this.userId).subscribe((favorites: any) => {
+        const isAlreadyInFavorites = favorites.some(
+          (favorite: { productId: string }) =>
+            favorite.productId === this.productId
+        );
+        this.liked = isAlreadyInFavorites;
       });
     });
   }
 
   getFileUrl(fileName: string): string {
-    // Update the URL template based on your file structure in Google Cloud Storage
     return `http://localhost:8080/files/${fileName}`;
   }
 
@@ -64,11 +87,9 @@ export class CardDetailComponent  implements OnInit {
     );
   }
 
-    getProductId(): Observable<string> {
-      return this.route.params.pipe(
-        map(params => params['id'])
-      );
-    }
+  getProductId(): Observable<string> {
+    return this.route.params.pipe(map((params) => params['id']));
+  }
 
   getSeverity(product: any) {
     switch (product?.selectedStatus) {
@@ -83,42 +104,36 @@ export class CardDetailComponent  implements OnInit {
     }
   }
 
-  addToCart(body:any) {
+  addToCart(body: any) {
     if (this.defaultValue >= 1) {
-     this.getUserId().subscribe(()=>{
-      this.getProductId().subscribe(productId=>{
-        // body içindeki quantity değerini güncelle
-        body.quantity = this.defaultValue;
-        body.creoterId=this.product.creoterId;
-        body.email=this.product.email;
-        this.userService.addCart(this.userId , productId , body).subscribe(
-          (response: any) => {
-            if (response) {
-              // HTTP durum kodu kontrolü
-              this.messageService.add({
-                severity: 'success',
-                summary: 'Başarılı',
-                detail: 'Ürün sepete eklendi',
-              });
-              setTimeout(() => {
-                window.location.reload();
-              }, 1500);
-            } else {
-              // HTTP durum kodu başarısızsa hata mesajı göster
-              this.messageService.add({
-                severity: 'error',
-                summary: 'Başarısız',
-                detail: 'Ürün sepete eklenemedi',
-              });
+      this.getUserId().subscribe(() => {
+        this.getProductId().subscribe((productId) => {
+          body.quantity = this.defaultValue;
+          body.creoterId = this.product.creoterId;
+          body.email = this.product.email;
+          this.userService.addCart(this.userId, productId, body).subscribe(
+            (response: any) => {
+              if (response) {
+                this.messageService.add({
+                  severity: 'success',
+                  summary: 'Başarılı',
+                  detail: 'Ürün sepete eklendi',
+                });
+              } else {
+                this.messageService.add({
+                  severity: 'error',
+                  summary: 'Başarısız',
+                  detail: 'Ürün sepete eklenemedi',
+                });
+              }
+            },
+            (error) => {
+              // Hata durumunda mesaj göster
+              console.log(error);
             }
-          },
-          (error) => {
-            // Hata durumunda mesaj göster
-            console.log(error)
-          }
-        );
+          );
+        });
       });
-     });
     } else if (this.defaultValue === 0) {
       this.messageService.add({
         severity: 'warn',
@@ -126,28 +141,51 @@ export class CardDetailComponent  implements OnInit {
         detail: 'Ürün miktarı giriniz',
       });
     }
-    // defaultValue'yi sıfırla
     this.defaultValue = 0;
   }
-
-
 
   updateProductPrice(): void {
     this.productPrice = this.defaultValue * this.product?.priceStacked;
   }
 
-  addToCartFavorites(){
-   this.getUserId().subscribe(()=>{
-    this.getProductId().subscribe(productId=>{
-      this.userService.addFavorite(this.userId, productId, this.product).subscribe(()=>{
-        this.messageService.add({
-          severity:'success',
-          summary:'Başarılı',
-          detail:"Favorilere eklendi"
+  addToCartFavorites() {
+    this.getUserId().subscribe(() => {
+      this.getProductId().subscribe((productId) => {
+        this.userService.getFavorites(this.userId).subscribe((favorites: any) => {
+          const isAlreadyInFavorites = favorites.some(
+            (favorite:any) =>
+              favorite.productId === this.product.productId
+          );
+
+          if (isAlreadyInFavorites) {
+            // Ürün favorilerde varsa silme işlemi gerçekleştir
+            this.userService.deleteFavorite(this.userId, productId).subscribe(() => {
+              console.log(productId);
+              this.liked = false;
+              this.updateUrlWithLikedParam(this.liked);
+
+              this.messageService.add({
+                severity: 'success',
+                summary: 'Başarılı',
+                detail: 'Favorilerden kaldırıldı',
+              });
+            });
+          } else {
+            // Ürün favorilerde yoksa ekleme işlemi gerçekleştir
+            this.userService.addFavorite(this.userId, productId, this.product).subscribe(() => {
+              this.liked = true;
+              this.updateUrlWithLikedParam(this.liked);
+
+              this.messageService.add({
+                severity: 'success',
+                summary: 'Başarılı',
+                detail: 'Favorilere eklendi',
+              });
+            });
+          }
         });
-        setTimeout(()=>{window.location.reload()},1500);
       });
-    })
-   })
+    });
   }
+
 }

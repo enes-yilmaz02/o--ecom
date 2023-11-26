@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslocoService } from '@ngneat/transloco';
 import { Observable, tap } from 'rxjs';
+import { BadgeService } from 'src/app/services/badge.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -27,26 +28,39 @@ export class NavbarListComponent implements OnInit {
 
   constructor(
     private transloco: TranslocoService,
-    private userService: UserService
+    private userService: UserService,
+    private badgeService: BadgeService
       ) {}
 
       ngOnInit(): void {
         this.getUserId().subscribe(userId => {
-          this.userService.getOrders(userId).subscribe((orders:any) => {
+          this.userService.getOrders(userId).subscribe((orders: any) => {
             this.orderBadge = orders.length.toString();
           });
         });
 
         this.getUserId().subscribe(userId => {
-          this.userService.getFavorites(userId).subscribe((favorites:any) => {
+          this.userService.getFavorites(userId).subscribe((favorites: any) => {
             this.favoritesBadge = favorites.length.toString();
           });
         });
 
         this.getUserId().subscribe(userId => {
-          this.userService.getCarts(userId).subscribe((carts:any) => {
+          this.userService.getCarts(userId).subscribe((carts: any) => {
             this.cartsBadge = carts.length.toString();
           });
+        });
+
+        this.badgeService.orderBadge$.subscribe(count => {
+          this.orderBadge = count.toString();
+        });
+
+        this.badgeService.favoritesBadge$.subscribe(count => {
+          this.favoritesBadge = count.toString();
+        });
+
+        this.badgeService.cartsBadge$.subscribe(count => {
+          this.cartsBadge = count.toString();
         });
       }
 

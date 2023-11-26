@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable, catchError, map, of, tap } from 'rxjs';
 import { CommonService } from './common.service';
 import { AuthService } from './auth/auth.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { BadgeService } from './badge.service';
 // Kullanıcı işlemlerini yöneten servis
 @Injectable({
   providedIn: 'root',
@@ -25,21 +26,14 @@ export class UserService {
   role: any;
   userData: any;
 
-  // Siparişler için bir Badge (bildirim sayacı)
-  orderBadge: BehaviorSubject<number> = new BehaviorSubject<number>(0);
-
-  // Siparişler için bir Badge (bildirim sayacı)
-  cartBadge: BehaviorSubject<number> = new BehaviorSubject<number>(0);
-
-  // Favoriler için bir Badge
-  favoritesBadge: BehaviorSubject<number> = new BehaviorSubject<number>(0);
 
   // Constructor, servis bağımlılıklarını enjekte eder
   constructor(
     private commonService: CommonService,
     private authService: AuthService,
-    private jwtHelper: JwtHelperService
-  ) {}
+    private jwtHelper: JwtHelperService,
+    private badgeService:BadgeService
+    ) {}
 
   sendEmail(userId: any, body: any) {
     return this.commonService.post(
@@ -55,14 +49,14 @@ export class UserService {
     );
   }
 
-  // Sipariş badge'ini güncelleyen fonksiyon
-  updateOrderBadge(userId: string) {
-    this.getOrders(userId).subscribe((items: any) => {
-      if (items && items.length !== undefined) {
-        this.orderBadge.next(items.length);
-      }
-    });
-  }
+  // // Sipariş badge'ini güncelleyen fonksiyon
+  // updateOrderBadge(userId: string) {
+  //   this.getOrders(userId).subscribe((items: any) => {
+  //     if (items && items.length !== undefined) {
+  //       this.orderBadge.next(items.length);
+  //     }
+  //   });
+  // }
 
   // Belirli bir kullanıcının siparişlerini getiren fonksiyon
   getOrders(userId: string): Observable<Users> {
@@ -71,7 +65,7 @@ export class UserService {
       .pipe(
         tap((items: any) => {
           if (items && items.length !== undefined) {
-            this.orderBadge.next(items.length);
+            this.badgeService.updateOrderBadge(items.length);
           }
         })
       );
@@ -110,6 +104,12 @@ export class UserService {
   getFavorites(userId: string): Observable<Users> {
     return this.commonService.get(
       `${this.usersEndPoint}/${userId}/${this.favoritesEndPoint}`
+    ).pipe(
+      tap((items: any) => {
+        if (items && items.length !== undefined) {
+          this.badgeService.updateFavoritesBadge(items.length);
+        }
+      })
     );
   }
 
@@ -155,6 +155,12 @@ export class UserService {
   getCarts(userId: string): Observable<Users> {
     return this.commonService.get(
       `${this.usersEndPoint}/${userId}/${this.cartsEndPoint}`
+    ).pipe(
+      tap((items: any) => {
+        if (items && items.length !== undefined) {
+          this.badgeService.updateCartsBadge(items.length);
+        }
+      })
     );
   }
 

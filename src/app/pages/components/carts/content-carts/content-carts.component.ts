@@ -107,7 +107,6 @@ export class ContentCartsComponent {
             summary: 'Ürün sepetten kaldırıldı',
           });
           this.getCarts();
-          window.location.reload();
         },
         (error) => {
           // Hata durumunda mesaj göster
@@ -181,9 +180,6 @@ export class ContentCartsComponent {
               });
               // Sipariş tamamlandıktan sonra sepeti boşalt
               this.clearCart();
-              setTimeout(() => {
-                window.location.reload();
-              }, 1500);
             });
           } else {
             // HTTP durum kodu başarısızsa hata mesajı göster

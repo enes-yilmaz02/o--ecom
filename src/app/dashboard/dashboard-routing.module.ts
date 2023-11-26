@@ -9,6 +9,7 @@ import { UpdateProductComponent } from './components/product-management/update-p
 import { OrdersManagementComponent } from './components/orders-management/orders-management.component';
 import { ProfilManagementComponent } from './components/profil-management/profil-management.component';
 import { ReportingComponent } from './components/reporting/reporting.component';
+import { LayoutCreoterComponent } from './layout-creoter/layout-creoter.component';
 
 @NgModule({
   declarations: [],
@@ -16,7 +17,7 @@ import { ReportingComponent } from './components/reporting/reporting.component';
     CommonModule,
     RouterModule.forChild([
       {
-        path: '', component: DashboardComponent, children: [
+        path: '', component: LayoutCreoterComponent, children: [
           {
             path: '', component: ProductManagementComponent , children:[
               {

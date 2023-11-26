@@ -1,4 +1,4 @@
-<div class="card">
+<!-- <div class="card">
   <div class="block search">
     <div class="p-input-icon-left search-text mr-3">
       <i class="pi pi-search"></i>
@@ -72,5 +72,35 @@
       </div>
     </ng-template>
   </p-dataView>
+</div>
+ -->
+
+ <div class="product-container">
+  <div class="product-card" *ngFor="let product of product">
+    <div class="product-image">
+      <img [src]="getFileUrl(product.file)" alt="Product Image">
+    </div>
+    <div class="product-info">
+      <h2 class="product-title">{{product.name}}</h2>
+      <div class="flex flex-row justify-content-between">
+        <p class="product-description">{{product.category.name}}</p>
+        <p class="product-description">{{product.selectedStatus.name}}</p>
+      </div>
+      <div class="flex flex-row justify-content-between">
+        <p class="product-description">{{product.description | truncate:50}}</p>
+      </div>
+      <div class="product-price flex flex-row justify-content-between">
+        <p>{{product.priceStacked | currency:'USD'}}</p>
+        <p-rating
+                [ngModel]="product.valueRating"
+                [readonly]="true"
+                [cancel]="false"
+                styleClass="rating"
+              ></p-rating>
+      </div>
+      <button class="more-cart" [routerLink]="['/pages/product', product.id]">More +</button>
+      <button class="add-to-cart" (click)="addToCart(product , product.id)" >Add to Cart</button>
+    </div>
+  </div>
 </div>
 
