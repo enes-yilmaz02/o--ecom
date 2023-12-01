@@ -285,6 +285,12 @@
     "Man": "Erkek",
     "Women": "Kadın",
     "Children": "Çocuk"
+  },
+
+  "cardDetail":{
+    "header":"Açıklama",
+    "title":"Ürün açıklaması",
+    "quantity":"Ürün Stok Miktarı(adet): "
   }
 
 }

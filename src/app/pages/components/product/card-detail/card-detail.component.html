@@ -1,17 +1,11 @@
 <div class="surface-section px-6 py-6 border-1 surface-border border-round">
-  <div class="grid mb-7">
-    <div class="col-12 lg:col-7">
+  <div class="flex flex-row justify-content-center align-content-center">
       <div class="flex">
-        <div class="pl-3 w-10 flex">
           <img
             [src]="getFileUrl(product?.file)"
-            class="border-2 border-transparent border-round"
-            width="500px"
-            height="400px"
+            class="border-2 border-transparent border-round image"
           />
-        </div>
       </div>
-    </div>
     <div class="col-12 lg:col-4 py-3 lg:pl-6">
       <div class="flex align-items-center text-xl font-medium text-900 mb-4">
         {{ product?.name }}
@@ -35,11 +29,11 @@
           >
         </div>
       </div>
-      <div class="font-bold text-900 mb-3">Quantity</div>
+      <div class="font-bold text-900 mb-3">{{'cardDetail.quantity' | transloco}} {{product?.quantity}} </div>
       <div
         class="flex flex-column"
       >
-        <div class="flex mb-2">
+        <div class="flex w-full mb-2">
           <p-inputNumber
             [(ngModel)]="defaultValue"
             [showButtons]="true"
@@ -50,97 +44,55 @@
             incrementButtonClass="p-button button w-3rem flex"
             incrementButtonIcon="pi pi-plus"
             decrementButtonIcon="pi pi-minus"
+            [disabled]="isOutOfStock(product)"
             styleClass="valueInput"
+            [min]="1"
             (ngModelChange)="updateProductPrice()"
           ></p-inputNumber>
         </div>
-        <div class="flex align-items-center w-full">
+        <div class="flex flex-row w-full align-items-center  mt-4">
+         <div class="out-button">
           <button
-            pButton
-            pRipple
-            label="Add to Cart"
-            class="flex-1 mr-5 p-add-button"
-            [disabled]="product?.selectedStatus === 'Outstock'"
-            (click)="addToCart(product)"
-          ></button>
+          pButton
+          pRipple
+          class="add-to-cart"
+          *ngIf="isOutOfStock(product)"
+          [class.disabled]="isOutOfStock(product)"
+          [ngClass]="{ 'no-hover': isOutOfStock(product) }"
+          [disabled]="isOutOfStock(product)"
+        >
+          {{'cardForm.notStock' | transloco}}
+        </button>
+        <button
+        pButton
+        pRipple
+          class="add-to-cart"
+          *ngIf="!isOutOfStock(product)"
+          (click)="addToCart(product)"
+        >
+          {{ "cardForm.buttonLabel" | transloco }}
+        </button>
+      </div>
+        <div>
           <i
-            class="pi text-2xl cursor-pointer"
-            [ngClass]="{
-              'pi-heart text-600': !liked,
-              'pi-heart-fill text-red-500': liked
-            }"
-            (click)="liked = !liked; addToCartFavorites()"
-          ></i>
+          class="pi text-2xl cursor-pointer"
+          [ngClass]="{
+            'pi-heart text-600': !liked,
+            'pi-heart-fill text-red-500': liked
+          }"
+          (click)="liked = !liked; addToCartFavorites()"
+        ></i>
+        </div>
         </div>
       </div>
     </div>
   </div>
-
   <p-tabView>
-    <p-tabPanel header="Details">
-      <div class="text-900 font-bold text-3xl mb-4 mt-2">Product Details</div>
+    <p-tabPanel header="{{'cardDetail.header' | transloco}}">
+      <div class="text-900 font-bold text-3xl mb-4 mt-2">{{'cardDetail.title' | transloco}}</div>
       <p class="line-height-3 text-600 p-0 mx-0 mt-0 mb-4">
-        {{product?.description}}
+        {{product?.name}}, {{product?.description}}
       </p>
-
-      <div class="grid">
-        <div class="col-12 lg:col-4">
-          <span class="text-900 block font-medium mb-3 font-bold"
-            >Highlights</span
-          >
-          <ul class="py-0 pl-3 m-0 text-600 mb-3">
-            <li class="mb-2">Vulputate sapien nec.</li>
-            <li class="mb-2">Purus gravida quis blandit.</li>
-            <li class="mb-2">Nisi quis eleifend quam adipiscing.</li>
-            <li>Imperdiet proin fermentum.</li>
-          </ul>
-        </div>
-        <div class="col-12 lg:col-4">
-          <span class="text-900 block mb-3 font-bold">Size and Fit</span>
-          <ul class="list-none p-0 m-0 text-600 mb-4 text-600">
-            <li class="mb-3">
-              <span class="font-semibold">Leo vel:</span> Egestas congue.
-            </li>
-            <li class="mb-3">
-              <span class="font-semibold">Sociis natoque:</span> Parturient
-              montes nascetur.
-            </li>
-            <li>
-              <span class="font-semibold">Suspendisse in:</span> Purus sit amet
-              volutpat.
-            </li>
-          </ul>
-        </div>
-        <div class="col-12 lg:col-4">
-          <span class="text-900 block mb-3 font-bold">Material & Care</span>
-          <ul class="p-0 m-0 flex flex-wrap flex-column xl:flex-row text-600">
-            <li
-              class="flex align-items-center white-space-nowrap w-10rem block mr-2 mb-3"
-            >
-              <i class="pi pi-sun mr-2 text-900"></i>
-              <span>Not dryer safe</span>
-            </li>
-            <li
-              class="flex align-items-center white-space-nowrap w-10rem block mb-3"
-            >
-              <i class="pi pi-times-circle mr-2 text-900"></i>
-              <span>No chemical wash</span>
-            </li>
-            <li
-              class="flex align-items-center white-space-nowrap w-10rem block mb-3 mr-2"
-            >
-              <i class="pi pi-sliders-h mr-2 text-900"></i>
-              <span>Iron medium heat</span>
-            </li>
-            <li
-              class="flex align-items-center white-space-nowrap w-10rem block mb-3"
-            >
-              <i class="pi pi-minus-circle mr-2 text-900"></i>
-              <span>Dry flat</span>
-            </li>
-          </ul>
-        </div>
-      </div>
     </p-tabPanel>
   </p-tabView>
 </div>

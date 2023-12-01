@@ -2,24 +2,28 @@ import { MessageService } from 'primeng/api';
 import { Component } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { Observable, tap } from 'rxjs';
+import { BadgeService } from 'src/app/services/badge.service';
 
 @Component({
   selector: 'app-content-favorites',
   templateUrl: './content-favorites.component.html',
-  styleUrls: ['./content-favorites.component.scss']
+  styleUrls: ['./content-favorites.component.scss'],
 })
 export class ContentFavoritesComponent {
-
   product: any;
 
   userId: any;
 
   liked: boolean = true;
 
-  constructor(private userService: UserService , private messageService:MessageService) {
-    this.getUserId().subscribe(()=>{
+  constructor(
+    private userService: UserService,
+    private messageService: MessageService,
+    private badgeService:BadgeService
+  ) {
+    this.getUserId().subscribe(() => {
       this.getFavorites();
-    })
+    });
   }
   getUserId(): Observable<any> {
     return this.userService.getTokenId().pipe(
@@ -29,23 +33,26 @@ export class ContentFavoritesComponent {
     );
   }
   getFavorites() {
-    return this.userService.getFavorites(this.userId).subscribe((data:any)=>{
-      this.product=data;
+    return this.userService.getFavorites(this.userId).subscribe((data: any) => {
+      this.product = data;
     });
   }
 
-  deleteFavorites(favoriteId:any) {
-    this.getUserId().subscribe(()=>{
-      this.userService.deleteFavorite(this.userId , favoriteId).subscribe(()=>{
-        this.messageService.add({
-          severity:'success',
-          summary:'Favori silindi!',
-        });
-        this.getFavorites();
-      },
-      (error)=>{
-        console.log(error);
-      });
+  deleteFavorites(favoriteId: any) {
+    this.getUserId().subscribe(() => {
+      this.userService.deleteFavorite(this.userId, favoriteId).subscribe(
+        () => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Favori silindi!',
+          });
+          this.badgeService.emitCartUpdatedEvent();
+          this.getFavorites();
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
     });
     this.getFavorites();
   }

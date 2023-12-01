@@ -10,11 +10,23 @@ export class BadgeService {
   private favoritesBadgeSubject = new BehaviorSubject<number>(0);
   private cartsBadgeSubject = new BehaviorSubject<number>(0);
   private cartUpdatedSource = new Subject<void>();
+  private favoritesAddedSubject = new Subject<string>();
+  private favoritesRemovedSubject = new Subject<string>();
 
+  favoritesAdded$ = this.favoritesAddedSubject.asObservable();
+  favoritesRemoved$ = this.favoritesRemovedSubject.asObservable();
   cartUpdated$ = this.cartUpdatedSource.asObservable();
   orderBadge$ = this.orderBadgeSubject.asObservable();
   favoritesBadge$ = this.favoritesBadgeSubject.asObservable();
   cartsBadge$ = this.cartsBadgeSubject.asObservable();
+
+  emitFavoritesAddedEvent(productId: string) {
+    this.favoritesAddedSubject.next(productId);
+  }
+
+  emitFavoritesRemovedEvent(productId: string) {
+    this.favoritesRemovedSubject.next(productId);
+  }
 
   emitCartUpdatedEvent() {
     this.cartUpdatedSource.next();

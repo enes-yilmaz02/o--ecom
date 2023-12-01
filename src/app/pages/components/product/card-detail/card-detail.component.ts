@@ -13,24 +13,16 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class CardDetailComponent implements OnInit {
   productId: string;
-
   product: any;
-
-  defaultValue = 0;
-
+  defaultValue = 1;
   productPrice: number;
-
   body: any;
-
   liked: boolean = false;
-
   images: string[] = [];
-
   selectedImageIndex: number = 0;
-
   quantity: number = 1;
-
   userId: any;
+  favoritedProducts: boolean[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -38,7 +30,7 @@ export class CardDetailComponent implements OnInit {
     private messageService: MessageService,
     private userService: UserService,
     private router: Router,
-    private badgeService:BadgeService
+    private badgeService: BadgeService
   ) {}
 
   ngOnInit(): void {
@@ -51,13 +43,18 @@ export class CardDetailComponent implements OnInit {
           this.checkIfProductIsLiked();
         });
     });
+
     this.route.queryParams.subscribe((params) => {
       this.liked = params['liked'] === 'true';
+    });
+
+    this.productService.getProducts().subscribe((products: any[]) => {
+      this.favoritedProducts = Array(products.length).fill(false);
+      this.checkIfProductIsLiked();
     });
   }
 
   updateUrlWithLikedParam(liked: boolean) {
-    // Router parametrelerini güncelle
     this.router.navigate([], {
       relativeTo: this.route,
       queryParams: { liked: liked.toString() },
@@ -68,11 +65,10 @@ export class CardDetailComponent implements OnInit {
   checkIfProductIsLiked() {
     this.getUserId().subscribe(() => {
       this.userService.getFavorites(this.userId).subscribe((favorites: any) => {
-        const isAlreadyInFavorites = favorites.some(
-          (favorite: { productId: string }) =>
-            favorite.productId === this.productId
+        const isProductInFavorites = favorites.some(
+          (favorite) => favorite.productId === this.product.id
         );
-        this.liked = isAlreadyInFavorites;
+        this.liked = isProductInFavorites;
       });
     });
   }
@@ -108,6 +104,15 @@ export class CardDetailComponent implements OnInit {
 
   addToCart(body: any) {
     if (this.defaultValue >= 1) {
+      if (this.defaultValue > this.product.quantity) {
+        // Eğer seçilen miktar stok miktarından fazlaysa uyarı mesajı göster
+        this.messageService.add({
+          severity: 'warn',
+          summary: 'Lütfen dikkat!',
+          detail: 'Seçilen miktar, ürün adet miktarından fazla. ',
+        });
+        return; // Fonksiyonu burada sonlandır
+      }
       this.getUserId().subscribe(() => {
         this.getProductId().subscribe((productId) => {
           body.quantity = this.defaultValue;
@@ -144,7 +149,7 @@ export class CardDetailComponent implements OnInit {
         detail: 'Ürün miktarı giriniz',
       });
     }
-    this.defaultValue = 0;
+    this.defaultValue = 1;
   }
 
   updateProductPrice(): void {
@@ -152,43 +157,99 @@ export class CardDetailComponent implements OnInit {
   }
 
   addToCartFavorites() {
-    this.getUserId().subscribe(() => {
-      this.getProductId().subscribe((productId) => {
-        this.userService.getFavorites(this.userId).subscribe((favorites: any) => {
-          const isAlreadyInFavorites = favorites.some(
-            (favorite:any) =>
-              favorite.productId === this.product.productId
-          );
+    this.getUserId().subscribe((userId: any) => {
+      this.getProductId().subscribe((productId: string) => {
+        const index$ = this.productService.patchProductById(productId);
+        index$.subscribe((index: number) => {
+          if (index !== -1) {
+            const isProductFavorited = this.favoritedProducts[index];
 
-          if (isAlreadyInFavorites) {
-            // Ürün favorilerde varsa silme işlemi gerçekleştir
-            this.userService.deleteFavorite(this.userId, productId).subscribe(() => {
-              console.log(productId);
-              this.liked = false;
-              this.updateUrlWithLikedParam(this.liked);
+            // Liked durumuna göre kontrol et
+            if (isProductFavorited) {
+              // Eğer ürün favorideyse, silme işlemi yap
+              this.userService
+                .getFavorites(userId)
+                .subscribe((favorites: any) => {
+                  const favoriteToRemove = favorites.find(
+                    (favorite: any) => favorite.productId === productId
+                  );
 
-              this.messageService.add({
-                severity: 'success',
-                summary: 'Başarılı',
-                detail: 'Favorilerden kaldırıldı',
-              });
-            });
-          } else {
-            // Ürün favorilerde yoksa ekleme işlemi gerçekleştir
-            this.userService.addFavorite(this.userId, productId, this.product).subscribe(() => {
-              this.liked = true;
-              this.updateUrlWithLikedParam(this.liked);
-              this.messageService.add({
-                severity: 'success',
-                summary: 'Başarılı',
-                detail: 'Favorilere eklendi',
-              });
-              this.badgeService.emitCartUpdatedEvent();
-            });
+                  if (favoriteToRemove) {
+                    // Silme işlemi
+                    this.userService
+                      .deleteFavorite(userId, favoriteToRemove.id)
+                      .subscribe(
+                        () => {
+                          this.favoritedProducts[index] = false;
+                          this.liked = false; // Güncelleme burada
+                          this.updateUrlWithLikedParam(false);
+                          this.messageService.add({
+                            severity: 'success',
+                            summary: 'Başarılı',
+                            detail: 'Favorilerden kaldırıldı',
+                          });
+                          this.badgeService.emitFavoritesRemovedEvent(
+                            productId
+                          );
+                          this.badgeService.emitCartUpdatedEvent();
+                        },
+                        (error) => {
+                          console.error(
+                            'Favori kaldırma işleminde hata:',
+                            error
+                          );
+                          this.messageService.add({
+                            severity: 'error',
+                            summary: 'Hata',
+                            detail: 'Favori kaldırma işleminde bir hata oluştu',
+                          });
+                        }
+                      );
+                  } else {
+                    console.log('Favori bulunamadı:', productId);
+                    // Favori bulunamadı, isteğe bağlı olarak bir hata mesajı gösterilebilir.
+                  }
+                });
+            } else {
+              const body = {
+                id: productId,
+                product: this.product,
+              };
+
+              // Eğer ürün favoride değilse, ekleme işlemi yap
+              this.userService
+                .addFavorite(userId, productId, body)
+                .subscribe(
+                  () => {
+                    this.favoritedProducts[index] = true;
+                    this.liked = true; // Güncelleme burada
+                    this.updateUrlWithLikedParam(true);
+                    this.messageService.add({
+                      severity: 'success',
+                      summary: 'Başarılı',
+                      detail: 'Favorilere eklendi',
+                    });
+                    this.badgeService.emitFavoritesAddedEvent(productId);
+                    this.badgeService.emitCartUpdatedEvent();
+                  },
+                  (error) => {
+                    console.error('Favori ekleme işleminde hata:', error);
+                    this.messageService.add({
+                      severity: 'error',
+                      summary: 'Hata',
+                      detail: 'Favori ekleme işleminde bir hata oluştu',
+                    });
+                  }
+                );
+            }
           }
         });
       });
     });
   }
 
+
+  isOutOfStock(product: any): boolean {
+    return product?.selectedStatus?.name === 'OUTOFSTOCK';
+  }
 }

@@ -285,7 +285,14 @@
     "Man": "Man",
     "Women": "Women",
     "Children": "Children"
+  },
+
+  "cardDetail":{
+    "header":"Description",
+    "title":"Product Description",
+    "quantity":"Product Stock Quantity(piece): "
   }
+
 
 
 }
