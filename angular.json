@@ -25,7 +25,12 @@
               "validator",
               "twilio-video",
               "chartjs",
-              "lodash"
+              "lodash",
+              "raf",
+              "file-saver",
+              "rgbcolor",
+              "jspdf-autotable",
+              "core-js"
             ],
             "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",

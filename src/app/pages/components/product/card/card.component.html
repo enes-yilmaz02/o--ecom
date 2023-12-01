@@ -38,7 +38,7 @@
           pInputText
           type="text"
           [(ngModel)]="searchText"
-          placeholder="Ara..."
+          placeholder="{{'cardForm.search' | transloco}}"
         />
       </div>
     </div>
@@ -51,13 +51,12 @@
       [sortField]="sortField"
       [sortOrder]="sortOrder"
       [showCurrentPageReport]="true"
-      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
       [rowsPerPageOptions]="[10, 25, 50]"
     >
       <ng-template let-product pTemplate="gridItem">
         <div class="flex flex-row">
           <div class="product-container">
-            <div class="product-card">
+            <div class="product-card" [routerLink]="['/pages/product', product.id]">
               <div class="product-image">
                 <img [src]="getFileUrl(product.file)" alt="Product Image" />
               </div>

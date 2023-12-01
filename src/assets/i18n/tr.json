@@ -274,6 +274,7 @@
   },
   "cardForm":{
     "buttonLabel":"Sepete ekle",
+    "search":"ara...",
     "title":"Filtrele",
     "notStock":"Stokta yok",
     "allProducts":"Tüm ürünler",

@@ -274,6 +274,7 @@
   },
   "cardForm":{
     "buttonLabel":"Add to Cart",
+    "search":"search...",
     "title":"Filter",
     "notStock":"Out of stock",
     "allProducts":"All Products",

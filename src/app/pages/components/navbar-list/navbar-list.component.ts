@@ -65,6 +65,33 @@ export class NavbarListComponent implements OnInit {
         this.badgeService.cartsBadge$.subscribe(count => {
           this.cartsBadge = count.toString();
         });
+
+        this.badgeService.cartsBadge$.subscribe((count) => {
+          this.cartsBadge = count.toString();
+        });
+
+        this.badgeService.cartUpdated$.subscribe(() => {
+          // Diğer badge'leri güncelle
+          this.updateBadges();
+        });
+
+      }
+
+      private updateBadges() {
+        // Sipariş, favoriler ve sepet badge'lerini güncelle
+        this.getUserId().subscribe(userId => {
+          this.userService.getOrders(userId).subscribe((orders: any) => {
+            this.orderBadge = orders.length.toString();
+          });
+
+          this.userService.getFavorites(userId).subscribe((favorites: any) => {
+            this.favoritesBadge = favorites.length.toString();
+          });
+
+          this.userService.getCarts(userId).subscribe((carts: any) => {
+            this.cartsBadge = carts.length.toString();
+          });
+        });
       }
 
   getUserId(): Observable<any> {

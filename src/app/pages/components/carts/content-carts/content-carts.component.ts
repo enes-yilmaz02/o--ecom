@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MessageService, SelectItem } from 'primeng/api';
 import { Observable, forkJoin, tap } from 'rxjs';
+import { BadgeService } from 'src/app/services/badge.service';
 import { ProductService } from 'src/app/services/product.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -31,7 +32,8 @@ export class ContentCartsComponent {
   constructor(
     private messageService: MessageService,
     private userService: UserService,
-    private productServie: ProductService
+    private productServie: ProductService,
+    private badgeService:BadgeService
   ) {
     // Verileri alıp hesaplamaları burada yapabiliriz
     this.getUserId().subscribe(() => {
@@ -44,7 +46,7 @@ export class ContentCartsComponent {
     return this.userService.getTokenId().pipe(
       tap((id: any) => {
         this.userId = id;
-        console.log(this.userId);
+
       })
     );
   }
@@ -181,6 +183,7 @@ export class ContentCartsComponent {
                 summary: 'Başarılı',
                 detail: 'Sipariş tamamlandı',
               });
+              this.badgeService.emitCartUpdatedEvent();
               // Sipariş tamamlandıktan sonra sepeti boşalt
               this.clearCart();
             });

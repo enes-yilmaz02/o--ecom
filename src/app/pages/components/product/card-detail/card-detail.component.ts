@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { Observable, map, tap } from 'rxjs';
+import { BadgeService } from 'src/app/services/badge.service';
 import { ProductService } from 'src/app/services/product.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -36,7 +37,8 @@ export class CardDetailComponent implements OnInit {
     private productService: ProductService,
     private messageService: MessageService,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private badgeService:BadgeService
   ) {}
 
   ngOnInit(): void {
@@ -119,6 +121,7 @@ export class CardDetailComponent implements OnInit {
                   summary: 'Başarılı',
                   detail: 'Ürün sepete eklendi',
                 });
+                this.badgeService.emitCartUpdatedEvent();
               } else {
                 this.messageService.add({
                   severity: 'error',
@@ -175,12 +178,12 @@ export class CardDetailComponent implements OnInit {
             this.userService.addFavorite(this.userId, productId, this.product).subscribe(() => {
               this.liked = true;
               this.updateUrlWithLikedParam(this.liked);
-
               this.messageService.add({
                 severity: 'success',
                 summary: 'Başarılı',
                 detail: 'Favorilere eklendi',
               });
+              this.badgeService.emitCartUpdatedEvent();
             });
           }
         });

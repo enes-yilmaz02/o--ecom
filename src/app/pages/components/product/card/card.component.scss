@@ -62,6 +62,7 @@ $background-color: #ecf0f1;
   background-color: #ffffff;
   box-shadow: 0 0 10px $dark-text;
   border-radius: 8px;
+  cursor: pointer;
 
   .product-image {
     display: flex;
@@ -108,7 +109,7 @@ $background-color: #ecf0f1;
       display: block;
       width: 100%;
       padding: 8px;
-      background-color: $primary-color;
+      background-color:$dark-text;;
       color: #fff;
       border: none;
       border-radius: 4px;
@@ -116,7 +117,7 @@ $background-color: #ecf0f1;
       transition: background-color 0.3s ease-in-out;
 
       &:hover {
-        background-color: $secondary-color;
+        background-color: #3b3d3f;
       }
     }
     .more-cart {

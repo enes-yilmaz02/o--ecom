@@ -139,8 +139,7 @@ export class CardComponent implements OnInit {
               summary: 'Başarılı',
               detail: 'Ürün sepete eklendi',
             });
-            // Ürün sepete eklendiğinde badge'i güncelle
-            this.badgeService.updateCartsBadge(1);
+            this.badgeService.emitCartUpdatedEvent();
           } else {
             this.messageService.add({
               severity: 'error',
