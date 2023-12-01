@@ -5,7 +5,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TranslocoRootModule } from './transloco-root.module';
 import { PagesModule } from './pages/pages.module';
 import { DashboardModule } from './dashboard/dashboard.module';
@@ -16,6 +16,7 @@ import { TranslocoModule } from '@ngneat/transloco';
 import { ProductService } from './services/product.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { JwtModule } from '@auth0/angular-jwt';
+import { HttperrorInterceptor } from './services/interceptors/httperror.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
@@ -39,7 +40,12 @@ import { JwtModule } from '@auth0/angular-jwt';
     ProductService,
     MessageService,
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
-    JwtHelperService
+    JwtHelperService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttperrorInterceptor,
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent],
 })

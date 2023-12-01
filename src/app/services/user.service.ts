@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Users } from '../models/users';
-import {  Observable, catchError, map, of, tap } from 'rxjs';
+import { Observable, catchError, map, of, tap } from 'rxjs';
 import { CommonService } from './common.service';
 import { AuthService } from './auth/auth.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
@@ -21,19 +21,19 @@ export class UserService {
   cartsEndPoint = 'carts';
   sendEmailEndPoint = 'sendEmail';
   usersAdminEndPoint = 'users-admin';
+  productEndPoint= 'product';
 
   // Rol ve kullanıcı verilerini saklamak için değişkenler
   role: any;
   userData: any;
-
 
   // Constructor, servis bağımlılıklarını enjekte eder
   constructor(
     private commonService: CommonService,
     private authService: AuthService,
     private jwtHelper: JwtHelperService,
-    private badgeService:BadgeService
-    ) {}
+    private badgeService: BadgeService
+  ) {}
 
   sendEmail(userId: any, body: any) {
     return this.commonService.post(
@@ -93,15 +93,15 @@ export class UserService {
 
   // Belirli bir kullanıcının favorilerini getiren fonksiyon
   getFavorites(userId: string): Observable<Users> {
-    return this.commonService.get(
-      `${this.usersEndPoint}/${userId}/${this.favoritesEndPoint}`
-    ).pipe(
-      tap((items: any) => {
-        if (items && items.length !== undefined) {
-          this.badgeService.updateFavoritesBadge(items.length);
-        }
-      })
-    );
+    return this.commonService
+      .get(`${this.usersEndPoint}/${userId}/${this.favoritesEndPoint}`)
+      .pipe(
+        tap((items: any) => {
+          if (items && items.length !== undefined) {
+            this.badgeService.updateFavoritesBadge(items.length);
+          }
+        })
+      );
   }
 
   // Belirli bir kullanıcının favorisini id değerine göre getiren fonksiyon
@@ -110,6 +110,14 @@ export class UserService {
       `${this.usersEndPoint}/${userId}/${this.favoritesEndPoint}/${favoriteId}`
     );
   }
+
+// Belirli bir kullanıcının favorisini product id değerine göre getiren fonksiyon
+getFavoriteById(userId: string, productId: string): Observable<boolean> {
+  return this.commonService.get(
+    `${this.usersEndPoint}/${userId}/${this.favoritesEndPoint}/${this.productEndPoint}/${productId}`
+  )
+}
+
 
   // Belirli bir kullanıcının favorilerine yeni bir favori ekleyen fonksiyon
   addFavorite(
@@ -142,17 +150,25 @@ export class UserService {
     );
   }
 
+  // Belirli bir kullanıcının favorilerini id değerine göre silen fonksiyon
+  deleteFavoriteById(userId: string, productId: string): Observable<any> {
+    return this.commonService
+      .delete(
+        `${this.usersEndPoint}/${userId}/${this.favoritesEndPoint}/${this.productEndPoint}/${productId}`
+      );
+
+  }
   // Belirli bir kullanıcının favorilerini getiren fonksiyon
   getCarts(userId: string): Observable<Users> {
-    return this.commonService.get(
-      `${this.usersEndPoint}/${userId}/${this.cartsEndPoint}`
-    ).pipe(
-      tap((items: any) => {
-        if (items && items.length !== undefined) {
-          this.badgeService.updateCartsBadge(items.length);
-        }
-      })
-    );
+    return this.commonService
+      .get(`${this.usersEndPoint}/${userId}/${this.cartsEndPoint}`)
+      .pipe(
+        tap((items: any) => {
+          if (items && items.length !== undefined) {
+            this.badgeService.updateCartsBadge(items.length);
+          }
+        })
+      );
   }
 
   // Belirli bir kullanıcının favorisini id değerine göre getiren fonksiyon

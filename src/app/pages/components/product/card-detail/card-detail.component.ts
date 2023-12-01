@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { Observable, map, tap } from 'rxjs';
+import { Observable, catchError, map, of, tap } from 'rxjs';
 import { BadgeService } from 'src/app/services/badge.service';
 import { ProductService } from 'src/app/services/product.service';
 import { UserService } from 'src/app/services/user.service';
@@ -62,15 +62,55 @@ export class CardDetailComponent implements OnInit {
     });
   }
 
-  checkIfProductIsLiked() {
-    this.getUserId().subscribe(() => {
-      this.userService.getFavorites(this.userId).subscribe((favorites: any) => {
-        const isProductInFavorites = favorites.some(
-          (favorite) => favorite.productId === this.product.id
-        );
-        this.liked = isProductInFavorites;
-      });
-    });
+  checkIfProductIsFavorites(userId: any, productId: any): Observable<boolean> {
+    return this.userService.getFavoriteById(userId, productId).pipe(
+      map((isProductFavorited: any) => {
+        if (Object.keys(isProductFavorited).length !== 0) {
+          this.liked=false;
+          this.userService
+            .deleteFavoriteById(userId, productId)
+            .subscribe(
+              () => {
+                this.liked = false;
+                this.updateUrlWithLikedParam(false);
+                this.messageService.add({
+                  severity: 'success',
+                  summary: 'Başarılı',
+                  detail: 'Favorilerden kaldırıldı',
+                });
+                this.badgeService.emitFavoritesRemovedEvent(
+                  productId
+                );
+                this.badgeService.emitCartUpdatedEvent();
+              },
+              (error) => {
+                console.error(
+                  'Favori kaldırma işleminde hata:',
+                  error
+                );
+                this.messageService.add({
+                  severity: 'error',
+                  summary: 'Hata',
+                  detail:
+                    'Favori kaldırma işleminde bir hata oluştu',
+                });
+              }
+            );
+          return true; // Favori var
+        } else {
+          return false; // Favori yok
+        }
+      }),
+      catchError((error) => {
+        // API 404 hatası döndüğünde bu kısım çalışır
+        if (error.status === 404) {
+          return of(false); // Favori yoksa false döndür
+        } else {
+          // Diğer hatalar için ise hatayı tekrar fırlat
+          throw error;
+        }
+      })
+    );
   }
 
   getFileUrl(fileName: string): string {
@@ -156,97 +196,52 @@ export class CardDetailComponent implements OnInit {
     this.productPrice = this.defaultValue * this.product?.priceStacked;
   }
 
+  checkIfProductIsLiked() {
+    this.getUserId().subscribe((userId) => {
+      this.getProductId().subscribe((productId)=>{
+        this.userService.getFavoriteById(userId ,productId).subscribe((favorites:boolean) => {
+          const index=favorites['id'];
+          if(index === productId ){
+            this.liked=true;
+          }else{
+            this.liked=false;
+          }
+
+        });
+      })
+    });
+  }
+
   addToCartFavorites() {
     this.getUserId().subscribe((userId: any) => {
       this.getProductId().subscribe((productId: string) => {
-        const index$ = this.productService.patchProductById(productId);
-        index$.subscribe((index: number) => {
-          if (index !== -1) {
-            const isProductFavorited = this.favoritedProducts[index];
-
-            // Liked durumuna göre kontrol et
-            if (isProductFavorited) {
-              // Eğer ürün favorideyse, silme işlemi yap
-              this.userService
-                .getFavorites(userId)
-                .subscribe((favorites: any) => {
-                  const favoriteToRemove = favorites.find(
-                    (favorite: any) => favorite.productId === productId
-                  );
-
-                  if (favoriteToRemove) {
-                    // Silme işlemi
-                    this.userService
-                      .deleteFavorite(userId, favoriteToRemove.id)
-                      .subscribe(
-                        () => {
-                          this.favoritedProducts[index] = false;
-                          this.liked = false; // Güncelleme burada
-                          this.updateUrlWithLikedParam(false);
-                          this.messageService.add({
-                            severity: 'success',
-                            summary: 'Başarılı',
-                            detail: 'Favorilerden kaldırıldı',
-                          });
-                          this.badgeService.emitFavoritesRemovedEvent(
-                            productId
-                          );
-                          this.badgeService.emitCartUpdatedEvent();
-                        },
-                        (error) => {
-                          console.error(
-                            'Favori kaldırma işleminde hata:',
-                            error
-                          );
-                          this.messageService.add({
-                            severity: 'error',
-                            summary: 'Hata',
-                            detail: 'Favori kaldırma işleminde bir hata oluştu',
-                          });
-                        }
-                      );
-                  } else {
-                    console.log('Favori bulunamadı:', productId);
-                    // Favori bulunamadı, isteğe bağlı olarak bir hata mesajı gösterilebilir.
-                  }
-                });
-            } else {
+        this.productService.patchProductById(productId).subscribe((product: any) => {
+          this.checkIfProductIsFavorites(userId, productId).subscribe((isFavorited: boolean) => {
+            if (!isFavorited) {
               const body = {
                 id: productId,
-                product: this.product,
+                product: product
               };
 
-              // Eğer ürün favoride değilse, ekleme işlemi yap
-              this.userService
-                .addFavorite(userId, productId, body)
-                .subscribe(
-                  () => {
-                    this.favoritedProducts[index] = true;
-                    this.liked = true; // Güncelleme burada
-                    this.updateUrlWithLikedParam(true);
-                    this.messageService.add({
-                      severity: 'success',
-                      summary: 'Başarılı',
-                      detail: 'Favorilere eklendi',
-                    });
-                    this.badgeService.emitFavoritesAddedEvent(productId);
-                    this.badgeService.emitCartUpdatedEvent();
-                  },
-                  (error) => {
-                    console.error('Favori ekleme işleminde hata:', error);
-                    this.messageService.add({
-                      severity: 'error',
-                      summary: 'Hata',
-                      detail: 'Favori ekleme işleminde bir hata oluştu',
-                    });
-                  }
-                );
+              this.userService.addFavorite(userId, productId, body).subscribe(() => {
+                this.messageService.add({
+                  severity: 'success',
+                  summary: 'Başarılı',
+                  detail: 'Ürün Favorilerinize eklendi...',
+                });
+                this.liked=true;
+                this.badgeService.emitCartUpdatedEvent();
+              });
             }
-          }
+          });
         });
       });
     });
   }
+
+
+
+
 
 
   isOutOfStock(product: any): boolean {
