@@ -17,7 +17,7 @@ export class LoginComponent {
     private messageService: MessageService,
     private userService: UserService,
     private router: Router,
-    private authService: AuthService
+
   ) {
     this.userFormLogin = this.formBuilder.group({
       email: ['', [Validators.required, Validators.minLength(2)]],
@@ -36,7 +36,7 @@ export class LoginComponent {
           this.messageService.add({
             severity: 'success',
             summary: 'Successful login!',
-            detail: 'You have successfully logged in.',
+            detail: 'Giriş işlemi başarılı...',
           });
           setTimeout(() => {
             this.router.navigate(['pages']);

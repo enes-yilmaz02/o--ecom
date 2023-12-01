@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { error } from 'jquery';
 import { MessageService, SelectItem } from 'primeng/api';
 import { Observable, tap } from 'rxjs';
 import { ProductService } from 'src/app/services/product.service';
@@ -12,8 +13,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./addproduct-form.component.scss'],
 })
 export class AddproductFormComponent implements OnInit {
-
-  private uploadApi ='http://localhost:8080/upload';
+  private uploadApi = 'http://localhost:8080/upload';
 
   addproductForm: FormGroup;
 
@@ -27,7 +27,9 @@ export class AddproductFormComponent implements OnInit {
 
   userId: any;
 
-  creoterData:any;
+  creoterData: any;
+
+  createDate = new Date();
 
   inventoryStatus: any = [
     { name: 'INSTOCK', key: 'IS' },
@@ -40,7 +42,7 @@ export class AddproductFormComponent implements OnInit {
     private http: HttpClient,
     private productService: ProductService,
     private messageService: MessageService,
-    private userService:UserService
+    private userService: UserService
   ) {
     this.addproductForm = this.formBuilder.group({
       code: ['', Validators.required], // Örnek: Validators ekleyerek girişin zorunlu olup olmadığını belirleyebilirsiniz
@@ -66,7 +68,6 @@ export class AddproductFormComponent implements OnInit {
       { name: 'Accessories', code: 'ACS' },
       { name: 'Clothing', code: 'CLT' },
     ];
-
   }
 
   getUserId(): Observable<any> {
@@ -77,20 +78,19 @@ export class AddproductFormComponent implements OnInit {
     );
   }
 
-  getCreoter(){
-    this.getUserId().subscribe(()=>{
-     this.userService.getUser(this.userId).subscribe((data)=>{
-      this.creoterData=data;
-     })
-    })
+  getCreoter() {
+    this.getUserId().subscribe(() => {
+      this.userService.getUser(this.userId).subscribe((data) => {
+        this.creoterData = data;
+      });
+    });
   }
-
 
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
   }
 
-  onUpload(file:any) {
+  onUpload(file: any) {
     if (file) {
       const formData = new FormData();
       formData.append('filename', file);
@@ -109,14 +109,15 @@ export class AddproductFormComponent implements OnInit {
   }
 
   onSubmit() {
-    this.getUserId().subscribe(()=>{
-      this.userService.getUser(this.userId).subscribe((data)=>{
+    this.getUserId().subscribe(() => {
+      this.userService.getUser(this.userId).subscribe((data) => {
         const productData = this.addproductForm.value;
         if (this.addproductForm.valid) {
           productData.file = this.selectedFile.name;
           productData.creoterId = this.userId;
           productData.companyName = data.companyName;
           productData.email = data.email;
+          productData.createDate = this.createDate;
           this.productService.addProduct(productData).subscribe(
             () => {
               this.onUpload(this.selectedFile);
@@ -135,7 +136,7 @@ export class AddproductFormComponent implements OnInit {
             }
           );
         }
-      })
-    })
+      });
+    });
   }
 }

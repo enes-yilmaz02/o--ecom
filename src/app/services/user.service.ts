@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Users } from '../models/users';
-import { BehaviorSubject, Observable, catchError, map, of, tap } from 'rxjs';
+import {  Observable, catchError, map, of, tap } from 'rxjs';
 import { CommonService } from './common.service';
 import { AuthService } from './auth/auth.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
@@ -48,15 +48,6 @@ export class UserService {
       body
     );
   }
-
-  // // Sipariş badge'ini güncelleyen fonksiyon
-  // updateOrderBadge(userId: string) {
-  //   this.getOrders(userId).subscribe((items: any) => {
-  //     if (items && items.length !== undefined) {
-  //       this.orderBadge.next(items.length);
-  //     }
-  //   });
-  // }
 
   // Belirli bir kullanıcının siparişlerini getiren fonksiyon
   getOrders(userId: string): Observable<Users> {

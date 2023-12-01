@@ -3,7 +3,7 @@ import { TranslocoService } from '@ngneat/transloco';
 import { Observable, tap } from 'rxjs';
 import { BadgeService } from 'src/app/services/badge.service';
 import { UserService } from 'src/app/services/user.service';
-
+import { StockStatusPipe } from 'src/app/services/helper/stock-status.pipe';
 @Component({
   selector: 'app-navbar-list',
   templateUrl: './navbar-list.component.html',
@@ -26,10 +26,13 @@ export class NavbarListComponent implements OnInit {
 
   userId : any;
 
+  translatedStockStatus: string;
+
   constructor(
     private transloco: TranslocoService,
     private userService: UserService,
-    private badgeService: BadgeService
+    private badgeService: BadgeService,
+    private stockStatusPipe: StockStatusPipe
       ) {}
 
       ngOnInit(): void {
@@ -84,5 +87,9 @@ export class NavbarListComponent implements OnInit {
     if (this.selectedLanguage === 'en') {
       this.transloco.setActiveLang('en');
     }
+  }
+
+  updateStockStatusTranslation(stockstatus:any) {
+    this.translatedStockStatus = this.stockStatusPipe.transform(stockstatus);
   }
 }

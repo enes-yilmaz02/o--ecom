@@ -4,18 +4,16 @@
       class="register-header block justify-content-center align-content-center align-items-center text-2xl w-full"
       style="background: transparent"
     >
-    <h3>{{'creoterForm.header' | transloco }}</h3>
+      <h3>{{ "creoterForm.header" | transloco }}</h3>
     </div>
     <!-- Company Name input start-->
     <div class="wrapper">
       <span class="p-float-label mt-4">
         <i class="pi pi-building" style="color: #000"></i>
-        <input
-          pInputText
-          id="companyName"
-          formControlName="companyName"
-        />
-        <label htmlFor="companyName"> {{"creoterForm.nameLabel" | transloco }} </label>
+        <input pInputText id="companyName" formControlName="companyName" />
+        <label htmlFor="companyName">
+          {{ "creoterForm.nameLabel" | transloco }}
+        </label>
       </span>
       <small
         *ngIf="
@@ -44,11 +42,7 @@
     <div class="wrapper">
       <span class="p-float-label mt-4">
         <i class="pi pi-id-card" style="color: #000"></i>
-        <input
-          pInputText
-          id="taxNumber"
-          formControlName="taxNumber"
-        />
+        <input pInputText id="taxNumber" formControlName="taxNumber" />
         <label htmlFor="taxNumber">{{
           "creoterForm.taxNumberLabel" | transloco
         }}</label>
@@ -80,19 +74,14 @@
     <div class="wrapper">
       <span class="p-float-label mt-4">
         <i class="pi pi-envelope" style="color: #000"></i>
-        <input
-          pInputText
-          id="email"
-          formControlName="email"
-        />
+        <input pInputText id="email" formControlName="email" />
         <label htmlFor="email">{{
           "creoterForm.emailLabel" | transloco
         }}</label>
       </span>
       <small
         *ngIf="
-          creoterForm.get('email')?.invalid &&
-          creoterForm.get('email')?.touched
+          creoterForm.get('email')?.invalid && creoterForm.get('email')?.touched
         "
         class="text-red-500"
       >
@@ -120,48 +109,44 @@
     </span>
     <!-- button end-->
 
-
     <div class="verifyCode" *ngIf="senderMail | async">
-       <!-- code  input start-->
-    <div class="wrapper">
-      <span class="p-float-label mt-4">
-        <i class="pi pi-key" style="color: #000"></i>
-        <input
-          pInputText
-          id="code"
-          formControlName="code"
-        />
-        <label htmlFor="code"> {{"creoterForm.codeLabel" | transloco }} </label>
+      <!-- code  input start-->
+      <div class="wrapper">
+        <span class="p-float-label mt-4">
+          <i class="pi pi-key" style="color: #000"></i>
+          <input pInputText id="code" formControlName="code" />
+          <label htmlFor="code">
+            {{ "creoterForm.codeLabel" | transloco }}
+          </label>
+        </span>
+        <small
+          *ngIf="
+            creoterForm.get('code')?.invalid && creoterForm.get('code')?.touched
+          "
+          class="text-red-500"
+        >
+          {{
+            creoterForm.get("code").errors != null &&
+            creoterForm.get("code").errors["whitespace"]
+              ? ("creoterForm.codeSmall" | transloco)
+              : ""
+          }}
+          {{
+            creoterForm.get("code").errors != null &&
+            creoterForm.get("code").errors["required"]
+              ? ("creoterForm.codeSmall" | transloco)
+              : ""
+          }}
+        </small>
+      </div>
+      <!-- code  input end-->
+      <!-- button start-->
+      <span class="button-style mt-4">
+        <button class="button" (click)="verifyCode()">
+          {{ "creoterForm.codeButton" | transloco }}
+        </button>
       </span>
-      <small
-        *ngIf="
-          creoterForm.get('code')?.invalid &&
-          creoterForm.get('code')?.touched
-        "
-        class="text-red-500"
-      >
-        {{
-          creoterForm.get("code").errors != null &&
-          creoterForm.get("code").errors["whitespace"]
-            ? ("creoterForm.codeSmall" | transloco)
-            : ""
-        }}
-        {{
-          creoterForm.get("code").errors != null &&
-          creoterForm.get("code").errors["required"]
-            ? ("creoterForm.codeSmall" | transloco)
-            : ""
-        }}
-      </small>
-    </div>
-    <!-- code  input end-->
-    <!-- button start-->
-    <span class="button-style mt-4">
-      <button class="button" (click)="verifyCode()">
-        {{ "creoterForm.codeButton" | transloco }}
-      </button>
-    </span>
-    <!-- button end-->
+      <!-- button end-->
     </div>
   </form>
 </div>

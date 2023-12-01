@@ -32,6 +32,8 @@ import { ContentCartsComponent } from './components/carts/content-carts/content-
 import { DefaultCartsComponent } from './components/carts/default-carts/default-carts.component';
 import { CreoterFormComponent } from './components/creoter-form/creoter-form.component';
 import { TruncatePipe } from '../services/pipes/truncate.pipe';
+import { StockStatusPipe } from '../services/helper/stock-status.pipe';
+import { CategoryStatus } from '../services/helper/category-status.pipe';
 @NgModule({
   declarations: [
     NavbarListComponent,
@@ -59,7 +61,9 @@ import { TruncatePipe } from '../services/pipes/truncate.pipe';
      ContentCartsComponent,
      DefaultCartsComponent,
      CreoterFormComponent,
-     TruncatePipe
+     TruncatePipe,
+     StockStatusPipe,
+     CategoryStatus
 
 
   ],
@@ -84,7 +88,9 @@ import { TruncatePipe } from '../services/pipes/truncate.pipe';
   ],
   providers:[
     CartService,
-    MessageService
+    MessageService,
+    StockStatusPipe,
+    CategoryStatus
   ]
 })
 export class PagesModule { }

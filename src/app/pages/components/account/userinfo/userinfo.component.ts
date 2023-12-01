@@ -21,10 +21,7 @@ export class UserinfoComponent  implements OnInit{
 
   userId:any;
 
-  Genders: any[] = [
-    { name: 'Male', key: 'male' },
-    { name: 'Female', key: 'female' },
-  ];
+  genders:any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -44,7 +41,12 @@ export class UserinfoComponent  implements OnInit{
   }
 
   ngOnInit(): void {
-    this.getTokenUser()
+    this.getTokenUser();
+    this.genders = [
+      { name: 'Male', code: 'm' },
+      { name: 'Female', code: 'fm' },
+      { name: 'Another', code: 'a' },
+    ];
   }
 
   getUserId(): Observable<any> {
@@ -70,8 +72,6 @@ export class UserinfoComponent  implements OnInit{
           password: this.selectedUser.password,
           confirmpassword: this.selectedUser.confirmpassword,
         });
-        console.log(this.selectedUser)
-        // Set the value for the calendar control
         const selectedDate = new Date(this.selectedUser.bDate);
         this.accountForm.get('bDate').setValue(selectedDate);
       });

@@ -4,115 +4,8 @@
       class="register-header block justify-content-center align-content-center align-items-center text-2xl w-full"
       style="background: transparent"
     >
-      <h2>{{'registerForm.header' | transloco}}</h2>
+      <h2>{{ "registerForm.header" | transloco }}</h2>
     </div>
-    <!-- Name input start-->
-    <div class="wrapper">
-      <span class="p-float-label mt-4">
-        <i class="pi pi-user" style="color: #000"></i>
-        <input
-          pInputText
-          id="name"
-          formControlName="name"
-          pTooltip="{{'registerForm.nameTooltip' | transloco }}"
-        />
-        <label htmlFor="name"> {{"registerForm.nameLabel" | transloco }} </label>
-      </span>
-      <small
-        *ngIf="
-          userFormRegister.get('name')?.invalid &&
-          userFormRegister.get('name')?.touched
-        "
-        class="text-red-500"
-      >
-        {{
-          userFormRegister.get("name").errors != null &&
-          userFormRegister.get("name").errors["whitespace"]
-            ? ("registerForm.nameSmall" | transloco)
-            : ""
-        }}
-        {{
-          userFormRegister.get("name").errors != null &&
-          userFormRegister.get("name").errors["required"]
-            ? ("registerForm.nameSmall" | transloco)
-            : ""
-        }}
-      </small>
-    </div>
-    <!-- Name input end-->
-
-     <!-- Surname input start-->
-     <div class="wrapper">
-      <span class="p-float-label mt-4">
-        <i class="pi pi-user" style="color: #000"></i>
-        <input
-          pInputText
-          id="surname"
-          formControlName="surname"
-          pTooltip="{{'registerForm.surnameTooltip' | transloco }}"
-        />
-        <label htmlFor="surname"> {{"registerForm.surnameLabel" | transloco }} </label>
-      </span>
-      <small
-        *ngIf="
-          userFormRegister.get('surname')?.invalid &&
-          userFormRegister.get('surname')?.touched
-        "
-        class="text-red-500"
-      >
-        {{
-          userFormRegister.get("surname").errors != null &&
-          userFormRegister.get("surname").errors["whitespace"]
-            ? ("registerForm.surnameSmall" | transloco)
-            : ""
-        }}
-        {{
-          userFormRegister.get("surname").errors != null &&
-          userFormRegister.get("surname").errors["required"]
-            ? ("registerForm.surnameSmall" | transloco)
-            : ""
-        }}
-      </small>
-    </div>
-    <!-- Name input end-->
-
-    <!-- Username input start-->
-    <div class="wrapper">
-      <span class="p-float-label mt-4">
-        <i class="pi pi-user" style="color: #000"></i>
-        <input
-          pInputText
-          id="username"
-          formControlName="username"
-          pTooltip="{{'registerForm.usernameTooltip' | transloco }}"
-        />
-        <label htmlFor="username">{{
-          "registerForm.usernameLabel" | transloco
-        }}</label>
-      </span>
-      <small
-        *ngIf="
-          userFormRegister.get('username')?.invalid &&
-          userFormRegister.get('username')?.touched
-        "
-        class="text-red-500"
-      >
-        {{
-          userFormRegister.get("username").errors != null &&
-          userFormRegister.get("username").errors["whitespace"]
-            ? ("registerForm.usernameSmall" | transloco)
-            : ""
-        }}
-        {{
-          userFormRegister.get("username").errors != null &&
-          userFormRegister.get("username").errors["required"]
-            ? ("registerForm.usernameSmall" | transloco)
-            : ""
-        }}
-      </small>
-    </div>
-    <!-- Username input end-->
-
     <!-- email input start-->
     <div class="wrapper">
       <span class="p-float-label mt-4">
@@ -121,7 +14,7 @@
           pInputText
           id="email"
           formControlName="email"
-          pTooltip="{{'registerForm.emailTooltip' | transloco }}"
+          pTooltip="{{ 'registerForm.emailTooltip' | transloco }}"
         />
         <label htmlFor="email">{{
           "registerForm.emailLabel" | transloco
@@ -150,123 +43,7 @@
     </div>
     <!-- email input end-->
 
-    <!-- phone input start-->
-    <div class="wrapper">
-      <span class="p-float-label mt-4">
-        <i class="pi pi-phone" style="color: #000"></i>
-        <input
-          pInputText
-          id="phone"
-          formControlName="phone"
-          pTooltip="{{'registerForm.phoneTooltip' | transloco }}"
-          (keypress)="validateNumericInput($event)"
-          maxlength="11"
-        />
-        <label htmlFor="phone">{{
-          "registerForm.phoneLabel" | transloco
-        }}</label>
-      </span>
-      <small
-        *ngIf="
-          userFormRegister.get('phone')?.invalid &&
-          userFormRegister.get('phone')?.touched
-        "
-        class="text-red-500"
-      >
-        {{
-          userFormRegister.get("phone").errors != null &&
-          userFormRegister.get("phone").errors["whitespace"]
-            ? ("registerForm.phoneSmall" | transloco)
-            : ""
-        }}
-        {{
-          userFormRegister.get("phone").errors != null &&
-          userFormRegister.get("phone").errors["required"]
-            ? ("registerForm.phoneSmall" | transloco)
-            : ""
-        }}
-      </small>
-    </div>
-    <!-- phone input end-->
-
-    <!-- adres input start-->
-    <div class="wrapper">
-      <span class="p-float-label mt-4">
-        <i class="pi pi-map" style="color: #000"></i>
-        <input
-          pInputText
-          id="address"
-          formControlName="address"
-          pTooltip="{{'registerForm.addressTooltip' | transloco }}"
-        />
-        <label htmlFor="address">{{
-          "registerForm.addressLabel" | transloco
-        }}</label>
-      </span>
-      <small
-        *ngIf="
-          userFormRegister.get('address')?.invalid &&
-          userFormRegister.get('address')?.touched
-        "
-        class="text-red-500"
-      >
-        {{
-          userFormRegister.get("address").errors != null &&
-          userFormRegister.get("address").errors["whitespace"]
-            ? ("registerForm.addressSmall" | transloco)
-            : ""
-        }}
-        {{
-          userFormRegister.get("address").errors != null &&
-          userFormRegister.get("address").errors["required"]
-            ? ("registerForm.addressSmall" | transloco)
-            : ""
-        }}
-      </small>
-    </div>
-    <!-- address input end-->
-
-       <!-- bDate input start-->
-       <div class="wrapper">
-        <span class="p-float-label mt-5">
-          <i class="pi pi-calendar" style="color: #000"></i>
-          <p-calendar
-            id="bDate"
-            formControlName="bDate"
-            styleClass="calendar"
-            [showIcon]="false"
-            id="calendar"
-            pTooltip="{{'registerForm.bDateTooltip' | transloco }}"
-          ></p-calendar>
-          <label htmlFor="calendar">{{
-            "registerForm.bDateLabel" | transloco
-          }}</label>
-          </span>
-        <small
-          *ngIf="
-            userFormRegister.get('bDate')?.invalid &&
-            userFormRegister.get('bDate')?.touched
-          "
-          class="text-red-500"
-        >
-          {{
-            userFormRegister.get("bDate").errors != null &&
-            userFormRegister.get("bDate").errors["whitespace"]
-              ? ("registerForm.bDateSmall" | transloco)
-              : ""
-          }}
-          {{
-            userFormRegister.get("bDate").errors != null &&
-            userFormRegister.get("bDate").errors["required"]
-              ? ("registerForm.bDateSmall" | transloco)
-              : ""
-          }}
-        </small>
-      </div>
-      <!-- bDate input end-->
-
-      <!-- bDate input start-->
-      <div class="wrapper">
+    <!-- <div class="wrapper">
         <span class="p-float-radio mt-4" >
           <div>
             <i class="pi pi-user"></i>
@@ -303,9 +80,7 @@
               : ""
           }}
         </small>
-      </div>
-      <!-- gender input end-->
-
+      </div> -->
     <!-- password input start-->
     <div class="wrapper">
       <span class="p-float-label mt-4">
@@ -315,7 +90,7 @@
           formControlName="password"
           styleClass="password"
           [toggleMask]="true"
-          pTooltip="{{'registerForm.passwordTooltip' | transloco }}"
+          pTooltip="{{ 'registerForm.passwordTooltip' | transloco }}"
         ></p-password>
         <label htmlFor="password">{{
           "registerForm.passwordLabel" | transloco
@@ -353,7 +128,7 @@
           formControlName="confirmpassword"
           [toggleMask]="true"
           styleClass="password"
-          pTooltip="{{'registerForm.confirmTooltip' | transloco }}"
+          pTooltip="{{ 'registerForm.confirmTooltip' | transloco }}"
         ></p-password>
         <label htmlFor="confirmpassword"
           >{{ "registerForm.confirmLabel" | transloco }}
@@ -397,37 +172,74 @@
       </span>
     </div>
     <!-- confirm password input end-->
-    <div class="flex flex-row align-content-center w-full mt-4">
-        <input
-          id="terms"
-          name="terms"
-          type="checkbox"
-          style="width: 15px; height: 15px"
-        />
-        <p for="terms">
-          <a routerLink="/register" target="_self">
-            {{"registerForm.terms" | transloco }}
-          </a>
-        </p>
+    <div class="flex flex-row align-content-center w-full mt-6 mb-3">
+      <input
+        id="terms"
+        name="terms"
+        type="checkbox"
+        style="width: 15px; height: 15px"
+      />
+      <p for="terms">
+        <a routerLink="/register" target="_self">
+          {{ "registerForm.terms" | transloco }}
+        </a>
+      </p>
     </div>
     <!-- button start-->
-    <span class="button-style mt-4">
-      <button class="button " (click)="onSubmit()">
+    <span class="button-style mt-3 mb-5">
+      <button class="button" (click)="onSubmit()">
         {{ "registerForm.buttonLabel" | transloco }}
       </button>
     </span>
     <!-- button end-->
-    <div
-      class="flex flex-row justify-content-between"
-    >
-    <div class="flex">
+    <div class="flex flex-row justify-content-between mt-4">
+      <div class="flex ">
         <p>{{ "registerForm.haveaccount" | transloco }}</p>
-    </div>
+      </div>
 
-    <div class="flex">
-      <a routerLink="/login">{{ "registerForm.loginhere" | transloco }}</a>
+      <div class="flex ">
+        <a routerLink="/login">{{ "registerForm.loginhere" | transloco }}</a>
+      </div>
     </div>
+    <div class="verifyCode" *ngIf="senderMail | async">
+      <!-- code  input start-->
+      <div class="wrapper">
+        <span class="p-float-label mt-6 mb-4">
+          <i class="pi pi-key" style="color: #000"></i>
+          <input pInputText id="code" formControlName="code" />
+          <label htmlFor="code">
+            {{ "registerForm.codeLabel" | transloco }}
+          </label>
+        </span>
+        <small
+          *ngIf="
+            userFormRegister.get('code')?.invalid &&
+            userFormRegister.get('code')?.touched
+          "
+          class="text-red-500"
+        >
+          {{
+            userFormRegister.get("code").errors != null &&
+            userFormRegister.get("code").errors["whitespace"]
+              ? ("creoterForm.codeSmall" | transloco)
+              : ""
+          }}
+          {{
+            userFormRegister.get("code").errors != null &&
+            userFormRegister.get("code").errors["required"]
+              ? ("creoterForm.codeSmall" | transloco)
+              : ""
+          }}
+        </small>
+      </div>
+      <!-- code  input end-->
+      <!-- button start-->
+      <span class="button-style mt-4">
+        <button class="button" (click)="verifyCode()">
+          {{ "creoterForm.codeButton" | transloco }}
+        </button>
+      </span>
+      <!-- button end-->
     </div>
-
   </form>
 </div>

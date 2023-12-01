@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { EMPTY, Observable } from 'rxjs';
+import { BehaviorSubject, EMPTY, Observable } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -15,28 +15,27 @@ import { UserRole } from 'src/app/models/role.enum';
 export class RegisterComponent {
   userFormRegister: FormGroup;
 
+  generatedCode: any;
+
+  senderMail: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+
   Genders: any[] = [
     { name: 'Male', key: 'male' },
     { name: 'Female', key: 'female' },
   ];
 
+
   constructor(
     private formBuilder: FormBuilder,
     private messageService: MessageService,
     private userService: UserService,
-    private router:Router
+    private router: Router,
   ) {
     this.userFormRegister = this.formBuilder.group({
-      name: ['', Validators.required],
-      surname:['',Validators.required],
-      username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      phone: ['', Validators.required],
-      address: ['', Validators.required],
-      bDate: ['', Validators.required],
-      gender: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(8)]],
       confirmpassword: ['', [Validators.required, Validators.minLength(8)]],
+      code:[''],
     });
   }
 
@@ -47,6 +46,17 @@ export class RegisterComponent {
         return { available: !userWithEmail }; // Eğer userWithEmail değeri varsa e-posta adresi kullanılmaktadır.
       })
     );
+  }
+  generateRandomCode(): string {
+    let result = '';
+    const characters = '0123456789';
+    const charactersLength = characters.length;
+
+    for (let i = 0; i < 6; i++) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+
+    return result;
   }
 
   validateNumericInput(event: any): void {
@@ -62,47 +72,47 @@ export class RegisterComponent {
   }
 
   onSubmit() {
+    debugger
     if (this.userFormRegister.valid) {
+      this.generatedCode = this.generateRandomCode();
       const formValuesArray = this.userFormRegister.value;
       const email = formValuesArray.email;
-      // Add the role property to the formValuesArray
       formValuesArray.role = UserRole.User;
-      this.checkEmailAvailability(email).pipe(
-        switchMap((result) => {
-          if (result.available) {
-            return this.userService.registerWithEmail(formValuesArray);
-          } else {
-            this.messageService.clear();
-            this.messageService.add({
-              severity: 'error',
-              summary: 'Hata',
-              detail: 'Bu e-posta adresi zaten kullanılmaktadır. Lütfen başka bir e-posta adresi seçin.',
-            });
-            // Benzer bir e-posta adresi bulunduğunda da bir hata mesajı göster
-            return EMPTY; // Boş bir Observable döndür
-          }
-        })
-      ).subscribe({
-        next: () => {
-          // Başarılı kayıt mesajı göster
-          this.messageService.clear();
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Başarılı',
-            detail: 'Kayıt işlemi başarıyla tamamlandı.',
+      this.checkEmailAvailability(email)
+        .subscribe((result) => {
+            if (result && result.available) {
+              const body = {
+                to: email,
+                subject: 'email doğrulama',
+                text: 'email doğrulama kodunuz: ' + this.generatedCode,
+              };
+              this.userService.sendEmailGlobal(body).subscribe(
+                () => {
+                  this.senderMail.next(true);
+                  this.messageService.add({
+                    severity: 'success',
+                    summary: 'Başarılı!',
+                    detail:
+                      'E-posta adresinize gönderilen doğrulama kodu ile hesabınızı doğrulayabilirsiniz',
+                  });
+                },
+                (error) => {
+                  console.error('Error sending email', error);
+                }
+              );
+              // return this.userService.registerWithEmail(formValuesArray);
+            } else {
+              this.messageService.clear();
+              this.messageService.add({
+                severity: 'error',
+                summary: 'Hata',
+                detail:
+                  'Bu e-posta adresi zaten kullanılmaktadır. Lütfen başka bir e-posta adresi seçin.',
+              });
+              // Benzer bir e-posta adresi bulunduğunda da bir hata mesajı göster
+              return EMPTY; // Boş bir Observable döndür
+            }
           });
-          this.router.navigate(['login']);
-        },
-        error: (error) => {
-          // Eğer hata oluşursa burada işlem yapabilirsiniz
-          console.error('Kayıt başarılı, ancak bildirim gönderilemedi. Hata:', error);
-        },
-        complete: () => {
-          // Observable tamamlandığında yapılacak işlemler
-          console.log('Observable tamamlandı');
-        },
-      });
-
     } else {
       this.messageService.clear();
       this.messageService.add({
@@ -111,5 +121,32 @@ export class RegisterComponent {
         detail: 'Form bilgilerini giriniz.',
       });
     }
+  }
+
+  verifyCode(){
+    const code = this.userFormRegister.get('code').value;
+     if(code===this.generatedCode){
+        const formArray= this.userFormRegister.value;
+        delete formArray['code'];
+        formArray.role = UserRole.User;
+        this.userService.addUsers(formArray).subscribe(()=>{
+          this.messageService.add({
+            severity:'success',
+            summary:'Başarılı',
+            detail:"Kayıt Başarılı bir şekilde tamamlandı...Giriş ekranına yönlendiriliyorsunuz..."
+          });
+          setTimeout(() => {
+            localStorage.clear();
+            this.router.navigate(['/login']);
+          }, 3000);
+        });
+     }
+     else{
+      this.messageService.add({
+        severity:'warn',
+        summary:'Doğrulama kodu',
+        detail:"Girdiğiniz kod doğrulanamadı... Lütfen tekrar deneyiniz"
+      });
+     }
   }
 }

@@ -26,6 +26,8 @@ export class ContentCartsComponent {
 
   creotersEmail: any;
 
+  orderDate= new Date();
+
   constructor(
     private messageService: MessageService,
     private userService: UserService,
@@ -165,7 +167,8 @@ export class ContentCartsComponent {
     const orderData = {
       totalAmount: this.totalPrice,
       orders: this.products,
-      userId: this.userId, // Kullanıcı ID'sini ekleyin
+      userId: this.userId,
+      orderDate:this.orderDate,
     };
     this.getUserId().subscribe(() => {
       this.userService.addOrder(this.userId, orderData).subscribe(

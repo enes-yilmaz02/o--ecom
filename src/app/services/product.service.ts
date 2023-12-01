@@ -17,6 +17,10 @@ export class ProductService {
 
   uploadEndPoint = 'upload';
 
+  category= 'category';
+
+
+
   constructor(private commonService: CommonService) {}
 
   calculateTotalRevenue(orders: any[]): number {
@@ -63,6 +67,11 @@ export class ProductService {
   // Tüm ürünleri getirme
   getProducts(): Observable<Product[]> {
     return this.commonService.get(this.productsEndpoint);
+  }
+
+   // Categorize edilmiş ürünleri getirme
+   getProductsByFilter(category:any): Observable<Product[]> {
+    return this.commonService.get(`${this.productsEndpoint}/${this.category}/${category}`);
   }
 
   // Tüm creoter ürünleri getirme

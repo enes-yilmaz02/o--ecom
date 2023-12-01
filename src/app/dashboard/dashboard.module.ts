@@ -22,6 +22,7 @@ import { MenuComponent } from './layout-creoter/menu.component';
 import { TopbarComponent } from './layout-creoter/topbar.component';
 import { FooterComponent } from './layout-creoter/footer.component';
 import { SidebarComponent } from './layout-creoter/sidebar.component';
+import { TruncatePipe } from '../services/pipes/truncate.pipe';
 @NgModule({
   declarations: [
        DashboardComponent,
@@ -55,7 +56,8 @@ import { SidebarComponent } from './layout-creoter/sidebar.component';
     UserService,
     DialogService,
     TranslocoModule,
-    ProductService
+    ProductService,
+    TruncatePipe
   ]
 })
 export class DashboardModule { }

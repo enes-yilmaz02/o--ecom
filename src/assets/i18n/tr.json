@@ -50,7 +50,8 @@
     "buttonLabel":"Üye ol",
     "terms":"Hizmet şartlarına ilişkin tüm beyanlara katılıyorum",
     "haveaccount":"Zaten bir hesabınız var mı?",
-    "loginhere":"Giriş yapın!"
+    "loginhere":"Giriş yapın!",
+    "codeLabel":"Doğrulama Kodu"
   },
   "resetForm":{
     "emailTooltip":"emailinizi giriniz",
@@ -136,7 +137,7 @@
   },
   "cartsForm":{
     "title":"Sepetiniz Boş",
-    "desc":"Hemen ürünleri sepete ekleyebilir , Satın alabilirsiniz!",
+    "desc":"Hemen ürünleri sepete ekleyebilir, Satın alabilir ve sevdikleriniz ile paylaşabilirsiniz!",
     "buttonLabel":"Ürün ekle",
     "header": " Sepettim"
   },
@@ -256,6 +257,33 @@
     "taban":"Taban Materyali",
     "priceHistory":"Fiyat Geçmişi",
     "region":"Ortam"
+  },
+  "stockStatus": {
+    "INSTOCK": "Stokta Var",
+    "LOWSTOCK": "Tükenmek Üzere",
+    "OUTOFSTOCK": "Stokta Yok"
+  },
+  "categoryName": {
+    "Accessories": "Aksesuar",
+    "Electronics": "Elektronik",
+    "Clothing": "Giyim",
+    "Fitness": "Spor",
+    "Man": "Erkek",
+    "Women": "Kadın",
+    "Children": "Çocuk"
+  },
+  "cardForm":{
+    "buttonLabel":"Sepete ekle",
+    "title":"Filtrele",
+    "notStock":"Stokta yok",
+    "allProducts":"Tüm ürünler",
+    "Accessories": "Aksesuar",
+    "Electronics": "Elektronik",
+    "Clothing": "Giyim",
+    "Fitness": "Spor",
+    "Man": "Erkek",
+    "Women": "Kadın",
+    "Children": "Çocuk"
   }
 
 }

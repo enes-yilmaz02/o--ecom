@@ -7,12 +7,13 @@ import { Observable, map, tap } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
 import { ActivatedRoute } from '@angular/router';
 import { BadgeService } from 'src/app/services/badge.service';
-
-
+import { StockStatusPipe } from 'src/app/services/helper/stock-status.pipe';
+import { CategoryStatus } from 'src/app/services/helper/category-status.pipe';
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss'],
+  providers:[StockStatusPipe,CategoryStatus]
 })
 export class CardComponent implements OnInit {
   layout: 'grid' | 'list' = 'grid';
@@ -26,13 +27,14 @@ export class CardComponent implements OnInit {
   files: any[] = [];
   userId: any;
   liked: boolean = true;
+  translatedStockStatus: any;
 
   constructor(
     private productService: ProductService,
     private userService: UserService,
     private messageService:MessageService,
     private route : ActivatedRoute,
-    private badgeService:BadgeService
+    private badgeService:BadgeService,
   ) {}
 
   ngOnInit() {
@@ -43,15 +45,14 @@ export class CardComponent implements OnInit {
     ];
   }
 
+
   getFileUrl(fileName: string): string {
-    // Update the URL template based on your file structure in Google Cloud Storage
     return `http://localhost:8080/files/${fileName}`;
   }
 
   getAllProducts() {
     this.productService.getProducts().subscribe((data: any) => {
       this.product = data;
-      console.log(this.product);
     });
   }
 
@@ -100,6 +101,10 @@ export class CardComponent implements OnInit {
     dv.filter((event.target as HTMLInputElement).value);
   }
 
+  isOutOfStock(product: any): boolean {
+    return product.selectedStatus?.name === 'OUTOFSTOCK';
+  }
+
   getUserId(): Observable<any> {
     return this.userService.getTokenId().pipe(
       tap((id: any) => {
@@ -111,6 +116,13 @@ export class CardComponent implements OnInit {
     return this.route.params.pipe(
       map(params => params['id'])
     );
+  }
+
+  getProductByFilter(category:any){
+    this.productService.getProductsByFilter(category).subscribe((data:any)=>{
+      this.product=data;
+      console.log(data);
+    })
   }
 
 
@@ -140,6 +152,7 @@ export class CardComponent implements OnInit {
         (error) => {
           console.log(error);
         }
+
       );
     });
   }

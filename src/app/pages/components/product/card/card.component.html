@@ -1,106 +1,121 @@
-<!-- <div class="card">
-  <div class="block search">
-    <div class="p-input-icon-left search-text mr-3">
-      <i class="pi pi-search"></i>
-      <input
-        pInputText
-        type="text"
-        [(ngModel)]="searchText"
-        placeholder="Ara..."
-      />
+<div class="card flex flex-row">
+  <div>
+    <div class="category-filter flex">
+      <div class="title">
+        <h3>{{ "cardForm.title" | transloco }}</h3>
+      </div>
+      <div (click)="getAllProducts()">
+        {{ "cardForm.allProducts" | transloco }}
+      </div>
+      <div (click)="getProductByFilter('Accessories')">
+        {{ "cardForm.Accessories" | transloco }}
+      </div>
+      <div (click)="getProductByFilter('Electronics')">
+        {{ "cardForm.Electronics" | transloco }}
+      </div>
+      <div (click)="getProductByFilter('Clothing')">
+        {{ "cardForm.Clothing" | transloco }}
+      </div>
+      <div (click)="getProductByFilter('Fitness')">
+        {{ "cardForm.Fitness" | transloco }}
+      </div>
+      <div (click)="getProductByFilter('Man')">
+        {{ "cardForm.Man" | transloco }}
+      </div>
+      <div (click)="getProductByFilter('Women')">
+        {{ "cardForm.Women" | transloco }}
+      </div>
+      <div (click)="getProductByFilter('Children')">
+        {{ "cardForm.Children" | transloco }}
+      </div>
     </div>
   </div>
-  <p-dataView
-    [value]="filterProducts()"
-    [layout]="layout"
-    [filterBy]="searchText"
-    [paginator]="true"
-    [rows]="9"
-    [sortField]="sortField"
-    [sortOrder]="sortOrder"
-    [showCurrentPageReport]="true"
-    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-    [rowsPerPageOptions]="[10, 25, 50]"
-  >
-    <ng-template let-product pTemplate="gridItem">
-      <div class="col-12 sm:col-6 lg:col-12 xl:col-4 p-2 product-card">
-        <a [routerLink]="['/pages/product', product.id]" class="product-id">
-          <div class="p-4 border-1 surface-border surface-card border-round">
-            <div
-              class="flex flex-wrap align-items-center justify-content-between gap-2"
-            >
-              <span class="flex align-items-center gap-2">
-                <i class="pi pi-tag"></i>
-                <span class="font-semibold">{{ product?.category.name }}</span>
-              </span>
-              <p-tag
-                [value]="product.selectedStatus.name"
-                [severity]="getSeverity(product)"
-              ></p-tag>
-            </div>
-            <div class="flex flex-column align-items-center gap-3 py-5">
-              <img
-                class="w-9 shadow-2 border-round"
-                [src]="getFileUrl(product?.file)"
-                [alt]="product?.name"
-                width="300px"
-                height="200px"
-              />
-              <div class="text-2xl font-bold">{{ product?.name | truncate:15 }}</div>
-              <p-rating
-                [ngModel]="product.valueRating"
-                [readonly]="true"
-                [cancel]="false"
-              ></p-rating>
-            </div>
-            <div>
-              <h6 class="mb-3 mt-3 font-bold">{{ product?.companyName }}</h6>
-            </div>
-            <div class="flex align-items-center justify-content-between">
-              <span class="text-2xl font-semibold">{{
-                "$" + product?.priceStacked
-              }}</span>
-              <button
-                pButton
-                icon="pi pi-shopping-cart"
-                class="p-button-rounded"
-                [disabled]="product.selectedStatus.name === 'OUTOFSTOCK'"
-              ></button>
+  <div class="flex flex-column w-full">
+    <div class="search">
+      <div class="p-input-icon-left search-text mr-3">
+        <i class="pi pi-search"></i>
+        <input
+          pInputText
+          type="text"
+          [(ngModel)]="searchText"
+          placeholder="Ara..."
+        />
+      </div>
+    </div>
+    <p-dataView
+      [value]="filterProducts()"
+      [layout]="layout"
+      [filterBy]="searchText"
+      [paginator]="true"
+      [rows]="10"
+      [sortField]="sortField"
+      [sortOrder]="sortOrder"
+      [showCurrentPageReport]="true"
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+      [rowsPerPageOptions]="[10, 25, 50]"
+    >
+      <ng-template let-product pTemplate="gridItem">
+        <div class="flex flex-row">
+          <div class="product-container">
+            <div class="product-card">
+              <div class="product-image">
+                <img [src]="getFileUrl(product.file)" alt="Product Image" />
+              </div>
+              <div class="product-info">
+                <h2 class="product-title">
+                  {{ product.name | truncate : 22 }}
+                </h2>
+                <div class="flex flex-row justify-content-between">
+                  <p class="product-description">
+                    {{ product.category.name | categoryStatus }}
+                  </p>
+                  <p class="product-description">
+                    <p-tag
+                      [value]="product?.selectedStatus.name | stockStatus"
+                      [severity]="getSeverity(product)"
+                    ></p-tag>
+                  </p>
+                </div>
+                <!-- <div class="flex flex-row justify-content-between">
+          <p class="product-description">
+            {{ product.description | truncate : 50 }}
+          </p>
+        </div> -->
+                <div
+                  class="product-price flex flex-row flex-auto justify-content-between"
+                >
+                  <p>{{ product.priceStacked | currency : "USD" }}</p>
+                  <p-rating
+                    [ngModel]="product.valueRating"
+                    [readonly]="true"
+                    [cancel]="false"
+                    styleClass="rating"
+                  ></p-rating>
+                </div>
+                <!-- <button class="more-cart" [routerLink]="['/pages/product', product.id]">
+          More +
+        </button> -->
+                <button
+                  class="add-to-cart"
+                  *ngIf="isOutOfStock(product)"
+                  [class.disabled]="isOutOfStock(product)"
+                  [ngClass]="{ 'no-hover': isOutOfStock(product) }"
+                  [disabled]="isOutOfStock(product)"
+                >
+                  {{'cardForm.notStock' | transloco}}
+                </button>
+                <button
+                  class="add-to-cart"
+                  *ngIf="!isOutOfStock(product)"
+                  (click)="addToCart(product, product.id)"
+                >
+                  {{ "cardForm.buttonLabel" | transloco }}
+                </button>
+              </div>
             </div>
           </div>
-        </a>
-      </div>
-    </ng-template>
-  </p-dataView>
-</div>
- -->
-
- <div class="product-container">
-  <div class="product-card" *ngFor="let product of product">
-    <div class="product-image">
-      <img [src]="getFileUrl(product.file)" alt="Product Image">
-    </div>
-    <div class="product-info">
-      <h2 class="product-title">{{product.name}}</h2>
-      <div class="flex flex-row justify-content-between">
-        <p class="product-description">{{product.category.name}}</p>
-        <p class="product-description">{{product.selectedStatus.name}}</p>
-      </div>
-      <div class="flex flex-row justify-content-between">
-        <p class="product-description">{{product.description | truncate:50}}</p>
-      </div>
-      <div class="product-price flex flex-row justify-content-between">
-        <p>{{product.priceStacked | currency:'USD'}}</p>
-        <p-rating
-                [ngModel]="product.valueRating"
-                [readonly]="true"
-                [cancel]="false"
-                styleClass="rating"
-              ></p-rating>
-      </div>
-      <button class="more-cart" [routerLink]="['/pages/product', product.id]">More +</button>
-      <button class="add-to-cart" (click)="addToCart(product , product.id)" >Add to Cart</button>
-    </div>
+        </div>
+      </ng-template>
+    </p-dataView>
   </div>
 </div>
-

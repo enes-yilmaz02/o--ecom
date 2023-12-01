@@ -1,5 +1,8 @@
 .container{
   padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 
@@ -7,6 +10,7 @@
   display: flex;
   flex-direction: row;
   margin-top: 10px;
+  min-width: 100%;
 }
 .product-filter{
   width: 300px;
@@ -16,6 +20,9 @@
 }
 .product-list{
   position: relative;
-  margin: auto;
-  width: auto;
+  margin:5px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+
 }

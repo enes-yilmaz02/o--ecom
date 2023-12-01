@@ -50,7 +50,8 @@
     "buttonLabel": "Sign up",
     "terms":"I agree with all statements regarding the terms of service",
     "haveaccount":"Have already an account?",
-    "loginhere":"Login here!"
+    "loginhere":"Login here!",
+    "codeLabel":"Verify Code"
   },
   "resetForm": {
     "emailTooltip": "Enter your email",
@@ -136,7 +137,7 @@
   },
   "cartsForm":{
     "title":"Your Cart is Empty",
-    "desc":"You can add the products to the cart and buy immediately!",
+    "desc":"You can immediately add the products to your cart, buy them and share them with your loved ones!",
     "buttonLabel":"Add product",
     "header": "Carts"
   },
@@ -256,6 +257,33 @@
     "taban":"Base Material",
     "priceHistory":"Price History",
     "region":"Environment"
+  },
+  "stockStatus": {
+    "INSTOCK": "In Stock",
+    "LOWSTOCK": "Low Stock",
+    "OUTOFSTOCK": "Out of Stock"
+  },
+  "categoryName": {
+    "Accessories": "Accessories",
+    "Electronics": "Electronics",
+    "Clothing": "Clothing",
+    "Fitness": "Fitness",
+    "Man": "Man",
+    "Women": "Women",
+    "Children": "Children"
+  },
+  "cardForm":{
+    "buttonLabel":"Add to Cart",
+    "title":"Filter",
+    "notStock":"Out of stock",
+    "allProducts":"All Products",
+    "Accessories": "Accessories",
+    "Electronics": "Electronics",
+    "Clothing": "Clothing",
+    "Fitness": "Fitness",
+    "Man": "Man",
+    "Women": "Women",
+    "Children": "Children"
   }
 
 
