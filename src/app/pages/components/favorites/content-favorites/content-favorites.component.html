@@ -2,16 +2,15 @@
   class="surface-section px-4 py-8 md:px-6 lg:px-8 border-1 surface-border border-round"
 >
   <div class="text-900 font-medium text-4xl mb-4">{{'favoritesForm.header' | transloco}}</div>
-  <div class="grid -mt-3 -ml-3 -mr-3">
-    <div class="col-12 md:col-6 lg:col-4" *ngFor="let product of product">
-
+  <div class="grid -mt-3 -ml-3 -mr-3" >
+    <div class="col-12 md:col-6 lg:col-4"  *ngFor="let product of products">
       <div class="p-2">
         <div class="shadow-2 surface-card-parent border-round">
           <div class="relative mb-3">
             <span
               class="surface-card text-900 shadow-2 px-3 py-2 absolute"
               style="border-radius: 1.5rem; left: 1rem; top: 1rem"
-              >{{product?.category.name}}</span
+              >{{product?.category.name | categoryStatus}}</span
             >
             <img
               [src]="getFileUrl(product?.file)"
@@ -34,9 +33,9 @@
             class="pi text-2xl cursor-pointer ml-3"
             [ngClass]="{
               'pi-heart text-600': !liked,
-              'pi-heart-fill text-blue-500': liked
+              'pi-heart-fill text-red-500': liked
             }"
-            (click)="liked =!liked; deleteFavorites(product.id)"
+            (click)="deleteFavorites(product.productId)"
           ></i>
           </div>
         </div>

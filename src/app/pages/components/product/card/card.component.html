@@ -56,8 +56,8 @@
       <ng-template let-product pTemplate="gridItem">
         <div class="flex flex-row">
           <div class="product-container">
-            <div class="product-card" [routerLink]="['/pages/product', product.id]">
-              <div class="product-image">
+            <div class="product-card">
+              <div class="product-image" [routerLink]="['/pages/product', product.id]">
                 <img [src]="getFileUrl(product.file)" alt="Product Image" />
               </div>
               <div class="product-info">

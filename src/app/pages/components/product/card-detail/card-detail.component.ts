@@ -50,7 +50,6 @@ export class CardDetailComponent implements OnInit {
 
     this.productService.getProducts().subscribe((products: any[]) => {
       this.favoritedProducts = Array(products.length).fill(false);
-      this.checkIfProductIsLiked();
     });
   }
 
@@ -114,6 +113,10 @@ export class CardDetailComponent implements OnInit {
   }
 
   getFileUrl(fileName: string): string {
+    if (!fileName) {
+      // Eğer dosya adı null veya boş ise, boş bir URL döndür
+      return '';
+    }
     return `http://localhost:8080/files/${fileName}`;
   }
 
@@ -217,6 +220,7 @@ export class CardDetailComponent implements OnInit {
       this.getProductId().subscribe((productId: string) => {
         this.productService.patchProductById(productId).subscribe((product: any) => {
           this.checkIfProductIsFavorites(userId, productId).subscribe((isFavorited: boolean) => {
+            console.log(isFavorited);
             if (!isFavorited) {
               const body = {
                 id: productId,

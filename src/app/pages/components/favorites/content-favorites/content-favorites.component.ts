@@ -1,25 +1,31 @@
 import { MessageService } from 'primeng/api';
 import { Component } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
-import { Observable, tap } from 'rxjs';
+import { Observable, tap, map } from 'rxjs';
 import { BadgeService } from 'src/app/services/badge.service';
-
+import { StockStatusPipe } from 'src/app/services/helper/stock-status.pipe';
+import { CategoryStatus } from 'src/app/services/helper/category-status.pipe';
 @Component({
   selector: 'app-content-favorites',
   templateUrl: './content-favorites.component.html',
   styleUrls: ['./content-favorites.component.scss'],
+  providers: [StockStatusPipe, CategoryStatus],
 })
 export class ContentFavoritesComponent {
-  product: any;
+  products: any;
 
   userId: any;
 
   liked: boolean = true;
 
+  productId: any;
+
+  deleting: boolean = false; // deleting değişkeni ekleniyor
+
   constructor(
     private userService: UserService,
     private messageService: MessageService,
-    private badgeService:BadgeService
+    private badgeService: BadgeService
   ) {
     this.getUserId().subscribe(() => {
       this.getFavorites();
@@ -34,23 +40,34 @@ export class ContentFavoritesComponent {
   }
   getFavorites() {
     return this.userService.getFavorites(this.userId).subscribe((data: any) => {
-      this.product = data;
+      // productId değerlerini products dizisine ekle
+      this.products = data
+        .map((item: any) => {
+          const product = item.product;
+          product.productId = item.id; // productId değerini ekle
+          return product;
+        })
+        .flat();
     });
   }
 
-  deleteFavorites(favoriteId: any) {
+  deleteFavorites(productId: any) {
     this.getUserId().subscribe(() => {
-      this.userService.deleteFavorite(this.userId, favoriteId).subscribe(
+      this.userService.deleteFavoriteById(this.userId, productId).subscribe(
         () => {
           this.messageService.add({
             severity: 'success',
-            summary: 'Favori silindi!',
+            summary: 'Başarılı',
+            detail:'Ürün favorilerinizden kaldırıldı...'
           });
           this.badgeService.emitCartUpdatedEvent();
           this.getFavorites();
+
         },
         (error) => {
+          console.log(productId);
           console.log(error);
+
         }
       );
     });
