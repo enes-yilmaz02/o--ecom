@@ -158,9 +158,14 @@ export class CardDetailComponent implements OnInit {
       }
       this.getUserId().subscribe(() => {
         this.getProductId().subscribe((productId) => {
-          body.quantity = this.defaultValue;
-          body.creoterId = this.product.creoterId;
-          body.email = this.product.email;
+          const body = {
+            id: productId,
+            quantity:this.defaultValue,
+            creoterId:this.product.creoterId,
+            email:this.product.email,
+            product:this.product
+          };
+          console.log('this is body: ',body);
           this.userService.addCart(this.userId, productId, body).subscribe(
             (response: any) => {
               if (response) {
@@ -242,12 +247,6 @@ export class CardDetailComponent implements OnInit {
       });
     });
   }
-
-
-
-
-
-
   isOutOfStock(product: any): boolean {
     return product?.selectedStatus?.name === 'OUTOFSTOCK';
   }

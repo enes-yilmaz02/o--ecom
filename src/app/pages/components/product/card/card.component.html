@@ -106,7 +106,7 @@
                 <button
                   class="add-to-cart"
                   *ngIf="!isOutOfStock(product)"
-                  (click)="addToCart(product, product.id)"
+                  (click)="addToCart(product , product.id)"
                 >
                   {{ "cardForm.buttonLabel" | transloco }}
                 </button>

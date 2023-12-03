@@ -29,6 +29,8 @@ export class ContentCartsComponent {
 
   orderDate= new Date();
 
+  orderQuantity:any;
+
   constructor(
     private messageService: MessageService,
     private userService: UserService,
@@ -60,14 +62,32 @@ export class ContentCartsComponent {
 
   getCarts() {
     return this.userService.getCarts(this.userId).subscribe((data: any) => {
-      this.products = data;
-      this.creoterId = data.map((id: any) => id.creoterId);
+      // Extract id and quantity from each item and create a new array
+      this.orderQuantity = data.map((item: any) => ({
+        id: item.id,
+        quantity: item.quantity
+      })).flat();
+
+      // Assign creoterId to the variable
+      this.creoterId = data.map((item: any) => {
+        const ids=item.creoterId;
+        return ids;
+      });
+
+      // Assign the entire data to the products variable
+      this.products = data.map((item:any)=>{
+        const product= item.product;
+        return product;
+      });
+
+      // Calculate total price and fetch creoter data
       this.calculateTotalPrice();
       this.getCroeterData();
     });
   }
 
   getCroeterData() {
+
     if (Array.isArray(this.creoterId) && this.creoterId.length > 0) {
       const creoterIds = this.creoterId;
       const requests = creoterIds.map((creoterId: any) =>
@@ -188,7 +208,6 @@ export class ContentCartsComponent {
               this.clearCart();
             });
           } else {
-            // HTTP durum kodu başarısızsa hata mesajı göster
             this.messageService.add({
               severity: 'error',
               summary: 'Başarısız',
