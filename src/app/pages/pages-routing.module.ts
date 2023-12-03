@@ -14,6 +14,7 @@ import { UserpasswordComponent } from './components/account/userpassword/userpas
 import { UsercontactComponent } from './components/account/usercontact/usercontact.component';
 import { CartsComponent } from './components/carts/carts.component';
 import { CreoterFormComponent } from './components/creoter-form/creoter-form.component';
+import { DenemeComponent } from './components/deneme/deneme.component';
 
 @NgModule({
   declarations: [],
@@ -26,6 +27,9 @@ import { CreoterFormComponent } from './components/creoter-form/creoter-form.com
         children: [
           {
             path:'' , component:ProductComponent
+          },
+          {
+            path:'deneme' , component:DenemeComponent
           },
           {
             path: 'account',

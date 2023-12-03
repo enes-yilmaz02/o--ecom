@@ -65,36 +65,28 @@ export class CardDetailComponent implements OnInit {
     return this.userService.getFavoriteById(userId, productId).pipe(
       map((isProductFavorited: any) => {
         if (Object.keys(isProductFavorited).length !== 0) {
-          this.liked=false;
-          this.userService
-            .deleteFavoriteById(userId, productId)
-            .subscribe(
-              () => {
-                this.liked = false;
-                this.updateUrlWithLikedParam(false);
-                this.messageService.add({
-                  severity: 'success',
-                  summary: 'Başarılı',
-                  detail: 'Favorilerden kaldırıldı',
-                });
-                this.badgeService.emitFavoritesRemovedEvent(
-                  productId
-                );
-                this.badgeService.emitCartUpdatedEvent();
-              },
-              (error) => {
-                console.error(
-                  'Favori kaldırma işleminde hata:',
-                  error
-                );
-                this.messageService.add({
-                  severity: 'error',
-                  summary: 'Hata',
-                  detail:
-                    'Favori kaldırma işleminde bir hata oluştu',
-                });
-              }
-            );
+          this.liked = false;
+          this.userService.deleteFavoriteById(userId, productId).subscribe(
+            () => {
+              this.liked = false;
+              this.updateUrlWithLikedParam(false);
+              this.messageService.add({
+                severity: 'success',
+                summary: 'Başarılı',
+                detail: 'Favorilerden kaldırıldı',
+              });
+              this.badgeService.emitFavoritesRemovedEvent(productId);
+              this.badgeService.emitCartUpdatedEvent();
+            },
+            (error) => {
+              console.error('Favori kaldırma işleminde hata:', error);
+              this.messageService.add({
+                severity: 'error',
+                summary: 'Hata',
+                detail: 'Favori kaldırma işleminde bir hata oluştu',
+              });
+            }
+          );
           return true; // Favori var
         } else {
           return false; // Favori yok
@@ -128,6 +120,10 @@ export class CardDetailComponent implements OnInit {
     );
   }
 
+  getProduct(productId: any): Observable<any> {
+    return this.productService.patchProductById(productId);
+  }
+
   getProductId(): Observable<string> {
     return this.route.params.pipe(map((params) => params['id']));
   }
@@ -147,6 +143,7 @@ export class CardDetailComponent implements OnInit {
 
   addToCart(body: any) {
     if (this.defaultValue >= 1) {
+      console.log('quantity', this.product.quantity);
       if (this.defaultValue > this.product.quantity) {
         // Eğer seçilen miktar stok miktarından fazlaysa uyarı mesajı göster
         this.messageService.add({
@@ -158,14 +155,17 @@ export class CardDetailComponent implements OnInit {
       }
       this.getUserId().subscribe(() => {
         this.getProductId().subscribe((productId) => {
+          const quantityDefault = this.defaultValue
+          console.log(this.defaultValue);
           const body = {
             id: productId,
-            quantity:this.defaultValue,
-            creoterId:this.product.creoterId,
-            email:this.product.email,
-            product:this.product
+            creoterId: this.product.creoterId,
+            email: this.product.email,
+            product: {
+              ...this.product,
+              quantity: quantityDefault,
+            },
           };
-          console.log('this is body: ',body);
           this.userService.addCart(this.userId, productId, body).subscribe(
             (response: any) => {
               if (response) {
@@ -174,6 +174,33 @@ export class CardDetailComponent implements OnInit {
                   summary: 'Başarılı',
                   detail: 'Ürün sepete eklendi',
                 });
+                this.getProduct(productId).subscribe(
+                  (productData: any) => {
+
+                    const totalquantity= productData.quantity;
+                    console.log('TotalQuantity: ',totalquantity);
+                    const quantity= totalquantity - quantityDefault;
+                    console.log('TotalQuantity: ',quantity);
+                    const product = {
+                      ...productData,
+                      quantity:quantity
+                    };
+                    this.productService.updateProduct(productId ,product).subscribe((response)=>{
+                      this.messageService.add({
+                        severity:'success',
+                        summary: 'Başarılı',
+                        detail: 'Stok güncellendi'
+                      });
+                    },
+                    (error)=>{
+                      console.log(error);
+                    }
+                    )
+                  },
+                  (error: any) => {
+                    console.error('Error fetching product:', error);
+                  }
+                );
                 this.badgeService.emitCartUpdatedEvent();
               } else {
                 this.messageService.add({
@@ -206,44 +233,51 @@ export class CardDetailComponent implements OnInit {
 
   checkIfProductIsLiked() {
     this.getUserId().subscribe((userId) => {
-      this.getProductId().subscribe((productId)=>{
-        this.userService.getFavoriteById(userId ,productId).subscribe((favorites:boolean) => {
-          const index=favorites['id'];
-          if(index === productId ){
-            this.liked=true;
-          }else{
-            this.liked=false;
-          }
-
-        });
-      })
+      this.getProductId().subscribe((productId) => {
+        this.userService
+          .getFavoriteById(userId, productId)
+          .subscribe((favorites: boolean) => {
+            const index = favorites['id'];
+            if (index === productId) {
+              this.liked = true;
+            } else {
+              this.liked = false;
+            }
+          });
+      });
     });
   }
 
   addToCartFavorites() {
     this.getUserId().subscribe((userId: any) => {
       this.getProductId().subscribe((productId: string) => {
-        this.productService.patchProductById(productId).subscribe((product: any) => {
-          this.checkIfProductIsFavorites(userId, productId).subscribe((isFavorited: boolean) => {
-            console.log(isFavorited);
-            if (!isFavorited) {
-              const body = {
-                id: productId,
-                product: product
-              };
+        this.productService
+          .patchProductById(productId)
+          .subscribe((product: any) => {
+            this.checkIfProductIsFavorites(userId, productId).subscribe(
+              (isFavorited: boolean) => {
+                console.log(isFavorited);
+                if (!isFavorited) {
+                  const body = {
+                    id: productId,
+                    product: product,
+                  };
 
-              this.userService.addFavorite(userId, productId, body).subscribe(() => {
-                this.messageService.add({
-                  severity: 'success',
-                  summary: 'Başarılı',
-                  detail: 'Ürün Favorilerinize eklendi...',
-                });
-                this.liked=true;
-                this.badgeService.emitCartUpdatedEvent();
-              });
-            }
+                  this.userService
+                    .addFavorite(userId, productId, body)
+                    .subscribe(() => {
+                      this.messageService.add({
+                        severity: 'success',
+                        summary: 'Başarılı',
+                        detail: 'Ürün Favorilerinize eklendi...',
+                      });
+                      this.liked = true;
+                      this.badgeService.emitCartUpdatedEvent();
+                    });
+                }
+              }
+            );
           });
-        });
       });
     });
   }

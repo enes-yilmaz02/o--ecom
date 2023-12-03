@@ -34,6 +34,7 @@ import { CreoterFormComponent } from './components/creoter-form/creoter-form.com
 import { TruncatePipe } from '../services/pipes/truncate.pipe';
 import { StockStatusPipe } from '../services/helper/stock-status.pipe';
 import { CategoryStatus } from '../services/helper/category-status.pipe';
+import { DenemeComponent } from './components/deneme/deneme.component';
 @NgModule({
   declarations: [
     NavbarListComponent,
@@ -63,7 +64,8 @@ import { CategoryStatus } from '../services/helper/category-status.pipe';
      CreoterFormComponent,
      TruncatePipe,
      StockStatusPipe,
-     CategoryStatus
+     CategoryStatus,
+     DenemeComponent
 
 
   ],

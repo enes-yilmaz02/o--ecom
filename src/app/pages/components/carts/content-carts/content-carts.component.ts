@@ -31,6 +31,8 @@ export class ContentCartsComponent {
 
   orderQuantity:any;
 
+  cart:any;
+
   constructor(
     private messageService: MessageService,
     private userService: UserService,
@@ -62,12 +64,13 @@ export class ContentCartsComponent {
 
   getCarts() {
     return this.userService.getCarts(this.userId).subscribe((data: any) => {
+
+
       // Extract id and quantity from each item and create a new array
       this.orderQuantity = data.map((item: any) => ({
         id: item.id,
         quantity: item.quantity
       })).flat();
-
       // Assign creoterId to the variable
       this.creoterId = data.map((item: any) => {
         const ids=item.creoterId;

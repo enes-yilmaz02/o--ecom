@@ -36,7 +36,7 @@ import { DialogModule } from 'primeng/dialog';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { FileUploadModule } from 'primeng/fileupload';
 import { SidebarModule } from 'primeng/sidebar';
-
+import { StepsModule } from 'primeng/steps';
 
 @NgModule({
   declarations: [],
@@ -78,7 +78,8 @@ import { SidebarModule } from 'primeng/sidebar';
     DialogModule,
     DynamicDialogModule,
     FileUploadModule,
-    SidebarModule
+    SidebarModule,
+    StepsModule
 
   ],
   exports:[
@@ -119,7 +120,8 @@ import { SidebarModule } from 'primeng/sidebar';
     DialogModule,
     DynamicDialogModule,
     FileUploadModule,
-    SidebarModule
+    SidebarModule,
+    StepsModule
   ],
   providers:[MessageService]
 })
