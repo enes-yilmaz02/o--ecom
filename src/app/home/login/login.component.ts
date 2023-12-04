@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
-import { AuthService } from 'src/app/services/auth/auth.service';
 import { UserService } from 'src/app/services/user.service';
+declare var handleSignout: any; // Declare the global function to avoid TypeScript errors
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -11,22 +12,44 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class LoginComponent {
   userFormLogin: FormGroup;
-
+  userProfile: any;
   constructor(
     private formBuilder: FormBuilder,
     private messageService: MessageService,
     private userService: UserService,
     private router: Router,
+   
+    ) {}
 
-  ) {
+  ngOnInit() {
     this.userFormLogin = this.formBuilder.group({
       email: ['', [Validators.required, Validators.minLength(2)]],
       password: ['', [Validators.required, Validators.minLength(8)]],
     });
+    try {
+      const storedData = sessionStorage.getItem("loggedInUser");
+  
+      if (storedData) {
+        this.userProfile = JSON.parse(storedData);
+        console.log('Session storage\'dan alınan değer:', this.userProfile);
+        // UserProfile'ı kullanabileceğiniz yer burasıdır.
+      } else {
+        console.warn('Session storage\'da loggedInUser anahtarı bulunamadı.');
+      }
+    } catch (error) {
+      console.error('Session storage parse hatası:', error);
+    }
+  
   }
-
+ 
+  handleSignOut() {
+    handleSignout();
+    sessionStorage.removeItem("loggedInUser");
+    this.router.navigate(["/login"]).then(() => {
+      window.location.reload();
+    });
+  }
   onSubmitLogin() {
-
     if (this.userFormLogin.valid) {
       const formValuesArray = this.userFormLogin.value;
       this.userService.loginUser(formValuesArray).subscribe(

@@ -62,4 +62,12 @@ export class FavoritesComponent {
     );
    })
   }
+       // Tüm siparişler silindiğinde bu fonksiyon çalışacak
+       handleAllFavoritesDeleted() {
+        this.showLoading=true;
+        setTimeout(() => {
+          this.hasData=false;
+          this.showLoading = false;
+        }, 3000);
+      }
 }

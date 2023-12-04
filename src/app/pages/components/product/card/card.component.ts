@@ -1,15 +1,14 @@
-import { Component, OnInit, Pipe } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product.service';
 import { DataView } from 'primeng/dataview';
 import { SelectItem, MessageService } from 'primeng/api';
-import { Observable, map, tap, Subscription, switchMap, of, mergeMap, EMPTY } from 'rxjs';
+import { Observable, map, tap } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
 import { ActivatedRoute } from '@angular/router';
 import { BadgeService } from 'src/app/services/badge.service';
 import { StockStatusPipe } from 'src/app/services/helper/stock-status.pipe';
 import { CategoryStatus } from 'src/app/services/helper/category-status.pipe';
-import { error } from 'jquery';
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
@@ -137,7 +136,6 @@ export class CardComponent implements OnInit {
   addToCart(product: any, productId: any) {
     this.getUserId().subscribe(() => {
       const quantity: number = 1;
-
       const body = {
         id: productId,
         creoterId:product.creoterId,
@@ -147,35 +145,10 @@ export class CardComponent implements OnInit {
           quantity: quantity,
         },
       };
-
+      console.log(body);
       this.userService.addCart(this.userId, productId, body).subscribe(
         (response: any) => {
           if (response) {
-            this.getProduct(productId).subscribe(
-              (productData: any) => {
-
-                const totalquantity= productData.quantity;
-                const quantity= totalquantity - 1;
-                const product = {
-                  ...productData,
-                  quantity:quantity
-                };
-                this.productService.updateProduct(productId ,product).subscribe((response)=>{
-                  this.messageService.add({
-                    severity:'success',
-                    summary: 'Başarılı',
-                    detail: 'Stok güncellendi'
-                  });
-                },
-                (error)=>{
-                  console.log(error);
-                }
-                )
-              },
-              (error: any) => {
-                console.error('Error fetching product:', error);
-              }
-            );
             this.messageService.add({
               severity: 'success',
               summary: 'Başarılı',

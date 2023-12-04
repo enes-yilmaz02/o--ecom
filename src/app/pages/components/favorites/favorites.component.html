@@ -5,7 +5,7 @@
         </ng-container>
         <ng-template #contentLoading>
           <ng-container *ngIf="hasData; else default">
-            <app-content-favorites></app-content-favorites>
+            <app-content-favorites (allFavoritesDeleted)="handleAllFavoritesDeleted()"></app-content-favorites>
           </ng-container>
         </ng-template>
         <ng-template #default>

@@ -302,6 +302,12 @@
     "buyerEmail":" Üretici mail: ",
     "productName":" Ürün Adı: ",
     "clearButton":"Sepeti Boşalt"
+  },
+  "contentOrdersForm":{
+    "header":"Siparişlerim",
+    "orderId":"Sipariş Id",
+    "totalAmount":"Fiyat",
+    "quantity":"Ürün Miktarı(adet): ",
+    "name":"Ürün Adı: "
   }
-
 }

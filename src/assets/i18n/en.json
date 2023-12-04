@@ -302,6 +302,13 @@
     "buyerEmail":" Producer email: ",
     "productName":" Product Name:  ",
     "clearButton":"Empty Cart"
+  },
+  "contentOrdersForm":{
+    "header":"My orders",
+    "orderId":"Order Id",
+    "totalAmount":"Price",
+    "quantity":"Product Quantity (pcs): ",
+    "name":"Product Name: "
   }
 
 

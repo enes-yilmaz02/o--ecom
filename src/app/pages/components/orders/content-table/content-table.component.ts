@@ -2,11 +2,13 @@ import { Component } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { Observable, tap } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
-
+import { StockStatusPipe } from 'src/app/services/helper/stock-status.pipe';
+import { CategoryStatus } from 'src/app/services/helper/category-status.pipe';
 @Component({
   selector: 'app-content-table',
   templateUrl: './content-table.component.html',
   styleUrls: ['./content-table.component.scss'],
+  providers:[StockStatusPipe,CategoryStatus]
 })
 export class ContentTableComponent {
 
@@ -15,6 +17,8 @@ export class ContentTableComponent {
   products: any; // Sipariş ürünlerini saklamak için değişken
 
   orders: any;
+
+  ordersItem:any;
 
   dataAvailable: boolean = false; // Veri var mı yok mu kontrolü
 
@@ -26,11 +30,9 @@ export class ContentTableComponent {
     private userService: UserService
   ) {
 
-    // Verileri alıp hesaplamaları burada yapabiliriz
     this.getUserId().subscribe(() => {
       this.getOrders();
     });
-
   }
 
   getUserId(): Observable<any> {
@@ -44,13 +46,18 @@ export class ContentTableComponent {
   // Kullanıcının siparişlerini getiren fonksiyon
   getOrders() {
     return this.userService.getOrders(this.userId).subscribe((data: any) => {
-      this.products = data;
-      console.log(this.products);
+      this.orders = data;
+      if (this.orders) {
+        this.products = this.orders
+          .map((order: any) => order.orders.map((item: any) => item.product))
+          .flat();
+      } else {
+        console.error('Orders data is undefined.');
+      }
     });
   }
 
   getFileUrl(fileName: string): string {
-    // Update the URL template based on your file structure in Google Cloud Storage
     return `http://localhost:8080/files/${fileName}`;
   }
 
@@ -71,15 +78,17 @@ export class ContentTableComponent {
     console.log(this.userId + "-" +orderId);
   }
 
-  // Ürün durumuna göre uygun olan "severity"yi döndüren fonksiyon
   getSeverity(product: any) {
-    switch (product?.selectedStatus.name) {
+    switch (product.selectedStatus.name) {
       case 'INSTOCK':
         return 'success';
+
       case 'LOWSTOCK':
         return 'warning';
+
       case 'OUTOFSTOCK':
         return 'danger';
+
       default:
         return null;
     }

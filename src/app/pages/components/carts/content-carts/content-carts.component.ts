@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { MessageService, SelectItem } from 'primeng/api';
+import { MessageService } from 'primeng/api';
 import { Observable, forkJoin, tap } from 'rxjs';
 import { BadgeService } from 'src/app/services/badge.service';
 import { ProductService } from 'src/app/services/product.service';
@@ -39,7 +39,7 @@ export class ContentCartsComponent {
   constructor(
     private messageService: MessageService,
     private userService: UserService,
-    private productServie: ProductService,
+    private productService: ProductService,
     private badgeService: BadgeService
   ) {
     this.getUserId().subscribe(() => {
@@ -188,19 +188,32 @@ export class ContentCartsComponent {
     }
   }
 
+  getProduct(productId: any): Observable<any> {
+    return this.productService.patchProductById(productId);
+  }
+
   completeOrder() {
     // Toplam tutarı ve diğer siparişle ilgili bilgileri içeren ana sipariş nesnesini oluşturun
     const orderData = {
       totalAmount: this.totalPrice,
-      orders: this.products,
+      orders: this.carts,
       userId: this.userId,
       orderDate: this.orderDate,
     };
+  
     this.getUserId().subscribe(() => {
       this.userService.addOrder(this.userId, orderData).subscribe(
         (response: any) => {
           if (response) {
-            this.productServie.addProductOrders(orderData).subscribe(() => {
+            // Her bir ürün için stok miktarını güncelle
+            this.carts.forEach((cartItem: any) => {
+              console.log(cartItem);
+              this.updateProductStock(cartItem.product.id, cartItem.product.quantity);
+              console.log(cartItem.product.id);
+              console.log(cartItem.product.quantity)
+            });
+  
+            this.productService.addProductOrders(orderData).subscribe(() => {
               this.sendEmail();
               this.messageService.add({
                 severity: 'success',
@@ -226,6 +239,37 @@ export class ContentCartsComponent {
       );
     });
   }
+  
+  updateProductStock(productId: any, quantity: any) {
+   
+    this.getProduct(productId).subscribe(
+      (productData: any) => {
+        const totalquantity = productData.quantity;
+        const updatedQuantity = totalquantity - quantity;
+        const updatedProduct = {
+          ...productData,
+          quantity: updatedQuantity,
+        };
+  
+        // Ürünün stok miktarını güncelle
+        this.productService.updateProduct(productId, updatedProduct).subscribe(
+          (response) => {
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Başarılı',
+              detail: 'Stok güncellendi'
+            });
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+      },
+      (error: any) => {
+        console.error('Error fetching product:', error);
+      }
+    );
+  }
 
   clearCart() {
     this.getUserId().subscribe(() => {
@@ -234,7 +278,7 @@ export class ContentCartsComponent {
           this.messageService.add({
             severity: 'success', 
             summary: 'Sepet Boşaltma Başarılı!',
-            detail: 'Tüm siparişler silindi. Anasayfa yükleniyor...'
+            detail: 'Tüm siparişler alındı. Anasayfa yükleniyor...'
           })
           this.getCarts();
           this.badgeService.emitCartUpdatedEvent();

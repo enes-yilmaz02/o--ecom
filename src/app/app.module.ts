@@ -17,7 +17,7 @@ import { ProductService } from './services/product.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { JwtModule } from '@auth0/angular-jwt';
 import { HttperrorInterceptor } from './services/interceptors/httperror.interceptor';
-
+import { NotfoundModule } from './notfound/notfound.module';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -30,7 +30,8 @@ import { HttperrorInterceptor } from './services/interceptors/httperror.intercep
     DashboardModule,
     TranslocoModule,
     BrowserAnimationsModule,
-    JwtModule
+    JwtModule,
+    NotfoundModule
   ],
   exports: [TranslocoModule,JwtModule],
   providers: [

@@ -141,9 +141,9 @@ export class CardDetailComponent implements OnInit {
     }
   }
 
-  addToCart(body: any) {
+  addToCart(product: any, productId: any) {
     if (this.defaultValue >= 1) {
-      console.log('quantity', this.product.quantity);
+     
       if (this.defaultValue > this.product.quantity) {
         // Eğer seçilen miktar stok miktarından fazlaysa uyarı mesajı göster
         this.messageService.add({
@@ -154,15 +154,15 @@ export class CardDetailComponent implements OnInit {
         return; // Fonksiyonu burada sonlandır
       }
       this.getUserId().subscribe(() => {
-        this.getProductId().subscribe((productId) => {
-          const quantityDefault = this.defaultValue
-          console.log(this.defaultValue);
+        this.getProductId().subscribe((id) => {
+          const quantityDefault = this.defaultValue;
           const body = {
             id: productId,
             creoterId: this.product.creoterId,
             email: this.product.email,
             product: {
-              ...this.product,
+              id: productId,
+              ...product,
               quantity: quantityDefault,
             },
           };
@@ -174,33 +174,6 @@ export class CardDetailComponent implements OnInit {
                   summary: 'Başarılı',
                   detail: 'Ürün sepete eklendi',
                 });
-                this.getProduct(productId).subscribe(
-                  (productData: any) => {
-
-                    const totalquantity= productData.quantity;
-                    console.log('TotalQuantity: ',totalquantity);
-                    const quantity= totalquantity - quantityDefault;
-                    console.log('TotalQuantity: ',quantity);
-                    const product = {
-                      ...productData,
-                      quantity:quantity
-                    };
-                    this.productService.updateProduct(productId ,product).subscribe((response)=>{
-                      this.messageService.add({
-                        severity:'success',
-                        summary: 'Başarılı',
-                        detail: 'Stok güncellendi'
-                      });
-                    },
-                    (error)=>{
-                      console.log(error);
-                    }
-                    )
-                  },
-                  (error: any) => {
-                    console.error('Error fetching product:', error);
-                  }
-                );
                 this.badgeService.emitCartUpdatedEvent();
               } else {
                 this.messageService.add({
@@ -256,7 +229,7 @@ export class CardDetailComponent implements OnInit {
           .subscribe((product: any) => {
             this.checkIfProductIsFavorites(userId, productId).subscribe(
               (isFavorited: boolean) => {
-                console.log(isFavorited);
+               
                 if (!isFavorited) {
                   const body = {
                     id: productId,

@@ -68,7 +68,7 @@
         pRipple
           class="add-to-cart"
           *ngIf="!isOutOfStock(product)"
-          (click)="addToCart(product)"
+          (click)="addToCart(product , product.id)"
         >
           {{ "cardForm.buttonLabel" | transloco }}
         </button>

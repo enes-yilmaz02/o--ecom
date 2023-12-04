@@ -1,5 +1,5 @@
 import { MessageService } from 'primeng/api';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { Observable, tap, map } from 'rxjs';
 import { BadgeService } from 'src/app/services/badge.service';
@@ -20,7 +20,9 @@ export class ContentFavoritesComponent {
 
   productId: any;
 
-  deleting: boolean = false; // deleting değişkeni ekleniyor
+
+    // Parent'a bildireceğimiz olayı tanımlıyoruz
+    @Output() allFavoritesDeleted = new EventEmitter<void>();
 
   constructor(
     private userService: UserService,
@@ -61,6 +63,7 @@ export class ContentFavoritesComponent {
             detail:'Ürün favorilerinizden kaldırıldı...'
           });
           this.badgeService.emitCartUpdatedEvent();
+          this.allFavoritesDeleted.emit();
           this.getFavorites();
 
         },
