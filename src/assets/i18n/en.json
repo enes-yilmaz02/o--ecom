@@ -291,6 +291,17 @@
     "header":"Description",
     "title":"Product Description",
     "quantity":"Product Stock Quantity(piece): "
+  },
+  "contentCartsForm":{
+    "header":"Products in Cart",
+    "delete":"Delete",
+    "companyName":"Company Name: ",
+    "buttonLabel": "Complete Order",
+    "totalPrice" : "Total amount: ",
+    "quantity":"Product Quantity (pcs): ",
+    "buyerEmail":" Producer email: ",
+    "productName":" Product Name:  ",
+    "clearButton":"Empty Cart"
   }
 
 

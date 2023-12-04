@@ -291,6 +291,17 @@
     "header":"Açıklama",
     "title":"Ürün açıklaması",
     "quantity":"Ürün Stok Miktarı(adet): "
+  },
+  "contentCartsForm":{
+    "header":"Sepetteki Ürünler",
+    "delete":"Sil",
+    "companyName":"Satıcı: ",
+    "buttonLabel": "Siparişi Tamamla",
+    "totalPrice" : "Toplam Tutar: ",
+    "quantity":"Ürün Miktarı(adet): ",
+    "buyerEmail":" Üretici mail: ",
+    "productName":" Ürün Adı: ",
+    "clearButton":"Sepeti Boşalt"
   }
 
 }

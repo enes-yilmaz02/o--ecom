@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MessageService, SelectItem } from 'primeng/api';
+import { MessageService } from 'primeng/api';
 import { Observable, tap } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
 
@@ -10,16 +10,9 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class CartsComponent implements OnInit {
 
-  totalPrice: number;
+ contentData: any;
 
   product: any;
-
-  quantityOptions: SelectItem[] = [
-    { label: '1', value: 1 },
-    { label: '2', value: 2 },
-    { label: '3', value: 3 },
-    { label: '4', value: 4 },
-  ];
 
   dataAvailable: boolean = false; // Veri var mı yok mu kontrolü
 
@@ -29,14 +22,14 @@ export class CartsComponent implements OnInit {
 
   hasData = true;
 
-  contentData: any;
+  
 
 
 
 
   constructor(
-    private messageService: MessageService,
-    private userService:UserService
+    private userService:UserService,
+    private messageService:MessageService
   ) {
     // Verileri alıp hesaplamaları burada yapabiliriz
     this.getUserId().subscribe(() => {
@@ -44,13 +37,19 @@ export class CartsComponent implements OnInit {
     });
   }
 
+
+
+  loadPageBasedOnContentData() {
+    // Burada contentData değiştiğinde yapılacak işlemleri ekleyebilirsiniz.
+    // Örneğin, değişikliğe göre bir sayfa yüklemesi yapabilirsiniz.
+    console.log('contentData değişti. Sayfa yükleniyor...');
+  }
+
   ngOnInit() {
     this.loadData();
-    // 5 saniye sonra "loading" şablonunu gizle
     setTimeout(() => {
       this.showLoading = false;
     }, 3000);
-
   }
 
 
@@ -91,5 +90,14 @@ export class CartsComponent implements OnInit {
      );
     })
    }
+
+     // Tüm siparişler silindiğinde bu fonksiyon çalışacak
+  handleAllCartsDeleted() {
+    this.showLoading=true;
+    setTimeout(() => {
+      this.hasData=false;
+      this.showLoading = false;
+    }, 3000);
+  }
 
 }

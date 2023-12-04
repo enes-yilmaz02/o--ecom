@@ -1,44 +1,45 @@
-<div
-  class="surface-section border-1 surface-border border-round px-4 py-8 md:px-6 lg:px-8"
->
+<div class="surface-section border-1 surface-border border-round px-4 py-4 md:px-6 lg:px-8">
+  <div class="flex justify-content-center align-content-center px-4 py-2 md:px-6 lg:px-8">
+    <h3>{{ 'contentCartsForm.header' | transloco }}</h3>
+  </div>
   <ul class="list-none p-0 m-0">
     <li
-      *ngFor="let product of products"
-      class="flex flex-column md:flex-row border-top-1 border-bottom-1 surface-border md:align-items-center"
+      *ngFor="let cart of carts"
+      class="flex flex-column md:flex-row border-top-1 border-bottom-1 surface-border md:align-items-center py-4"
     >
-      <img
-        [src]="getFileUrl(product?.file)"
-        class="w-12rem flex-shrink-0 mx-2 md:mx-2"
-      />
+      <!-- Her cart için gerekli bilgileri göster -->
+      <img [src]="getFileUrl(cart?.product?.file)" class="w-12rem flex-shrink-0 mx-2 md:mx-2" />
       <div class="flex flex-row justify-content-between align-items-center w-full">
         <div class="flex flex-column">
-            <span class="inline-flex align-items-center mb-3">
-              <i class="pi pi-envelope text-700 mr-2"></i>
-              <span class="text-700 mr-2">{{
-                product?.name
-              }}</span>
+          <span class="inline-flex align-items-center mb-3">
+            <i class="pi pi-box text-700 mr-2"></i>
+            <span>
+              {{ 'contentCartsForm.productName' | transloco }}
+              <span class="text-700 mr-2">{{ cart?.product?.name }}</span>
             </span>
-          <span class="inline-flex align-items-center mb-3">
-            <i class="pi pi-envelope text-700 mr-2"></i>
-            <span class="text-700 mr-2">{{product?.email}}</span>
           </span>
           <span class="inline-flex align-items-center mb-3">
-            <i class="pi pi-send text-700 mr-2"></i>
-            <span class="text-700 mr-2"
-              >Company Name:  <span class="font-bold">{{product?.companyName}}</span></span
-            >
-          </span>
-          <span class="flex flex-row align-items-center mb-3">
-            <i class="pi pi-exclamation-triangle text-700 mr-2"></i>
-            <span class="text-700">Only Available.</span>
-          </span>
-          <span class="flex flex-row align-items-center mb-3">
             <i class="pi pi-envelope text-700 mr-2"></i>
-           <span class="text-700 mr-2">
-            Quantity:  <span class="text-900"> {{product?.quantity | number}}</span>
-           </span>
-
+            <span>
+              {{ 'contentCartsForm.buyerEmail' | transloco }}
+              <span class="text-700 mr-2">{{ cart?.product?.email }}</span>
+            </span>
           </span>
+          <span class="inline-flex align-items-center mb-3">
+            <i class="pi pi-envelope text-700 mr-2"></i>
+            <span>
+              {{ 'contentCartsForm.companyName' | transloco }}
+              <span class="text-700 mr-2">{{ cart?.product?.companyName }}</span>
+            </span>
+          </span>
+          <span class="inline-flex align-items-center mb-3">
+            <i class="pi pi-envelope text-700 mr-2"></i>
+            <span>
+              {{ 'contentCartsForm.quantity' | transloco }}
+              <span class="text-700 mr-2">{{ cart?.product?.quantity }}</span>
+            </span>
+          </span>
+         
         </div>
         <div
           class="flex flex-wrap align-items-start sm:align-items-center sm:flex-row sm:justify-content-between surface-border pb-6"
@@ -47,14 +48,14 @@
             class="w-full sm:w-6 flex align-items-end justify-content-end mt-3 sm:mt-0"
           >
             <div class="flex flex-column sm:align-items-end">
-              <span class="text-900 text-xl font-medium mb-2 sm:mb-3">{{
-                "$" + product.priceStacked
-              }}</span>
+              <span class="text-900 text-xl font-medium mb-2 sm:mb-3">
+                {{ '$' + cart?.product?.priceStacked }}
+              </span>
               <a
-                (click)="deleteCarts(product.id)"
+                (click)="deleteCarts(cart.id)"
                 class="cursor-pointer text-blue-300 font-medium text-sm hover:text-blue-800 transition-colors transition-duration-300"
                 tabindex="0"
-                >Sil</a
+                >{{ 'contentCartsForm.delete' | transloco }}</a
               >
             </div>
           </div>
@@ -65,14 +66,29 @@
   <div class="flex">
     <div class="w-12rem hidden md:block"></div>
     <ul class="list-none py-0 pr-0 pl-0 md:pl-5 mt-6 mx-0 mb-0 flex-auto">
-      <li class="flex justify-content-between mb-4">
-        <span class="text-xl text-900 font-semibold">Subtotal</span>
-        <span class="text-xl text-900">{{ "$" + totalPrice }}</span>
+      <li class="flex justify-content-end mb-4">
+        <span>
+          <span class="text-xl text-700 ">
+            {{ 'contentCartsForm.totalPrice' | transloco }}
+          </span>
+          <span class="text-xl text-700">{{ totalPrice | currency:'USD' }}</span>
+        </span>
       </li>
-      <!-- Diğer maliyetleri ekleyin -->
-      <li class="flex justify-content-end">
-        <button pButton pRipple (click)="completeOrder()" label="Check Out"></button>
+      <li class="flex justify-content-between">
+        <button
+          pButton
+          pRipple
+          (click)="completeOrder()"
+          label="{{ 'contentCartsForm.buttonLabel' | transloco }}"
+        ></button>
+        <button
+        pButton
+        pRipple
+        (click)="clearCart()"
+        label="{{ 'contentCartsForm.clearButton' | transloco }}"
+      ></button>
       </li>
+
     </ul>
   </div>
 </div>

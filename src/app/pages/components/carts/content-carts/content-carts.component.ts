@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { MessageService, SelectItem } from 'primeng/api';
 import { Observable, forkJoin, tap } from 'rxjs';
 import { BadgeService } from 'src/app/services/badge.service';
@@ -27,19 +27,21 @@ export class ContentCartsComponent {
 
   creotersEmail: any;
 
-  orderDate= new Date();
+  orderDate = new Date();
 
-  orderQuantity:any;
+  orderQuantity: any;
 
-  cart:any;
+  carts: any;
+
+  // Parent'a bildireceğimiz olayı tanımlıyoruz
+  @Output() allCartsDeleted = new EventEmitter<void>();
 
   constructor(
     private messageService: MessageService,
     private userService: UserService,
     private productServie: ProductService,
-    private badgeService:BadgeService
+    private badgeService: BadgeService
   ) {
-    // Verileri alıp hesaplamaları burada yapabiliriz
     this.getUserId().subscribe(() => {
       this.getCarts();
       this.getUserData(this.userId);
@@ -50,7 +52,6 @@ export class ContentCartsComponent {
     return this.userService.getTokenId().pipe(
       tap((id: any) => {
         this.userId = id;
-
       })
     );
   }
@@ -64,22 +65,23 @@ export class ContentCartsComponent {
 
   getCarts() {
     return this.userService.getCarts(this.userId).subscribe((data: any) => {
-
-
+      this.carts = data;
       // Extract id and quantity from each item and create a new array
-      this.orderQuantity = data.map((item: any) => ({
-        id: item.id,
-        quantity: item.quantity
-      })).flat();
+      this.orderQuantity = this.carts
+        .map((item: any) => ({
+          id: item.id,
+          quantity: item.quantity,
+        }))
+        .flat();
       // Assign creoterId to the variable
-      this.creoterId = data.map((item: any) => {
-        const ids=item.creoterId;
+      this.creoterId = this.carts.map((item: any) => {
+        const ids = item.creoterId;
         return ids;
       });
 
       // Assign the entire data to the products variable
-      this.products = data.map((item:any)=>{
-        const product= item.product;
+      this.products = this.carts.map((item: any) => {
+        const product = item.product;
         return product;
       });
 
@@ -90,8 +92,7 @@ export class ContentCartsComponent {
   }
 
   getCroeterData() {
-
-    if (Array.isArray(this.creoterId) && this.creoterId.length > 0) {
+    if (this.creoterId && this.creoterId.length > 0) {
       const creoterIds = this.creoterId;
       const requests = creoterIds.map((creoterId: any) =>
         this.userService.getUser(creoterId)
@@ -163,9 +164,9 @@ export class ContentCartsComponent {
           subject: 'Yeni Siparişiniz var :)',
           text:
             ' OI deki ' +
-              this.userData.name +
+            this.userData.name +
             ' adlı kullanıcımız $' +
-              this.totalPrice +
+            this.totalPrice +
             ' değerinde yeni bir sipariş vermiştir. Bol kazançalar OI Ailesi',
         };
 
@@ -193,7 +194,7 @@ export class ContentCartsComponent {
       totalAmount: this.totalPrice,
       orders: this.products,
       userId: this.userId,
-      orderDate:this.orderDate,
+      orderDate: this.orderDate,
     };
     this.getUserId().subscribe(() => {
       this.userService.addOrder(this.userId, orderData).subscribe(
@@ -231,12 +232,14 @@ export class ContentCartsComponent {
       this.userService.clearCart(this.userId).subscribe(
         () => {
           this.messageService.add({
-            severity: 'success',
-            summary: 'Başarılı',
-            detail: 'Sepet boşaltıldı',
-          });
-
-          // Sepet başarıyla temizlendikten sonra yerel verileri güncelle
+            severity: 'success', 
+            summary: 'Sepet Boşaltma Başarılı!',
+            detail: 'Tüm siparişler silindi. Anasayfa yükleniyor...'
+          })
+          this.getCarts();
+          this.badgeService.emitCartUpdatedEvent();
+           // Tüm siparişler silindi, olayı tetikle
+           this.allCartsDeleted.emit();
           this.products = [];
           this.totalPrice = 0;
         },

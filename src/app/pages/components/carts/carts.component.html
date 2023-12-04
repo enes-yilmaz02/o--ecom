@@ -1,15 +1,18 @@
+<!-- CartsComponent şablonu -->
 <div class="page-layout">
   <div class="content">
-        <ng-container *ngIf="showLoading; else contentLoading">
-          <app-loading></app-loading>
-        </ng-container>
-        <ng-template #contentLoading>
-          <ng-container *ngIf="hasData; else default">
-            <app-content-carts></app-content-carts>
-          </ng-container>
-        </ng-template>
-        <ng-template #default>
-          <app-default-carts></app-default-carts>
-        </ng-template>
-   </div>
+    <ng-container *ngIf="showLoading; else contentLoading">
+      <app-loading></app-loading>
+    </ng-container>
+    <ng-template #contentLoading>
+      <ng-container *ngIf="hasData; else default">
+        <!-- app-content-carts componentini burada çağırıyoruz ve allCartsDeleted olayını dinliyoruz -->
+        <app-content-carts (allCartsDeleted)="handleAllCartsDeleted()"></app-content-carts>
+      </ng-container>
+    </ng-template>
+    <ng-template #default>
+      <!-- app-default-carts componentini burada çağırıyoruz -->
+      <app-default-carts></app-default-carts>
+    </ng-template>
+  </div>
 </div>
