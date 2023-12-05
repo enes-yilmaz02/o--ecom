@@ -35,6 +35,7 @@ import { TruncatePipe } from '../services/pipes/truncate.pipe';
 import { StockStatusPipe } from '../services/helper/stock-status.pipe';
 import { CategoryStatus } from '../services/helper/category-status.pipe';
 import { DenemeComponent } from './components/deneme/deneme.component';
+import { CitiesService } from '../services/cities.service';
 @NgModule({
   declarations: [
     NavbarListComponent,
@@ -92,7 +93,8 @@ import { DenemeComponent } from './components/deneme/deneme.component';
     CartService,
     MessageService,
     StockStatusPipe,
-    CategoryStatus
+    CategoryStatus,
+    CitiesService
   ]
 })
 export class PagesModule { }

@@ -234,7 +234,11 @@
     "buttonLabel":"Satıcı ol",
     "codeLabel":"Doğrulama Kodu",
     "codeSmall":"* Kod alanı boş bırakılamaz",
-    "codeButton":"Gönder"
+    "codeButton":"Gönder",
+    "cityLabel":"İl",
+    "citySmall":"* İl alanı boş bırakılamaz",
+    "districtsLabel":"İlçe",
+    "districtsSmall":"* İlçe alanı boş bırakılamaz"
   },
   "cardElementForm":{
     "category":"Kategoriler",

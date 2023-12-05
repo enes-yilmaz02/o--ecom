@@ -1,10 +1,11 @@
 import { UserService } from 'src/app/services/user.service';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BehaviorSubject, EMPTY, Observable, map, switchMap, tap } from 'rxjs';
 import { UserRole } from 'src/app/models/role.enum';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
+import { CitiesService } from 'src/app/services/cities.service';
 
 
 @Component({
@@ -12,7 +13,7 @@ import { Router } from '@angular/router';
   templateUrl: './creoter-form.component.html',
   styleUrls: ['./creoter-form.component.scss'],
 })
-export class CreoterFormComponent {
+export class CreoterFormComponent implements OnInit {
 
   creoterForm: FormGroup;
 
@@ -22,20 +23,58 @@ export class CreoterFormComponent {
 
   senderMail: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
+  cities: any[] = [];
+  districts: any[] = [];
+  selectedCity: any | undefined;
 
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
     private messageService:MessageService,
-    private router:Router
+    private router:Router,
+    private cityService:CitiesService
 
   ) {
     this.creoterForm = this.formBuilder.group({
-      companyName: ['', Validators.required],
-      taxNumber: ['', [Validators.required, Validators.minLength(8)]],
+      companyName: ['', [Validators.required]],
+      taxNumber: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
-      code:['']
+      city: ['', Validators.required],
+      discrits: [''],
+      code: [''],
     });
+  }
+  ngOnInit(): void {
+    this.cityService.getCities().subscribe((data) => {
+      const gCities = data.city;
+
+      this.cities = gCities.map((item: any) => {
+        return { label: item.name, value: item }; // Şehir objesini tamamen al
+      });
+
+      this.selectedCity = null; // Varsayılan olarak seçili şehir null olsun
+
+      // Sehir seçildiğinde ilçeleri güncelle
+      this.onCityChange({ value: this.selectedCity});
+     
+    });
+  }
+  
+  // noWhitespaceValidator(control: { value: string }): null | { whitespace: boolean } {
+  //   const isWhitespace = (control.value || '').trim().length === 0;
+  //   return isWhitespace ? { whitespace: true } : null;
+  // }
+
+  onCityChange(event: any): void {
+    if (event && event.value) {
+      const selectedCity = event.value;
+  
+      // Seçilen şehir varsa ilçeleri güncelle
+      this.districts = selectedCity.discrits.map((district: string) => ({ label: district }));
+    } else {
+      // Seçilen şehir yoksa ilçeleri temizle
+      this.districts = [];
+    }
   }
 
   getUserId(): Observable<any> {

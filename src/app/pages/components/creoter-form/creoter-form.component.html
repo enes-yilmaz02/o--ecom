@@ -100,6 +100,80 @@
       </small>
     </div>
     <!-- email input end-->
+    <!-- city input start-->
+    <div class="wrapper">
+      <span class="p-float-label mt-4">
+        <i class="pi pi-envelope" style="color: #000"></i>
+        <p-dropdown
+          [options]="cities"
+          formControlName="city"
+          styleClass="dropdown"
+          optionLabel="label"
+          [showClear]="true"
+          (ngModelChange)="onCityChange($event)"
+          placeholder="Select a City"
+        ></p-dropdown>
+        <label htmlFor="city">{{ "creoterForm.cityLabel" | transloco }}</label>
+      </span>
+      <small
+        *ngIf="
+          creoterForm.get('city')?.invalid && creoterForm.get('city')?.touched
+        "
+        class="text-red-500"
+      >
+        {{
+          creoterForm.get("city").errors != null &&
+          creoterForm.get("city").errors["whitespace"]
+            ? ("creoterForm.citySmall" | transloco)
+            : ""
+        }}
+        {{
+          creoterForm.get("city").errors != null &&
+          creoterForm.get("city").errors["required"]
+            ? ("creoterForm.citySmall" | transloco)
+            : ""
+        }}
+      </small>
+    </div>
+    <!-- city input end-->
+    <!-- discrits input start-->
+    <div class="wrapper">
+      <span class="p-float-label mt-4">
+        <i class="pi pi-envelope" style="color: #000"></i>
+        <p-dropdown
+          [options]="districts"
+          styleClass="dropdown"
+          formControlName="discrits"
+          optionLabel="label"
+          [showClear]="true"
+          placeholder="Select a City"
+        ></p-dropdown>
+        <label htmlFor="discrits">{{
+          "creoterForm.districtsLabel" | transloco
+        }}</label>
+      </span>
+      <small
+        *ngIf="
+          creoterForm.get('discrits')?.invalid &&
+          creoterForm.get('discrits')?.touched
+        "
+        class="text-red-500"
+      >
+        {{
+          creoterForm.get("discrits").errors != null &&
+          creoterForm.get("discrits").errors["whitespace"]
+            ? ("creoterForm.districtsSmall" | transloco)
+            : ""
+        }}
+        {{
+          creoterForm.get("discrits").errors != null &&
+          creoterForm.get("discrits").errors["required"]
+            ? ("creoterForm.districtsSmall" | transloco)
+            : ""
+        }}
+      </small>
+    </div>
+    <!-- discrits input end-->
 
     <!-- button start-->
     <span class="button-style mt-4">
