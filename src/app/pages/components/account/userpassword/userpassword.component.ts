@@ -1,8 +1,10 @@
-import { AuthService } from 'src/app/services/auth/auth.service';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { Observable, tap } from 'rxjs';
+// import * as bcrypt from 'bcryptjs'
 @Component({
   selector: 'app-userpassword',
   templateUrl: './userpassword.component.html',
@@ -13,11 +15,13 @@ export class UserpasswordComponent {
 
   selectedUser: any;
 
+  userId:any;
+
   constructor(
     private formBuilder: FormBuilder,
-    // private authService: AuthService,
-    // private userService: UserService,
-    // private router : Router
+    private authService: AuthService,
+    private userService: UserService,
+    private router : Router
   ) {
     this.newpassForm = this.formBuilder.group({
       currentPassword: [null, [Validators.required, Validators.minLength(8)]],
@@ -26,9 +30,15 @@ export class UserpasswordComponent {
     });
   }
 
-
+  getUserId(): Observable<any> {
+    return this.userService.getTokenId().pipe(
+      tap((id: any) => {
+        this.userId = id;
+      })
+    );
+  }
   // async checkPassword() {
-  //   const userArray = this.getToken();
+  //   const userArray = this.getUserId();
   //   if(userArray){
   //     const id = userArray[0]['id'];
   //     const user = await this.userService

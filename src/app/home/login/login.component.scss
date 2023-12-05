@@ -62,6 +62,7 @@ $background-color: #ecf0f1;
         color: $dark-text;
       }
 
+
       i{
         position: absolute;
         z-index: 1;
@@ -146,6 +147,11 @@ $background-color: #ecf0f1;
       }
     }
     .social{
+      .pi{
+        position: relative;
+        justify-content: center;
+        text-align: center;
+      }
       a{
         text-decoration: none;
         color: #3498db;

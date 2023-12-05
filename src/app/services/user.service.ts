@@ -5,6 +5,7 @@ import { CommonService } from './common.service';
 import { AuthService } from './auth/auth.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { BadgeService } from './badge.service';
+
 // Kullanıcı işlemlerini yöneten servis
 @Injectable({
   providedIn: 'root',
@@ -32,9 +33,42 @@ export class UserService {
     private commonService: CommonService,
     private authService: AuthService,
     private jwtHelper: JwtHelperService,
-    private badgeService: BadgeService
+    private badgeService: BadgeService,
+  
   ) {}
 
+  checkIfUserExists(email: string): Observable<boolean> {
+    return this.commonService.get(`${this.usersEndPoint}?email=${email}`).pipe(
+      map((users: any[]) => {
+        // Eğer kullanıcılar dizisi boşsa, kullanıcı kayıtlı değildir
+        return users.length > 0;
+      }),
+      catchError((error) => {
+        console.error('Error checking if user exists:', error);
+        // Hata durumunda işlem yapabilirsin, default olarak false döndür
+        return of(false);
+      })
+    );
+  }
+ registerUser(user: any): Observable<any> {
+    // Önce kullanıcının kayıtlı olup olmadığını kontrol et
+    return this.checkIfUserExists(user.email).pipe(
+      map((userExists: boolean) => {
+        if (!userExists) {
+          // Eğer kullanıcı kayıtlı değilse, yeni bir kayıt oluştur
+          return this.commonService.post(this.usersEndPoint, user);
+        } else {
+          // Eğer kullanıcı kayıtlı ise hata döndür
+          throw new Error('User already exists.');
+        }
+      }),
+      catchError((error) => {
+        console.error('Error registering user:', error);
+        // Hata durumunda işlem yapabilirsin, default olarak hata döndür
+        return of({ error: 'Registration failed.' });
+      })
+    );
+  }
   sendEmail(userId: any, body: any) {
     return this.commonService.post(
       `${this.usersEndPoint}/${userId}/${this.sendEmailEndPoint}`,

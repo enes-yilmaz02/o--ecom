@@ -1,3 +1,4 @@
+import { SocialAuthService } from '@abacritt/angularx-social-login';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -13,12 +14,14 @@ declare var handleSignout: any; // Declare the global function to avoid TypeScri
 export class LoginComponent {
   userFormLogin: FormGroup;
   userProfile: any;
+  user:any;
+  loggedIn:any;
   constructor(
     private formBuilder: FormBuilder,
     private messageService: MessageService,
     private userService: UserService,
     private router: Router,
-   
+    private authService: SocialAuthService
     ) {}
 
   ngOnInit() {
@@ -26,22 +29,37 @@ export class LoginComponent {
       email: ['', [Validators.required, Validators.minLength(2)]],
       password: ['', [Validators.required, Validators.minLength(8)]],
     });
-    try {
-      const storedData = sessionStorage.getItem("loggedInUser");
-  
-      if (storedData) {
-        this.userProfile = JSON.parse(storedData);
-        console.log('Session storage\'dan alınan değer:', this.userProfile);
-        // UserProfile'ı kullanabileceğiniz yer burasıdır.
-      } else {
-        console.warn('Session storage\'da loggedInUser anahtarı bulunamadı.');
+    this.authService.authState.subscribe((user) => {
+      this.user = user;
+      this.loggedIn = (user != null);
+      console.log(user)
+      if (this.loggedIn) {
+        // Kullanıcı giriş yaptı, uygulamanızda kayıtlı mı kontrol et
+        this.userService.checkIfUserExists(user.email).subscribe(
+          (exists) => {
+            if (!exists) {
+              // Kullanıcı kayıtlı değil, kayıt işlemi gerçekleştir
+              this.userService.registerUser({
+                email: user.email,
+                // Diğer kullanıcı bilgilerini ekleyebilirsiniz
+              }).subscribe(
+                (response) => {
+                  console.log('Kullanıcı başarıyla kaydedildi.');
+                },
+                (error) => {
+                  console.error('Kullanıcı kaydı sırasında bir hata oluştu.');
+                }
+              );
+            }
+          },
+          (error) => {
+            console.error('Kullanıcı kaydı sırasında bir hata oluştu.');
+          }
+        );
       }
-    } catch (error) {
-      console.error('Session storage parse hatası:', error);
-    }
-  
+    });
   }
- 
+
   handleSignOut() {
     handleSignout();
     sessionStorage.removeItem("loggedInUser");

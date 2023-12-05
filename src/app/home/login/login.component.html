@@ -74,7 +74,7 @@
     <div class="mb-2">
       <span class="mt-4">
         <div class="remember-forget align-content-center align-content-center">
-          <div class="flex flex-row mr-3">
+          <div class="flex flex-row mr-3 mb-3">
             <div class="flex">
               <input
                 id="remember"
@@ -87,7 +87,7 @@
               >
             </div>
           </div>
-          <div>
+          <div class="mb-3">
             <a routerLink="/reset-password">{{
               "loginForm.dontforget" | transloco
             }}</a>
@@ -95,7 +95,7 @@
         </div>
       </span>
     </div>
-    <div>
+    <div class="mb-3">
       <span class="button-style mt-4">
         <button pButton class="button" (click)="onSubmitLogin()">
           {{ "loginForm.buttonLabel" | transloco }}
@@ -104,10 +104,14 @@
     </div>
     <div>
       <span
-        class="register-span flex flex-row mt-2 justify-content-between align-content-center align-items-center"
+        class="register-span flex flex-row justify-content-between align-items-center mb-3"
       >
-        <p>{{ "loginForm.haveaccount" | transloco }}</p>
-        <a routerLink="/register">{{ "loginForm.createnow" | transloco }}</a>
+        <div>
+          <p>{{ "loginForm.haveaccount" | transloco }}</p>
+        </div>
+        <div>
+          <a routerLink="/register">{{ "loginForm.createnow" | transloco }}</a>
+        </div>
       </span>
     </div>
     <div
@@ -121,56 +125,15 @@
           <p>{{ "startForm.descSocialOne" | transloco }}</p>
           <p>{{ "startForm.descSocialTwo" | transloco }}</p>
         </div>
-        <div class="icon-social flex">
-          <!-- <div
-              id="g_id_onload"
-              data-client_id="614449184147-9gnmmtskp97qaccqqirdo0jfo1he55na.apps.googleusercontent.com"
-              data-context="use"
-              data-ux_mode="popup"
-              data-itp_support="true"
-              data-callback="handleCredentialResponse"
-            ></div>
-            <div
-              class="g_id_signin"
-              data-type="standard"
-              data-shape="pill"
-              data-theme="filled_blue"
-              data-text="signin_with"
-              data-size="large"
-              data-logo_alignment="left"
-            ></div> -->
+        <div class="icon-social flex justify-content-center">
           <a>
-            <div class="flex-1 font-bold text-center p-4">
-              <i
-                class="pi pi-google"
-                style="
-                  background: conic-gradient(
-                      from -45deg,
-                      #ea4335 110deg,
-                      #4285f4 90deg 180deg,
-                      #34a853 180deg 270deg,
-                      #fbbc05 270deg
-                    )
-                    73% 55%/150% 150% no-repeat;
-                  -webkit-background-clip: text;
-                  background-clip: text;
-                  color: transparent;
-                  -webkit-text-fill-color: transparent;
-                "
-              ></i>
+            <div class="flex-1 font-bold text-center cursor-pointer p-4 w-full">
+              <asl-google-signin-button
+                *ngIf="!user"
+                type="icon"
+                class="pi google"
+              ></asl-google-signin-button>
               <p>{{ "startForm.piGoogle" | transloco }}</p>
-            </div>
-          </a>
-          <a [routerLink]="['login']">
-            <div class="flex-1 font-bold text-center p-4">
-              <i class="pi pi-apple" style="color: #000"></i>
-              <p>{{ "startForm.piApple" | transloco }}</p>
-            </div>
-          </a>
-          <a [routerLink]="['login']">
-            <div class="flex-1 font-bold text-center p-4">
-              <i class="pi pi-facebook" style="color: #316ff6"></i>
-              <p>{{ "startForm.piFacebook" | transloco }}</p>
             </div>
           </a>
         </div>
@@ -178,7 +141,7 @@
     </div>
   </form>
 
-<!-- <ng-container *ngIf="userProfile">
+  <!-- <ng-container *ngIf="userProfile">
   <div>Welcome, {{ userProfile.name }}</div>
  
 </ng-container>
