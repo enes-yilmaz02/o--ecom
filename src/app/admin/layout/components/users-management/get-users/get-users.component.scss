@@ -8,24 +8,57 @@ $light-text-hover: #91c9d7;
 $background-color: #ecf0f1;
 /* Dialog Penceresi */
 :host ::ng-deep{
+
+  .p-column-filter{
+    width: 100%;
+  }
   .p-dialog{
     width: 400px;
   }
   .p-button-add{
     position: relative;
-    background-color: $primary-color;
+    background-color: $dark-text;
     border: none;
     width: auto;
     font-size: 12px;
   }
-
+  thead{
+    tr{
+      width: 100%;
+      background-color: $dark-text;
+      color: #fff;
+      th{
+        width: 100px;
+        text-align: center;
+        .p-column-filter{
+          width: 100%;
+          button{
+            display:none;
+          }
+          input{
+            width: 150px;
+          }
+        }
+      }
+    }
+   
+  }
+  tbody{
+    tr{
+      justify-content: center;
+      td{
+        justify-content: center;
+        text-align: center;
+      }
+    }
+  }
   th{
     background-color: $dark-text;
     color: #fff;
   }
 
   .p-icon{
-    color: #fff;
+    color: #666;
   }
 
   .p-dropdown-trigger{
