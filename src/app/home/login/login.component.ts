@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import { Observable, tap, Subject } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
 declare var handleSignout: any; // Declare the global function to avoid TypeScript errors
 
@@ -16,6 +17,8 @@ export class LoginComponent {
   userProfile: any;
   user:any;
   loggedIn:any;
+  userId:any;
+  role:any;
   constructor(
     private formBuilder: FormBuilder,
     private messageService: MessageService,
@@ -67,21 +70,70 @@ export class LoginComponent {
       window.location.reload();
     });
   }
+
+  getUserId(): Observable<any> {
+    return this.userService.getTokenId().pipe(
+      tap((id: any) => {
+        this.userId = id;
+      })
+    );
+  }
+
+  getUserData(){
+    this.getUserId().subscribe((userId:any)=>{
+      this.userService.getTokenUser(userId).subscribe((data:any)=>{
+        this.role= data;
+        console.log(this.role);
+      });
+    });
+  }
+
+  
   onSubmitLogin() {
     if (this.userFormLogin.valid) {
       const formValuesArray = this.userFormLogin.value;
       this.userService.loginUser(formValuesArray).subscribe(
         (response) => {
           const authToken = localStorage.getItem('authToken');
-          // this.authService.login();
+          this.userService.getTokenId().subscribe(()=>{
+            this.getUserId().subscribe(()=>{
+               this.userService.getUserWithEmail(formValuesArray.email).subscribe((data:any)=>{
+                this.role=data.role;
+                console.log(this.role);
+                switch (this.role) {
+                  case 'USER':
+                    setTimeout(() => {
+                      this.router.navigate(['pages']);
+                    }, 1000);
+                    break;
+                
+                  case 'CREOTER':
+                    setTimeout(() => {
+                      this.router.navigate(['creoter']);
+                    }, 1000);
+                    break;
+                
+                  case 'ADMİN':
+                    setTimeout(() => {
+                      this.router.navigate(['admin']);
+                    }, 1000);
+                    break;
+                
+                  default:
+                    setTimeout(() => {
+                      this.router.navigate(['notfound']);
+                    }, 1000);
+                    break;
+                }
+               });
+            })
+          });
           this.messageService.add({
             severity: 'success',
             summary: 'Successful login!',
             detail: 'Giriş işlemi başarılı...',
           });
-          setTimeout(() => {
-            this.router.navigate(['pages']);
-          }, 1000);
+          
         },
         (error) => {
           this.messageService.add({

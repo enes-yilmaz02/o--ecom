@@ -23,6 +23,7 @@ export class UserService {
   sendEmailEndPoint = 'sendEmail';
   usersAdminEndPoint = 'users-admin';
   productEndPoint= 'product';
+  emailEndPoint = 'email';
 
   // Rol ve kullanıcı verilerini saklamak için değişkenler
   role: any;
@@ -248,6 +249,11 @@ getFavoriteById(userId: string, productId: string): Observable<boolean> {
   // Belirli bir kullanıcıyı getiren fonksiyon
   getUser(id: string): Observable<Users> {
     return this.commonService.get(`${this.usersEndPoint}/${id}`);
+  }
+
+   // Belirli bir kullanıcıyı email datası ile getiren fonksiyon
+   getUserWithEmail(email:any): Observable<Users> {
+    return this.commonService.get(`${this.usersEndPoint}/${this.emailEndPoint}/${email}`);
   }
 
   // Yeni bir kullanıcı ekleyen fonksiyon

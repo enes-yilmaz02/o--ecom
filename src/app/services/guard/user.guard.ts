@@ -6,33 +6,38 @@ import {
 
 import { Injectable } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
+import { UserService } from '../user.service';
+import { Observable, catchError, map, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserGuard implements CanActivate {
   constructor(
-    private authService: AuthService,
+    private userService: UserService,
     private router: Router,
     private messageService: MessageService
   ) {}
 
-  canActivate(): boolean {
-    // Kullanıcının oturum açıp açmadığını ve tokenın var olup olmadığını kontrol ediyor
-    if (this.authService.isAuth() || this.authService.getAuthToken()) {
-      return true; // Eğer kullanıcı oturum açıksa ve token varsa, işlemi devam ettir
-    } else {
-      // Token süresi bitmişse veya hiç token yoksa
-      // Otomatik olarak login sayfasına yönlendiriyor
-
-      // Bu kısım token süresi bitmiş ise çalışacak
-      this.router.navigate(['login']);
-      this.messageService.add({
-        severity: 'info',
-        summary: 'Giriş Yapmanız Gerekiyor!',
-        detail: 'Lütfen Giriş Yaptıktan Sonra Tekrar Deneyiniz.',
-      });
-      return false;
-    }
+  canActivate(): Observable<boolean> {
+    return this.userService.getUserByTokenId().pipe(
+      map((role: string) => {
+        if (role === 'USER') {
+          return true;
+        } else {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Unauthorized',
+            detail: 'Bu kaynağa erişim izniniz yok.',
+          });
+          this.router.navigate(['/']);
+          return false;
+        }
+      }),
+      catchError((error) => {
+        console.error('Error in HasRoleGuard:', error);
+        return of(false); // or handle the error and redirect accordingly
+      })
+    );
   }
 }
