@@ -17,6 +17,8 @@ import { GetUsersComponent } from './layout/components/users-management/get-user
 import { MessageService } from 'primeng/api';
 import { GetProductsComponent } from './layout/components/product-management/get-products/get-products.component';
 import { GetOrdersComponent } from './layout/components/orders-management/get-orders/get-orders.component';
+import { WaitListComponent } from './layout/components/wait-list/wait-list.component';
+import { GetwaitlistComponent } from './layout/components/wait-list/getwaitlist/getwaitlist.component';
 @NgModule({
   declarations: [
     AdminComponent,
@@ -33,12 +35,16 @@ import { GetOrdersComponent } from './layout/components/orders-management/get-or
     GetUsersComponent,
     GetProductsComponent,
     GetOrdersComponent,
+    WaitListComponent,
+    GetwaitlistComponent,
+  
 
   ],
   imports: [
     AdminRoutingModule,
     CommonModule,
-    SharedModule
+    SharedModule,
+   
 ],
 providers: [
 MessageService,

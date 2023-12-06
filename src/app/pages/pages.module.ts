@@ -87,7 +87,8 @@ import { CitiesService } from '../services/cities.service';
     OrdersComponent,
     ProductComponent,
     PagesComponent,
-    CardDetailComponent
+    CardDetailComponent,
+  LoadingComponent
   ],
   providers:[
     CartService,

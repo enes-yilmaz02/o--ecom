@@ -5,6 +5,8 @@ import { UsersManagementComponent } from './layout/components/users-management/u
 import { ProductManagementComponent } from './layout/components/product-management/product-management.component';
 import { OrdersManagementComponent } from './layout/components/orders-management/orders-management.component';
 import { StaticsComponent } from './layout/components/statics/statics.component';
+import { WaitListComponent } from './layout/components/wait-list/wait-list.component';
+import { GetwaitlistComponent } from './layout/components/wait-list/getwaitlist/getwaitlist.component';
 
 
 
@@ -21,6 +23,12 @@ import { StaticsComponent } from './layout/components/statics/statics.component'
         },
         {
           path:'product-management' , component:ProductManagementComponent
+        },
+        {
+          path:'wait-list' , component:WaitListComponent , children:[
+            {path:'' , component:GetwaitlistComponent},
+            {path:'getwaitlist' , component:GetwaitlistComponent}
+          ]
         },
         {
           path:'orders-management' , component:OrdersManagementComponent
