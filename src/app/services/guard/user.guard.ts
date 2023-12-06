@@ -27,7 +27,7 @@ export class UserGuard implements CanActivate {
         } else {
           this.messageService.add({
             severity: 'error',
-            summary: 'Unauthorized',
+            summary: 'Yetkisiz işlem',
             detail: 'Bu kaynağa erişim izniniz yok.',
           });
           this.router.navigate(['/']);

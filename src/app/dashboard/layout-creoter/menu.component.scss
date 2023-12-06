@@ -27,43 +27,13 @@ aside a {
   -webkit-tap-highlight-color:transparent;
 }
 
-aside a:hover {
-  color: $primary-color;
-  background:$light-text-hover ;
-  outline: none;
-  position: relative;
-  background-color: $light-text-hover;
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;
-}
+
 
 aside a i {
   margin-right: 5px;
 }
 
-aside a:hover::after {
-  content: "";
-  position: absolute;
-  background-color: transparent;
-  bottom: 100%;
-  right: 0;
-  height: 35px;
-  width: 35px;
-  border-bottom-right-radius: 18px;
-  box-shadow: 0 20px 0 0 $light-text-hover;
-}
 
-aside a:hover::before {
-  content: "";
-  position: absolute;
-  background-color: transparent;
-  top: 38px;
-  right: 0;
-  height: 35px;
-  width: 35px;
-  border-top-right-radius: 18px;
-  box-shadow: 0 -20px 0 0 $light-text-hover;
-}
 
 aside p {
   margin: 0;

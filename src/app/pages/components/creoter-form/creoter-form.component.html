@@ -111,7 +111,7 @@
           optionLabel="label"
           [showClear]="true"
           (ngModelChange)="onCityChange($event)"
-          placeholder="Select a City"
+          placeholder="{{'creoterForm.cityName' | transloco}}"
         ></p-dropdown>
         <label htmlFor="city">{{ "creoterForm.cityLabel" | transloco }}</label>
       </span>
@@ -146,7 +146,7 @@
           formControlName="discrits"
           optionLabel="label"
           [showClear]="true"
-          placeholder="Select a City"
+          placeholder="{{'creoterForm.districtsName' | transloco}}"
         ></p-dropdown>
         <label htmlFor="discrits">{{
           "creoterForm.districtsLabel" | transloco
@@ -183,8 +183,8 @@
     </span>
     <!-- button end-->
 
-    <div class="verifyCode" *ngIf="senderMail | async">
-      <!-- code  input start-->
+    <!-- <div class="verifyCode" *ngIf="senderMail | async">
+    
       <div class="wrapper">
         <span class="p-float-label mt-4">
           <i class="pi pi-key" style="color: #000"></i>
@@ -213,14 +213,13 @@
           }}
         </small>
       </div>
-      <!-- code  input end-->
-      <!-- button start-->
+      
       <span class="button-style mt-4">
         <button class="button" (click)="verifyCode()">
           {{ "creoterForm.codeButton" | transloco }}
         </button>
       </span>
-      <!-- button end-->
-    </div>
+     
+    </div> -->
   </form>
 </div>

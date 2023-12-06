@@ -237,8 +237,10 @@
     "codeButton":"Gönder",
     "cityLabel":"İl",
     "citySmall":"* İl alanı boş bırakılamaz",
+    "cityName":"Bir İl seçiniz...",
     "districtsLabel":"İlçe",
-    "districtsSmall":"* İlçe alanı boş bırakılamaz"
+    "districtsSmall":"* İlçe alanı boş bırakılamaz",
+    "districtsName":"Bir İlçe seçiniz..."
   },
   "cardElementForm":{
     "category":"Kategoriler",

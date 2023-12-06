@@ -25,10 +25,10 @@ export class AdminGuard implements CanActivate {
         } else {
           this.messageService.add({
             severity: 'error',
-            summary: 'Unauthorized',
+            summary: 'Yetkisiz işlem',
             detail: 'Bu kaynağa erişim izniniz yok.',
           });
-          this.router.navigate(['/pages']);
+          this.router.navigate(['/']);
           return false;
         }
       }),

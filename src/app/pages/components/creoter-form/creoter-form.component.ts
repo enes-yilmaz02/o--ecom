@@ -6,6 +6,7 @@ import { UserRole } from 'src/app/models/role.enum';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
 import { CitiesService } from 'src/app/services/cities.service';
+import { CereoterService } from 'src/app/services/cereoter.service';
 
 
 @Component({
@@ -32,7 +33,8 @@ export class CreoterFormComponent implements OnInit {
     private userService: UserService,
     private messageService:MessageService,
     private router:Router,
-    private cityService:CitiesService
+    private cityService:CitiesService,
+    private creoterService:CereoterService
 
   ) {
     this.creoterForm = this.formBuilder.group({
@@ -96,32 +98,25 @@ export class CreoterFormComponent implements OnInit {
 
   onSubmit() {
     if (this.creoterForm.valid) {
-      this.generatedCode = this.generateRandomCode();
       const email = this.creoterForm.get('email').value;
-
       this.checkEmailAvailability(email).subscribe(result => {
         if (result && result.available) {
-          const body = {
-            to: email,
-            subject: 'email doğrulama',
-            text: 'email doğrulama kodunuz: ' + this.generatedCode,
-          };
           this.getUserId().subscribe(userId => {
-            this.userId = userId;
-            this.userService.sendEmail(this.userId, body).subscribe(
-              () => {
-                this.senderMail.next(true);
+              this.userId = userId;
+              const formArray= this.creoterForm.value;
+              formArray.userId=this.userId;
+              this.creoterService.addCreoter(formArray).subscribe(()=>{
                 this.messageService.add({
-                  severity: 'success',
-                  summary: 'Başarılı!',
-                  detail: 'E-posta adresinize gönderilen doğrulama kodu ile hesabınızı doğrulayabilirsiniz'
+                  severity:'success',
+                  summary:'Başarılı',
+                  detail:"Satıcı başvurunuz Fromunuz gönderildi... Onaylanınca sizi bilgilendireceğiz."
                 });
-              },
-              error => {
-                console.error('Error sending email', error);
-              }
-            );
-          });
+                setTimeout(() => {
+                  localStorage.clear();
+                  this.router.navigate(['/pages']);
+                }, 3000);
+              });
+            })
         }else{
           this.messageService.add({
             severity: 'error',
@@ -151,32 +146,5 @@ export class CreoterFormComponent implements OnInit {
     return result;
   }
 
-  verifyCode(){
-    const code = this.creoterForm.get('code').value;
-     if(code===this.generatedCode){
-      this.getUserId().subscribe(()=>{
-        const formArray= this.creoterForm.value;
-        delete formArray['code'];
-        formArray.role = UserRole.Creator;
-        this.userService.updateUser(this.userId,formArray).subscribe(()=>{
-          this.messageService.add({
-            severity:'success',
-            summary:'Başarılı',
-            detail:"Artık bir satıcısınız... Şimdi giriş sayfasına yönlendiriliyorsunuz"
-          });
-          setTimeout(() => {
-            localStorage.clear();
-            this.router.navigate(['/login']);
-          }, 3000);
-        });
-      })
-     }
-     else{
-      this.messageService.add({
-        severity:'warn',
-        summary:'Doğrulama kodu',
-        detail:"Girdiğiniz kod doğrulanamadı... Lütfen tekrar deneyiniz"
-      });
-     }
-  }
+ 
 }

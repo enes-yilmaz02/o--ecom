@@ -234,7 +234,13 @@
     "buttonLabel":"Become a Seller",
     "codeLabel":"Verification Code",
     "codeSmall":"* Code field cannot be left blank",
-    "codeButton":"Send"
+    "codeButton":"Send",
+    "cityLabel":"City",
+    "citySmall":"* Province cannot be left blank",
+    "cityName":"Select a Province...",
+    "districtsLabel":"District",
+    "districtsSmall":"* District field cannot be left blank",
+    "districtsName":"Select a District..."
   },
   "cardElementForm":{
     "category":"Categorys",
