@@ -103,7 +103,7 @@ export class ContentCartsComponent {
             this.creotersData = creotersData;
 
             const creoterEmails = creotersData.map(
-              (creoter: any) => creoter.email
+              (creoter: any) => creoter?.email
             );
             this.creotersEmail = creoterEmails;
           },
@@ -173,10 +173,7 @@ export class ContentCartsComponent {
         // Send email for the current email address
         this.userService.sendEmailGlobal(body).subscribe(
           () => {
-            this.messageService.add({
-              severity: 'success',
-              summary: 'Başarılı!',
-            });
+            console.log('satıcıya mail gönderildi')
           },
           (error) => {
             console.error('Error sending email', error);

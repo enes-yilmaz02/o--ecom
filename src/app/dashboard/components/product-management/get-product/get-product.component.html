@@ -1,5 +1,5 @@
 <div class="conatiner">
-  <div class="card" style="width: 1100px">
+  <div class="card">
     <p-table
       #dt2
       [value]="products"
@@ -76,30 +76,30 @@
           <td>{{ product?.quantity }}</td>
           <td>
             <p-tag
-              [value]="product?.selectedStatus.name"
+              [value]="product?.selectedStatus.name | stockStatus "
               [severity]="getSeverity(product?.selectedStatus.name)"
             ></p-tag>
           </td>
           <td>
             {{
-              product?.category.name
+              product?.category.name| categoryStatus
             }}
           </td>
-          <td>{{ product?.companyName }}</td>
+          <td>{{ product?.companyName  }}</td>
           <td>
             <div
               class="flex flex-row justify-content-start align-content-center w-21rem"
             >
               <div>
                 <span class="button-style">
-                  <button class="button" [routerLink]="['/creoter/product-management','update-product' , product.id]">
+                  <button pButton class="button" [routerLink]="['/creoter/product-management','update-product' , product.id]">
                     <i class="pi pi-pencil" style="color: white"></i> Düzenle
                   </button>
                 </span>
               </div>
               <div>
                 <span class="button-style" style="margin-left: 5px">
-                  <button class="button" (click)="deleteProduct(product.id)">
+                  <button pButton class="button" (click)="deleteProduct(product.id)">
                     <i class="pi pi-trash" style="color: white"></i> Sil
                   </button>
                 </span>

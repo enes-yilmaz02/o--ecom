@@ -4,8 +4,10 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { Table } from 'primeng/table';
 import { Observable, tap } from 'rxjs';
 import { Product } from 'src/app/models/product';
+
 import { ProductService } from 'src/app/services/product.service';
 import { UserService } from 'src/app/services/user.service';
+
 @Component({
   selector: 'app-get-product',
   templateUrl: './get-product.component.html',
@@ -50,7 +52,6 @@ export class GetProductComponent {
   }
 
   getFileUrl(fileName: string): string {
-    // Update the URL template based on your file structure in Google Cloud Storage
     return `http://localhost:8080/files/${fileName}`;
   }
 

@@ -23,6 +23,7 @@ import { TopbarComponent } from './layout-creoter/topbar.component';
 import { FooterComponent } from './layout-creoter/footer.component';
 import { SidebarComponent } from './layout-creoter/sidebar.component';
 import { TruncatePipe } from '../services/pipes/truncate.pipe';
+
 @NgModule({
   declarations: [
        DashboardComponent,
@@ -39,7 +40,8 @@ import { TruncatePipe } from '../services/pipes/truncate.pipe';
        MenuComponent,
        TopbarComponent,
        FooterComponent,
-       SidebarComponent
+       SidebarComponent,
+     
   ],
   imports: [
     CommonModule,
@@ -49,15 +51,29 @@ import { TruncatePipe } from '../services/pipes/truncate.pipe';
     DashboardRoutingModule
   ],
   exports:[
-
-
+    DashboardComponent,
+    ProductManagementComponent,
+    AddproductFormComponent,
+    GetProductComponent,
+    DashboardSidebarComponent,
+    UpdateProductComponent,
+    OrdersManagementComponent,
+    ProfilManagementComponent,
+    ReportingComponent,
+    GetOrdersComponent,
+    LayoutCreoterComponent,
+    MenuComponent,
+    TopbarComponent,
+    FooterComponent,
+    SidebarComponent,
   ],
   providers:[
     UserService,
     DialogService,
     TranslocoModule,
     ProductService,
-    TruncatePipe
+    TruncatePipe,
+  
   ]
 })
 export class DashboardModule { }

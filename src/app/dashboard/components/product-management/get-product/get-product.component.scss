@@ -6,7 +6,7 @@ $light-text: #ecf0f1;
 $background-color: #ecf0f1;
 :host ::nng-deep{
   .table{
-    width: auto;
+    width: 100%;
 
     button{
       background-color: $primary-color;
@@ -33,7 +33,7 @@ $background-color: #ecf0f1;
 
   .button-style {
     button {
-      background-color: #007bff;
+      background-color: $dark-text;
       color: white;
       border: none;
       padding: 8px 16px;
@@ -41,9 +41,7 @@ $background-color: #ecf0f1;
       border-radius: 4px;
       font-size: 14px;
 
-      &:hover {
-        background-color: #0056b3;
-      }
+     
     }
   }
 
@@ -82,10 +80,18 @@ $background-color: #ecf0f1;
 
 :host ::ng-deep{
 
+  td,th{
+    justify-content: center;
+  }
+
   .button{
     background-color: $secondary-color;
     border: none;
     padding: 10px;
     color:#fff;
+  }
+
+  .p-tag-value{
+    width: 60px;
   }
 }

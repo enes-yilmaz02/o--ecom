@@ -1,4 +1,14 @@
 {
+  "successMessage":"Başarılı",
+  "errorMessage":"Başarısız",
+  "warnMessage":"Lütfen",
+  "infoMessage":"Bilgi",
+  "warnMessageverify":"Doğrulama Kodu",
+  "emailVerifyMessage":"email doğrulama kodunuz: ",
+  "emailVerifycode":"email doğrulama",
+  "changePassword":"Şifre Yenileme",
+  "changePasswordcode":"Şifre Yenileme kodunuz: ",
+
   "loginForm":{
     "header":"Giriş",
     "emailTooltip": "Emaili giriniz" ,
@@ -11,7 +21,10 @@
     "rememberme":"Beni hatırla",
     "dontforget":"Parolanızı mı unuttunuz?",
     "haveaccount":"Hesabınız yok mu?",
-    "createnow":"Şimdi oluştur!"
+    "createnow":"Şimdi oluştur!",
+    "messageDetailsuccess":"Giriş işlemi başarılı...",
+    "messageDetailerror":"Giriş yapılamadı. Kullanıcı adı veya şifre hatalı.",
+    "messageDetailwarn":"Form bilgilerini doldurunuz"
   },
 
   "registerForm":{
@@ -51,14 +64,22 @@
     "terms":"Hizmet şartlarına ilişkin tüm beyanlara katılıyorum",
     "haveaccount":"Zaten bir hesabınız var mı?",
     "loginhere":"Giriş yapın!",
-    "codeLabel":"Doğrulama Kodu"
+    "codeLabel":"Doğrulama Kodu",
+    "messageDetailsuccess":"E-posta adresinize gönderilen doğrulama kodu ile hesabınızı doğrulayabilirsiniz",
+    "messageDetailerror":"Bu e-posta adresi zaten kullanılmaktadır. Lütfen başka bir e-posta adresi seçin.",
+    "messageDetailwarn":"Form bilgilerini doldurunuz",
+    "messageDetailsuccessverify":"Kayıt Başarılı bir şekilde tamamlandı...Giriş ekranına yönlendiriliyorsunuz...",
+    "messageDetailerrorverify":"Girdiğiniz kod doğrulanamadı... Lütfen tekrar deneyiniz"
+
   },
   "resetForm":{
     "emailTooltip":"emailinizi giriniz",
     "emailLabel":"email",
     "emailSmall":"* email alanı boş bırakılamaz",
     "buttonLabelNew":"Şifremi Yenile",
-    "buttonLabelBack":"Geri"
+    "buttonLabelBack":"Geri",
+    "messageDetailsuccess":"E-posta adresinize gönderilen Şifre yenilem kodu ile Şifrenizi güncelleyebilirsiniz.",
+    "messgaeDetailwarn":"Email adresinizi giriniz"
   },
   "startForm":{
     "header":"Orion Innovation",
@@ -303,7 +324,7 @@
     "delete":"Sil",
     "companyName":"Satıcı: ",
     "buttonLabel": "Siparişi Tamamla",
-    "totalPrice" : "Toplam Tutar: ",
+    "totalPrice" : "Toplam Tutar:  ",
     "quantity":"Ürün Miktarı(adet): ",
     "buyerEmail":" Üretici mail: ",
     "productName":" Ürün Adı: ",
@@ -315,5 +336,29 @@
     "totalAmount":"Fiyat",
     "quantity":"Ürün Miktarı(adet): ",
     "name":"Ürün Adı: "
+  },
+  "dGetorders":{
+    "header":"Sipariş Listesi",
+    "pdf" : "pdf'i dışa aktar",
+    "xls":"xls'i dışa aktar",
+    "userId": "Müşteri Id: ",
+    "userName":"Müşteri Adı: ",
+    "userEmail":"Müşteri Email: ",
+    "userAddress":"Müşteri Adresi: ",
+    "productFile":"Ürün Resmi",
+    "productName":" Ürün Adı",
+    "piecePrice":"Tekil Fiyat",
+    "piece":"Adet",
+    "status":"Durum",
+    "totalPrice":"Toplam Tutar",
+    "defaultHeader":"Sipariş Listesi Boş",
+    "defaultDecs":"Sipariş Listesin Herhangi Bir Ürün Bulunmamaktadır.",
+    "close":"Detayları Gizle",
+    "open":"Detayları Göster"
+
+  },
+  "codeForm":{
+    "approve":"Doğrula",
+    "code":"Kod"
   }
 }

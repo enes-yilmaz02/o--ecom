@@ -26,14 +26,14 @@
             </span>
           </span>
           <span class="inline-flex align-items-center mb-3">
-            <i class="pi pi-envelope text-700 mr-2"></i>
+            <i class="pi pi-user-plus text-700 mr-2"></i>
             <span>
               {{ 'contentCartsForm.companyName' | transloco }}
               <span class="text-700 mr-2">{{ cart?.product?.companyName }}</span>
             </span>
           </span>
           <span class="inline-flex align-items-center mb-3">
-            <i class="pi pi-envelope text-700 mr-2"></i>
+            <i class="pi pi-chart-line text-700 mr-2"></i>
             <span>
               {{ 'contentCartsForm.quantity' | transloco }}
               <span class="text-700 mr-2">{{ cart?.product?.quantity }}</span>
@@ -47,48 +47,45 @@
           <div
             class="w-full sm:w-6 flex align-items-end justify-content-end mt-3 sm:mt-0"
           >
-            <div class="flex flex-column sm:align-items-end">
-              <span class="text-900 text-xl font-medium mb-2 sm:mb-3">
+            <div class="flex flex-column sm:align-items-end ">
+              <span class="text-900 text-xl font-medium mb-2 sm:mb-3 mr-1">
                 {{ '$' + cart?.product?.priceStacked }}
               </span>
-              <a
+              <button
+                pButton
                 (click)="deleteCarts(cart.id)"
-                class="cursor-pointer text-blue-300 font-medium text-sm hover:text-blue-800 transition-colors transition-duration-300"
+                class="cursor-pointer transition-colors transition-duration-300"
                 tabindex="0"
-                >{{ 'contentCartsForm.delete' | transloco }}</a
-              >
+                >{{ 'contentCartsForm.delete' | transloco }}</button>
             </div>
           </div>
         </div>
       </div>
     </li>
   </ul>
-  <div class="flex">
-    <div class="w-12rem hidden md:block"></div>
-    <ul class="list-none py-0 pr-0 pl-0 md:pl-5 mt-6 mx-0 mb-0 flex-auto">
-      <li class="flex justify-content-end mb-4">
-        <span>
-          <span class="text-xl text-700 ">
-            {{ 'contentCartsForm.totalPrice' | transloco }}
+  <div class="flex flex-column w-full justify-content-end mt-4 complete">
+      <div class="flex flex-column justify-content-end">
+          <span class="flex justify-content-end mr-3">
+            <span class="text-xl text-700 ">
+              {{ 'contentCartsForm.totalPrice' | transloco }}
+            </span>
+            <span class="text-xl text-700">  {{ totalPrice | currency:'USD' }}</span>
           </span>
-          <span class="text-xl text-700">{{ totalPrice | currency:'USD' }}</span>
-        </span>
-      </li>
-      <li class="flex justify-content-between">
-        <button
-          pButton
-          pRipple
-          (click)="completeOrder()"
-          label="{{ 'contentCartsForm.buttonLabel' | transloco }}"
-        ></button>
+       <div class="flex justify-content-end">
         <button
         pButton
-        pRipple
-        (click)="clearCart()"
-        label="{{ 'contentCartsForm.clearButton' | transloco }}"
+        (click)="completeOrder()"
+        label="{{ 'contentCartsForm.buttonLabel' | transloco }}"
       ></button>
-      </li>
-
-    </ul>
+       </div>
+        <div class="flex justify-content-end">
+          <button
+          pButton
+          (click)="clearCart()"
+          label="{{ 'contentCartsForm.clearButton' | transloco }}"
+        ></button>
+        </div>
+      </div>
+     
   </div>
 </div>

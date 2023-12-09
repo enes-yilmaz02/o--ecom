@@ -1,4 +1,15 @@
 {
+  "successMessage":"Successfull",
+  "errorMessage":"Error",
+  "warnMessage":"Please",
+  "infoMessage":"Info",
+  "warnMessageverify":"Verify Code",
+  "emailVerifyMessage":"Your email verification code: ",
+  "emailVerifycode":"email verification",
+  "changePassword":"Password Reset",
+  "changePasswordcode":"Your password reset code: ",
+
+
   "loginForm": {
     "header":"Login",
     "emailTooltip": "Enter your email",
@@ -11,7 +22,10 @@
     "rememberme":"Remember me",
     "dontforget":"Forgot Password?",
     "haveaccount":"Don't have an account?",
-    "createnow":"Create now!"
+    "createnow":"Create now!",
+    "messageDetailsuccess":"Login process successful...",
+    "messageDetailerror":"Failed to log in. Username or password is wrong.",
+    "messageDetailwarn":"Fill out the form information"
   },
 
   "registerForm": {
@@ -51,14 +65,21 @@
     "terms":"I agree with all statements regarding the terms of service",
     "haveaccount":"Have already an account?",
     "loginhere":"Login here!",
-    "codeLabel":"Verify Code"
+    "codeLabel":"Verify Code",
+    "messageDetailsuccess":"You can verify your account with the verification code sent to your e-mail address.",
+    "messageDetailerror":"This email address is already in use. Please choose another email address.",
+    "messageDetailwarn":"Fill out the form information",
+    "messageDetailsuccessverify":"Registration completed successfully... You are directed to the login screen...",
+    "messageDetailerrorverify":"The code you entered could not be verified... Please try again"
   },
   "resetForm": {
     "emailTooltip": "Enter your email",
     "emailLabel": "Email",
     "emailSmall": "* Email field cannot be left blank",
     "buttonLabelNew": "Reset Password",
-    "buttonLabelBack": "Back"
+    "buttonLabelBack": "Back",
+    "messageDetailsuccess":"You can update your Password with the Password reset code sent to your e-mail address.",
+    "messgaeDetailwarn":"Enter your email address"
   },
   "startForm": {
     "header": "Orion Innovation",
@@ -303,7 +324,7 @@
     "delete":"Delete",
     "companyName":"Company Name: ",
     "buttonLabel": "Complete Order",
-    "totalPrice" : "Total amount: ",
+    "totalPrice" : "Total amount:  ",
     "quantity":"Product Quantity (pcs): ",
     "buyerEmail":" Producer email: ",
     "productName":" Product Name:  ",
@@ -315,6 +336,29 @@
     "totalAmount":"Price",
     "quantity":"Product Quantity (pcs): ",
     "name":"Product Name: "
+  },
+  "dGetorders":{
+    "header":"Order List",
+    "pdf" : "Export PDF",
+    "xls":"Export XLS",
+    "userId": "Customer Id: ",
+    "userName":"Customer name: ",
+    "userEmail":"Customer Email: ",
+    "userAddress":"Customer Address: ",
+    "productFile":"Product Image",
+    "productName":" Product Name",
+    "piecePrice":"Individual Price",
+    "piece":"Piece",
+    "status":"Status",
+    "totalPrice":"Total amount",
+    "defaultHeader":"Order List is Empty",
+    "defaultDecs":"There are no products in the order list.",
+    "close":"Hide Details",
+    "open":"Show Details"
+  },
+  "codeForm":{
+    "approve":"Verify",
+    "code":"Code"
   }
 
 

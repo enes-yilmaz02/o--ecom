@@ -2,8 +2,9 @@ import { SocialAuthService } from '@abacritt/angularx-social-login';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslocoService } from '@ngneat/transloco';
 import { MessageService } from 'primeng/api';
-import { Observable, tap, Subject } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
 declare var handleSignout: any; // Declare the global function to avoid TypeScript errors
 
@@ -24,7 +25,8 @@ export class LoginComponent {
     private messageService: MessageService,
     private userService: UserService,
     private router: Router,
-    private authService: SocialAuthService
+    private authService: SocialAuthService,
+    private translocoService:TranslocoService
     ) {}
 
   ngOnInit() {
@@ -130,16 +132,16 @@ export class LoginComponent {
           });
           this.messageService.add({
             severity: 'success',
-            summary: 'Successful login!',
-            detail: 'Giriş işlemi başarılı...',
+            summary: this.translocoService.translate('successMessage'),
+            detail: this.translocoService.translate('loginForm.messageDetailsuccess'),
           });
           
         },
         (error) => {
           this.messageService.add({
             severity: 'error',
-            summary: 'Hata',
-            detail: 'Giriş yapılamadı. Kullanıcı adı veya şifre hatalı.',
+            summary: this.translocoService.translate('errorMessage'),
+            detail: this.translocoService.translate('loginForm.messageDetailerror'),
           });
         }
       );
@@ -148,8 +150,8 @@ export class LoginComponent {
       this.messageService.clear();
       this.messageService.add({
         severity: 'warn',
-        summary: 'Lütfen',
-        detail: 'Form bilgilerini doldurunuz',
+        summary: this.translocoService.translate('warnMessage'),
+        detail: this.translocoService.translate('loginForm.messageDetailwarn'),
       });
     }
   }

@@ -1,0 +1,34 @@
+$primary-color: #3498db;
+$secondary-color: #1071b3;
+$danger-color: #e74c3c;
+$dark-text: #34495e;
+$light-text: #ecf0f1;
+$light-text-hover: #91c9d7;
+$background-color: #ecf0f1;
+:host ::ng-deep{
+  .complete{
+
+    .spancomplete{
+      width: 200px;
+    }
+    
+    button{
+      width: 200px;
+      margin-bottom: 5px;
+      margin-top: 5px;
+      background-color: $dark-text;
+      border: none;
+      margin-right: 10px;
+      font-weight: 500;
+      
+    }
+  }
+  .p-button{
+    background-color: $dark-text;
+    border: none;
+    font-size:14px;
+    font-weight: 500;
+  }
+ 
+  
+}

@@ -3,6 +3,7 @@ import { Observable, tap } from 'rxjs';
 import { ProductService } from 'src/app/services/product.service';
 import { UserService } from 'src/app/services/user.service';
 import * as FileSaver from 'file-saver';
+
 interface Column {
   field: string;
   header: string;
@@ -17,6 +18,8 @@ interface ExportColumn {
   selector: 'app-get-orders',
   templateUrl: './get-orders.component.html',
   styleUrls: ['./get-orders.component.scss'],
+  
+
 })
 export class GetOrdersComponent {
   orders: any;
@@ -27,12 +30,15 @@ export class GetOrdersComponent {
 
   cols!: Column[];
 
+  showDetails:boolean;
+
+  userDetailStatus: { [userId: string]: boolean } = {};
+
   constructor(
     private productService: ProductService,
     private userService: UserService
   ) {
     this.getAllCreoterOrders();
-    this.getUserData();
   }
 
   exportPdf() {
@@ -42,16 +48,26 @@ export class GetOrdersComponent {
 
         // Sütun başlıkları
         const columns: ExportColumn[] = [
-          { title: 'Ad', dataKey: 'name' },
+          { title: 'Müşteri Adı', dataKey: 'username' },
+          { title: 'Ürün Adı', dataKey: 'name' },
           { title: 'Fiyat($)', dataKey: 'priceStacked' },
-          { title: 'Adet', dataKey: 'quantity' },
+          { title: 'Ürün Adedi', dataKey: 'quantity' },
+          
         ];
 
-        // Başlıkları ekleyin
+   
         const header = columns.map((col) => col.title);
-        const data = this.orders.map((order) =>
-          columns.map((col) => order.orders[0][col.dataKey])
-        );
+
+        const data = this.orders.flatMap((order) => {
+          return order.userDataArray.map((userData) => {
+            return order.orders.map((orderItem) => ({
+              username: userData.name,
+              name: orderItem.product.name,
+              priceStacked: orderItem.product.priceStacked,
+              quantity: orderItem.product.quantity,
+            }));
+          });
+        }).flat();
         // Türkçe karakterlerin çevirisi
         const turkishChars = {
           ş: 's',
@@ -68,18 +84,22 @@ export class GetOrdersComponent {
           Ç: 'C',
         };
 
-        // Veriyi çevir
-        const translatedData = data.map((row) =>
-          row.map((cell) => {
-            if (typeof cell === 'string') {
-              return cell.replace(
-                /[\şŞıİğĞüÜöÖçÇ]/g,
-                (match) => turkishChars[match]
-              );
-            }
-            return cell;
-          })
-        );
+        const translatedData = data.map((row: any) => {
+          if (Array.isArray(row)) {
+            // Dönüştürme mantığı yalnızca array'ler için uygulansın
+            return row.map((cell) => {
+              
+            });
+          } else if (typeof row === 'string') {
+            // Dönüştürme mantığı string'ler için uygulansın
+            return row.replace(
+              /[\şŞıİğĞüÜöÖçÇ]/g,
+              (match) => turkishChars[match]
+            );
+          }
+        
+          return row; // Diğer türler olduğu gibi bırakılsın
+        });
 
         (doc as any).autoTable({
           head: [header],
@@ -146,10 +166,28 @@ export class GetOrdersComponent {
       fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION
     );
   }
-
   getAllCreoterOrders() {
-    this.productService.getAllProductOrders().subscribe((data: any) => {
-      this.orders = data;
+    this.getUserId().subscribe((userId) => {
+      this.productService.getAllCreoterOrdersById(userId).subscribe((data: any) => {
+        console.log(data);
+        // Eğer herhangi bir sipariş bulunamazsa, this.orders'u boş bir diziyle güncelle
+        this.orders = data ? data.map((item: any) => ({
+          orderDate: item.orderDate,
+          id: item.id,
+          orders: item.orders.map((orderItem: any) => ({
+            ...orderItem,
+            product: orderItem.product,
+          })),
+          totalAmount: item.totalAmount,
+          userId: item.userId,
+        })) : [];
+        console.log(this.orders);
+  
+        // Siparişler alındıktan sonra her bir userId için alıcı bilgilerini getir
+        this.orders.forEach((order: any) => {
+          this.getUserData(order.userId);
+        });
+      });
     });
   }
 
@@ -166,13 +204,32 @@ export class GetOrdersComponent {
       })
     );
   }
-
-  getUserData() {
-    this.getUserId().subscribe(() => {
-      this.userService.getUser(this.userId).subscribe((data) => {
-        this.userData = data;
-        console.log(this.userData);
-      });
+  getUserData(userId: string) {
+    this.userService.getUser(userId).subscribe((data) => {
+      // Siparişi bul
+      const order = this.orders.find((order) => order.userId === userId);
+  
+      // Eğer sipariş bulunamazsa veya userData daha önce eklenmişse çık
+      if (!order || order.userData) {
+        return;
+      }
+  
+      // Alıcı bilgilerini siparişe ekle
+      order.userData = data;
+  
+      // Eğer userDataArray dizisi henüz tanımlanmamışsa, tanımlayın
+      if (!order.userDataArray) {
+        order.userDataArray = [];
+      }
+  
+      // Alıcı bilgilerini userDataArray dizisine ekleyin
+      order.userDataArray.push(data);
     });
   }
+
+  toggleUserDetails(userId: string): void {
+    // Eğer userId tanımlı değilse, varsayılan değeri true olarak ata
+    this.userDetailStatus[userId] = !this.userDetailStatus[userId];
+  }
+  
 }

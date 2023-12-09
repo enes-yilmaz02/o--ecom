@@ -32,8 +32,7 @@ import { ContentCartsComponent } from './components/carts/content-carts/content-
 import { DefaultCartsComponent } from './components/carts/default-carts/default-carts.component';
 import { CreoterFormComponent } from './components/creoter-form/creoter-form.component';
 import { TruncatePipe } from '../services/pipes/truncate.pipe';
-import { StockStatusPipe } from '../services/helper/stock-status.pipe';
-import { CategoryStatus } from '../services/helper/category-status.pipe';
+
 import { DenemeComponent } from './components/deneme/deneme.component';
 import { CitiesService } from '../services/cities.service';
 @NgModule({
@@ -64,8 +63,6 @@ import { CitiesService } from '../services/cities.service';
      DefaultCartsComponent,
      CreoterFormComponent,
      TruncatePipe,
-     StockStatusPipe,
-     CategoryStatus,
      DenemeComponent
 
 
@@ -93,8 +90,6 @@ import { CitiesService } from '../services/cities.service';
   providers:[
     CartService,
     MessageService,
-    StockStatusPipe,
-    CategoryStatus,
     CitiesService
   ]
 })

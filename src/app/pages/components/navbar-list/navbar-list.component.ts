@@ -4,6 +4,7 @@ import { Observable, tap } from 'rxjs';
 import { BadgeService } from 'src/app/services/badge.service';
 import { UserService } from 'src/app/services/user.service';
 import { StockStatusPipe } from 'src/app/services/helper/stock-status.pipe';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-navbar-list',
   templateUrl: './navbar-list.component.html',
@@ -32,7 +33,8 @@ export class NavbarListComponent implements OnInit {
     private transloco: TranslocoService,
     private userService: UserService,
     private badgeService: BadgeService,
-    private stockStatusPipe: StockStatusPipe
+    private stockStatusPipe: StockStatusPipe,
+    private router:Router
       ) {}
 
       ngOnInit(): void {
@@ -104,7 +106,7 @@ export class NavbarListComponent implements OnInit {
 
   logout() {
     localStorage.clear();
-    window.location.reload();
+    this.router.navigate(['/'])
   }
 
   setLanguage() {

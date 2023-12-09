@@ -37,9 +37,11 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { FileUploadModule } from 'primeng/fileupload';
 import { SidebarModule } from 'primeng/sidebar';
 import { StepsModule } from 'primeng/steps';
-
+import { StockStatusPipe } from '../services/helper/stock-status.pipe';
+import { CategoryStatus } from '../services/helper/category-status.pipe';
 @NgModule({
-  declarations: [],
+  declarations: [StockStatusPipe,
+    CategoryStatus],
   imports: [
     CommonModule,
     ButtonModule,
@@ -79,7 +81,8 @@ import { StepsModule } from 'primeng/steps';
     DynamicDialogModule,
     FileUploadModule,
     SidebarModule,
-    StepsModule
+    StepsModule,
+  
 
   ],
   exports:[
@@ -121,8 +124,11 @@ import { StepsModule } from 'primeng/steps';
     DynamicDialogModule,
     FileUploadModule,
     SidebarModule,
-    StepsModule
+    StepsModule,
+    StockStatusPipe,
+    CategoryStatus
   ],
-  providers:[MessageService]
+  providers:[MessageService,StockStatusPipe,
+    CategoryStatus]
 })
 export class SharedModule { }

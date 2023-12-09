@@ -1,5 +1,5 @@
 <div class="layout-topbar">
-  <a class="layout-topbar-logo" [routerLink]="['/pages']">
+  <a class="layout-topbar-logo" (click)="logout()">
       <img src="assets/layout/images/{{layoutService.config.colorScheme === 'light' ? 'logo-dark' : 'logo-white'}}.svg" alt="logo">
       <span>OI</span>
   </a>

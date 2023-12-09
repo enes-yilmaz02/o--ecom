@@ -1,3 +1,4 @@
+import { ResetpasswordCodeComponent } from './reset-password/resetpassword-code/resetpassword-code.component';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home.component';
@@ -13,7 +14,10 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
       { path:'' , component:LoginComponent},
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
-      { path: 'reset-password', component: ResetPasswordComponent },
+      { path: 'reset-password', component: ResetPasswordComponent , children:[
+        { path:'code' , component:ResetpasswordCodeComponent},
+      ]},
+      { path:'code' , component:ResetpasswordCodeComponent},
     ]}
   ]
   )],

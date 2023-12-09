@@ -1,85 +1,130 @@
-/* get-orders.component.scss */
-
+$primary-color: #3498db;
+$secondary-color: #1071b3;
+$danger-color: #e74c3c;
+$dark-text: #34495e;
+$light-text-second: #c0ddfb;
+$light-text: #ecf0f1;
+$light-text-hover: #91c9d7;
+$background-color: #ecf0f1;
 .orders-list {
+  width: 100%;
+  margin: 0 auto;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 20px;
+background: white;
+  /* Başlık stili */
   h2 {
-    font-size: 1.5rem;
-    margin-bottom: 20px;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 10px;
   }
 
+  /* Export butonları stili */
   .flex {
     display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-
+    justify-content: flex-end;
     button {
-      margin: 0;
+      background-color: $dark-text;
+      width: 150px;
+      min-height: 40px;
+      margin: 2px;
+      padding: 5px 10px;
+      border:none;
     }
+   
   }
-
+ 
+  /* Sipariş öğeleri stili */
   .order-item {
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    padding: 15px;
-
+    margin: 10px;
+    /* Sipariş bilgileri stili */
     .order-info {
-      margin-bottom: 10px;
-
       div {
         margin-bottom: 5px;
-      }
-    }
 
-    .product-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 15px;
-
-      .product-item {
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        display: flex;
-        flex: 1;
-        padding: 15px;
-
-        .product-image {
-          border-radius: 8px;
-          margin-right: 15px;
-          max-width: 100px;
-          object-fit: cover;
-        }
-
-        .product-details {
-          flex: 1;
-
-          div {
-            margin-bottom: 5px;
-          }
-
-          .product-meta {
-            div {
-              display: flex;
-              justify-content: space-between;
-            }
-          }
+        button {
+          background-color: $dark-text;
+          width: 150px;
+          min-height: 40px;
+          margin: 2px;
+          padding: 5px 10px;
+          border:none;
+          cursor: pointer;
+         justify-content: center;
         }
       }
     }
 
-    .total-price {
-      h3 {
-        margin-top: 15px;
+    /* Ürün listesi stili */
+    
+      .product-table {
+        width: 100%;
+        margin-top: 10px;
+        thead{
+          th{
+            width: 200px;
+            padding: 8px;
+            text-align: left;
+          }
+        }
+        th, td {
+          width: 200px;
+          padding: 8px;
+          text-align: left;
+        }
+    
+        th {
+          background-color: #f2f2f2;
+        }
+    
+        img.product-image {
+          max-width: 50px;
+          max-height: 50px;
+        }
       }
     }
-  }
+  
 }
-.gradient-custom {
-  /* fallback for old browsers */
-  background: #cd9cf2;
 
-  /* Chrome 10-25, Safari 5.1-6 */
-  background: -webkit-linear-gradient(to top left, rgba(205, 156, 242, 1), rgba(246, 243, 255, 1));
 
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  background: linear-gradient(to top left, rgba(205, 156, 242, 1), rgba(246, 243, 255, 1))
-  }
+
+
+
+.page_404 {
+  padding: 40px 0;
+  background: #fff;
+  font-family: "Arvo", serif;
+  height: 100%;
+}
+
+.page_404 img {
+  width: 100%;
+ 
+}
+
+.four_zero_four_bg {
+  
+  min-height:90vh ;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.four_zero_four_bg h1 {
+  font-size: 80px;
+}
+
+.four_zero_four_bg h3 {
+  font-size: 80px;
+}
+
+.link_404 {
+  color: #fff !important;
+  padding: 10px 20px;
+  background: #39ac31;
+  margin: 20px 0;
+  display: inline-block;
+}
+.contant_box_404 {
+  margin-top: -50px;
+}

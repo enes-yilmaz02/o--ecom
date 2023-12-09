@@ -116,6 +116,7 @@
             : ""
         }}
       </small>
+      
     </div>
     <!-- password input end-->
 
@@ -154,22 +155,11 @@
             : ""
         }}
       </small>
-      <span>
-        <small
-          *ngIf="
-            userFormRegister.get('password').value !=
-            userFormRegister.get('confirmpassword').value
-          "
-          class="block text-red-500"
-        >
-          {{
-            userFormRegister.get("confirmpassword").errors != null &&
-            userFormRegister.get("confirmpassword").errors["required"]
-              ? ("registerForm.confirmSmallSecond" | transloco)
-              : ""
-          }}
+      <div *ngIf="userFormRegister.get('confirmpassword').value.length >= 8 && userFormRegister.get('password').value.length >= 8">
+        <small *ngIf="userFormRegister.get('password').value !== userFormRegister.get('confirmpassword').value" class="block text-red-500">
+           {{ 'registerForm.confirmSmallSecond' | transloco }}
         </small>
-      </span>
+     </div>
     </div>
     <!-- confirm password input end-->
     <div class="flex flex-row align-content-center w-full mt-6 mb-3">
@@ -193,11 +183,11 @@
     </span>
     <!-- button end-->
     <div class="flex flex-row justify-content-between mt-4">
-      <div class="flex ">
+      <div class="flex">
         <p>{{ "registerForm.haveaccount" | transloco }}</p>
       </div>
 
-      <div class="flex ">
+      <div class="flex">
         <a routerLink="/login">{{ "registerForm.loginhere" | transloco }}</a>
       </div>
     </div>

@@ -11,13 +11,15 @@ import { MessageService } from 'primeng/api';
 import { CartService } from '../services/cart.service';
 import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from '@abacritt/angularx-social-login';
 import {  GoogleSigninButtonModule } from '@abacritt/angularx-social-login';
+import { ResetpasswordCodeComponent } from './reset-password/resetpassword-code/resetpassword-code.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
     LoginComponent,
     RegisterComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    ResetpasswordCodeComponent
   ],
   imports: [
     CommonModule,

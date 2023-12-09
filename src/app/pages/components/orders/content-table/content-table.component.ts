@@ -46,7 +46,17 @@ export class ContentTableComponent {
   // Kullanıcının siparişlerini getiren fonksiyon
   getOrders() {
     return this.userService.getOrders(this.userId).subscribe((data: any) => {
-      this.orders = data;
+      this.orders = data.map((item: any) => ({
+        orderDate: item.orderDate,
+        id: item.id,  // Burada siparişin id'sini ekleyin
+        orders: item.orders.map((orderItem: any) => ({
+          ...orderItem,
+          product: orderItem.product,  // Burada ürünü düzeltin
+        })),
+        totalAmount: item.totalAmount,
+        userId: item.userId,
+      }));
+      console.log(this.orders)
       if (this.orders) {
         this.products = this.orders
           .map((order: any) => order.orders.map((item: any) => item.product))
