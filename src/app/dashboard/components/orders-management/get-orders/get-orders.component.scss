@@ -8,7 +8,7 @@ $light-text-hover: #91c9d7;
 $background-color: #ecf0f1;
 .orders-list {
   width: 100%;
-  margin: 0 auto;
+  margin: 10px;
   border: 1px solid #ddd;
   border-radius: 5px;
   padding: 20px;
@@ -32,9 +32,9 @@ background: white;
       padding: 5px 10px;
       border:none;
     }
-   
+
   }
- 
+
   /* Sipariş öğeleri stili */
   .order-item {
     margin: 10px;
@@ -57,7 +57,7 @@ background: white;
     }
 
     /* Ürün listesi stili */
-    
+
       .product-table {
         width: 100%;
         margin-top: 10px;
@@ -65,26 +65,31 @@ background: white;
           th{
             width: 200px;
             padding: 8px;
-            text-align: left;
+            text-align: center;
           }
         }
         th, td {
           width: 200px;
           padding: 8px;
-          text-align: left;
+          text-align: center;
         }
-    
+
         th {
           background-color: #f2f2f2;
         }
-    
+
         img.product-image {
           max-width: 50px;
           max-height: 50px;
         }
       }
     }
-  
+
+}
+
+.totalprice{
+position: relative;
+right: -365%;
 }
 
 
@@ -100,11 +105,11 @@ background: white;
 
 .page_404 img {
   width: 100%;
- 
+
 }
 
 .four_zero_four_bg {
-  
+
   min-height:90vh ;
   background-repeat: no-repeat;
   background-position: center;

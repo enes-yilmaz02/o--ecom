@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslocoService } from '@ngneat/transloco';
 import { MessageService } from 'primeng/api';
 import { Observable, catchError, map, of, tap } from 'rxjs';
 import { BadgeService } from 'src/app/services/badge.service';
@@ -30,7 +31,8 @@ export class CardDetailComponent implements OnInit {
     private messageService: MessageService,
     private userService: UserService,
     private router: Router,
-    private badgeService: BadgeService
+    private badgeService: BadgeService,
+    private translocoService:TranslocoService
   ) {}
 
   ngOnInit(): void {
@@ -72,8 +74,8 @@ export class CardDetailComponent implements OnInit {
               this.updateUrlWithLikedParam(false);
               this.messageService.add({
                 severity: 'success',
-                summary: 'Başarılı',
-                detail: 'Favorilerden kaldırıldı',
+                summary: this.translocoService.translate('successMeassage'),
+                detail: this.translocoService.translate('cardDetail.messageDetailsuccess'),
               });
               this.badgeService.emitFavoritesRemovedEvent(productId);
               this.badgeService.emitCartUpdatedEvent();
@@ -82,8 +84,8 @@ export class CardDetailComponent implements OnInit {
               console.error('Favori kaldırma işleminde hata:', error);
               this.messageService.add({
                 severity: 'error',
-                summary: 'Hata',
-                detail: 'Favori kaldırma işleminde bir hata oluştu',
+                summary: this.translocoService.translate('errorMeassage'),
+                detail: this.translocoService.translate('cardDetail.messageDetailerror'),
               });
             }
           );
@@ -143,13 +145,13 @@ export class CardDetailComponent implements OnInit {
 
   addToCart(product: any, productId: any) {
     if (this.defaultValue >= 1) {
-     
+
       if (this.defaultValue > this.product.quantity) {
         // Eğer seçilen miktar stok miktarından fazlaysa uyarı mesajı göster
         this.messageService.add({
           severity: 'warn',
-          summary: 'Lütfen dikkat!',
-          detail: 'Seçilen miktar, ürün adet miktarından fazla. ',
+          summary: this.translocoService.translate('warnMessage'),
+          detail:this.translocoService.translate('cardDetail.messageDetailwarn'),
         });
         return; // Fonksiyonu burada sonlandır
       }
@@ -171,15 +173,15 @@ export class CardDetailComponent implements OnInit {
               if (response) {
                 this.messageService.add({
                   severity: 'success',
-                  summary: 'Başarılı',
-                  detail: 'Ürün sepete eklendi',
+                  summary: this.translocoService.translate('successMessage'),
+                  detail:this.translocoService.translate('cardDetail.messageDetailsuccessaddcart') ,
                 });
                 this.badgeService.emitCartUpdatedEvent();
               } else {
                 this.messageService.add({
                   severity: 'error',
-                  summary: 'Başarısız',
-                  detail: 'Ürün sepete eklenemedi',
+                  summary: this.translocoService.translate('errorMessage'),
+                  detail: this.translocoService.translate('cardDetail.messageDetailerroraddcart'),
                 });
               }
             },
@@ -193,8 +195,8 @@ export class CardDetailComponent implements OnInit {
     } else if (this.defaultValue === 0) {
       this.messageService.add({
         severity: 'warn',
-        summary: 'Lütfen',
-        detail: 'Ürün miktarı giriniz',
+        summary: this.translocoService.translate('warnMessage'),
+        detail: this.translocoService.translate('cardDetail.messageDetailwarnpiece'),
       });
     }
     this.defaultValue = 1;
@@ -229,7 +231,7 @@ export class CardDetailComponent implements OnInit {
           .subscribe((product: any) => {
             this.checkIfProductIsFavorites(userId, productId).subscribe(
               (isFavorited: boolean) => {
-               
+
                 if (!isFavorited) {
                   const body = {
                     id: productId,
@@ -241,8 +243,8 @@ export class CardDetailComponent implements OnInit {
                     .subscribe(() => {
                       this.messageService.add({
                         severity: 'success',
-                        summary: 'Başarılı',
-                        detail: 'Ürün Favorilerinize eklendi...',
+                        summary: this.translocoService.translate('successMessage'),
+                        detail: this.translocoService.translate('cardDetail.messageDetailsuccessaddfavorite')
                       });
                       this.liked = true;
                       this.badgeService.emitCartUpdatedEvent();

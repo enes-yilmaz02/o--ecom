@@ -7,6 +7,7 @@ import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
 import { CitiesService } from 'src/app/services/cities.service';
 import { CereoterService } from 'src/app/services/cereoter.service';
+import { TranslocoService } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-creoter-form',
@@ -34,7 +35,8 @@ export class CreoterFormComponent implements OnInit {
     private messageService: MessageService,
     private router: Router,
     private cityService: CitiesService,
-    private creoterService: CereoterService
+    private creoterService: CereoterService,
+    private translocoService:TranslocoService
   ) {
     this.creoterForm = this.formBuilder.group({
       companyName: ['', [Validators.required]],
@@ -127,9 +129,8 @@ export class CreoterFormComponent implements OnInit {
         this.creoterService.addCreoter(userData).subscribe(() => {
           this.messageService.add({
             severity: 'success',
-            summary: 'Başarılı',
-            detail:
-              'Satıcı başvurunuz Fromunuz gönderildi... Onaylanınca sizi bilgilendireceğiz.',
+            summary: this.translocoService.translate('successMessage'),
+            detail:this.translocoService.translate('creoterForm.messageDetailsuccess')
           });
           setTimeout(() => {
             this.router.navigate(['/pages']);
@@ -139,8 +140,8 @@ export class CreoterFormComponent implements OnInit {
     } else {
       this.messageService.add({
         severity: 'warn',
-        summary: 'Lütfen!',
-        detail: 'Form bilgilerini doldurunuz..',
+        summary: this.translocoService.translate('warnMessage'),
+        detail: this.translocoService.translate('creoterForm.messageDetailwarn'),
       });
     }
   }

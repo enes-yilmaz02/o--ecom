@@ -16,7 +16,6 @@ import { OrdersComponent } from './components/orders/orders.component';
 import { ProductComponent } from './components/product/product.component';
 import { CardComponent } from './components/product/card/card.component';
 import { CardDetailComponent } from './components/product/card-detail/card-detail.component';
-import { CardElementComponent } from './components/product/card-element/card-element.component';
 import { PagesComponent } from './pages.component';
 import { RouterModule } from '@angular/router';
 import { CartService } from '../services/cart.service';
@@ -50,7 +49,6 @@ import { CitiesService } from '../services/cities.service';
      ProductComponent,
      CardComponent,
      CardDetailComponent,
-     CardElementComponent,
      PagesComponent,
      LoadingComponent,
      DefaultContentComponent,

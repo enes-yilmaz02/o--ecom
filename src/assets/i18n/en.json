@@ -14,6 +14,7 @@
   "stockUpdatedMessage":"Stock Updated",
   "allDoneOrderMessage":"All orders have been received.",
   "unallDoneOrderMessage":"Cart could not be emptied.",
+  "pleaseWait":"Please wait...",
 
   "loginForm": {
     "header":"Login",
@@ -172,7 +173,9 @@
     "title":"You Don't Have Favorites",
     "desc":"You can immediately add the products to your favorites and share them with your loved ones!",
     "buttonLabel":"Add product",
-    "header": " Favorite Products"
+    "header": " Favorite Products",
+    "messageDetailsuccess": "The product has been removed from your favorites."
+
   },
   "collectionForm":{
     "title":"You Don't Have a Collection",
@@ -267,7 +270,9 @@
     "cityName":"Select a Province...",
     "districtsLabel":"District",
     "districtsSmall":"* District field cannot be left blank",
-    "districtsName":"Select a District..."
+    "districtsName":"Select a District...",
+    "messageDetailsuccess": "Your seller application has been sent... We will inform you when it is approved.",
+    "messageDetailwarn": "Fill out the form information"
   },
   "cardElementForm":{
     "category":"Categorys",
@@ -323,7 +328,14 @@
   "cardDetail":{
     "header":"Description",
     "title":"Product Description",
-    "quantity":"Product Stock Quantity(piece): "
+    "quantity":"Product Stock Quantity(piece): ",
+    "messageDetailsuccess": "Product removed from favorites",
+    "messageDetailerror": "An error occurred while removing a favorite",
+    "messageDetailwarn": "The selected quantity is more than the product quantity. ",
+    "messageDetailsuccessaddcart": "Product added to cart",
+    "messageDetailerroraddcart": "The product could not be added to the cart",
+    "messageDetailwarnpiece":"Enter product quantity",
+    "messageDetailsuccessaddfavorite": "The product has been added to your favorites"
   },
   "contentCartsForm":{
     "header":"Products in Cart",
@@ -360,7 +372,7 @@
     "piecePrice":"Individual Price",
     "piece":"Piece",
     "status":"Status",
-    "totalPrice":"Total amount",
+    "totalPrice":"Total amount: ",
     "defaultHeader":"Order List is Empty",
     "defaultDecs":"There are no products in the order list.",
     "close":"Hide Details",
@@ -369,6 +381,44 @@
   "codeForm":{
     "approve":"Verify",
     "code":"Code"
+  },
+  "dGetProduct":{
+    "add":"Add",
+    "delete":"Delete",
+    "update":"Edit",
+    "id":"Id",
+    "name":"Product Name",
+    "img":"Image",
+    "price":"Price",
+    "quantity":"Product Quantity (piece)",
+    "status":"Status",
+    "category":"Category",
+    "companyName":"Creoter",
+    "actions":"Actions",
+    "notFound":"You Do Not Have Any Product Specified"
+  },
+  "dAddProduct":{
+    "header":"Add Product",
+    "name":"Product Name",
+    "desc":"Description",
+    "pcode":"Product Code",
+    "quantity":"Product Quantity (piece)",
+    "price":"Price",
+    "file":"Product File",
+    "category":"Category",
+    "rating":"Rating",
+    "status":"Status",
+    "add":"Add"
+  },
+  "dUpdateProduct":{
+    "header":"Update Products",
+    "update":"Update"
+  },
+  "dSidebar":{
+    "pm":"Product Management",
+    "om":"Order Management",
+    "rpt":"Statistics",
+    "ps":"Profile Management"
   }
 
 

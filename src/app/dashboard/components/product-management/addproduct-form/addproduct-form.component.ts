@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { error } from 'jquery';
+import { TranslocoService } from '@ngneat/transloco';
 import { MessageService, SelectItem } from 'primeng/api';
 import { Observable, tap } from 'rxjs';
 import { ProductService } from 'src/app/services/product.service';
@@ -42,7 +42,8 @@ export class AddproductFormComponent implements OnInit {
     private http: HttpClient,
     private productService: ProductService,
     private messageService: MessageService,
-    private userService: UserService
+    private userService: UserService,
+    private translocoService:TranslocoService
   ) {
     this.addproductForm = this.formBuilder.group({
       code: ['', Validators.required], // Örnek: Validators ekleyerek girişin zorunlu olup olmadığını belirleyebilirsiniz
@@ -123,15 +124,15 @@ export class AddproductFormComponent implements OnInit {
               this.onUpload(this.selectedFile);
               this.messageService.add({
                 severity: 'success',
-                summary: 'Ürün',
-                detail: 'Yükleme işlemi başarılı',
+                summary: this.translocoService.translate('successMesagge'),
+                detail:  this.translocoService.translate('dAddProduct.messageDetailsuccess'),
               });
             },
             (error) => {
               this.messageService.add({
                 severity: 'success',
-                summary: 'Ürün',
-                detail: 'Yükleme işlemi başarısız oldu... Tekrar deneyiniz',
+                summary: this.translocoService.translate('errorMesagge'),
+                detail: this.translocoService.translate('dAddProduct.messageDetailerror'),
               });
             }
           );

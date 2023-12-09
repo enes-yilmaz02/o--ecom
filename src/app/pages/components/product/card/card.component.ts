@@ -9,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 import { BadgeService } from 'src/app/services/badge.service';
 import { StockStatusPipe } from 'src/app/services/helper/stock-status.pipe';
 import { CategoryStatus } from 'src/app/services/helper/category-status.pipe';
+import { TranslocoService } from '@ngneat/transloco';
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
@@ -37,6 +38,7 @@ export class CardComponent implements OnInit {
     private messageService:MessageService,
     private route : ActivatedRoute,
     private badgeService:BadgeService,
+    private translocoService:TranslocoService
   ) {}
 
   ngOnInit() {
@@ -151,16 +153,16 @@ export class CardComponent implements OnInit {
           if (response) {
             this.messageService.add({
               severity: 'success',
-              summary: 'Başarılı',
-              detail: 'Ürün sepete eklendi',
+              summary: this.translocoService.translate('successMessage'),
+              detail: this.translocoService.translate('cardDetail.messageDetailsuccessaddcart'),
             });
             this.badgeService.emitCartUpdatedEvent();
             this.getProduct(productId);
           } else {
             this.messageService.add({
               severity: 'error',
-              summary: 'Başarısız',
-              detail: 'Ürün sepete eklenemedi',
+              summary: this.translocoService.translate('errorMessage'),
+              detail: this.translocoService.translate('cardDetail.messageDetailerroraddcart'),
             });
           }
         },

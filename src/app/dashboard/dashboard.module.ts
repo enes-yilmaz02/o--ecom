@@ -11,7 +11,6 @@ import { AddproductFormComponent } from './components/product-management/addprod
 import { ProductService } from '../services/product.service';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { GetProductComponent } from './components/product-management/get-product/get-product.component';
-import { DashboardSidebarComponent } from './components/dashboard-sidebar/dashboard-sidebar.component';
 import { UpdateProductComponent } from './components/product-management/update-product/update-product.component';
 import { OrdersManagementComponent } from './components/orders-management/orders-management.component';
 import { ProfilManagementComponent } from './components/profil-management/profil-management.component';
@@ -30,7 +29,6 @@ import { TruncatePipe } from '../services/pipes/truncate.pipe';
        ProductManagementComponent,
        AddproductFormComponent,
        GetProductComponent,
-       DashboardSidebarComponent,
        UpdateProductComponent,
        OrdersManagementComponent,
        ProfilManagementComponent,
@@ -41,7 +39,7 @@ import { TruncatePipe } from '../services/pipes/truncate.pipe';
        TopbarComponent,
        FooterComponent,
        SidebarComponent,
-     
+
   ],
   imports: [
     CommonModule,
@@ -55,7 +53,6 @@ import { TruncatePipe } from '../services/pipes/truncate.pipe';
     ProductManagementComponent,
     AddproductFormComponent,
     GetProductComponent,
-    DashboardSidebarComponent,
     UpdateProductComponent,
     OrdersManagementComponent,
     ProfilManagementComponent,
@@ -73,7 +70,7 @@ import { TruncatePipe } from '../services/pipes/truncate.pipe';
     TranslocoModule,
     ProductService,
     TruncatePipe,
-  
+
   ]
 })
 export class DashboardModule { }

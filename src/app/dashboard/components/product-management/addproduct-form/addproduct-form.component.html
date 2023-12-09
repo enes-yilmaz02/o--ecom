@@ -2,13 +2,13 @@
 <div class="bg-white p-4 w-full">
   <form [formGroup]="addproductForm">
     <div class="flex w-full align-items-center justify-content-center">
-      <h4>Ürün ekle</h4>
+      <h4>{{'dAddProduct.header' | transloco}}</h4>
     </div>
 
       <!-- Name input start-->
       <div class="wrapper">
         <div class="flex-auto mt-4">
-          <label htmlFor="name" class="mb-2 block">Name</label>
+          <label htmlFor="name" class="mb-2 block">{{'dAddProduct.name' | transloco}}</label>
           <input
             pInputText
             id="name"
@@ -21,7 +21,7 @@
       <!-- Name input end-->
        <!-- desc  input start-->
     <div class="wrapper mt-4 block">
-      <label for="float-input">Description</label>
+      <label for="float-input">{{'dAddProduct.desc' | transloco}}</label>
       <span class="flex-auto mt-2">
         <textarea
           id="float-input"
@@ -38,7 +38,7 @@
      <!-- Code input start-->
      <div class="wrapper">
       <div class="flex-auto mt-4">
-        <label class="mb-2 block" for="code">Product Code</label>
+        <label class="mb-2 block" for="code">{{'dAddProduct.pcode' | transloco}}</label>
         <input
           pInputText
           formControlName="code"
@@ -52,7 +52,7 @@
     <!-- Quantitiy input start-->
     <div class="wrapper">
       <div class="flex-auto mt-4">
-        <label class="mb-2 block" for="quantity">Quantity</label>
+        <label class="mb-2 block" for="quantity">{{'dAddProduct.quantity' | transloco}}</label>
         <p-inputNumber
           formControlName="quantity"
           [showButtons]="false"
@@ -68,7 +68,7 @@
     <!-- Price input start-->
     <div class="wrapper">
       <div class="flex-auto mt-4">
-        <label class="mb-2 block" for="priceStacked">Price</label>
+        <label class="mb-2 block" for="priceStacked">{{'dAddProduct.price' | transloco}}</label>
         <p-inputNumber
           formControlName="priceStacked"
           [showButtons]="false"
@@ -86,7 +86,7 @@
     <!-- Image input start-->
     <div class="wrapper block w-full">
       <div class="flex-auto mt-4">
-        <label htmlFor="file" class="mb-2 block">File</label>
+        <label htmlFor="file" class="mb-2 block">{{'dAddProduct.file' | transloco}}</label>
         <input
           type="file"
           pInputText
@@ -103,7 +103,7 @@
      <!-- category  input start-->
      <div class="wrapper block w-full">
       <div class="flex-auto mt-4">
-        <label htmlFor="category" class="mb-2 block">Category</label>
+        <label htmlFor="category" class="mb-2 block">{{'dAddProduct.category' | transloco}}</label>
         <p-dropdown
           id="category"
           formControlName="category"
@@ -119,7 +119,7 @@
   <div class="wrapper block w-full">
     <div class="flex-auto mt-4">
       <div class="flex flex-column justify-content-center border-round">
-        <label for="valueRating" class="mb-2 block">Rating</label>
+        <label for="valueRating" class="mb-2 block">{{'dAddProduct.rating' | transloco}}</label>
         <p-dropdown
           [options]="items"
           formControlName="valueRating"
@@ -134,7 +134,7 @@
     <!-- InventoryStatus input start-->
     <div class="wrapper mt-4 flex flex-column">
       <div>
-        <label htmlFor="selectedStatus" class="mb-2 block w-full">Status</label>
+        <label htmlFor="selectedStatus" class="mb-2 block w-full">{{'dAddProduct.status' | transloco}}</label>
       </div>
       <div class="flex  flex-row">
         <div *ngFor="let status of inventoryStatus" class="field-checkbox">
@@ -156,7 +156,7 @@
     <!-- button start-->
     <div class="wrapper w-full justify-content-center mt-4">
       <span class="button-style mt-4">
-        <button class="button w-12rem" (click)="onSubmit()">Ekle</button>
+        <button class="button w-12rem" (click)="onSubmit()">{{'dAddProduct.add' | transloco}}</button>
       </span>
     </div>
     <!-- button end-->

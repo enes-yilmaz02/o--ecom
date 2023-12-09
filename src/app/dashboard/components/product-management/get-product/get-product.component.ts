@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TranslocoService } from '@ngneat/transloco';
 import { MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { Table } from 'primeng/table';
@@ -27,7 +28,8 @@ export class GetProductComponent {
     private productService: ProductService,
     public dialogService: DialogService,
     public messageService: MessageService,
-    private userService:UserService
+    private userService:UserService,
+    private translocoService:TranslocoService
   ) {}
 
   ngOnInit() {
@@ -38,7 +40,6 @@ export class GetProductComponent {
     return this.userService.getTokenId().pipe(
       tap((id: any) => {
         this.creoterId = id;
-        console.log(this.creoterId);
       })
     );
   }
@@ -46,7 +47,6 @@ export class GetProductComponent {
     this.getUserId().subscribe(()=>{
       this.productService.getCreoterProducts(this.creoterId).subscribe((data: any) => {
         this.products = data;
-        console.log(this.products);
       });
     })
   }
@@ -60,8 +60,8 @@ export class GetProductComponent {
       this.productService.deleteCreoterProduct(userId,productId).subscribe(() => {
         this.messageService.add({
           severity: 'success',
-          summary: 'Successful',
-          detail: 'Deleted Successfully',
+          summary: this.translocoService.translate('successMessage'),
+          detail: this.translocoService.translate('dGetProduct.messageDetailsuccess'),
         });
       });
     });

@@ -14,6 +14,7 @@
   "stockUpdatedMessage":"Stok Güncellendi",
   "allDoneOrderMessage":"Tüm siparişler alındı.",
   "unallDoneOrderMessage":"Sepet Boşaltılamadı. ",
+  "pleaseWait":"Lütfen Bekleyiniz...",
 
   "loginForm": {
     "header": "Giriş",
@@ -172,7 +173,8 @@
     "title": "Favorileriniz Yok",
     "desc": "Hemen ürünleri favorilere ekleyebilir , sevdiklerinizle paylaşabilirsiniz!",
     "buttonLabel": "Ürün ekle",
-    "header": " Favori Ürünler"
+    "header": " Favori Ürünler",
+    "messageDetailsuccess": "Ürün favorilerinizden kaldırıldı."
   },
   "collectionForm": {
     "title": "Koleksiyonunuz Yok",
@@ -191,7 +193,9 @@
     "category": "Kategori",
     "status": "Durumu",
     "totalPrice": "Toplam Tutar",
-    "actions": "İşlem"
+    "actions": "İşlem",
+    "messageDetailsuccess": "Siparişiniz silindi"
+
   },
   "managerSidebar": {
     "profile": "Profil Yönetimi",
@@ -266,7 +270,9 @@
     "cityName": "Bir İl seçiniz...",
     "districtsLabel": "İlçe",
     "districtsSmall": "* İlçe alanı boş bırakılamaz",
-    "districtsName": "Bir İlçe seçiniz..."
+    "districtsName": "Bir İlçe seçiniz...",
+    "messageDetailsuccess": "Satıcı başvurunuz Fromunuz gönderildi... Onaylanınca sizi bilgilendireceğiz.",
+    "messageDetailwarn": "Form bilgilerini doldurunuz"
   },
   "cardElementForm": {
     "category": "Kategoriler",
@@ -322,7 +328,15 @@
   "cardDetail": {
     "header": "Açıklama",
     "title": "Ürün açıklaması",
-    "quantity": "Ürün Stok Miktarı(adet): "
+    "quantity": "Ürün Stok Miktarı(adet): ",
+    "messageDetailsuccess": "Ürün favorilerden kaldırıldı",
+    "messageDetailerror": "Favori kaldırma işleminde bir hata oluştu",
+    "messageDetailwarn": "Seçilen miktar, ürün adet miktarından fazla. ",
+    "messageDetailsuccessaddcart": "Ürün sepete eklendi",
+    "messageDetailerroraddcart": "Ürün sepete eklenemedi",
+    "messageDetailwarnpiece":"Ürün miktarı giriniz",
+    "messageDetailsuccessaddfavorite": "Ürün favorinize eklendi"
+
   },
   "contentCartsForm": {
     "header": "Sepetteki Ürünler",
@@ -359,7 +373,7 @@
     "piecePrice": "Tekil Fiyat",
     "piece": "Adet",
     "status": "Durum",
-    "totalPrice": "Toplam Tutar",
+    "totalPrice": "Toplam Tutar: ",
     "defaultHeader": "Sipariş Listesi Boş",
     "defaultDecs": "Sipariş Listesin Herhangi Bir Ürün Bulunmamaktadır.",
     "close": "Detayları Gizle",
@@ -368,5 +382,47 @@
   "codeForm": {
     "approve": "Doğrula",
     "code": "Kod"
+  },
+  "dGetProduct":{
+    "add":"Ekle",
+    "delete":"Sil",
+    "update":"Düzenle",
+    "id":"Id",
+    "name":"Ürün Adı",
+    "img":"Resim",
+    "price":"Fiyat",
+    "quantity":"Ürün Miktarı(adet)",
+    "status":"Durum",
+    "category":"Kategori",
+    "companyName":"Satıcı",
+    "actions":"İşlemler",
+    "notFound":"Belirtilen Hiçbir Ürününüz Bulunmamaktadır",
+    "messageDetailsuccess": "Ürün başarılı bir şekilde kaldırıldı",
+    "messageDetailerror": "Yükleme işlemi başarısız oldu... Tekrar deneyiniz"
+  },
+  "dAddProduct":{
+    "header":"Ürün Ekle",
+    "name":"Ürün Adı",
+    "desc":"Açıklama",
+    "pcode":"Ürün kodu",
+    "quantity":"Ürün Miktarı(adet)",
+    "price":"Fiyat",
+    "file":"Ürün Dosyası",
+    "category":"Kategori",
+    "rating":"Değerlendirme",
+    "status":"Durum",
+    "add":"Ekle",
+    "messageDetailsuccess": "Yükleme işlemi başarılı",
+    "messageDetailerror": "Yükleme işlemi başarısız oldu... Tekrar deneyiniz"
+  },
+  "dUpdateProduct":{
+    "header":"Ürünü Güncelle",
+    "update":"Güncelle"
+  },
+  "dSidebar":{
+    "pm":"Ürün Yönetimi",
+    "om":"Sipariş Yönetimi",
+    "rpt":"İstatikler",
+    "ps":"Profil Yonetimi"
   }
 }

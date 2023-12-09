@@ -1,70 +1,113 @@
 <div class="orders-list">
-  <h2>{{'dGetorders.header' | transloco}}</h2>
+  <h2>{{ "dGetorders.header" | transloco }}</h2>
 
   <div class="flex">
-    <button type="button" pButton  icon="pi pi-file-pdf" (click)="exportPdf()" class="p-button mx-2 my-2" pTooltip="PDF" tooltipPosition="bottom">{{'dGetorders.pdf' | transloco}}</button>
-    <button type="button" pButton  icon="pi pi-file-excel" (click)="exportExcel()" class="p-button mx-2 my-2" pTooltip="XLS" tooltipPosition="bottom">{{'dGetorders.xls' | transloco}}</button>
+    <button
+      type="button"
+      pButton
+      icon="pi pi-file-pdf"
+      (click)="exportPdf()"
+      class="p-button mx-2 my-2"
+      pTooltip="PDF"
+      tooltipPosition="bottom"
+    >
+      {{ "dGetorders.pdf" | transloco }}
+    </button>
+    <button
+      type="button"
+      pButton
+      icon="pi pi-file-excel"
+      (click)="exportExcel()"
+      class="p-button mx-2 my-2"
+      pTooltip="XLS"
+      tooltipPosition="bottom"
+    >
+      {{ "dGetorders.xls" | transloco }}
+    </button>
   </div>
- 
+
   <div *ngFor="let order of orders" class="order-item">
     <div class="order-info">
       <div *ngFor="let userData of order?.userDataArray">
-        <div>{{'dGetorders.userId' | transloco}} {{ order?.userId }}</div>
-        <div>{{'dGetorders.userName' | transloco}}  {{ userData.name }}</div>
-        <div>{{'dGetorders.userEmail' | transloco}}  {{ userData.email }}</div>
-        <div>{{'dGetorders.userAddress' | transloco}}  {{ userData.address }}</div>
-        <button type="button" pButton class="p-button" (click)="toggleUserDetails(order.userId)">
-          {{ userDetailStatus[order.userId] ? ("dGetorders.close" | transloco) : ("dGetorders.open" | transloco) }}
+        <div>{{ "dGetorders.userId" | transloco }} {{ order?.userId }}</div>
+        <div>{{ "dGetorders.userName" | transloco }} {{ userData.name  | uppercase}}</div>
+        <div>{{ "dGetorders.userEmail" | transloco }} <mark>{{ userData.email}}</mark></div>
+        <div>
+          {{ "dGetorders.userAddress" | transloco }} {{ userData.address }}
+        </div>
+        <button
+          type="button"
+          pButton
+          class="p-button"
+          (click)="toggleUserDetails(order.userId)"
+        >
+          {{
+            userDetailStatus[order.userId]
+              ? ("dGetorders.close" | transloco)
+              : ("dGetorders.open" | transloco)
+          }}
         </button>
         <table class="product-table">
           <thead>
             <tr>
-              <th>{{'dGetorders.productFile' | transloco}}</th>
-              <th>{{'dGetorders.productName' | transloco}}</th>
-              <th>{{'dGetorders.piecePrice' | transloco}}</th>
-              <th>{{'dGetorders.piece' | transloco}}</th>
-              <th>{{'dGetorders.status' | transloco}}</th>
-              <th>{{'dGetorders.totalPrice' | transloco}}</th>
+              <th>{{ "dGetorders.productFile" | transloco }}</th>
+              <th>{{ "dGetorders.productName" | transloco }}</th>
+              <th>{{ "dGetorders.piece" | transloco }}</th>
+              <th>{{ "dGetorders.status" | transloco }}</th>
+              <th>{{ "dGetorders.piecePrice" | transloco }}</th>
             </tr>
           </thead>
         </table>
       </div>
-     
     </div>
     <div class="product-list" *ngIf="userDetailStatus[order.userId]">
       <table class="product-table">
-        
         <tbody>
           <tr *ngFor="let product of order?.orders" class="product-item">
             <td>
-              <img [src]="getFileUrl(product?.product.file)" alt="{{ product?.product.name }}" class="product-image" />
+              <img
+                [src]="getFileUrl(product?.product.file)"
+                alt="{{ product?.product.name }}"
+                class="product-image"
+              />
             </td>
             <td>{{ product?.product.name }}</td>
-            <td>{{ product?.product.priceStacked | currency:'USD':'symbol' }}</td>
             <td>{{ product?.product.quantity }}</td>
-            <td>{{ product?.product.selectedStatus?.name | stockStatus}}</td>
-            <td> {{ order.totalAmount | currency:'USD':'symbol' }}</td>
+            <td>{{ product?.product.selectedStatus?.name | stockStatus }}</td>
+            <td>
+              {{ product?.product.priceStacked | currency : "USD" : "symbol" }}
+            </td>
           </tr>
         </tbody>
+        <div class="totalprice flex flex-row">
+          <div class="mr-1">{{ "dGetorders.totalPrice" | transloco }}</div>
+          <div>
+            {{ order.totalAmount | currency : "USD" : "symbol" }}
+          </div>
+        </div>
       </table>
     </div>
-    
   </div>
 </div>
 <div class="card" *ngIf="!orders || orders.length === 0">
   <section class="page_404">
     <div class="container">
-      <div class="row">	
-      <div class="col-sm-12 ">
-      <div class="col-sm-10 col-sm-offset-1  text-center">
-      <div class="four_zero_four_bg" style="background-image: url('assets/images/dribbble_1.gif');">
-        <h4 class="text-center ">{{'dGetorders.defaultHeader' | transloco}}</h4>
-        <h6 class="text-center">
-          {{'dGetorders.defaultDecs' | transloco}}
-        </h6>
-      </div>
-      </div>
-      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="col-sm-10 col-sm-offset-1 text-center">
+            <div
+              class="four_zero_four_bg"
+              style="background-image: url('assets/images/dribbble_1.gif')"
+            >
+              <h4 class="text-center">
+                {{ "dGetorders.defaultHeader" | transloco }}
+              </h4>
+              <h6 class="text-center">
+                {{ "dGetorders.defaultDecs" | transloco }}
+              </h6>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>

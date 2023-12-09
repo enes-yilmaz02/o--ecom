@@ -65,7 +65,6 @@ export class UpdateProductComponent implements OnInit {
         .patchProductById(this.id)
         .subscribe((productData: any) => {
           this.selecteProducts = productData;
-          console.log('Selected Status:', this.selecteProducts.selectedStatus);
           this.updateProductForm.patchValue({
             name: this.selecteProducts.name,
             category: this.selecteProducts.category,

@@ -5,6 +5,7 @@ import { Observable, tap, map } from 'rxjs';
 import { BadgeService } from 'src/app/services/badge.service';
 import { StockStatusPipe } from 'src/app/services/helper/stock-status.pipe';
 import { CategoryStatus } from 'src/app/services/helper/category-status.pipe';
+import { TranslocoService } from '@ngneat/transloco';
 @Component({
   selector: 'app-content-favorites',
   templateUrl: './content-favorites.component.html',
@@ -27,7 +28,8 @@ export class ContentFavoritesComponent {
   constructor(
     private userService: UserService,
     private messageService: MessageService,
-    private badgeService: BadgeService
+    private badgeService: BadgeService,
+    private tranlocoService:TranslocoService
   ) {
     this.getUserId().subscribe(() => {
       this.getFavorites();
@@ -59,8 +61,8 @@ export class ContentFavoritesComponent {
         () => {
           this.messageService.add({
             severity: 'success',
-            summary: 'Başarılı',
-            detail:'Ürün favorilerinizden kaldırıldı...'
+            summary: this.tranlocoService.translate('successMessage'),
+            detail:this.tranlocoService.translate('favoritesForm.messageDetailsuccess')
           });
           this.badgeService.emitCartUpdatedEvent();
           this.allFavoritesDeleted.emit();

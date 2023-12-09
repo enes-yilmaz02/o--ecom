@@ -41,13 +41,14 @@ $background-color: #ecf0f1;
       border-radius: 4px;
       font-size: 14px;
 
-     
+
     }
   }
 
   th, td {
     text-align: center;
     padding: 10px;
+    width: 100px;
   }
 
   img {
@@ -82,10 +83,11 @@ $background-color: #ecf0f1;
 
   td,th{
     justify-content: center;
+    width: 100px;
   }
 
   .button{
-    background-color: $secondary-color;
+    background-color: $dark-text;
     border: none;
     padding: 10px;
     color:#fff;
