@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-} from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { TranslocoService } from '@ngneat/transloco';
 import { MessageService } from 'primeng/api';
 import { Observable, tap } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
@@ -12,28 +10,29 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './userinfo.component.html',
   styleUrls: ['./userinfo.component.scss'],
 })
-export class UserinfoComponent  implements OnInit{
+export class UserinfoComponent implements OnInit {
   accountForm: FormGroup;
 
   date: Date | undefined;
 
   selectedUser: any;
 
-  userId:any;
+  userId: any;
 
-  genders:any;
+  genders: any;
 
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
-    private messageService:MessageService
+    private messageService: MessageService,
+    private translocoService: TranslocoService
   ) {
     this.accountForm = this.formBuilder.group({
       name: [''],
       surname: [''],
       username: [''],
       email: [''],
-      bDate:[''],
+      bDate: [''],
       gender: [''],
       phone: [''],
       address: [''],
@@ -58,36 +57,40 @@ export class UserinfoComponent  implements OnInit{
   }
 
   getTokenUser() {
-    this.getUserId().subscribe(()=>{
-      const user = this.userService.getUser(this.userId).subscribe((userData: any) => {
-        this.selectedUser = userData;
-        this.accountForm.patchValue({
-          name: this.selectedUser.name,
-          surname: this.selectedUser.surname,
-          username: this.selectedUser.username,
-          email: this.selectedUser.email,
-          gender:this.selectedUser.gender,
-          phone: this.selectedUser.phone,
-          address: this.selectedUser.address,
-          password: this.selectedUser.password,
-          confirmpassword: this.selectedUser.confirmpassword,
+    this.getUserId().subscribe(() => {
+      const user = this.userService
+        .getUser(this.userId)
+        .subscribe((userData: any) => {
+          this.selectedUser = userData;
+          this.accountForm.patchValue({
+            name: this.selectedUser.name,
+            surname: this.selectedUser.surname,
+            username: this.selectedUser.username,
+            email: this.selectedUser.email,
+            gender: this.selectedUser.gender,
+            phone: this.selectedUser.phone,
+            address: this.selectedUser.address,
+            password: this.selectedUser.password,
+            confirmpassword: this.selectedUser.confirmpassword,
+          });
+          const selectedDate = new Date(this.selectedUser.bDate);
+          this.accountForm.get('bDate').setValue(selectedDate);
         });
-        const selectedDate = new Date(this.selectedUser.bDate);
-        this.accountForm.get('bDate').setValue(selectedDate);
-      });
-    })
+    });
   }
 
-  updateUser(){
-    if (this.accountForm.valid){
-      const formValues=this.accountForm.value;
-      this.getUserId().subscribe(()=>{
-        this.userService.updateUser(this.userId ,formValues).subscribe(()=>{
+  updateUser() {
+    if (this.accountForm.valid) {
+      const formValues = this.accountForm.value;
+      this.getUserId().subscribe(() => {
+        this.userService.updateUser(this.userId, formValues).subscribe(() => {
           this.messageService.add({
-            severity:'success', summary: 'Successful!', detail: 'Account updated'
-          })
-        })
-      })
+            severity: 'success',
+            summary: this.translocoService.translate('succesMessage'),
+            detail: this.translocoService.translate('userinfoForm.messageDetailsuccess'),
+          });
+        });
+      });
     }
   }
 }

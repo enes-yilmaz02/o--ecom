@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { TranslocoService } from '@ngneat/transloco';
 import { MessageService } from 'primeng/api';
 import { Observable, forkJoin, tap } from 'rxjs';
 import { BadgeService } from 'src/app/services/badge.service';
@@ -40,7 +41,8 @@ export class ContentCartsComponent {
     private messageService: MessageService,
     private userService: UserService,
     private productService: ProductService,
-    private badgeService: BadgeService
+    private badgeService: BadgeService,
+    private translocoService:TranslocoService
   ) {
     this.getUserId().subscribe(() => {
       this.getCarts();
@@ -132,7 +134,8 @@ export class ContentCartsComponent {
         async () => {
           await this.messageService.add({
             severity: 'success',
-            summary: 'Ürün sepetten kaldırıldı',
+            summary: this.translocoService.translate('successMessage'),
+            detail: this.translocoService.translate('contentCartsForm.messageDetailsuccess')
           });
           this.getCarts();
         },
@@ -140,8 +143,8 @@ export class ContentCartsComponent {
           // Hata durumunda mesaj göster
           this.messageService.add({
             severity: 'error',
-            summary: 'Sipariş silinemedi!',
-            detail: error.error.detail || 'Bilinmeyen bir hata oluştu.',
+            summary: this.translocoService.translate('errorMessage'),
+            detail: this.translocoService.translate('contentCartsForm.messageDetailerror'),
           });
           // Hatanın nedenini konsola yazdır
           console.error('Sipariş silinemedi!', error);
@@ -161,13 +164,12 @@ export class ContentCartsComponent {
       this.creotersEmail.forEach((email: string) => {
         const body = {
           to: email, // Include 'to' property here
-          subject: 'Yeni Siparişiniz var :)',
+          subject: this.translocoService.translate('newOrderMessage'),
           text:
-            ' OI deki ' +
+          this.translocoService.translate('contentCartsForm.customer') +
             this.userData.name +
-            ' adlı kullanıcımız $' +
             this.totalPrice +
-            ' değerinde yeni bir sipariş vermiştir. Bol kazançalar OI Ailesi',
+            this.translocoService.translate('contentCartsForm.luckMessage'),
         };
 
         // Send email for the current email address
@@ -197,7 +199,7 @@ export class ContentCartsComponent {
       userId: this.userId,
       orderDate: this.orderDate,
     };
-  
+
     this.getUserId().subscribe(() => {
       this.userService.addOrder(this.userId, orderData).subscribe(
         (response: any) => {
@@ -209,13 +211,13 @@ export class ContentCartsComponent {
               console.log(cartItem.product.id);
               console.log(cartItem.product.quantity)
             });
-  
+
             this.productService.addProductOrders(orderData).subscribe(() => {
               this.sendEmail();
               this.messageService.add({
                 severity: 'success',
-                summary: 'Başarılı',
-                detail: 'Sipariş tamamlandı',
+                summary:  this.translocoService.translate('successMessage'),
+                detail:  this.translocoService.translate('completeOrderMessage'),
               });
               this.badgeService.emitCartUpdatedEvent();
               // Sipariş tamamlandıktan sonra sepeti boşalt
@@ -224,8 +226,8 @@ export class ContentCartsComponent {
           } else {
             this.messageService.add({
               severity: 'error',
-              summary: 'Başarısız',
-              detail: 'Sipariş tamamlanamadı',
+              summary: this.translocoService.translate('errorMessage'),
+              detail:  this.translocoService.translate('uncompleteOrderMessage'),
             });
           }
         },
@@ -236,9 +238,9 @@ export class ContentCartsComponent {
       );
     });
   }
-  
+
   updateProductStock(productId: any, quantity: any) {
-   
+
     this.getProduct(productId).subscribe(
       (productData: any) => {
         const totalquantity = productData.quantity;
@@ -247,14 +249,14 @@ export class ContentCartsComponent {
           ...productData,
           quantity: updatedQuantity,
         };
-  
+
         // Ürünün stok miktarını güncelle
         this.productService.updateProduct(productId, updatedProduct).subscribe(
           (response) => {
             this.messageService.add({
               severity: 'success',
-              summary: 'Başarılı',
-              detail: 'Stok güncellendi'
+              summary: this.translocoService.translate('successMessage'),
+              detail: this.translocoService.translate('stockUpdatedMessage')
             });
           },
           (error) => {
@@ -273,9 +275,9 @@ export class ContentCartsComponent {
       this.userService.clearCart(this.userId).subscribe(
         () => {
           this.messageService.add({
-            severity: 'success', 
-            summary: 'Sepet Boşaltma Başarılı!',
-            detail: 'Tüm siparişler alındı. Anasayfa yükleniyor...'
+            severity: 'success',
+            summary: this.translocoService.translate('successMessage'),
+            detail: this.translocoService.translate('allDoneOrderMessage')
           })
           this.getCarts();
           this.badgeService.emitCartUpdatedEvent();
@@ -287,8 +289,8 @@ export class ContentCartsComponent {
         (error) => {
           this.messageService.add({
             severity: 'error',
-            summary: 'Hata',
-            detail: 'Sepet boşaltılamadı',
+            summary: this.translocoService.translate('errorMessage'),
+            detail: this.translocoService.translate('unallDoneMessage'),
           });
           console.error('Sepet boşaltılamadı!', error);
         }

@@ -8,7 +8,12 @@
   "emailVerifycode":"email verification",
   "changePassword":"Password Reset",
   "changePasswordcode":"Your password reset code: ",
-
+  "newOrderMessage": "You have a New Order :)",
+  "completeOrderMessage": "Order Completed",
+  "uncompleteOrderMessage": "Order Not Completed",
+  "stockUpdatedMessage":"Stock Updated",
+  "allDoneOrderMessage":"All orders have been received.",
+  "unallDoneOrderMessage":"Cart could not be emptied.",
 
   "loginForm": {
     "header":"Login",
@@ -137,7 +142,8 @@
     "contactHeader": "Contact information",
     "contactHeaderP": "We will ask you to verify your new email address before we can change this information.",
     "emailLabel": "email",
-    "emailButton": "Update"
+    "emailButton": "Update",
+    "messageDetailsuccess":"Account Information Updated"
   },
   "userpassForm": {
     "infoP": "Your password must contain at least one letter, number or special character. Additionally, your password must consist of at least 8 characters.",
@@ -328,7 +334,11 @@
     "quantity":"Product Quantity (pcs): ",
     "buyerEmail":" Producer email: ",
     "productName":" Product Name:  ",
-    "clearButton":"Empty Cart"
+    "clearButton":"Empty Cart",
+    "messageDetailsuccess": "Product removed from cart",
+    "messageDetailerror": "The product could not be removed from the cart, an unknown error occurred.",
+    "customer": "Customer",
+    "luckMessage": "$ placed a new order worth . Good luck OI family"
   },
   "contentOrdersForm":{
     "header":"My orders",
