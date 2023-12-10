@@ -39,9 +39,12 @@ import { SidebarModule } from 'primeng/sidebar';
 import { StepsModule } from 'primeng/steps';
 import { StockStatusPipe } from '../services/helper/stock-status.pipe';
 import { CategoryStatus } from '../services/helper/category-status.pipe';
+import { GenderStatus } from '../services/helper/gender-status.pipe';
+import { TranslocoRootModule } from '../transloco-root.module';
+import { TranslocoModule } from '@ngneat/transloco';
 @NgModule({
   declarations: [StockStatusPipe,
-    CategoryStatus],
+    CategoryStatus, GenderStatus],
   imports: [
     CommonModule,
     ButtonModule,
@@ -82,7 +85,8 @@ import { CategoryStatus } from '../services/helper/category-status.pipe';
     FileUploadModule,
     SidebarModule,
     StepsModule,
-  
+    TranslocoRootModule,
+    TranslocoModule
 
   ],
   exports:[
@@ -126,9 +130,12 @@ import { CategoryStatus } from '../services/helper/category-status.pipe';
     SidebarModule,
     StepsModule,
     StockStatusPipe,
-    CategoryStatus
+    CategoryStatus,
+    GenderStatus,
+    TranslocoRootModule,
+    TranslocoModule
   ],
   providers:[MessageService,StockStatusPipe,
-    CategoryStatus]
+    CategoryStatus , GenderStatus]
 })
 export class SharedModule { }

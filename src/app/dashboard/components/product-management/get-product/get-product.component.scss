@@ -6,7 +6,7 @@ $light-text: #ecf0f1;
 $background-color: #ecf0f1;
 :host ::nng-deep{
   .table{
-    width: 100%;
+    width: 90%;
 
     button{
       background-color: $primary-color;
@@ -22,10 +22,39 @@ $background-color: #ecf0f1;
   height: auto;
   width: auto;
 }
-
-.card {
+.category-filter{
   width: auto;
-  margin-top: 20px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+
+  .title{
+    border: none;
+    background-color: transparent;
+    justify-content: start;
+  }
+
+  div{
+    border-radius: 5px;
+    height: 50px;
+    cursor: pointer;
+    display: flex;
+    width: 150px;
+    background-color: #fff;
+    margin: 15px;
+    color: #555;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    border:0.5px solid #555;
+
+    &:hover {
+      border-color:$dark-text;
+    }
+  }
+}
+.card {
+  margin-top: 10px;
 }
 
 .table {

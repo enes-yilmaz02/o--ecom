@@ -15,6 +15,17 @@
   "allDoneOrderMessage":"Tüm siparişler alındı.",
   "unallDoneOrderMessage":"Sepet Boşaltılamadı. ",
   "pleaseWait":"Lütfen Bekleyiniz...",
+  "Electronics": "Elektronik",
+  "Fitness": "Spor",
+  "Accessories": "Aksesuarlar",
+  "Clothing": "Giysi",
+  "InStock":"Stokta var",
+  "OutofStock":"Stokta yok",
+  "LowStock":"Tükenmek üzere",
+  "categoryStatus":"Kategori Durumu",
+  "stockStatusTable":"Stok Miktarı",
+  "status":"Durum",
+
 
   "loginForm": {
     "header": "Giriş",
@@ -139,6 +150,7 @@
     "addressLabel": "adres",
     "phoneLabel": "Telefon",
     "date": "Doğum Tarihi",
+    "gender":"Cinsiyet",
     "buttonLabel": "Güncelle",
     "contactHeader": "İletişim Bilgileri",
     "contactHeaderP": "Bu bilgileri değiştirebilmek için yeni e-posta adresinizi doğrulamanızı isteyeceğiz.",
@@ -310,6 +322,12 @@
     "Women": "Kadın",
     "Children": "Çocuk"
   },
+  "genderName": {
+    "male": "Erkek",
+    "female": "Kadın",
+    "another": "Diğer"
+
+  },
   "cardForm": {
     "buttonLabel": "Sepete ekle",
     "search": "ara...",
@@ -320,9 +338,9 @@
     "Electronics": "Elektronik",
     "Clothing": "Giyim",
     "Fitness": "Spor",
-    "Man": "Erkek",
-    "Women": "Kadın",
-    "Children": "Çocuk"
+    "spor": "Fitness",
+    "technology": "Teknoloji",
+    "school": "Okul Ürünleri"
   },
 
   "cardDetail": {
@@ -413,7 +431,8 @@
     "status":"Durum",
     "add":"Ekle",
     "messageDetailsuccess": "Yükleme işlemi başarılı",
-    "messageDetailerror": "Yükleme işlemi başarısız oldu... Tekrar deneyiniz"
+    "messageDetailerror": "Yükleme işlemi başarısız oldu... Tekrar deneyiniz",
+    "messageDetailwarn":"Form bilgilerini doldurunuz"
   },
   "dUpdateProduct":{
     "header":"Ürünü Güncelle",
@@ -424,5 +443,19 @@
     "om":"Sipariş Yönetimi",
     "rpt":"İstatikler",
     "ps":"Profil Yonetimi"
+  },
+  "dReporting":{
+    "totalOrder":" Sipariş Sayısı",
+    "totalProduct":" Ürün Sayısı",
+    "totalPrice":" Hasılat Miktarı",
+    "totalRating":" Rating Ortalaması",
+    "statusTable":" Durum Tablosu",
+    "categoryTable":" Kategori Tablosu",
+    "stockTable":" Stok Tablosu",
+    "bestSelling":"En Çok Satılan Ürünler"
+  },
+  "topbar":{
+    "header":"Yönetici Modül Sayfası",
+    "logout":"Oturumu kapat"
   }
 }

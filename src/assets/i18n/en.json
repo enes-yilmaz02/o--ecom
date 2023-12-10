@@ -15,6 +15,16 @@
   "allDoneOrderMessage":"All orders have been received.",
   "unallDoneOrderMessage":"Cart could not be emptied.",
   "pleaseWait":"Please wait...",
+  "Electronics":"Electronics",
+  "Clothing":"Clothing",
+  "Accessories":"Accessories",
+  "Fitness":"Fitness",
+  "InStock":"InStock",
+  "OutofStock":"OutofStock",
+  "LowStock":"LowStock",
+  "categoryStatus":"Category Status",
+  "stockStatusTable":"The amount of stock",
+  "status":"Status",
 
   "loginForm": {
     "header":"Login",
@@ -139,6 +149,7 @@
     "addressLabel":"address",
     "phoneLabel":"Phone",
     "date": "Date of birth",
+    "gender":"Gender",
     "buttonLabel": "Update",
     "contactHeader": "Contact information",
     "contactHeaderP": "We will ask you to verify your new email address before we can change this information.",
@@ -194,7 +205,8 @@
     "category":"Category",
     "status":"Status",
     "totalPrice":"Total Price",
-    "actions":"Action"
+    "actions":"Action",
+    "messageDetailsuccess": "Your order has been deleted"
   },
   "managerSidebar":{
     "profile":"Profile Management",
@@ -310,6 +322,12 @@
     "Women": "Women",
     "Children": "Children"
   },
+  "genderName": {
+    "male": "Male",
+    "female": "Female",
+    "another": "Another"
+
+  },
   "cardForm":{
     "buttonLabel":"Add to Cart",
     "search":"search...",
@@ -320,9 +338,9 @@
     "Electronics": "Electronics",
     "Clothing": "Clothing",
     "Fitness": "Fitness",
-    "Man": "Man",
-    "Women": "Women",
-    "Children": "Children"
+    "spor": "Fitness",
+    "technology": "Technology",
+    "school": "Scholl Products"
   },
 
   "cardDetail":{
@@ -395,7 +413,9 @@
     "category":"Category",
     "companyName":"Creoter",
     "actions":"Actions",
-    "notFound":"You Do Not Have Any Product Specified"
+    "notFound":"You Do Not Have Any Product Specified",
+    "messageDetailsuccess": "The product was successfully removed",
+    "messageDetailerror": "Installation failed... Try again"
   },
   "dAddProduct":{
     "header":"Add Product",
@@ -408,7 +428,10 @@
     "category":"Category",
     "rating":"Rating",
     "status":"Status",
-    "add":"Add"
+    "add":"Add",
+    "messageDetailsuccess": "Installation successful",
+    "messageDetailerror": "Installation failed... Try again",
+    "messageDetailwarn":"Fill out the form information"
   },
   "dUpdateProduct":{
     "header":"Update Products",
@@ -419,6 +442,20 @@
     "om":"Order Management",
     "rpt":"Statistics",
     "ps":"Profile Management"
+  },
+  "dReporting":{
+    "totalOrder":" Number of Orders",
+    "totalProduct":" Product Count",
+    "totalPrice":" Revenue Amount",
+    "totalRating":"Evaluation Average ",
+    "statusTable":" Status Table",
+    "categoryTable":" Category Table",
+    "stockTable":" Stock Table",
+    "bestSelling":"Best Selling Products"
+  },
+  "topbar":{
+    "header":"Creoter Module Page",
+    "logout":"Log out"
   }
 
 

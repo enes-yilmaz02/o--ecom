@@ -1,4 +1,32 @@
-<div class="conatiner">
+<div class="conatiner flex flex-row">
+  <div>
+    <div class="category-filter flex">
+      <div (click)="getAllProducts()">
+        {{ "cardForm.allProducts" | transloco }}
+      </div>
+      <div (click)="getProductByFilter('Accessories')">
+        {{ "cardForm.Accessories" | transloco }}
+      </div>
+      <div (click)="getProductByFilter('Electronics')">
+        {{ "cardForm.Electronics" | transloco }}
+      </div>
+      <div (click)="getProductByFilter('Clothing')">
+        {{ "cardForm.Clothing" | transloco }}
+      </div>
+      <div (click)="getProductByFilter('Fitness')">
+        {{ "cardForm.Fitness" | transloco }}
+      </div>
+      <div (click)="getProductByFilter('Fitness')">
+        {{ "cardForm.spor" | transloco }}
+      </div>
+      <div (click)="getProductByFilter('Electronics')">
+        {{ "cardForm.technology" | transloco }}
+      </div>
+      <div (click)="getProductByFilter('Clothing')">
+        {{ "cardForm.school" | transloco }}
+      </div>
+    </div>
+  </div>
   <div class="card">
     <p-table
       #dt2

@@ -12,14 +12,14 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './addproduct-form.component.html',
   styleUrls: ['./addproduct-form.component.scss'],
 })
-export class AddproductFormComponent implements OnInit {
+export class AddproductFormComponent  {
   private uploadApi = 'http://localhost:8080/upload';
 
   addproductForm: FormGroup;
 
   ingredient!: string;
 
-  categorys: any;
+  categorys: any[] ;
 
   items: SelectItem[];
 
@@ -61,15 +61,24 @@ export class AddproductFormComponent implements OnInit {
     for (let i = 1; i < 6; i++) {
       this.items.push({ label: ' ' + i, value: ' ' + i });
     }
-  }
-  ngOnInit(): void {
-    this.categorys = [
+
+    // this.categorys  = [
+    //   { name: this.translocoService.translate('Electronics'), code: 'ELT' },
+    //   { name: this.translocoService.translate('Fitness'), code: 'FT' },
+    //   { name: this.translocoService.translate('Accessories'), code: 'ACS' },
+    //   { name: this.translocoService.translate('Clothing'), code: 'CLT' },
+    // ];
+
+    this.categorys  = [
       { name: 'Electronics', code: 'ELT' },
       { name: 'Fitness', code: 'FT' },
       { name: 'Accessories', code: 'ACS' },
       { name: 'Clothing', code: 'CLT' },
     ];
+
   }
+
+
 
   getUserId(): Observable<any> {
     return this.userService.getTokenId().pipe(
@@ -124,7 +133,7 @@ export class AddproductFormComponent implements OnInit {
               this.onUpload(this.selectedFile);
               this.messageService.add({
                 severity: 'success',
-                summary: this.translocoService.translate('successMesagge'),
+                summary: this.translocoService.translate('successMessage'),
                 detail:  this.translocoService.translate('dAddProduct.messageDetailsuccess'),
               });
             },
@@ -136,6 +145,12 @@ export class AddproductFormComponent implements OnInit {
               });
             }
           );
+        }else{
+          this.messageService.add({
+            severity: 'success',
+            summary: this.translocoService.translate('warnMessage'),
+            detail:  this.translocoService.translate('dAddProduct.messageDetailwarn'),
+          });
         }
       });
     });

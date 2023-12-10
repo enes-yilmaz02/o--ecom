@@ -86,7 +86,7 @@ export class UserinfoComponent implements OnInit {
         this.userService.updateUser(this.userId, formValues).subscribe(() => {
           this.messageService.add({
             severity: 'success',
-            summary: this.translocoService.translate('succesMessage'),
+            summary: this.translocoService.translate('successMessage'),
             detail: this.translocoService.translate('userinfoForm.messageDetailsuccess'),
           });
         });

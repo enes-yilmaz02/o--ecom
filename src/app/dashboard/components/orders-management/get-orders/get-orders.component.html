@@ -89,7 +89,7 @@
     </div>
   </div>
 </div>
-<div class="card" *ngIf="!orders || orders.length === 0">
+<div class="card" *ngIf="!(orders && orders.length) && !ordersLoading">
   <section class="page_404">
     <div class="container">
       <div class="row">
@@ -112,3 +112,5 @@
     </div>
   </section>
 </div>
+
+

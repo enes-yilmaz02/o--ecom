@@ -1,154 +1,100 @@
+<p-toast></p-toast>
+
 <div class="grid">
   <div class="col-12 lg:col-6 xl:col-3">
-    <div class="card mb-0">
+    <div class="card" width="250" height="250">
         <div class="flex justify-content-between mb-3">
             <div>
-                <span class="block text-500 font-medium mb-3">Toplam Sipariş Sayısı</span>
+                <span class="block text-500 font-medium mb-3">{{'dReporting.totalOrder' | transloco}}</span>
                 <div class="text-900 font-medium text-xl">{{ordersCount}}</div>
             </div>
             <div class="flex align-items-center justify-content-center bg-blue-100 border-round" [ngStyle]="{width: '2.5rem', height: '2.5rem'}">
                 <i class="pi pi-shopping-cart text-blue-500 text-xl"></i>
             </div>
         </div>
-        <span class="text-green-500 font-medium">2 new </span>
-        <span class="text-500">since last visit</span>
     </div>
 </div>
 <div class="col-12 lg:col-6 xl:col-3">
-    <div class="card mb-0">
+    <div class="card" width="250" height="250">
         <div class="flex justify-content-between mb-3">
             <div>
-                <span class="block text-500 font-medium mb-3">Toplam Hasılat Miktarı</span>
-                <div class="text-900 font-medium text-xl">${{revenue}}</div>
+                <span class="block text-500 font-medium mb-3">{{'dReporting.totalPrice' | transloco}}</span>
+                <div class="text-900 font-medium text-xl">{{revenue | currency:'USD'}}</div>
             </div>
             <div class="flex align-items-center justify-content-center bg-orange-100 border-round" [ngStyle]="{width: '2.5rem', height: '2.5rem'}">
-                <i class="pi pi-map-marker text-orange-500 text-xl"></i>
+                <i class="pi pi-money-bill text-orange-500 text-xl"></i>
             </div>
         </div>
-        <span class="text-green-500 font-medium">%12+ </span>
-        <span class="text-500">since last week</span>
     </div>
 </div>
-<div class="col-12 lg:col-6 xl:col-3">
-    <div class="card mb-0">
+<div class="col-12 lg:col-6 xl:col-3 ">
+    <div class="card" width="250" height="250">
         <div class="flex justify-content-between mb-3">
             <div>
-                <span class="block text-500 font-medium mb-3">Toplam Kullanıcı Sayısı</span>
-                <div class="text-900 font-medium text-xl">{{usersCount}}</div>
+                <span class="block text-500 font-medium mb-3">{{'dReporting.totalRating' | transloco}}</span>
+                <div class="text-900 font-medium text-xl">{{averageRating | number}}</div>
             </div>
             <div class="flex align-items-center justify-content-center bg-cyan-100 border-round" [ngStyle]="{width: '2.5rem', height: '2.5rem'}">
-                <i class="pi pi-inbox text-cyan-500 text-xl"></i>
+                <i class="pi pi-star-fill text-cyan-500 text-xl"></i>
             </div>
         </div>
-        <span class="text-green-500 font-medium">1</span>
-        <span class="text-500">newly registered</span>
     </div>
 </div>
 <div class="col-12 lg:col-6 xl:col-3">
-    <div class="card mb-0">
+    <div class="card" width="250" height="250">
         <div class="flex justify-content-between mb-3">
             <div>
-                <span class="block text-500 font-medium mb-3">Toplam Ürün Sayısı</span>
+                <span class="block text-500 font-medium mb-3">{{'dReporting.totalProduct' | transloco}}</span>
                 <div class="text-900 font-medium text-xl">{{productsCount}}</div>
             </div>
             <div class="flex align-items-center justify-content-center bg-purple-100 border-round" [ngStyle]="{width: '2.5rem', height: '2.5rem'}">
-                <i class="pi pi-comment text-purple-500 text-xl"></i>
+                <i class="pi pi-box text-purple-500 text-xl"></i>
             </div>
         </div>
-        <span class="text-green-500 font-medium">1 </span>
-        <span class="text-500">responded</span>
     </div>
 </div>
-<div class="flex flex-row w-full">
-  <div class="card mx-4 w-full">
-    <h5>Kullanıcı Role Tablosu</h5>
-    <p-chart type="line" [data]="chartData" [options]="chartOptions" class="w-full"></p-chart>
+<div class="chart-global">
+  <div class="card">
+    <h5>{{'dReporting.statusTable' | transloco}}</h5>
+    <p-chart type="line" [data]="chartDataStatus" [options]="chartOptions" class="chart"></p-chart>
   </div>
-  <div class="card mx-4 w-full">
-    <h5>Ürün Kategori Tablosu</h5>
-    <p-chart type="line" [data]="chartDataProduct" [options]="chartOptions" class="w-full"></p-chart>
+  <div class="card">
+    <h5>{{'dReporting.categoryTable' | transloco}}</h5>
+    <p-chart type="line" [data]="chartDataProduct" [options]="chartOptions"  class="chart"></p-chart>
+  </div>
+  <div class="card">
+    <h5>{{'dReporting.stockTable' | transloco}}</h5>
+    <p-chart type="line" [data]="chartDataProductStock" [options]="chartOptions"  class="chart"></p-chart>
   </div>
 </div>
 <div class="flex flex-row w-full">
   <div class="card w-full mt-4">
     <div class="flex justify-content-between align-items-center mb-5">
-        <h5>Best Selling Products</h5>
+      <h5>{{'dReporting.bestSelling' | transloco}}</h5>
     </div>
     <ul class="list-none p-0 m-0">
-        <li class="flex flex-column md:flex-row md:align-items-center md:justify-content-between mb-4">
-            <div>
-                <span class="text-900 font-medium mr-2 mb-1 md:mb-0">Space T-Shirt</span>
-                <div class="mt-1 text-600">Clothing</div>
-            </div>
-            <div class="mt-2 md:mt-0 flex align-items-center">
-                <div class="surface-300 border-round overflow-hidden w-10rem lg:w-6rem" [ngStyle]="{height: '8px'}">
-                    <div class="bg-orange-500 h-full" [ngStyle]="{width: '50%'}"></div>
-                </div>
-                <span class="text-orange-500 ml-3 font-medium">%50</span>
-            </div>
-        </li>
-        <li class="flex flex-column md:flex-row md:align-items-center md:justify-content-between mb-4">
-            <div>
-                <span class="text-900 font-medium mr-2 mb-1 md:mb-0">Portal Sticker</span>
-                <div class="mt-1 text-600">Accessories</div>
-            </div>
-            <div class="mt-2 md:mt-0 ml-0 md:ml-8 flex align-items-center">
-                <div class="surface-300 border-round overflow-hidden w-10rem lg:w-6rem" [ngStyle]="{height: '8px'}">
-                    <div class="bg-cyan-500 h-full" [ngStyle]="{width: '16%'}"></div>
-                </div>
-                <span class="text-cyan-500 ml-3 font-medium">%16</span>
-            </div>
-        </li>
-        <li class="flex flex-column md:flex-row md:align-items-center md:justify-content-between mb-4">
-            <div>
-                <span class="text-900 font-medium mr-2 mb-1 md:mb-0">Supernova Sticker</span>
-                <div class="mt-1 text-600">Accessories</div>
-            </div>
-            <div class="mt-2 md:mt-0 ml-0 md:ml-8 flex align-items-center">
-                <div class="surface-300 border-round overflow-hidden w-10rem lg:w-6rem" [ngStyle]="{height: '8px'}">
-                    <div class="bg-pink-500 h-full" [ngStyle]="{width: '67%'}"></div>
-                </div>
-                <span class="text-pink-500 ml-3 font-medium">%67</span>
-            </div>
-        </li>
-        <li class="flex flex-column md:flex-row md:align-items-center md:justify-content-between mb-4">
-            <div>
-                <span class="text-900 font-medium mr-2 mb-1 md:mb-0">Wonders Notebook</span>
-                <div class="mt-1 text-600">Office</div>
-            </div>
-            <div class="mt-2 md:mt-0 ml-0 md:ml-8 flex align-items-center">
-                <div class="surface-300 border-round overflow-hidden w-10rem lg:w-6rem" [ngStyle]="{height: '8px'}">
-                    <div class="bg-green-500 h-full" [ngStyle]="{width: '35%'}"></div>
-                </div>
-                <span class="text-green-500 ml-3 font-medium">%35</span>
-            </div>
-        </li>
-        <li class="flex flex-column md:flex-row md:align-items-center md:justify-content-between mb-4">
-            <div>
-                <span class="text-900 font-medium mr-2 mb-1 md:mb-0">Mat Black Case</span>
-                <div class="mt-1 text-600">Accessories</div>
-            </div>
-            <div class="mt-2 md:mt-0 ml-0 md:ml-8 flex align-items-center">
-                <div class="surface-300 border-round overflow-hidden w-10rem lg:w-6rem" [ngStyle]="{height: '8px'}">
-                    <div class="bg-purple-500 h-full" [ngStyle]="{width: '75%'}"></div>
-                </div>
-                <span class="text-purple-500 ml-3 font-medium">%75</span>
-            </div>
-        </li>
-        <li class="flex flex-column md:flex-row md:align-items-center md:justify-content-between mb-4">
-            <div>
-                <span class="text-900 font-medium mr-2 mb-1 md:mb-0">Robots T-Shirt</span>
-                <div class="mt-1 text-600">Clothing</div>
-            </div>
-            <div class="mt-2 md:mt-0 ml-0 md:ml-8 flex align-items-center">
-                <div class="surface-300 border-round overflow-hidden w-10rem lg:w-6rem" [ngStyle]="{height: '8px'}">
-                    <div class="bg-teal-500 h-full" [ngStyle]="{width: '40%'}"></div>
-                </div>
-                <span class="text-teal-500 ml-3 font-medium">%40</span>
-            </div>
-        </li>
+      <!-- *ngFor ile sıralanmış ürünleri dön -->
+      <li *ngFor="let product of products.slice(0, 5)" class="flex flex-column md:flex-row md:align-items-center md:justify-content-between mb-4">
+        <div>
+          <img
+          class="w-9 shadow-2 border-round"
+          [src]="getFileUrl(product?.file)"
+          [alt]="product.name"
+        />
+        </div>
+        <div>
+          <span class="text-900 font-medium mr-2 mb-1 md:mb-0">{{ product.name }}</span>
+          <div class="mt-1 text-600">{{ product.category }}</div>
+        </div>
+        <div class="mt-2 md:mt-0 flex align-items-center">
+          <span class="text-orange-500 ml-3 font-medium">{{ product.quantity }}</span>
+        </div>
+      </li>
     </ul>
   </div>
 </div>
 
+
 </div>
+
+

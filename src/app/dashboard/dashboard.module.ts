@@ -4,7 +4,7 @@ import { SharedModule } from '../shared/shared.module';
 import { DashboardComponent } from './dashboard.component';
 import { UserService } from '../services/user.service';
 import { DialogService } from 'primeng/dynamicdialog';
-import { TranslocoModule } from '@ngneat/transloco';
+import { TranslocoModule, TranslocoService } from '@ngneat/transloco';
 import { TranslocoRootModule } from '../transloco-root.module';
 import { ProductManagementComponent } from './components/product-management/product-management.component';
 import { AddproductFormComponent } from './components/product-management/addproduct-form/addproduct-form.component';
@@ -40,12 +40,11 @@ import { TruncatePipe } from '../services/pipes/truncate.pipe';
        FooterComponent,
        SidebarComponent,
 
+
   ],
   imports: [
     CommonModule,
     SharedModule,
-    TranslocoRootModule,
-    TranslocoModule,
     DashboardRoutingModule
   ],
   exports:[
@@ -67,10 +66,9 @@ import { TruncatePipe } from '../services/pipes/truncate.pipe';
   providers:[
     UserService,
     DialogService,
-    TranslocoModule,
     ProductService,
     TruncatePipe,
-
+    TranslocoService
   ]
 })
 export class DashboardModule { }

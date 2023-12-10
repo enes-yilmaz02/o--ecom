@@ -87,4 +87,12 @@ export class GetProductComponent {
         return null;
     }
   }
+
+  getProductByFilter(category:any){
+    this.productService.getProductsByFilter(category).subscribe((data:any)=>{
+      this.products=data;
+      console.log(data);
+    })
+
+  }
 }

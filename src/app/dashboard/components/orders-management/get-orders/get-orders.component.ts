@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { ProductService } from 'src/app/services/product.service';
 import { UserService } from 'src/app/services/user.service';
 import * as FileSaver from 'file-saver';
+import { error } from 'jquery';
 
 interface Column {
   field: string;
@@ -21,7 +22,7 @@ interface ExportColumn {
 
 
 })
-export class GetOrdersComponent {
+export class GetOrdersComponent implements OnInit {
   orders: any;
 
   userId: any;
@@ -34,10 +35,15 @@ export class GetOrdersComponent {
 
   userDetailStatus: { [userId: string]: boolean } = {};
 
+  ordersLoading: boolean = true;
+
   constructor(
     private productService: ProductService,
     private userService: UserService
   ) {
+
+  }
+  ngOnInit(): void {
     this.getAllCreoterOrders();
   }
 
@@ -130,10 +136,10 @@ export class GetOrdersComponent {
       fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION
     );
   }
+
   getAllCreoterOrders() {
     this.getUserId().subscribe((userId) => {
       this.productService.getAllCreoterOrdersById(userId).subscribe((data: any) => {
-        console.log(data);
         // Eğer herhangi bir sipariş bulunamazsa, this.orders'u boş bir diziyle güncelle
         this.orders = data ? data.map((item: any) => ({
           orderDate: item.orderDate,
@@ -145,13 +151,18 @@ export class GetOrdersComponent {
           totalAmount: item.totalAmount,
           userId: item.userId,
         })) : [];
-        console.log(this.orders);
-
         // Siparişler alındıktan sonra her bir userId için alıcı bilgilerini getir
         this.orders.forEach((order: any) => {
           this.getUserData(order.userId);
         });
-      });
+        this.ordersLoading = false;
+
+      },
+      (error)=>{
+        console.error('Error fetching orders:', error);
+        this.ordersLoading = true;
+      }
+      );
     });
   }
 
@@ -164,7 +175,7 @@ export class GetOrdersComponent {
     return this.userService.getTokenId().pipe(
       tap((id: any) => {
         this.userId = id;
-        console.log(this.userId);
+
       })
     );
   }
@@ -189,7 +200,7 @@ export class GetOrdersComponent {
 
       // Alıcı bilgilerini userDataArray dizisine ekleyin
       order.userDataArray.push(data);
-      console.log(data)
+
     });
   }
 

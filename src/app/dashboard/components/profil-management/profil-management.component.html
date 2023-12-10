@@ -1,1 +1,86 @@
-<p>profil-management works!</p>
+<p-toast></p-toast>
+<div class="container">
+  <div class="row">
+    <div class="header">
+      <h2>{{ "userinfoForm.header" | transloco }}</h2>
+
+    </div>
+    <form [formGroup]="profilForm">
+      <div class="form-container">
+        <span class="p-float-label m-4">
+          <i class="pi pi-user" style="color: #000"></i>
+          <input pInputText id="name" formControlName="name" />
+          <label htmlFor="name">{{
+            "userinfoForm.nameLabel" | transloco
+          }}</label>
+        </span>
+        <span class="p-float-label m-4">
+          <i class="pi pi-user" style="color: #000"></i>
+          <input pInputText id="username" formControlName="username" />
+          <label htmlFor="username">{{
+            "userinfoForm.usernameLabel" | transloco
+          }}</label>
+        </span>
+        <span class="p-float-label m-4">
+          <i class="pi pi-users" style="color: #000;"></i>
+          <p-dropdown
+            id="gender"
+            formControlName="gender"
+            placeholder="Select..."
+            styleClass="dropdown"
+            [options]="genders"
+            optionLabel="name"
+          ></p-dropdown>
+          <label htmlFor="gender" class="dropdown-label">{{ "userinfoForm.gender" | transloco  }}</label>
+        </span>
+        <span class="p-float-label m-4">
+          <i class="pi pi-calendar" style="color: #000"></i>
+          <p-calendar
+            formControlName="bDate"
+            styleClass="calendar"
+            [showIcon]="false"
+            id="calendar"
+          ></p-calendar>
+          <label htmlFor="bDate">{{ "userinfoForm.date" | transloco }}</label>
+        </span>
+      </div>
+      <div class="form-container">
+        <span class="p-float-label m-4">
+          <i class="pi pi-user" style="color: #000"></i>
+          <input pInputText id="surname" formControlName="surname" />
+          <label htmlFor="surname">{{
+            "userinfoForm.surnameLabel" | transloco
+          }}</label>
+        </span>
+        <span class="p-float-label m-4">
+          <i class="pi pi-envelope" style="color: #000"></i>
+          <input pInputText id="email" formControlName="email" />
+          <label htmlFor="email">{{
+            "userinfoForm.emailLabel" | transloco
+          }}</label>
+        </span>
+        <span class="p-float-label m-4">
+          <i class="pi pi-phone" style="color: #000"></i>
+          <input pInputText id="phone" formControlName="phone" />
+          <label htmlFor="phone">{{
+            "userinfoForm.phoneLabel" | transloco
+          }}</label>
+        </span>
+        <span class="p-float-label m-4">
+          <i class="pi pi-map-marker" style="color: #000"></i>
+          <input pInputText id="address" formControlName="address" />
+          <label htmlFor="address">{{
+            "userinfoForm.addressLabel" | transloco
+          }}</label>
+        </span>
+      </div>
+      <div class="flex justify-content-center mt-4">
+        <span class="button-style w-full">
+          <button pButton type="submit" (click)="updateUser()" class="button">
+            {{ "userinfoForm.buttonLabel" | transloco }}
+          </button>
+        </span>
+      </div>
+    </form>
+  </div>
+</div>
