@@ -1,6 +1,8 @@
 <p-toast></p-toast>
 
 <div class="card" *ngIf="users && users.length > 0">
+  <h2>{{'aGetList.header' | transloco}}</h2>
+
   <p-table
     [value]="users"
     responsiveLayout="stack"
@@ -11,12 +13,12 @@
   >
     <ng-template pTemplate="header" let-columns>
       <tr>
-        <th>userID</th>
-        <th>email</th>
-        <th>Company name</th>
-        <th>tax Number</th>
-        <th>Role</th>
-        <th>Action</th>
+        <th>{{'aGetList.userId' | transloco}}</th>
+        <th>{{'aGetList.email' | transloco}}</th>
+        <th>{{'aGetList.companyName' | transloco}}</th>
+        <th>{{'aGetList.taxNumber' | transloco}}</th>
+        <th>{{'aGetList.Role' | transloco}}</th>
+        <th>{{'aGetList.Actions' | transloco}}</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-user let-columns="columns">
@@ -27,23 +29,24 @@
         <td>{{ user.taxNumber }}</td>
         <td>{{ user.role }}</td>
         <td>
-          <button p-button class="p-button" (click)="onSubmit()">Onayla</button>
+          <button p-button class="p-button" (click)="onSubmit()">{{'aGetList.approve' | transloco}}</button>
+          <button p-button class="p-button" (click)="onDelete(user.id)">{{'aGetList.delete' | transloco}}</button>
         </td>
       </tr>
     </ng-template>
   </p-table>
 </div>
 
-<div class="card" *ngIf="!users || users.length === 0">
+<div class="card" *ngIf="!(users && users.length) && !waitlistLoading">
   <section class="page_404">
     <div class="container">
-      <div class="row">	
+      <div class="row">
       <div class="col-sm-12 ">
       <div class="col-sm-10 col-sm-offset-1  text-center">
-      <div class="four_zero_four_bg" style="background-image: url('assets/images/dribbble_1.gif');">
-        <h4 class="text-center ">Bekleme Listesi boş</h4>
+      <div class="four_zero_four_bg" >
+        <h4 class="text-center ">{{'aGetList.headerdesc' | transloco}}</h4>
         <h6 class="text-center">
-          Bekleme listesinde onay durumu bekleyen kullanıcı bulunmamaktadır.
+          {{'aGetList.desc' | transloco}}
         </h6>
       </div>
       </div>

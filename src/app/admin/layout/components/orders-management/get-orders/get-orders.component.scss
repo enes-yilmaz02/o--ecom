@@ -2,48 +2,150 @@ $primary-color: #3498db;
 $secondary-color: #1071b3;
 $danger-color: #e74c3c;
 $dark-text: #34495e;
-$dark-text-second: #c0ddfb;
+$light-text-second: #c0ddfb;
 $light-text: #ecf0f1;
 $light-text-hover: #91c9d7;
 $background-color: #ecf0f1;
-.creoter-header {
-  font-weight: bold;
-}
+$module-color:#253741;
+.orders-list {
+  width: 100%;
+  margin: 10px;
+  border: 0.1px solid  ;
+  border-radius: 5px;
+  padding: 20px;
+  background: $module-color;
 
-:host ::ng-deep{
-  .table{
-    .main{
-      th{
-        background-color:$dark-text;
-        color: #fff;
+
+  /* Başlık stili */
+  h2 {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: $background-color;
+  }
+
+  /* Export butonları stili */
+  .flex {
+    display: flex;
+    justify-content: flex-end;
+    color: $background-color;
+    button {
+      background-color:$background-color ;
+      width: 150px;
+      min-height: 40px;
+      margin: 2px;
+      padding: 5px 10px;
+      border:none;
+      color: $module-color;
+    }
+
+  }
+
+  /* Sipariş öğeleri stili */
+  .order-item {
+    margin: 10px;
+    margin-bottom: 50px;
+    color: $background-color;
+    /* Sipariş bilgileri stili */
+    .order-info {
+      div {
+        margin-bottom: 5px;
+
+        button {
+          background-color: $background-color;
+          width: 150px;
+          min-height: 40px;
+          margin: 2px;
+          padding: 5px 10px;
+          border:none;
+          cursor: pointer;
+          color: $module-color;
+         justify-content: center;
+        }
       }
     }
 
+    /* Ürün listesi stili */
 
+      .product-table {
+        width: 100%;
+        color: $background-color;
+        margin-top: 10px;
+        thead{
+          th{
+            color: $module-color;
+            width: 200px;
+            padding: 8px;
+            text-align: center;
+          }
+        }
+        th, td {
+          width: 200px;
+          padding: 8px;
+          text-align: center;
+        }
 
-    th{
-      background-color:$secondary-color;
-      color: #fff;
+        th {
+          background-color: $background-color;
+        }
+
+        img.product-image {
+          max-width: 50px;
+          max-height: 50px;
+        }
+      }
     }
 
-    td{
-      padding-bottom: 25px;
-    }
+}
+
+.totalprice{
+position: relative;
+right: -365%;
+}
 
 
 
-    .p-button-plain{
-      color:$primary-color;
-    }
-  }
 
-  .body{
-    background-color: $primary-color;
-    border: 5px solid #000;
-  }
+.card{
+  background: $module-color;
+}
+.page_404 {
+  padding: 40px 0;
+  background:$module-color;
+  font-family: "Arvo", serif;
+  height: 100%;
+  color: $background-color;
+}
 
-  .bodyOrder{
-    background-color: $background-color;
-  }
+.page_404 img {
+  width: 100%;
 
+}
+
+.four_zero_four_bg {
+
+  min-height:90vh ;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.four_zero_four_bg h4 {
+
+  color: $background-color;
+}
+
+.four_zero_four_bg h6 {
+
+  color: $background-color;
+}
+
+.link_404 {
+  color: #fff !important;
+  padding: 10px 20px;
+  background: #39ac31;
+  margin: 20px 0;
+  display: inline-block;
+}
+.contant_box_404 {
+  margin-top: -50px;
 }

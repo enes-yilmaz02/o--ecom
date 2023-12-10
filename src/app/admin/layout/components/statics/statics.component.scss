@@ -1,0 +1,74 @@
+$background-color: #ecf0f1;
+$module-color:#253741;
+
+.grid{
+  border:0.1px solid;
+  .col-12{
+    .card{
+      background: $module-color;
+      border:1px solid;
+
+      span , i , div , .data{
+        color: $background-color;
+      }
+    }
+  }
+}
+
+.chart-selling{
+  background-color: $module-color;
+  .card{
+    margin:5px;
+    background-color: $module-color;
+    border: 1px solid ;
+
+    h5 , .white{
+      color: $background-color;
+    }
+
+  }
+}
+
+.chart-global{
+  width: 100%;
+  display:flex;
+  flex-direction: row;
+
+  .card{
+    margin:5px;
+    background-color: $module-color;
+    border: 1px solid ;
+    width: 350px;
+
+    h5{
+      color: $background-color;
+    }
+
+  }
+
+}
+:host ::ng-deep{
+  .p-element{
+    color: $background-color;
+  }
+}
+.img {
+  img{
+  min-width: 100px;
+  max-width: 100px;
+  max-height: 100px;
+  object-fit: cover;
+  }
+}
+
+.best-selling{
+  background: $module-color;
+
+  .card{
+    background: $module-color;
+    border: 1px solid;
+    h5{
+      color: $background-color;
+    }
+  }
+}

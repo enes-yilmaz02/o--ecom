@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslocoService } from '@ngneat/transloco';
 import { ProductService } from 'src/app/services/product.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -20,17 +21,25 @@ export class StaticsComponent implements OnInit {
 
   productsCount: any;
 
+  allProducts: any[] = [];
+
   revenue: any;
+  products: any;
+  orders: any;
+  chartDataStatus: { labels: any[]; datasets: { label: any; data: number[]; fill: boolean; backgroundColor: string; borderColor: string; tension: number; }[]; };
+  creoterData: any;
 
   constructor(
     private userService: UserService,
-    private productService: ProductService
+    private productService: ProductService,
   ) {}
 
   ngOnInit(): void {
     this.getUsersCount();
     this.getOrdersCount();
     this.getProductsCount();
+    this.getAllCreoterOrders();
+    this.updateChartDataStatus();
 
   }
 
@@ -52,17 +61,17 @@ export class StaticsComponent implements OnInit {
 
       // Diğer işlemleri yapabilirsiniz
       const documentStyle = getComputedStyle(document.documentElement);
-
+      const roleArray=['Admin', 'Creoter', 'User'];
       // chartData'yı güncelle
       this.chartData = {
-        labels: ['Admin', 'Creoter', 'User'],
+        labels:roleArray ,
         datasets: [
           {
-            label: 'First Dataset',
+            label: 'Rol Durum',
             data: [adminCount,creoterCount, userCount],
             fill: false,
-            backgroundColor: documentStyle.getPropertyValue('--bluegray-700'),
-            borderColor: documentStyle.getPropertyValue('--bluegray-700'),
+            backgroundColor: documentStyle.getPropertyValue('white'),
+            borderColor: documentStyle.getPropertyValue('white'),
             tension: 0.4,
           },
         ],
@@ -75,15 +84,14 @@ export class StaticsComponent implements OnInit {
     this.productService.getAllCreoterOrders().subscribe((data) => {
       this.ordersCount = data.length;
       this.revenue = this.productService.calculateTotalRevenue(data);
-      console.log(this.revenue);
     });
   }
 
   getProductsCount() {
     this.productService.getProducts().subscribe(async (data:any) => {
+      this.allProducts=data;
+      this.updateChartDataStatus();
       this.productsCount = data.length;
-      console.log(this.productsCount);
-      console.log(data);
       const roleCountMap = new Map();
 
       data.forEach(product => {
@@ -98,21 +106,113 @@ export class StaticsComponent implements OnInit {
 
        // Diğer işlemleri yapabilirsiniz
        const documentStyle = getComputedStyle(document.documentElement);
-
+      const categoryArray=['Electronics', 'Clothing', 'Accessories','Fitness'];
        // chartData'yı güncelle
        this.chartDataProduct = {
-         labels: ['Electronics', 'Clothing', 'Accessories','Fitness'],
+         labels: categoryArray,
          datasets: [
            {
-             label: 'First Dataset',
+             label: 'Kategori ',
              data: [eltCount,cloCount, acsCount, fitCount],
              fill: false,
-             backgroundColor: documentStyle.getPropertyValue('--bluegray-700'),
-             borderColor: documentStyle.getPropertyValue('--bluegray-700'),
+             backgroundColor: documentStyle.getPropertyValue('white'),
+             borderColor: documentStyle.getPropertyValue('white'),
              tension: 0.4,
            },
          ],
        };
     });
   }
+
+
+  getFileUrl(fileName: string): string {
+    return `http://localhost:8080/files/${fileName}`;
+  }
+
+
+  getAllCreoterOrders() {
+    this.products = []; // products dizisini başlat
+
+    this.productService.getAllCreoterOrders().subscribe(
+      (data: any) => {
+        // Eğer herhangi bir sipariş bulunamazsa, this.orders'u boş bir diziyle güncelle
+        this.orders = data || [];
+
+        // Siparişler içinde dönerek ürünleri işle
+        this.orders.forEach((item: any) => {
+          // Her bir siparişteki ürünleri products dizisine ekle
+          item.orders.forEach((orderItem: any) => {
+            const existingProduct = this.products.find(
+              (product) => product.name === orderItem.product.name
+            );
+
+            if (existingProduct) {
+              // Eğer ürün zaten listeye ekli ise, adetini arttır
+              existingProduct.quantity += 1;
+            } else {
+              // Eğer ürün daha önce listeye eklenmemişse, yeni bir ürün olarak ekle
+              this.products.push({
+                name: orderItem.product.name,
+                file: orderItem.product.file,
+                quantity: 1, // İlk kez eklenen ürünün adeti 1'dir
+              });
+            }
+          });
+        });
+
+        // Quantity'ye göre sıralama
+        this.products.sort((a, b) => b.quantity - a.quantity);
+
+        console.log(this.products);
+      },
+      (error) => {
+        console.error('Error fetching orders:', error);
+      }
+    );
+  }
+
+  updateChartDataStatus() {
+
+      let inStockCount = 0;
+      let outOfStockCount = 0;
+      let runningLowCount = 0;
+
+      this.allProducts.forEach((product: any) => {
+        const stockQuantity = product.quantity;
+
+        if (stockQuantity > 0) {
+          inStockCount++;
+        } else {
+          outOfStockCount++;
+          if (stockQuantity <= 5) {
+            runningLowCount++;
+          }
+        }
+      });
+
+      const statusNameArray = [
+        'Stokta',
+        'Tükendi',
+        'Tükenmek Üzere',
+      ];
+
+      // Güncellenmiş verileri kullanarak chartDataStatus'u güncelle
+      const documentStyle = getComputedStyle(document.documentElement);
+      this.chartDataStatus = {
+        labels: statusNameArray,
+        datasets: [
+          {
+            label: 'Durum',
+            data: [inStockCount, outOfStockCount, runningLowCount],
+            fill: false,
+            backgroundColor: documentStyle.getPropertyValue('white'),
+            borderColor: documentStyle.getPropertyValue('white'),
+            tension: 0.4,
+          },
+        ],
+      };
+
+  }
+
+
 }

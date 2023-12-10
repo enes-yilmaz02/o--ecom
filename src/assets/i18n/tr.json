@@ -380,6 +380,8 @@
   },
   "dGetorders": {
     "header": "Sipariş Listesi",
+    "headerproduct": "Ürünler Tablosu",
+    "headeruser": "Kullanıcılar Tablosu",
     "pdf": "pdf'i dışa aktar",
     "xls": "xls'i dışa aktar",
     "userId": "Müşteri Id: ",
@@ -444,6 +446,13 @@
     "rpt":"İstatikler",
     "ps":"Profil Yonetimi"
   },
+  "aSidebar":{
+    "um":"Kullanıcı Yönetimi",
+    "pm":"Ürün Yönetimi",
+    "om":"Sipariş Yönetimi",
+    "rpt":"İstatikler",
+    "wm":"Bekleme Listesi"
+  },
   "dReporting":{
     "totalOrder":" Sipariş Sayısı",
     "totalProduct":" Ürün Sayısı",
@@ -456,6 +465,46 @@
   },
   "topbar":{
     "header":"Yönetici Modül Sayfası",
+    "headeradmin":"Admin Modül Sayfası",
     "logout":"Oturumu kapat"
+  },
+  "aGetOrders":{
+    "Name":"Ad",
+    "Email":"Email",
+    "Role":"Rol",
+    "Address":"Adres",
+    "Phone":"Telefon",
+    "CompanyName":"Satıcı",
+    "taxNumber":"Vergi No",
+    "buttonAdd":"Ekle",
+    "buttonCancel":"Geri",
+    "buttonAddUser":"Kullanıcı Ekle",
+    "gSearch":"Ara",
+    "update":"Düzenle",
+    "delete":"Sil",
+    "nf":"Hiçbir Kayıt Bulunmadı"
+  },
+  "aGetList":{
+    "header":"Satıcı Onay Listesi",
+    "userId":"Kullanıcı id",
+    "email":"Email",
+    "Role":"Rol",
+    "companyName":"Satıcı",
+    "taxNumber":"Vergi No",
+    "Actions":"İşlemler",
+    "approve":"Onayla",
+    "delete":"Sil",
+    "headerdesc":"Bekleme Listesi boş",
+    "desc":"Bekleme listesinde onay durumu bekleyen kullanıcı bulunmamaktadır."
+  },
+  "aStatistic":{
+    "totalOrder":"Toplam Sipariş",
+    "totalRevenue":"Toplam Hasılat",
+    "totalUser":"Toplam Kullanıcı",
+    "totalProduct":"Toplam Ürün",
+    "roleTable":"Kullanıcı Role Grafiği",
+    "categoryTable":"Ürün Kategori Grafiği",
+    "statusTable":"Ürün Stok Grafiği"
   }
+
 }

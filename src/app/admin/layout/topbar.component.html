@@ -1,22 +1,44 @@
 <div class="layout-topbar">
   <a class="layout-topbar-logo" (click)="logout()">
-      <img src="assets/layout/images/{{layoutService.config.colorScheme === 'light' ? 'logo-dark' : 'logo-white'}}.svg" alt="logo">
-      <span>OI</span>
+    <img
+      src="assets/layout/images/{{
+        layoutService.config.colorScheme === 'dark' ? 'logo-dark' : 'logo-white'
+      }}.svg"
+      alt="logo"
+    />
+    <span>OI</span>
   </a>
 
-  <button #menubutton class="p-link layout-menu-button layout-topbar-button" (click)="layoutService.onMenuToggle()">
-      <i class="pi pi-bars"></i>
+  <button
+    #menubutton
+    class="p-link layout-menu-button layout-topbar-button"
+    (click)="layoutService.onMenuToggle()"
+  >
+    <i class="pi pi-bars"></i>
   </button>
-
-  <button #topbarmenubutton class="p-link layout-topbar-menu-button layout-topbar-button" (click)="layoutService.showProfileSidebar()">
-      <i class="pi pi-ellipsis-v"></i>
-  </button>
-
-  <div #topbarmenu class="layout-topbar-menu" [ngClass]="{'layout-topbar-menu-mobile-active': layoutService.state.profileSidebarVisible}">
-
-      <button class="p-link layout-topbar-button">
-          <i class="pi pi-user"></i>
-      </button>
-
+  <div
+    class="w-full flex justify-content-center align-content-center text-white"
+  >
+    <h3>{{ "topbar.headeradmin" | transloco }}</h3>
   </div>
+  <button
+    #topbarmenubutton
+    class="p-link layout-topbar-menu-button layout-topbar-button"
+    (click)="layoutService.showProfileSidebar()"
+  >
+    <i class="pi pi-ellipsis-v"></i>
+  </button>
+  <a class="logout" (click)="logout()">
+    <i class="pi pi-sign-out mr-1 text-lg" ></i>
+    <span>{{'topbar.logout' | transloco}}</span>
+</a>
+  <select
+    (change)="setLanguage()"
+    [(ngModel)]="selectedLanguage"
+    class="custom-select flex border-0 ml-3"
+  >
+    <option *ngFor="let option of stateOptions" [ngValue]="option.value">
+      {{ option.label }}
+    </option>
+  </select>
 </div>

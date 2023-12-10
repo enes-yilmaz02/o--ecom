@@ -6,30 +6,67 @@ $dark-text: #34495e;
 $light-text: #ecf0f1;
 $light-text-hover: #91c9d7;
 $background-color: #ecf0f1;
+$module-color:#253741;
 /* Dialog Penceresi */
+
+.card{
+  background: $module-color;
+  border: 0.1px solid ;
+
+  h2{
+    color: $background-color;
+  }
+}
 :host ::ng-deep{
+
+  .p-paginator{
+    background: $module-color;
+    color: $background-color;
+
+    span , button , icon , i , .p-icon{
+      color: $background-color;
+
+    }
+
+    .p-ripple , .p-paginator-rpp-options{
+      color: $module-color;
+
+      span{
+        color: $module-color;
+
+      }
+    }
+  }
+
+  .p-datatable-header{
+    background: $module-color;
+  }
 
   .p-column-filter{
     width: 100%;
   }
   .p-dialog{
     width: 400px;
+    background-color: $module-color;
   }
   .p-button-add{
     position: relative;
-    background-color: $dark-text;
+    background: $background-color;
     border: none;
-    width: auto;
+    color: $module-color;
+    width: 150px;
     font-size: 12px;
   }
   thead{
+    background: $module-color;
     tr{
       width: 100%;
-      background-color: $dark-text;
-      color: #fff;
+      background: $module-color;
+      color: $background-color;
       th{
         width: 100px;
         text-align: center;
+        background: $module-color;
         .p-column-filter{
           width: 100%;
           button{
@@ -41,7 +78,7 @@ $background-color: #ecf0f1;
         }
       }
     }
-   
+
   }
   tbody{
     tr{
@@ -49,12 +86,14 @@ $background-color: #ecf0f1;
       td{
         justify-content: center;
         text-align: center;
+        background: $module-color;
+        color: $background-color;
       }
     }
   }
   th{
-    background-color: $dark-text;
-    color: #fff;
+    background: $module-color;
+    color: $background-color;
   }
 
   .p-icon{
@@ -75,6 +114,7 @@ $background-color: #ecf0f1;
   .trash{
     color: $danger-color;
   }
+
 }
 
 /* Form Alanları */
@@ -94,7 +134,7 @@ form{
   .p-inputtext {
     width: 100%; /* Input'ların genişliği */
     padding: 0.5rem; /* Input içerisindeki içerik ile kenar arasındaki boşluk */
-    border: 1px solid #ced4da; /* Kenarlık rengi */
+    border: 1px solid $background-color; /* Kenarlık rengi */
     border-radius: 0.25rem; /* Kenarlık köşe yuvarlaklığı */
   }
 }

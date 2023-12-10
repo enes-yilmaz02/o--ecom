@@ -1,191 +1,355 @@
 <div class="card">
-
+  <h2>{{ "dGetorders.headeruser" | transloco }}</h2>
   <!-- Yeni kullanıcı eklemek için dialog penceresi -->
   <p-dialog header="Add New User" [(visible)]="displayAddUserDialog">
-    <!-- Yeni kullanıcı eklemek için form -->
-    <form (ngSubmit)="addUser()" #addUserForm="ngForm">
-      <div class="p-field">
-        <label for="newUserName">Name</label>
-        <input id="newUserName" type="text" pInputText [(ngModel)]="newUser.name" name="name" required>
-      </div>
+    <div class="p-dialog-form">
+      <!-- Yeni kullanıcı eklemek için form -->
+      <form (ngSubmit)="addUser()" #addUserForm="ngForm">
+        <div class="p-field">
+          <label for="newUserName">{{ "aGetOrders.Name" | transloco }}</label>
+          <input
+            id="newUserName"
+            type="text"
+            pInputText
+            [(ngModel)]="newUser.name"
+            name="name"
+            required
+          />
+        </div>
 
-      <div class="p-field">
-        <label for="newUserEmail">Email</label>
-        <input id="newUserEmail" type="email" pInputText [(ngModel)]="newUser.email" name="email" required>
-      </div>
+        <div class="p-field">
+          <label for="newUserEmail">{{ "aGetOrders.Email" | transloco }}</label>
+          <input
+            id="newUserEmail"
+            type="email"
+            pInputText
+            [(ngModel)]="newUser.email"
+            name="email"
+            required
+          />
+        </div>
 
-      <div class="p-field">
-        <label for="newUserRole">Role</label>
-        <p-dropdown id="newUserRole" [options]="roleOptions" [(ngModel)]="newUser.role" name="role" optionLabel="label" placeholder="Select a role"></p-dropdown>
-      </div>
+        <div class="p-field">
+          <label for="newUserRole">{{ "aGetOrders.Role" | transloco }}</label>
+          <p-dropdown
+            id="newUserRole"
+            [options]="roleOptions"
+            [(ngModel)]="newUser.role"
+            name="role"
+            optionLabel="label"
+            placeholder="Select a role"
+          ></p-dropdown>
+        </div>
 
-      <div class="p-field">
-        <label for="newUserEmail">Address</label>
-        <input id="newUserEmail" type="text" pInputText [(ngModel)]="newUser.address" name="address" required>
-      </div>
+        <div class="p-field">
+          <label for="newUserEmail">{{
+            "aGetOrders.Address" | transloco
+          }}</label>
+          <input
+            id="newUserEmail"
+            type="text"
+            pInputText
+            [(ngModel)]="newUser.address"
+            name="address"
+            required
+          />
+        </div>
 
-      <div class="p-field">
-        <label for="newUserEmail">Phone</label>
-        <input id="newUserEmail" type="text" pInputText [(ngModel)]="newUser.phone" name="phone" required>
-      </div>
+        <div class="p-field">
+          <label for="newUserEmail">{{ "aGetOrders.Phone" | transloco }}</label>
+          <input
+            id="newUserEmail"
+            type="text"
+            pInputText
+            [(ngModel)]="newUser.phone"
+            name="phone"
+            required
+          />
+        </div>
 
-      <div class="p-field">
-        <label for="newUserEmail">Company Name</label>
-        <input id="newUserEmail" type="text" pInputText [(ngModel)]="newUser.companyName" name="companyName" required>
-      </div>
+        <div class="p-field">
+          <label for="newUserEmail">{{
+            "aGetOrders.CompanyName" | transloco
+          }}</label>
+          <input
+            id="newUserEmail"
+            type="text"
+            pInputText
+            [(ngModel)]="newUser.companyName"
+            name="companyName"
+            required
+          />
+        </div>
 
-      <div class="p-field">
-        <label for="newUserEmail">taxNumber</label>
-        <input id="newUserEmail" type="text" pInputText [(ngModel)]="newUser.taxNumber" name="taxNumber" required>
-      </div>
+        <div class="p-field">
+          <label for="newUserEmail">{{
+            "aGetOrders.taxNumber" | transloco
+          }}</label>
+          <input
+            id="newUserEmail"
+            type="text"
+            pInputText
+            [(ngModel)]="newUser.taxNumber"
+            name="taxNumber"
+            required
+          />
+        </div>
 
-
-
-      <div class="p-field">
-        <button pButton type="submit" label="Add" class="p-button-success"></button>
-        <button pButton type="button" label="Cancel" (click)="cancelAddUser()" class="p-button-danger"></button>
-      </div>
-    </form>
+        <div class="p-field">
+          <button pButton type="submit" class="p-button-success">
+            {{ "aGetOrders.buttonAdd" | transloco }}
+          </button>
+          <button
+            pButton
+            type="button"
+            (click)="cancelAddUser()"
+            class="p-button-danger"
+          >
+            {{ "aGetOrders.buttonCancel" | transloco }}
+          </button>
+        </div>
+      </form>
+    </div>
   </p-dialog>
   <p-table
-      #dt2
-      [value]="userData"
-      dataKey="id"
-      [rows]="10"
-       editMode="row"
-      [showCurrentPageReport]="true"
-      [rowsPerPageOptions]="[10, 25, 50]"
-      [paginator]="true"
-      [globalFilterFields]="['name', 'email', 'role', 'address', 'phone', 'companyName', 'taxNumber']"
-      [tableStyle]="{ 'min-width': '75rem' }"
+    #dt2
+    [value]="userData"
+    dataKey="id"
+    [rows]="10"
+    editMode="row"
+    [showCurrentPageReport]="true"
+    [rowsPerPageOptions]="[10, 25, 50]"
+    [paginator]="true"
+    [globalFilterFields]="[
+      'name',
+      'email',
+      'role',
+      'address',
+      'phone',
+      'companyName',
+      'taxNumber'
+    ]"
+    [tableStyle]="{ 'min-width': '75rem' }"
   >
-      <ng-template pTemplate="caption">
-          <div class="flex">
-            <span>
-              <button pButton type="button" label="Add User" icon="pi pi-plus" (click)="showAddUserDialog()" class=" p-button-add mb-2" ></button>
-
-            </span>
-              <span class="p-input-icon-left ml-auto">
-                  <i class="pi pi-search "></i>
-                  <input pInputText type="text" (input)="dt2.filterGlobal($any($event.target).value, 'contains')" placeholder="Search keyword" />
-              </span>
-          </div>
-      </ng-template>
-      <ng-template pTemplate="header">
-          <tr>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Role</th>
-              <th>Address</th>
-              <th>Phone</th>
-              <th>Company Name</th>
-              <th>Tax Number</th>
-              <th>Düzenle</th>
-              <th>Sil</th>
-          </tr>
-          <tr>
-              <th>
-                  <p-columnFilter type="text" field="name"></p-columnFilter>
-              </th>
-              <th>
-                  <p-columnFilter type="text" field="email"></p-columnFilter>
-              </th>
-              <th>
-                  <p-columnFilter type="text" field="role"></p-columnFilter>
-              </th>
-              <th>
-                  <p-columnFilter type="text" field="address"></p-columnFilter>
-              </th>
-              <th>
-                  <p-columnFilter type="text" field="phone"></p-columnFilter>
-              </th>
-              <th>
-                  <p-columnFilter type="text" field="companyName"></p-columnFilter>
-              </th>
-              <th>
-                  <p-columnFilter type="text" field="taxNumber"></p-columnFilter>
-              </th>
-              <th></th><th></th>
-          </tr>
-      </ng-template>
-      <ng-template pTemplate="body" let-user let-editing="editing" let-ri="rowIndex">
-          <tr [pEditableRow]="user">
-              <td>
-                <p-cellEditor>
-                  <ng-template pTemplate="input">
-                      <input pInputText type="text" [(ngModel)]="user.name">
-                  </ng-template>
-                  <ng-template pTemplate="output">
-                      {{user.name}}
-                  </ng-template>
-              </p-cellEditor>
-              </td>
-              <td><p-cellEditor>
-                <ng-template pTemplate="input">
-                    <input pInputText type="text" [(ngModel)]="user.email">
-                </ng-template>
-                <ng-template pTemplate="output">
-                    {{user.email}}
-                </ng-template>
-            </p-cellEditor></td>
-              <td><p-cellEditor>
-                <ng-template pTemplate="input">
-                    <input pInputText type="text" [(ngModel)]="user.role">
-                </ng-template>
-                <ng-template pTemplate="output">
-                  {{ user.role.value ? user.role.value : user.role }}
-                </ng-template>
-            </p-cellEditor></td>
-              <td><p-cellEditor>
-                <ng-template pTemplate="input">
-                    <input pInputText type="text" [(ngModel)]="user.address">
-                </ng-template>
-                <ng-template pTemplate="output">
-                    {{user.address}}
-                </ng-template>
-            </p-cellEditor></td>
-              <td><p-cellEditor>
-                <ng-template pTemplate="input">
-                    <input pInputText type="text" [(ngModel)]="user.phone">
-                </ng-template>
-                <ng-template pTemplate="output">
-                    {{user.phone}}
-                </ng-template>
-            </p-cellEditor></td>
-              <td><p-cellEditor>
-                <ng-template pTemplate="input">
-                    <input pInputText type="text" [(ngModel)]="user.companyName">
-                </ng-template>
-                <ng-template pTemplate="output">
-                    {{user.companyName || 'No'}}
-                </ng-template>
-            </p-cellEditor></td>
-              <td><p-cellEditor>
-                <ng-template pTemplate="input">
-                    <input pInputText type="text" [(ngModel)]="user.taxNumber">
-                </ng-template>
-                <ng-template pTemplate="output">
-                    {{user.taxNumber || 'No'}}
-                </ng-template>
-            </p-cellEditor></td>
-            <td>
-              <div class="flex align-items-center justify-content-center gap-2">
-                  <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil" (click)="onRowEditInit(user)" class="p-button-rounded p-button-text"></button>
-                  <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check" (click)="onRowEditSave(user)" class=" p-button-text text-green-400 mr-2"></button>
-                  <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times" (click)="onRowEditCancel(user, ri)" class=" p-button-text text-red-400 "></button>
-              </div>
-          </td>
-          <td>
-            <div class="flex align-items-center justify-content-center gap-2">
-                <button  pButton pRipple type="button" icon="pi pi-trash" (click)="deleteUser(user)"  class="p-button-rounded p-button-text trash"></button>
-            </div>
+    <ng-template pTemplate="caption">
+      <div class="flex">
+        <span>
+          <button
+            pButton
+            type="button"
+            icon="pi pi-plus"
+            (click)="showAddUserDialog()"
+            class="p-button-add mb-2"
+          >
+            {{ "aGetOrders.buttonAddUser" | transloco }}
+          </button>
+        </span>
+        <span class="p-input-icon-left ml-auto">
+          <i class="pi pi-search"></i>
+          <input
+            pInputText
+            type="text"
+            (input)="dt2.filterGlobal($any($event.target).value, 'contains')"
+            placeholder="{{ 'aGetOrders.gSearch' | transloco }}"
+          />
+        </span>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th>{{ "aGetOrders.Name" | transloco }}</th>
+        <th>{{ "aGetOrders.Email" | transloco }}</th>
+        <th>{{ "aGetOrders.Role" | transloco }}</th>
+        <th>{{ "aGetOrders.Address" | transloco }}</th>
+        <th>{{ "aGetOrders.Phone" | transloco }}</th>
+        <th>{{ "aGetOrders.CompanyName" | transloco }}</th>
+        <th>{{ "aGetOrders.taxNumber" | transloco }}</th>
+        <th>{{ "aGetOrders.update" | transloco }}</th>
+        <th>{{ "aGetOrders.delete" | transloco }}</th>
+      </tr>
+      <tr>
+        <th>
+          <p-columnFilter
+            type="text"
+            placeholder="{{ 'aGetOrders.gSearch' | transloco }}"
+            field="name"
+          ></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter
+            type="text"
+            placeholder="{{ 'aGetOrders.gSearch' | transloco }}"
+            field="email"
+          ></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter
+            type="text"
+            placeholder="{{ 'aGetOrders.gSearch' | transloco }}"
+            field="role"
+          ></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter
+            type="text"
+            placeholder="{{ 'aGetOrders.gSearch' | transloco }}"
+            field="address"
+          ></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter
+            type="text"
+            placeholder="{{ 'aGetOrders.gSearch' | transloco }}"
+            field="phone"
+          ></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter
+            type="text"
+            placeholder="{{ 'aGetOrders.gSearch' | transloco }}"
+            field="companyName"
+          ></p-columnFilter>
+        </th>
+        <th>
+          <p-columnFilter
+            type="text"
+            placeholder="{{ 'aGetOrders.gSearch' | transloco }}"
+            field="taxNumber"
+          ></p-columnFilter>
+        </th>
+        <th></th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template
+      pTemplate="body"
+      let-user
+      let-editing="editing"
+      let-ri="rowIndex"
+    >
+      <tr [pEditableRow]="user">
+        <td>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input pInputText type="text" [(ngModel)]="user.name" />
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ user.name }}
+            </ng-template>
+          </p-cellEditor>
         </td>
-          </tr>
-      </ng-template>
-      <ng-template pTemplate="emptymessage">
-          <tr>
-              <td colspan="7">No users found.</td>
-          </tr>
-      </ng-template>
+        <td>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input pInputText type="text" [(ngModel)]="user.email" />
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ user.email }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input pInputText type="text" [(ngModel)]="user.role" />
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ user.role.value ? user.role.value : user.role }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input pInputText type="text" [(ngModel)]="user.address" />
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ user.address }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input pInputText type="text" [(ngModel)]="user.phone" />
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ user.phone }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input pInputText type="text" [(ngModel)]="user.companyName" />
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ user.companyName || "No" }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input pInputText type="text" [(ngModel)]="user.taxNumber" />
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ user.taxNumber || "No" }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td>
+          <div class="flex align-items-center justify-content-center gap-2">
+            <button
+              *ngIf="!editing"
+              pButton
+              pRipple
+              type="button"
+              pInitEditableRow
+              icon="pi pi-pencil"
+              (click)="onRowEditInit(user)"
+              class="p-button-rounded p-button-text"
+            ></button>
+            <button
+              *ngIf="editing"
+              pButton
+              pRipple
+              type="button"
+              pSaveEditableRow
+              icon="pi pi-check"
+              (click)="onRowEditSave(user)"
+              class="p-button-text text-green-400 mr-2"
+            ></button>
+            <button
+              *ngIf="editing"
+              pButton
+              pRipple
+              type="button"
+              pCancelEditableRow
+              icon="pi pi-times"
+              (click)="onRowEditCancel(user, ri)"
+              class="p-button-text text-red-400"
+            ></button>
+          </div>
+        </td>
+        <td>
+          <div class="flex align-items-center justify-content-center gap-2">
+            <button
+              pButton
+              pRipple
+              type="button"
+              icon="pi pi-trash"
+              (click)="deleteUser(user)"
+              class="p-button-rounded p-button-text trash"
+            ></button>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="7">{{ "aGetOrders.nf" | transloco }}</td>
+      </tr>
+    </ng-template>
   </p-table>
 </div>

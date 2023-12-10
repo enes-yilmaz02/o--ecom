@@ -15,6 +15,7 @@ export class GetwaitlistComponent {
   userData: any;
   waitListId: any;
   userIds:any;
+  waitlistLoading: boolean = true;
   constructor(
     private creoterService: CereoterService,
     private userService: UserService,
@@ -35,22 +36,29 @@ export class GetwaitlistComponent {
       }));
           this.userId = this.users[0]?.userId;
          this.waitListId = this.users[0]?.id;
-         this.getUserId(this.userId)
-    });
+         this.getUserId(this.userId);
+         this.waitlistLoading=false;
+    },
+    (error)=>{
+      console.log(error)
+      this.waitlistLoading=true;
+    }
+
+    );
   }
-  
+
 
   getUserId(userId:any) {
     this.userService.getUser(userId).subscribe((data: any) => {
       this.userData = data;
-     
+
     });
   }
 
   onSubmit() {
     // Assuming you want to update the first user in the array
     const userToUpdate = this.users[0];
-  
+
     const body = {
       ...this.userData,
       role: UserRole.Creator,
@@ -58,7 +66,7 @@ export class GetwaitlistComponent {
       companyName: userToUpdate.companyName,
       taxNumber: userToUpdate.taxNumber,
     };
-  
+
     this.userService.updateUser(this.userId, body).subscribe(
       () => {
         this.messageService.add({
@@ -66,7 +74,7 @@ export class GetwaitlistComponent {
           summary: 'Başarılı',
           detail: 'Kullanıcı rolü başarılı bir şekilde güncellendi.',
         });
-  
+
         if (this.users.length > 0) {
           this.creoterService.deleteCreoter(this.waitListId).subscribe(() => {
             this.messageService.add({
@@ -76,7 +84,7 @@ export class GetwaitlistComponent {
             });
           });
         }
-  
+
         this.getAllCreoterUsers();
       },
       (error) => {
@@ -89,5 +97,27 @@ export class GetwaitlistComponent {
       }
     );
   }
-  
+
+  onDelete(userId:any) {
+    console.log(userId);
+    this.creoterService.deleteCreoter(userId).subscribe(
+      () => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Başarılı',
+          detail: 'Kullanıcı  başarılı bir şekilde silindi.',
+        });
+        this.getAllCreoterUsers();
+      },
+      (error) => {
+        this.messageService.add({
+          severity: 'danger',
+          summary: 'Hata!',
+          detail: 'Kullanıcı silinemedi.',
+        });
+        console.log(error);
+      }
+    );
+  }
+
 }

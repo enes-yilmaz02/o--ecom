@@ -379,6 +379,8 @@
   },
   "dGetorders":{
     "header":"Order List",
+    "headerproduct": "Products Table",
+    "headeruser": "Users Table",
     "pdf" : "Export PDF",
     "xls":"Export XLS",
     "userId": "Customer Id: ",
@@ -443,6 +445,13 @@
     "rpt":"Statistics",
     "ps":"Profile Management"
   },
+  "aSidebar":{
+    "um":"User Management",
+    "pm":"Product Management",
+    "om":"Order Management",
+    "rpt":"Statistics",
+    "wm":"Waiting List"
+  },
   "dReporting":{
     "totalOrder":" Number of Orders",
     "totalProduct":" Product Count",
@@ -455,7 +464,46 @@
   },
   "topbar":{
     "header":"Creoter Module Page",
+    "headeradmin":"Admin Module Page",
     "logout":"Log out"
+  },
+  "aGetOrders":{
+    "Name":"Name",
+    "Email":"Email",
+    "Role":"Role",
+    "Address":"Address",
+    "Phone":"Phone",
+    "CompanyName":"Company Name",
+    "taxNumber":"Tax number",
+    "buttonAdd":"Add",
+    "buttonCancel":"Cancel",
+    "buttonAddUser":"Add User",
+    "gSearch":"Search",
+    "update":"Edit",
+    "delete":"Delete",
+    "nf":"No Records Found"
+  },
+  "aGetList":{
+    "header":"Seller Approval List",
+    "userId":"User Id ",
+    "email":"Email",
+    "Role":"Role",
+    "companyName":"Company Name ",
+    "taxNumber":"Tax Number",
+    "Actions":"Actions",
+    "approve":"Approve",
+    "delete":"Delete",
+    "headerdesc":"Waiting List is empty",
+    "desc":"There are no users waiting for approval status in the waiting list."
+  },
+  "aStatistic":{
+    "totalOrder":"Total Order",
+    "totalRevenue":"Total Revenue",
+    "totalUser":"Total User",
+    "totalProduct":"Total Product",
+    "roleTable":"User Role Chart",
+    "categoryTable":"Product Category Chart",
+    "statusTable":"Product Stock Chart"
   }
 
 

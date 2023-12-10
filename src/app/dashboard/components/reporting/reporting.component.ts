@@ -264,26 +264,6 @@ export class ReportingComponent {
     }
   }
 
-  // getAllCreoterOrders() {
-  //   this.getUserId().subscribe((userId) => {
-  //     this.productService.getAllCreoterOrdersById(userId).subscribe((data: any) => {
-  //       // Eğer herhangi bir sipariş bulunamazsa, this.orders'u boş bir diziyle güncelle
-  //       this.orders = data ? data.map((item: any) => {
-  //          this.products = item.orders.map((orderItem: any) => orderItem.product);
-
-  //         return {
-  //           orderDate: item.orderDate,
-  //           id: item.id,
-  //           products: this.products, // Tüm ürünleri içeren bir dizi
-  //           totalAmount: item.totalAmount,
-  //           userId: item.userId,
-  //         };
-  //       }) : [];
-  //       console.log(this.products);
-
-  //     });
-  //   });
-  // }
 
   getAllCreoterOrders() {
     this.getUserId().subscribe((userId) => {

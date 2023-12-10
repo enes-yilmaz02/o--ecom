@@ -7,7 +7,16 @@ $dark-text-second: #c0ddfb;
 $light-text: #ecf0f1;
 $light-text-hover: #91c9d7;
 $background-color: #ecf0f1;
+$module-color:#253741;
 /* Dialog Penceresi */
+.card{
+  background: $module-color;
+  border: 0.1px solid ;
+
+  h2{
+    color:$background-color;
+  }
+}
 :host ::ng-deep{
   .p-dialog{
     width: 400px;
@@ -21,8 +30,11 @@ $background-color: #ecf0f1;
   }
 
   .p-paginator{
+    background-color: $module-color;
+    color:$background-color;
+
     .p-icon{
-      color: #666;
+      color: $background-color;
     }
   }
 
@@ -31,8 +43,14 @@ $background-color: #ecf0f1;
   }
 
   th{
-    background-color: $dark-text;
-    color:#fff;
+    background-color: $module-color;
+    color:$background-color;
+  }
+
+
+  td{
+    background-color: $module-color;
+    color:$background-color;
   }
 
 

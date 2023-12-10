@@ -1,0 +1,41 @@
+$primary-color: #3498db;
+$secondary-color: #1071b3;
+$danger-color: #e74c3c;
+$dark-text: #34495e;
+$light-text-second: #c0ddfb;
+$light-text: #ecf0f1;
+$light-text-hover: #91c9d7;
+$background-color: #ecf0f1;
+$module-color:#253741;
+
+.layout-topbar{
+  background: $module-color;
+
+
+a , i , button{
+  color: $background-color;
+}
+
+i , button{
+  &:hover{
+    color: $background-color;
+    background-color: $module-color;
+
+  }
+}
+}
+
+h3{
+  color: $background-color;
+}
+
+.logout{
+  width: 200px;
+  color: $dark-text;
+  cursor: pointer;
+}
+.custom-select{
+  background: $module-color;
+  border: none;
+  color:$background-color
+}

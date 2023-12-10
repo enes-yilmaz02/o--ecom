@@ -1,5 +1,15 @@
+$primary-color: #3498db;
+$secondary-color: #1071b3;
+$danger-color: #e74c3c;
+$dark-text: #34495e;
+$light-text-second: #c0ddfb;
+$light-text: #ecf0f1;
+$light-text-hover: #91c9d7;
+$background-color: #ecf0f1;
+$module-color:#253741;
 .layout-menu{
   justify-content: center;
+
   li{
     cursor: pointer;
     margin-top: 20px;
@@ -9,4 +19,8 @@
     justify-content: center;
     align-items: center;
   }
+}
+
+h6, i {
+  color: $background-color;
 }
