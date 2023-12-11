@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslocoService } from '@ngneat/transloco';
 import { MessageService } from 'primeng/api';
 import { BehaviorSubject } from 'rxjs';
+import { GeneratedCodeService } from 'src/app/services/generated-code.service';
+import { GetEmailService } from 'src/app/services/get-email.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -15,18 +17,20 @@ export class ResetPasswordComponent {
   userResetForm: FormGroup;
   generatedCode: any;
   senderMail: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-
+  isCodeGenerated: boolean = false;
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
     private messageService:MessageService,
     private router:Router,
-    private translocoService:TranslocoService
+    private translocoService:TranslocoService,
+    private generatedCodeService:GeneratedCodeService,
+    private emailService:GetEmailService
   ) {
     this.userResetForm = this.formBuilder.group({
       email: ['', Validators.required],
     });
-   
+
   }
 
   generateRandomCode(): string {
@@ -41,11 +45,14 @@ export class ResetPasswordComponent {
     return result;
   }
 
-  deneme() {
+  sendCode() {
     if(this.userResetForm.valid){
       this.generatedCode = this.generateRandomCode();
+      this.isCodeGenerated = true;
+      this.generatedCodeService.setGeneratedCode(this.generatedCode);
     const formValuesArray = this.userResetForm.value;
     const email = formValuesArray.email;
+    this.emailService.setEmail(email);
     const body = {
       to: email,
       subject: this.translocoService.translate('changePassword'),

@@ -13,7 +13,7 @@
         type="email"
         id="email"
         formControlName="email"
-        pTooltip="{{ 'loginForm.emailTooltip' | transloco }}"
+
       />
       <label htmlFor="email">{{ "loginForm.emailLabel" | transloco }}</label>
     </span>
@@ -45,7 +45,6 @@
         styleClass="password"
         [toggleMask]="true"
         [feedback]="false"
-        pTooltip="{{ 'loginForm.passwordTooltip' | transloco }}"
       ></p-password>
       <label htmlFor="password">{{
         "loginForm.passwordLabel" | transloco
@@ -144,7 +143,7 @@
 
   <!-- <ng-container *ngIf="userProfile">
   <div>Welcome, {{ userProfile.name }}</div>
- 
+
 </ng-container>
 <button id="signout-button" (click)="handleSignOut()">Sign Out</button> -->
 </div>

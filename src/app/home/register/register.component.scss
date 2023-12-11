@@ -2,9 +2,11 @@ $primary-color: #3498db;
 $secondary-color: #1071b3;
 $danger-color: #e74c3c;
 $dark-text: #34495e;
+$light-text-second: #c0ddfb;
 $light-text: #ecf0f1;
+$light-text-hover: #91c9d7;
 $background-color: #ecf0f1;
-
+$module-color:#253741;
 .container {
   display: flex;
   justify-content: center;
@@ -14,7 +16,7 @@ $background-color: #ecf0f1;
   form {
     width: 100%;
     max-width: 600px;
-    background-color: #fff;
+    background-color: $background-color;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
@@ -36,14 +38,14 @@ $background-color: #ecf0f1;
         justify-content: space-between;
         align-items: center;
         border: none;
-        border-bottom: 2px solid $primary-color;
+        border-bottom: 2px solid $module-color;
         background-color: transparent;
         color: $dark-text;
         transition: border-color 0.3s;
 
         &:focus {
           outline: none;
-          border-bottom: 2px solid $secondary-color;
+          border-bottom: 2px solid $module-color;
         }
         i {
           position: absolute;
@@ -64,14 +66,14 @@ $background-color: #ecf0f1;
           padding-left: 40px;
           font-size: 1rem;
           border: none;
-          border-bottom: 2px solid $primary-color;
+          border-bottom: 2px solid $module-color;
           background-color: transparent;
           color: $dark-text;
           transition: border-color 0.3s;
 
           &:focus {
             outline: none;
-            border-bottom: 2px solid $secondary-color;
+            border-bottom: 2px solid $module-color;
           }
         }
 
@@ -117,7 +119,7 @@ $background-color: #ecf0f1;
 
       a {
         text-decoration: none;
-        color: $primary-color;
+        color: $module-color;
         cursor: pointer;
 
         &:hover {
@@ -133,7 +135,7 @@ $background-color: #ecf0f1;
       button {
         width: 100%;
         padding: 15px;
-        background-color: $primary-color;
+        background-color: $module-color;
         color: $light-text;
         font-size: 1rem;
         border: none;
@@ -142,7 +144,7 @@ $background-color: #ecf0f1;
         transition: background-color 0.3s;
 
         &:hover {
-          background-color: $secondary-color;
+          background-color: $module-color;
         }
       }
     }
@@ -157,7 +159,7 @@ $background-color: #ecf0f1;
 
       a {
         text-decoration: none;
-        color: $primary-color;
+        color: $module-color;
         cursor: pointer;
 
         &:hover {
@@ -189,14 +191,14 @@ $background-color: #ecf0f1;
     width: 100%;
     font-size: 1rem;
     border: none;
-    border-bottom: 2px solid $primary-color;
+    border-bottom: 2px solid $module-color;
     background-color: transparent;
     padding-left: 35px;
     color: $dark-text;
     transition: border-color 0.3s;
     &:focus {
       outline: none;
-      border-bottom: 2px solid $secondary-color;
+      border-bottom: 2px solid $module-color;
     }
 
 
@@ -233,14 +235,14 @@ $background-color: #ecf0f1;
       padding-left: 35px;
       font-size: 1rem;
       border: none;
-      border-bottom: 2px solid #3498db;
+      border-bottom: 2px solid $module-color;
       background-color: transparent;
       color: #34495e;
       transition: border-color 0.3s;
 
       &:focus {
         outline: none;
-        border-bottom: 2px solid #1071b3;
+        border-bottom: 2px solid $module-color;
       }
     }
   }

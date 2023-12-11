@@ -12,6 +12,7 @@ import { CartService } from '../services/cart.service';
 import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from '@abacritt/angularx-social-login';
 import {  GoogleSigninButtonModule } from '@abacritt/angularx-social-login';
 import { ResetpasswordCodeComponent } from './reset-password/resetpassword-code/resetpassword-code.component';
+import { ResetPasswordPasswordComponent } from './reset-password/reset-password-password/reset-password-password.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ResetpasswordCodeComponent } from './reset-password/resetpassword-code/
     LoginComponent,
     RegisterComponent,
     ResetPasswordComponent,
-    ResetpasswordCodeComponent
+    ResetpasswordCodeComponent,
+    ResetPasswordPasswordComponent
   ],
   imports: [
     CommonModule,

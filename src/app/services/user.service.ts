@@ -24,6 +24,7 @@ export class UserService {
   usersAdminEndPoint = 'users-admin';
   productEndPoint= 'product';
   emailEndPoint = 'email';
+  passwordEndPoint= 'password';
 
   // Rol ve kullanıcı verilerini saklamak için değişkenler
   role: any;
@@ -35,7 +36,7 @@ export class UserService {
     private authService: AuthService,
     private jwtHelper: JwtHelperService,
     private badgeService: BadgeService,
-  
+
   ) {}
 
   checkIfUserExists(email: string): Observable<boolean> {
@@ -270,6 +271,12 @@ getFavoriteById(userId: string, productId: string): Observable<boolean> {
   updateUser(userId: any, body: any) {
     return this.commonService.put(`${this.usersEndPoint}/${userId}`, body);
   }
+
+    // Belirli bir kullanıcının bilgilerini güncelleyen fonksiyon
+    updateUserPassword(userId: any, body: any) {
+      return this.commonService.put(`${this.usersEndPoint}/${userId}/${this.passwordEndPoint}`, body);
+    }
+
 
   // Belirli bir kullanıcıyı silen fonksiyon
   deleteUser(userId: any) {

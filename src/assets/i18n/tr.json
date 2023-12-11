@@ -96,7 +96,7 @@
     "buttonLabelNew": "Şifremi Yenile",
     "buttonLabelBack": "Geri",
     "messageDetailsuccess": "E-posta adresinize gönderilen Şifre yenilem kodu ile Şifrenizi güncelleyebilirsiniz.",
-    "messgaeDetailwarn": "Email adresinizi giriniz"
+    "messageDetailwarn": "Email adresinizi giriniz"
   },
   "startForm": {
     "header": "Orion Innovation",
@@ -105,11 +105,9 @@
     "registerText": "Üye Ol",
     "newPassText": "Şifreyi Yenile",
     "headerSocial": "Sosyal hesap ile giriş yap",
-    "descSocialOne": "Orion Innovation'a şifresiz giriş yapabilmek için Google, Apple veya",
-    "descSocialTwo": "Facebook hesabınızı bağlayabilirsiniz.",
-    "piGoogle": "Google ile giriş yap",
-    "piApple": "Apple ile giriş yap",
-    "piFacebook": "Facebook ile giriş yap"
+    "descSocialOne": "Orion Innovation'a şifresiz giriş yapabilmek için Google",
+    "descSocialTwo": " hesabınızı bağlayabilirsiniz.",
+    "piGoogle": "Google ile giriş yap"
   },
   "userContact": {
     "header": "İletişim Tercihlerim",
@@ -530,6 +528,10 @@
     "messageDetailerroradduser": "Kullanıcı başarıyla eklenemedi",
     "messageDetailsuccessdeleteuser": "Kullanıcı başarıyla silindi",
     "messageDetailerroradeleteuser": "Kullanıcı başarıyla silinemedi"
-  }
+  },
+  "rpc":{
+    "messageDetailsuccess": "Kod Doğrulandı , Şifre değişikliği için yönlendiriliyorsunuz",
+    "messageDetailerror": "Kod Doğrulanmadı , Lütfen tekrar deneyiniz"
 
+  }
 }

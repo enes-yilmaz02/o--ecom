@@ -95,7 +95,7 @@
     "buttonLabelNew": "Reset Password",
     "buttonLabelBack": "Back",
     "messageDetailsuccess":"You can update your Password with the Password reset code sent to your e-mail address.",
-    "messgaeDetailwarn":"Enter your email address"
+    "messageDetailwarn":"Enter your email address"
   },
   "startForm": {
     "header": "Orion Innovation",
@@ -104,11 +104,9 @@
     "registerText": "Sign up",
     "newPassText": "Reset Password",
     "headerSocial": "log in with social account",
-    "descSocialOne": "You can connect your Google, Apple or Facebook account to log in to",
+    "descSocialOne": "You can connect your Google account to log in to",
     "descSocialTwo": "Orion Innovation without a password.",
-    "piGoogle": "Sign in with Google",
-    "piApple": "Sign in with Apple",
-    "piFacebook": "Sign in with Facebook"
+    "piGoogle": "Sign in with Google"
   },
   "userContact": {
     "header": "Communication Preferences",
@@ -529,6 +527,11 @@
     "messageDetailerroradduser": "Failed to add user successfully",
     "messageDetailsuccessdeleteuser": "User deleted successfully",
     "messageDetailerroradeleteuser": "User could not be deleted successfully"
+  },
+  "rpc":{
+    "messageDetailsuccess": "Code Verified, you are directed to change your password",
+    "messageDetailerror": "Code Not Verified, Please try again"
+
   }
 
 

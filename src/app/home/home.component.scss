@@ -1,23 +1,32 @@
+$primary-color: #3498db;
+$secondary-color: #1071b3;
+$danger-color: #e74c3c;
+$dark-text: #34495e;
+$light-text-second: #c0ddfb;
+$light-text: #ecf0f1;
+$light-text-hover: #91c9d7;
+$background-color: #ecf0f1;
+$module-color:#253741;
 .header {
   width: 100%;
-  height: 60px;
+  height: 70px;
   justify-content: space-between;
   align-items: center;
-  background-color: #000;
+  background-color: $module-color;
   position: relative;
   margin-bottom: 50px;
   display: flex;
-  color: #fff;
+  color: $background-color;
 
   h1{
-    color: #fff;
+    color: $background-color;
     margin-left: 20px;
     margin-top: 5px;
   }
 }
 
 .custom-select{
-  color: #fff;
+  color: $background-color;
   border: none;
   background: transparent;
   margin-right: 20px;
@@ -35,7 +44,7 @@
 }
 
 .footer p {
-  color: #000;
+  color: $module-color;
   margin: 15px 0 10px 0;
   font-size: 1rem;
   font-weight: 300;
