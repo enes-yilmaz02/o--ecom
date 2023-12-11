@@ -494,7 +494,12 @@
     "approve":"Approve",
     "delete":"Delete",
     "headerdesc":"Waiting List is empty",
-    "desc":"There are no users waiting for approval status in the waiting list."
+    "desc":"There are no users waiting for approval status in the waiting list.",
+    "messageDetailsuccess":"User role updated successfully",
+    "messageDetailerror":"Failed to update user role",
+    "messageDetailsuccessdeleteuser":"The user has been removed from the waiting list.",
+    "messageDetailerroradeleteuser":"The user could not be removed from the waiting list."
+
   },
   "aStatistic":{
     "totalOrder":"Total Order",
@@ -504,6 +509,26 @@
     "roleTable":"User Role Chart",
     "categoryTable":"Product Category Chart",
     "statusTable":"Product Stock Chart"
+  },
+  "aGetProduct":{
+    "messageDetailsuccess": "The product was successfully deleted",
+    "messageDetailerror": "The product was not deleted successfully",
+    "name":"Name",
+    "image":"Image",
+    "price":"Price",
+    "category":"Category",
+    "rating":"Rating",
+    "status":"Status",
+    "actions":"Actions"
+
+  },
+  "aGetUser":{
+    "messageDetailsuccess": "User updated successfully",
+    "messageDetailerror": "User could not be updated successfully",
+    "messageDetailsuccessadduser": "User added successfully",
+    "messageDetailerroradduser": "Failed to add user successfully",
+    "messageDetailsuccessdeleteuser": "User deleted successfully",
+    "messageDetailerroradeleteuser": "User could not be deleted successfully"
   }
 
 

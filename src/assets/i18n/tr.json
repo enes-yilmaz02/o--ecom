@@ -495,7 +495,12 @@
     "approve":"Onayla",
     "delete":"Sil",
     "headerdesc":"Bekleme Listesi boş",
-    "desc":"Bekleme listesinde onay durumu bekleyen kullanıcı bulunmamaktadır."
+    "desc":"Bekleme listesinde onay durumu bekleyen kullanıcı bulunmamaktadır.",
+    "messageDetailsuccess":"Kullanıcı rolü başarılı bir şekilde güncellendi",
+    "messageDetailerror":"Kullanıcı rolü güncellenemedi",
+    "messageDetailsuccessdeleteuser":"Kullanıcı bekleme listesinden kaldırıldı.",
+    "messageDetailerroradeleteuser":"Kullanıcı bekleme listesinden kaldırılamadı."
+
   },
   "aStatistic":{
     "totalOrder":"Toplam Sipariş",
@@ -505,6 +510,26 @@
     "roleTable":"Kullanıcı Role Grafiği",
     "categoryTable":"Ürün Kategori Grafiği",
     "statusTable":"Ürün Stok Grafiği"
+  },
+  "aGetProduct":{
+    "messageDetailsuccess": "Ürün başarıyla silindi",
+    "messageDetailerror": "Ürün başarıyla silinmedi",
+    "name":"Ürün Adı",
+    "image":"Resim",
+    "price":"Fiyat",
+    "category":"Kategori",
+    "rating":"Değerlendirme",
+    "status":"Durum",
+    "actions":"İşlemler"
+
+  },
+  "aGetUser":{
+    "messageDetailsuccess": "Kullanıcı başarıyla güncellendi",
+    "messageDetailerror": "Kullanıcı başarıyla güncellenemedi",
+    "messageDetailsuccessadduser": "Kullanıcı başarıyla eklendi",
+    "messageDetailerroradduser": "Kullanıcı başarıyla eklenemedi",
+    "messageDetailsuccessdeleteuser": "Kullanıcı başarıyla silindi",
+    "messageDetailerroradeleteuser": "Kullanıcı başarıyla silinemedi"
   }
 
 }

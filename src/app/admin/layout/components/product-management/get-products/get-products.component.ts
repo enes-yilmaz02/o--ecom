@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TranslocoService } from '@ngneat/transloco';
 import { MessageService } from 'primeng/api';
 import { ProductService } from 'src/app/services/product.service';
 import { UserService } from 'src/app/services/user.service';
@@ -18,6 +19,7 @@ export class GetProductsComponent {
     private productService: ProductService,
     private messageService: MessageService,
     private userService: UserService,
+    private translocoService:TranslocoService
   ) {
     this.getAllProducts();
     this.getCreoterBuyUsers();
@@ -37,8 +39,8 @@ export class GetProductsComponent {
       (response) => {
         this.messageService.add({
           severity: 'success',
-          summary: 'Success',
-          detail: 'User is updated',
+          summary: this.translocoService.translate('successMessage'),
+          detail:  this.translocoService.translate('aGetProduct.messageDetailsuccess'),
         });
         this.getAllProducts(); // Tabloyu güncelle
       },
@@ -46,8 +48,8 @@ export class GetProductsComponent {
         console.error('Error updating user:', error);
         this.messageService.add({
           severity: 'error',
-          summary: 'Error',
-          detail: 'Failed to update user',
+          summary: this.translocoService.translate('errorMessage'),
+          detail: this.translocoService.translate('aGetProduct.messageDetailsuccess'),
         });
       }
     );

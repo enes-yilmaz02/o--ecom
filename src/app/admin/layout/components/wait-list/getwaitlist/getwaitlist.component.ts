@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TranslocoService } from '@ngneat/transloco';
 import { MessageService } from 'primeng/api';
 import { UserRole } from 'src/app/models/role.enum';
 import { CereoterService } from 'src/app/services/cereoter.service';
@@ -19,7 +20,8 @@ export class GetwaitlistComponent {
   constructor(
     private creoterService: CereoterService,
     private userService: UserService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private translocoService:TranslocoService
   ) {
     this.getAllCreoterUsers();
   }
@@ -71,16 +73,16 @@ export class GetwaitlistComponent {
       () => {
         this.messageService.add({
           severity: 'success',
-          summary: 'Başarılı',
-          detail: 'Kullanıcı rolü başarılı bir şekilde güncellendi.',
+          summary: this.translocoService.translate('succesMessage'),
+          detail: this.translocoService.translate('aGetList.messageDetailsuccess'),
         });
 
         if (this.users.length > 0) {
           this.creoterService.deleteCreoter(this.waitListId).subscribe(() => {
             this.messageService.add({
               severity: 'success',
-              summary: 'Başarılı',
-              detail: 'Kullanıcı bekleme listesinden kaldırıldı.',
+              summary: this.translocoService.translate('succesMessage'),
+              detail: this.translocoService.translate('aGetList.messageDetailsuccessdeleteuser'),
             });
           });
         }
@@ -90,8 +92,8 @@ export class GetwaitlistComponent {
       (error) => {
         this.messageService.add({
           severity: 'danger',
-          summary: 'Hata!',
-          detail: 'Kullanıcı rolü güncellenemedi.',
+          summary: this.translocoService.translate('errorMessage'),
+          detail: this.translocoService.translate('aGetList.messageDetailerrordeleteuser')
         });
         console.log(error);
       }
@@ -104,16 +106,16 @@ export class GetwaitlistComponent {
       () => {
         this.messageService.add({
           severity: 'success',
-          summary: 'Başarılı',
-          detail: 'Kullanıcı  başarılı bir şekilde silindi.',
+          summary: this.translocoService.translate('succesMessage'),
+          detail: this.translocoService.translate('aGetList.messageDetailsuccessdeleteuser'),
         });
         this.getAllCreoterUsers();
       },
       (error) => {
         this.messageService.add({
           severity: 'danger',
-          summary: 'Hata!',
-          detail: 'Kullanıcı silinemedi.',
+          summary:this.translocoService.translate('errorMessage') ,
+          detail: this.translocoService.translate('aGetList.messageDetailerrordeleteuser'),
         });
         console.log(error);
       }
