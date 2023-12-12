@@ -17,7 +17,29 @@ $module-color:#253741;
     color:$background-color;
   }
 }
+
+.category-filter{
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+
+  form{
+    width: 100%;
+    background: transparent;
+  }
+
+  .title{
+    border: none;
+    background-color: transparent;
+    justify-content: start;
+  }
+}
 :host ::ng-deep{
+
+  .p-dropdown{
+    margin-right: 5px;
+  }
   .p-dialog{
     width: 400px;
   }

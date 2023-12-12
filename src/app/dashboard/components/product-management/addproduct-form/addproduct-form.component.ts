@@ -59,7 +59,7 @@ export class AddproductFormComponent  {
 
     this.items = [];
     for (let i = 1; i < 6; i++) {
-      this.items.push({ label: ' ' + i, value: ' ' + i });
+      this.items.push({ label: ' ' + i, value:i });
     }
 
     // this.categorys  = [

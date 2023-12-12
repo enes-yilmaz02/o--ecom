@@ -1,5 +1,6 @@
 <div class="conatiner flex flex-row">
   <div>
+
     <div class="category-filter flex">
       <div (click)="getAllProducts()">
         {{ "cardForm.allProducts" | transloco }}
@@ -16,15 +17,7 @@
       <div (click)="getProductByFilter('Fitness')">
         {{ "cardForm.Fitness" | transloco }}
       </div>
-      <div (click)="getProductByFilter('Fitness')">
-        {{ "cardForm.spor" | transloco }}
-      </div>
-      <div (click)="getProductByFilter('Electronics')">
-        {{ "cardForm.technology" | transloco }}
-      </div>
-      <div (click)="getProductByFilter('Clothing')">
-        {{ "cardForm.school" | transloco }}
-      </div>
+
     </div>
   </div>
   <div class="card">

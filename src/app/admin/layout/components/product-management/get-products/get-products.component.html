@@ -1,5 +1,17 @@
 <div class="card">
   <h2>{{ "dGetorders.headerproduct" | transloco }}</h2>
+  <div>
+    <div class="category-filter flex">
+      <div class="card flex flex-row justify-content-center">
+        <form [formGroup]="categoryForm" class="flex flex-row">
+            <p-dropdown formControlName="category" [options]="categories" optionLabel="name" (onChange)="onCategoryChange()" placeholder="Kategori" ></p-dropdown>
+            <p-dropdown formControlName="status" [options]="status" optionLabel="name" (onChange)="onStatusChange()" placeholder="Stok"></p-dropdown>
+            <p-dropdown formControlName="price" [options]="priceCategories" optionLabel="name" (onChange)="onPriceChange()" placeholder="Fiyat"></p-dropdown>
+            <p-dropdown formControlName="rating" [options]="rating" optionLabel="name" (onChange)="onRatingChange()" placeholder="Rating"></p-dropdown>
+          </form>
+       </div>
+    </div>
+  </div>
   <p-table
     [value]="products"
     dataKey="name"

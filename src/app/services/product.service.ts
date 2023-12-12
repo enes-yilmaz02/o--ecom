@@ -17,9 +17,13 @@ export class ProductService {
 
   uploadEndPoint = 'upload';
 
-  category= 'category';
+  category = 'category';
 
+  price = 'price';
 
+  status = 'status';
+
+  rating= 'rating';
 
   constructor(private commonService: CommonService) {}
 
@@ -69,9 +73,32 @@ export class ProductService {
     return this.commonService.get(this.productsEndpoint);
   }
 
-   // Categorize edilmiş ürünleri getirme
-   getProductsByFilter(category:any): Observable<Product[]> {
-    return this.commonService.get(`${this.productsEndpoint}/${this.category}/${category}`);
+  // Categorize edilmiş ürünleri getirme
+  getProductsByFilter(category: any): Observable<Product[]> {
+    return this.commonService.get(
+      `${this.productsEndpoint}/${this.category}/${category}`
+    );
+  }
+
+  //Fiyat  Categorize edilmiş ürünleri getirme
+  getProductsByPrice(range: any): Observable<Product[]> {
+    return this.commonService.get(
+      `${this.productsEndpoint}/${this.price}/${range}`
+    );
+  }
+
+  //Stok ile Kategorize edilmiş ürünleri getirme
+  getProductsByStatus(status: any): Observable<Product[]> {
+    return this.commonService.get(
+      `${this.productsEndpoint}/${this.status}/${status}`
+    );
+  }
+
+   //rating ile Kategorize edilmiş ürünleri getirme
+   getProductsByRating(rating: any): Observable<Product[]> {
+    return this.commonService.get(
+      `${this.productsEndpoint}/${this.rating}/${rating}`
+    );
   }
 
   // Tüm creoter ürünleri getirme
@@ -86,8 +113,8 @@ export class ProductService {
     return this.commonService.get(`${this.orders}`);
   }
 
-   // Tüm creoter ürünleri getirme
-   getAllCreoterOrdersById(id:string): Observable<Product[]> {
+  // Tüm creoter ürünleri getirme
+  getAllCreoterOrdersById(id: string): Observable<Product[]> {
     return this.commonService.get(`${this.orders}/${id}`);
   }
 

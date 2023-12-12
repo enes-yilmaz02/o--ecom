@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { TranslocoService } from '@ngneat/transloco';
 import { MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
@@ -8,7 +9,10 @@ import { Product } from 'src/app/models/product';
 
 import { ProductService } from 'src/app/services/product.service';
 import { UserService } from 'src/app/services/user.service';
-
+interface Category {
+  name: string;
+  code: string;
+}
 @Component({
   selector: 'app-get-product',
   templateUrl: './get-product.component.html',
@@ -16,11 +20,15 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class GetProductComponent {
 
+  categoryForm:FormGroup;
+
   creoterId: any;
 
   products: Product[];
 
   isUserDialogOpen: boolean = false;
+
+  cateories: Category[] | undefined;
 
 
 
@@ -34,6 +42,8 @@ export class GetProductComponent {
 
   ngOnInit() {
     this.getAllProducts();
+
+
   }
 
   getUserId(): Observable<any> {
@@ -43,6 +53,7 @@ export class GetProductComponent {
       })
     );
   }
+
   getAllProducts() {
     this.getUserId().subscribe(()=>{
       this.productService.getCreoterProducts(this.creoterId).subscribe((data: any) => {
