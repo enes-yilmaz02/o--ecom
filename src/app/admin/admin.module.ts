@@ -19,6 +19,7 @@ import { GetProductsComponent } from './layout/components/product-management/get
 import { GetOrdersComponent } from './layout/components/orders-management/get-orders/get-orders.component';
 import { WaitListComponent } from './layout/components/wait-list/wait-list.component';
 import { GetwaitlistComponent } from './layout/components/wait-list/getwaitlist/getwaitlist.component';
+import { TRANSLOCO_CONFIG, translocoConfig } from '@ngneat/transloco';
 @NgModule({
   declarations: [
     AdminComponent,
@@ -37,18 +38,8 @@ import { GetwaitlistComponent } from './layout/components/wait-list/getwaitlist/
     GetOrdersComponent,
     WaitListComponent,
     GetwaitlistComponent,
-  
-
   ],
-  imports: [
-    AdminRoutingModule,
-    CommonModule,
-    SharedModule,
-   
-],
-providers: [
-MessageService,
-KeyValuePipe
-],
+  imports: [AdminRoutingModule, CommonModule, SharedModule],
+  providers: [MessageService, KeyValuePipe],
 })
-export class AdminModule { }
+export class AdminModule {}

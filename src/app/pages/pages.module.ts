@@ -2,7 +2,6 @@ import { MessageService } from 'primeng/api';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavbarListComponent } from './components/navbar-list/navbar-list.component';
-import { TranslocoRootModule } from '../transloco-root.module';
 import { SharedModule } from '../shared/shared.module';
 import { AboutComponent } from './components/about/about.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -67,7 +66,6 @@ import { CitiesService } from '../services/cities.service';
   ],
   imports: [
     CommonModule,
-    TranslocoRootModule,
     SharedModule,
     RouterModule,
     PagesRoutingModule,
@@ -83,7 +81,7 @@ import { CitiesService } from '../services/cities.service';
     ProductComponent,
     PagesComponent,
     CardDetailComponent,
-  LoadingComponent
+    LoadingComponent
   ],
   providers:[
     CartService,

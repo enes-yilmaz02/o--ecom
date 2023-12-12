@@ -24,6 +24,13 @@ $module-color:#253741;
   display: flex;
   flex-direction: row;
 
+  select{
+    margin-right: 15px;
+    width: 220px;
+    height: 30px;
+    cursor: pointer;
+  }
+
   form{
     width: 100%;
     background: transparent;
@@ -38,7 +45,8 @@ $module-color:#253741;
 :host ::ng-deep{
 
   .p-dropdown{
-    margin-right: 5px;
+    margin-right: 15px;
+    width: 220px;
   }
   .p-dialog{
     width: 400px;
@@ -73,8 +81,14 @@ $module-color:#253741;
   td{
     background-color: $module-color;
     color:$background-color;
+    border: 0.1px solid gray ;
   }
 
+  .drpdwn{
+    label{
+      color: $background-color;
+    }
+  }
 
   .trash{
     color: $danger-color;

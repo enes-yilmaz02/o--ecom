@@ -25,6 +25,12 @@
   "categoryStatus":"Category Status",
   "stockStatusTable":"The amount of stock",
   "status":"Status",
+  "All Products": "All Products",
+  "INSTOCK": "In Stock",
+  "LOWSTOCK": "Low Stock",
+  "OUTOFSTOCK": "Out of Stock",
+  "All":"All",
+
 
   "loginForm": {
     "header":"Login",
@@ -312,6 +318,7 @@
     "OUTOFSTOCK": "Out of Stock"
   },
   "categoryName": {
+    "All Products":"All Products",
     "Accessories": "Accessories",
     "Electronics": "Electronics",
     "Clothing": "Clothing",
@@ -377,6 +384,7 @@
   },
   "dGetorders":{
     "header":"Order List",
+    "header2":"Filter",
     "headerproduct": "Products Table",
     "headeruser": "Users Table",
     "pdf" : "Export PDF",
@@ -394,7 +402,11 @@
     "defaultHeader":"Order List is Empty",
     "defaultDecs":"There are no products in the order list.",
     "close":"Hide Details",
-    "open":"Show Details"
+    "open":"Show Details",
+    "filterCategory":"Filter by Category",
+    "filterStatus":"Filter by Stock Status",
+    "filterPrice":"Filter by Price",
+    "filterRating":"Filter by Rating"
   },
   "codeForm":{
     "approve":"Verify",
@@ -409,6 +421,7 @@
     "img":"Image",
     "price":"Price",
     "quantity":"Product Quantity (piece)",
+    "rating":"Rating",
     "status":"Status",
     "category":"Category",
     "companyName":"Creoter",
@@ -479,7 +492,11 @@
     "gSearch":"Search",
     "update":"Edit",
     "delete":"Delete",
-    "nf":"No Records Found"
+    "nf":"No Records Found",
+    "filterCategory":"Filter by Category",
+    "filterStatus":"Filter by Stock Status",
+    "filterPrice":"Filter by Price",
+    "filterRating":"Filter by Rating"
   },
   "aGetList":{
     "header":"Seller Approval List",

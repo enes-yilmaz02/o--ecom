@@ -68,7 +68,6 @@ import { TruncatePipe } from '../services/pipes/truncate.pipe';
     DialogService,
     ProductService,
     TruncatePipe,
-    TranslocoService
   ]
 })
 export class DashboardModule { }

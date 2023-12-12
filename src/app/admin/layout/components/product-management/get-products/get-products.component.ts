@@ -1,7 +1,9 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { TranslationService } from './../../../../../services/helper/translation.service';
+import { Component,  } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslocoService } from '@ngneat/transloco';
 import { MessageService } from 'primeng/api';
+import { BehaviorSubject } from 'rxjs';
 import { ProductService } from 'src/app/services/product.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -20,7 +22,7 @@ export class GetProductsComponent {
 
   buyUserData: any;
 
-  categories: any[] = [];
+  categories: any;
 
   status: any[] = [];
 
@@ -36,12 +38,15 @@ export class GetProductsComponent {
 
   selectedRating: any;
 
+  isLoading: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+
+
   constructor(
     private productService: ProductService,
     private messageService: MessageService,
     private userService: UserService,
     private translocoService: TranslocoService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
   ) {
     this.getAllProducts();
     this.getCreoterBuyUsers();
@@ -58,6 +63,7 @@ export class GetProductsComponent {
       { name: 'INSTOCK', code: 'IS' },
       { name: 'OUTOFSTOCK', code: 'OS' },
       { name: 'LOWSTOCK', code: 'LS' },
+      { name: 'All', code: 'All' },
     ];
 
     this.priceCategories = [
@@ -67,6 +73,7 @@ export class GetProductsComponent {
       { name: '301-500$', range: '301-500' },
       { name: '501-1000$', range: '501-1000' },
       { name: '1000$ +', range: '1001-100000' },
+      { name: 'All', range: '0-100000' },
     ];
 
     this.rating=[
@@ -74,7 +81,8 @@ export class GetProductsComponent {
       { name: '2' , value:2},
       { name: '3' , value:3},
       { name: '4' , value:4},
-      { name: '5' , value:5}
+      { name: '5' , value:5},
+      { name: 'All' , value:6}
     ]
 
     this.categoryForm = this.formBuilder.group({
@@ -87,23 +95,25 @@ export class GetProductsComponent {
 
 
   getAllProducts() {
+
     this.productService.getProducts().subscribe((data) => {
       this.products = data;
+
     });
   }
 
   onCategoryChange() {
     this.selectedCategory = this.categoryForm.get('category')?.value;
-    if (this.selectedCategory.name === 'All Products') {
+    if (this.selectedCategory === 'All Products') {
       this.getAllProducts();
     } else {
-      this.getProductByFilter(this.selectedCategory.name);
+      this.getProductByFilter(this.selectedCategory);
     }
   }
 
   onPriceChange() {
     this.selectedPrice = this.categoryForm.get('price')?.value;
-    const range = this.selectedPrice.range;
+    const range = this.selectedPrice;
 
     if (range) {
       this.getProductByPrice(range);
@@ -112,7 +122,7 @@ export class GetProductsComponent {
 
   onStatusChange() {
     this.selectedStatus = this.categoryForm.get('status')?.value;
-    const status = this.selectedStatus.name;
+    const status = this.selectedStatus;
 
     if (status) {
       this.getProductByStatus(status);
@@ -121,7 +131,7 @@ export class GetProductsComponent {
 
   onRatingChange() {
     this.selectedRating = this.categoryForm.get('rating')?.value;
-    const rating = this.selectedRating.value;
+    const rating = this.selectedRating;
 
     if (rating) {
       this.getProductByRating(rating);

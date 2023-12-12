@@ -1,23 +1,48 @@
-<div class="conatiner flex flex-row">
+<div class="conatiner flex flex-column">
   <div>
-
     <div class="category-filter flex">
-      <div (click)="getAllProducts()">
-        {{ "cardForm.allProducts" | transloco }}
-      </div>
-      <div (click)="getProductByFilter('Accessories')">
-        {{ "cardForm.Accessories" | transloco }}
-      </div>
-      <div (click)="getProductByFilter('Electronics')">
-        {{ "cardForm.Electronics" | transloco }}
-      </div>
-      <div (click)="getProductByFilter('Clothing')">
-        {{ "cardForm.Clothing" | transloco }}
-      </div>
-      <div (click)="getProductByFilter('Fitness')">
-        {{ "cardForm.Fitness" | transloco }}
-      </div>
 
+      <div class="card flex flex-column justify-content-start">
+        <div>
+          <h2 class>{{'dGetorders.header2' | transloco}}</h2>
+        </div>
+        <div>
+          <form [formGroup]="categoryForm" class="flex flex-row">
+            <div class="drpdwn">
+              <select formControlName="category" (change)="onCategoryChange()">
+                <option value="" disabled selected hidden>{{'dGetorders.filterCategory' |transloco}}</option>
+                <option *ngFor="let category of categories" [value]="category.name">
+                  {{ category.name | transloco }}
+                </option>
+              </select>
+            </div>
+            <div class="drpdwn">
+              <select formControlName="status" (change)="onStatusChange()">
+                <option value="" disabled selected hidden>{{'dGetorders.filterStatus' |transloco}} </option>
+                <option *ngFor="let sts of status" [value]="sts.name">
+                  {{ sts.name | transloco }}
+                </option>
+              </select>
+            </div>
+            <div class="drpdwn">
+              <select formControlName="price" (change)="onPriceChange()">
+                <option value="" disabled selected hidden>{{'dGetorders.filterPrice' |transloco}}</option>
+                <option *ngFor="let price of priceCategories" [value]="price.range">
+                  {{ price.name | transloco }}
+                </option>
+              </select>
+            </div>
+            <div class="drpdwn">
+              <select formControlName="rating" (change)="onRatingChange()">
+                <option value="" disabled selected hidden>{{'dGetorders.filterRating' |transloco}}</option>
+                <option *ngFor="let rtg of rating" [value]="rtg.value">
+                  {{ rtg.name | transloco }}
+                </option>
+              </select>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
   <div class="card">
@@ -70,15 +95,16 @@
       </ng-template>
       <ng-template pTemplate="header">
         <tr>
-          <th style="width: 10%">{{'dGetProduct.id' | transloco}}</th>
-          <th style="width: 10%">{{'dGetProduct.name' | transloco}}</th>
-          <th style="width: 10%">{{'dGetProduct.img' | transloco}}</th>
-          <th style="width: 10%">{{'dGetProduct.price' | transloco}}</th>
-          <th style="width: 10%">{{'dGetProduct.quantity' | transloco}}</th>
-          <th style="width: 10%">{{'dGetProduct.status' | transloco}}</th>
-          <th style="width: 10%">{{'dGetProduct.category' | transloco}}</th>
-          <th style="width: 10%">{{'dGetProduct.companyName' | transloco}}</th>
-          <th style="width: 10%">{{'dGetProduct.actions' | transloco}}</th>
+          <th >{{'dGetProduct.id' | transloco}}</th>
+          <th >{{'dGetProduct.name' | transloco}}</th>
+          <th >{{'dGetProduct.img' | transloco}}</th>
+          <th >{{'dGetProduct.price' | transloco}}</th>
+          <th >{{'dGetProduct.quantity' | transloco}}</th>
+          <th >{{'dGetProduct.rating' | transloco}}</th>
+          <th >{{'dGetProduct.status' | transloco}}</th>
+          <th >{{'dGetProduct.category' | transloco}}</th>
+          <th >{{'dGetProduct.companyName' | transloco}}</th>
+          <th >{{'dGetProduct.actions' | transloco}}</th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-product>
@@ -94,6 +120,11 @@
           </td>
           <td>{{ product?.priceStacked }}</td>
           <td>{{ product?.quantity }}</td>
+          <td> <p-rating
+            [ngModel]="product?.valueRating"
+            [readonly]="true"
+            [cancel]="false"
+          ></p-rating></td>
           <td>
             <p-tag
               [value]="product?.selectedStatus.name | stockStatus "

@@ -25,6 +25,11 @@
   "categoryStatus":"Kategori Durumu",
   "stockStatusTable":"Stok Miktarı",
   "status":"Durum",
+  "All Products": "Tüm Ürünler",
+  "INSTOCK": "Stokta Var",
+  "LOWSTOCK": "Tükenmek Üzere",
+  "OUTOFSTOCK": "Stokta Yok",
+  "All":"Tümü",
 
 
   "loginForm": {
@@ -312,6 +317,7 @@
     "OUTOFSTOCK": "Stokta Yok"
   },
   "categoryName": {
+    "All Products":"Tüm Ürünler",
     "Accessories": "Aksesuar",
     "Electronics": "Elektronik",
     "Clothing": "Giyim",
@@ -378,6 +384,7 @@
   },
   "dGetorders": {
     "header": "Sipariş Listesi",
+    "header2":"Filtreleme",
     "headerproduct": "Ürünler Tablosu",
     "headeruser": "Kullanıcılar Tablosu",
     "pdf": "pdf'i dışa aktar",
@@ -395,7 +402,11 @@
     "defaultHeader": "Sipariş Listesi Boş",
     "defaultDecs": "Sipariş Listesin Herhangi Bir Ürün Bulunmamaktadır.",
     "close": "Detayları Gizle",
-    "open": "Detayları Göster"
+    "open": "Detayları Göster",
+    "filterCategory":"Kategoriye Göre Filtrele",
+    "filterStatus":"Stok Durumuna Göre Filtrele",
+    "filterPrice":"Fiyata Göre Filtrele",
+    "filterRating":"Yıldıza Göre Filtrele"
   },
   "codeForm": {
     "approve": "Doğrula",
@@ -410,6 +421,7 @@
     "img":"Resim",
     "price":"Fiyat",
     "quantity":"Ürün Miktarı(adet)",
+    "rating":"Değerlendirme",
     "status":"Durum",
     "category":"Kategori",
     "companyName":"Satıcı",
@@ -480,7 +492,11 @@
     "gSearch":"Ara",
     "update":"Düzenle",
     "delete":"Sil",
-    "nf":"Hiçbir Kayıt Bulunmadı"
+    "nf":"Hiçbir Kayıt Bulunmadı",
+    "filterCategory":"Kategoriye Göre Filtrele",
+    "filterStatus":"Stok Durumuna Göre Filtrele",
+    "filterPrice":"Fiyata Göre Filtrele",
+    "filterRating":"Yıldıza Göre Filtrele"
   },
   "aGetList":{
     "header":"Satıcı Onay Listesi",

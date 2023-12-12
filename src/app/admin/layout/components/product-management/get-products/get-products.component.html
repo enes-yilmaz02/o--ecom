@@ -4,17 +4,46 @@
     <div class="category-filter flex">
       <div class="card flex flex-row justify-content-center">
         <form [formGroup]="categoryForm" class="flex flex-row">
-            <p-dropdown formControlName="category" [options]="categories" optionLabel="name" (onChange)="onCategoryChange()" placeholder="Kategori" ></p-dropdown>
-            <p-dropdown formControlName="status" [options]="status" optionLabel="name" (onChange)="onStatusChange()" placeholder="Stok"></p-dropdown>
-            <p-dropdown formControlName="price" [options]="priceCategories" optionLabel="name" (onChange)="onPriceChange()" placeholder="Fiyat"></p-dropdown>
-            <p-dropdown formControlName="rating" [options]="rating" optionLabel="name" (onChange)="onRatingChange()" placeholder="Rating"></p-dropdown>
-          </form>
-       </div>
+          <div class="drpdwn">
+            <select formControlName="category" (change)="onCategoryChange()">
+              <option value="" disabled selected hidden>{{'dGetorders.filterCategory' |transloco}}</option>
+              <option *ngFor="let category of categories" [value]="category.name">
+                {{ category.name | transloco }}
+              </option>
+            </select>
+          </div>
+          <div class="drpdwn">
+            <select formControlName="status" (change)="onStatusChange()">
+              <option value="" disabled selected hidden>{{'dGetorders.filterStatus' |transloco}} </option>
+              <option *ngFor="let sts of status" [value]="sts.name">
+                {{ sts.name | transloco }}
+              </option>
+            </select>
+          </div>
+          <div class="drpdwn">
+            <select formControlName="price" (change)="onPriceChange()">
+              <option value="" disabled selected hidden>{{'dGetorders.filterPrice' |transloco}}</option>
+              <option *ngFor="let price of priceCategories" [value]="price.range">
+                {{ price.name | transloco }}
+              </option>
+            </select>
+          </div>
+          <div class="drpdwn">
+            <select formControlName="rating" (change)="onRatingChange()">
+              <option value="" disabled selected hidden>{{'dGetorders.filterRating' |transloco}}</option>
+              <option *ngFor="let rtg of rating" [value]="rtg.value">
+                {{ rtg.name | transloco }}
+              </option>
+            </select>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
   <p-table
     [value]="products"
     dataKey="name"
+    [loading]="isLoading.value"
     [rows]="10"
     [rowsPerPageOptions]="[10, 25, 50]"
     [paginator]="true"
@@ -23,13 +52,17 @@
   >
     <ng-template pTemplate="header">
       <tr class="main">
-        <th pSortableColumn="name">{{'aGetProduct.name' | transloco}}</th>
-        <th>{{'aGetProduct.image' | transloco}}</th>
-        <th pSortableColumn="price">{{'aGetProduct.price' | transloco}}</th>
-        <th pSortableColumn="category">{{'aGetProduct.category' | transloco}}</th>
-        <th pSortableColumn="rating">{{'aGetProduct.rating' | transloco}}</th>
-        <th pSortableColumn="inventoryStatus">{{'aGetProduct.status' | transloco}}</th>
-        <th>{{'aGetProduct.actions' | transloco}}</th>
+        <th pSortableColumn="name">{{ "aGetProduct.name" | transloco }}</th>
+        <th>{{ "aGetProduct.image" | transloco }}</th>
+        <th pSortableColumn="price">{{ "aGetProduct.price" | transloco }}</th>
+        <th pSortableColumn="category">
+          {{ "aGetProduct.category" | transloco }}
+        </th>
+        <th pSortableColumn="rating">{{ "aGetProduct.rating" | transloco }}</th>
+        <th pSortableColumn="inventoryStatus">
+          {{ "aGetProduct.status" | transloco }}
+        </th>
+        <th>{{ "aGetProduct.actions" | transloco }}</th>
       </tr>
     </ng-template>
     <ng-template
@@ -129,6 +162,11 @@
             ></button>
           </div>
         </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="7">{{ "aGetOrders.nf" | transloco }}</td>
       </tr>
     </ng-template>
   </p-table>

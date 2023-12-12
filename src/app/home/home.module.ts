@@ -6,7 +6,6 @@ import { HomeComponent } from './home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
-import { TranslocoModule } from '@ngneat/transloco';
 import { MessageService } from 'primeng/api';
 import { CartService } from '../services/cart.service';
 import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from '@abacritt/angularx-social-login';
@@ -27,7 +26,6 @@ import { ResetPasswordPasswordComponent } from './reset-password/reset-password-
     CommonModule,
     HomeRoutingModule,
     SharedModule,
-    TranslocoModule,
     SocialLoginModule,
     GoogleSigninButtonModule
   ],

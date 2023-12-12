@@ -12,7 +12,7 @@ import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
-import { DataViewModule , DataViewLayoutOptions } from 'primeng/dataview';
+import { DataViewModule, DataViewLayoutOptions } from 'primeng/dataview';
 import { TagModule } from 'primeng/tag';
 import { CardModule } from 'primeng/card';
 import { RatingModule } from 'primeng/rating';
@@ -26,7 +26,7 @@ import { InputSwitchModule } from 'primeng/inputswitch';
 import { ImageModule } from 'primeng/image';
 import { SlideMenuModule } from 'primeng/slidemenu';
 import { ChartModule } from 'primeng/chart';
-import { FormsModule ,ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TableModule } from 'primeng/table';
 import { KeyFilterModule } from 'primeng/keyfilter';
 import { InputNumberModule } from 'primeng/inputnumber';
@@ -41,10 +41,9 @@ import { StockStatusPipe } from '../services/helper/stock-status.pipe';
 import { CategoryStatus } from '../services/helper/category-status.pipe';
 import { GenderStatus } from '../services/helper/gender-status.pipe';
 import { TranslocoRootModule } from '../transloco-root.module';
-import { TranslocoModule } from '@ngneat/transloco';
+import {  TRANSLOCO_CONFIG, TranslocoModule, TranslocoService, translocoConfig } from '@ngneat/transloco';
 @NgModule({
-  declarations: [StockStatusPipe,
-    CategoryStatus, GenderStatus],
+  declarations: [StockStatusPipe, CategoryStatus, GenderStatus],
   imports: [
     CommonModule,
     ButtonModule,
@@ -85,11 +84,11 @@ import { TranslocoModule } from '@ngneat/transloco';
     FileUploadModule,
     SidebarModule,
     StepsModule,
-    TranslocoRootModule,
-    TranslocoModule
+    TranslocoModule,
+    TranslocoRootModule
 
   ],
-  exports:[
+  exports: [
     ButtonModule,
     CalendarModule,
     DropdownModule,
@@ -132,10 +131,19 @@ import { TranslocoModule } from '@ngneat/transloco';
     StockStatusPipe,
     CategoryStatus,
     GenderStatus,
-    TranslocoRootModule,
-    TranslocoModule
+    TranslocoModule,
+    TranslocoRootModule
+
+
+
   ],
-  providers:[MessageService,StockStatusPipe,
-    CategoryStatus , GenderStatus]
+  providers: [
+    MessageService,
+    StockStatusPipe,
+    CategoryStatus,
+    GenderStatus,
+
+
+  ],
 })
-export class SharedModule { }
+export class SharedModule {}
