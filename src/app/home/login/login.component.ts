@@ -5,8 +5,10 @@ import { Router } from '@angular/router';
 import { TranslocoService } from '@ngneat/transloco';
 import { MessageService } from 'primeng/api';
 import { Observable, tap } from 'rxjs';
+// import { GoogleService, UserInfo } from 'src/app/services/auth/google.service';
 import { UserService } from 'src/app/services/user.service';
-declare var handleSignout: any; // Declare the global function to avoid TypeScript errors
+// import { lastValueFrom } from 'rxjs';
+
 
 @Component({
   selector: 'app-login',
@@ -14,6 +16,10 @@ declare var handleSignout: any; // Declare the global function to avoid TypeScri
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
+
+  // mailSnippets: string[] = []
+  // userInfo?: UserInfo
+  gloggedIn = false;
   userFormLogin: FormGroup;
   userProfile: any;
   user:any;
@@ -26,8 +32,39 @@ export class LoginComponent {
     private userService: UserService,
     private router: Router,
     private authService: SocialAuthService,
-    private translocoService:TranslocoService
-    ) {}
+    private translocoService:TranslocoService,
+    // private readonly googleApi: GoogleService
+    ) {
+    }
+
+    // login(){
+    //   this.googleApi.userProfileSubject.subscribe( info => {
+    //     this.userInfo = info
+    //   })
+    // }
+
+    // isLoggedIn(): boolean {
+    //   return this.googleApi.isLoggedIn()
+    // }
+
+    // logout() {
+    //   this.googleApi.signOut()
+    // }
+
+    // async getEmails() {
+    //   if (!this.userInfo) {
+    //     return;
+    //   }
+
+    //   const userId = this.userInfo?.info.sub as string
+    //   const messages = await lastValueFrom(this.googleApi.emails(userId))
+    //   messages.messages.forEach( (element: any) => {
+    //     const mail = lastValueFrom(this.googleApi.getMail(userId, element.id))
+    //     mail.then( mail => {
+    //       this.mailSnippets.push(mail.snippet)
+    //     })
+    //   });
+    // }
 
   ngOnInit() {
     this.userFormLogin = this.formBuilder.group({
@@ -65,13 +102,6 @@ export class LoginComponent {
     });
   }
 
-  handleSignOut() {
-    handleSignout();
-    sessionStorage.removeItem("loggedInUser");
-    this.router.navigate(["/login"]).then(() => {
-      window.location.reload();
-    });
-  }
 
   getUserId(): Observable<any> {
     return this.userService.getTokenId().pipe(
@@ -90,7 +120,7 @@ export class LoginComponent {
     });
   }
 
-  
+
   onSubmitLogin() {
     if (this.userFormLogin.valid) {
       const formValuesArray = this.userFormLogin.value;
@@ -108,19 +138,19 @@ export class LoginComponent {
                       this.router.navigate(['pages']);
                     }, 1000);
                     break;
-                
+
                   case 'CREOTER':
                     setTimeout(() => {
                       this.router.navigate(['creoter']);
                     }, 1000);
                     break;
-                
+
                   case 'ADMİN':
                     setTimeout(() => {
                       this.router.navigate(['admin']);
                     }, 1000);
                     break;
-                
+
                   default:
                     setTimeout(() => {
                       this.router.navigate(['notfound']);
@@ -135,7 +165,7 @@ export class LoginComponent {
             summary: this.translocoService.translate('successMessage'),
             detail: this.translocoService.translate('loginForm.messageDetailsuccess'),
           });
-          
+
         },
         (error) => {
           this.messageService.add({

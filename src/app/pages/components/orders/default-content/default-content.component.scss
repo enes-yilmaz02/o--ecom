@@ -6,12 +6,19 @@ $light-text: #ecf0f1;
 $light-text-hover: #91c9d7;
 $background-color: #ecf0f1;
 
-
 :host ::ng-deep{
+
   .button{
-    background-color: $secondary-color;
+    background-color: $dark-text;
     padding: 10px;
-    color: #fff;
+    border-radius: 5px;
+    color: #efefef;
     border: none;
+    cursor: pointer;
+    font-weight: 700;
+
+    &:hover{
+      color: #fff;
+    }
   }
 }

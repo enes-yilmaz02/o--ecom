@@ -12,6 +12,9 @@ import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 
 import {  GoogleSigninButtonModule } from '@abacritt/angularx-social-login';
 import { ResetpasswordCodeComponent } from './reset-password/resetpassword-code/resetpassword-code.component';
 import { ResetPasswordPasswordComponent } from './reset-password/reset-password-password/reset-password-password.component';
+import { HttpClientModule } from '@angular/common/http';
+// import { OAuthModule } from 'angular-oauth2-oidc';
+// import { GoogleService } from '../services/auth/google.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,9 @@ import { ResetPasswordPasswordComponent } from './reset-password/reset-password-
     HomeRoutingModule,
     SharedModule,
     SocialLoginModule,
-    GoogleSigninButtonModule
+    GoogleSigninButtonModule,
+    HttpClientModule,
+    // OAuthModule.forRoot()
   ],
   exports:[
     HomeComponent,
@@ -38,6 +43,7 @@ import { ResetPasswordPasswordComponent } from './reset-password/reset-password-
   providers:[
     CartService,
     MessageService,
+    // GoogleService,
     {
       provide: 'SocialAuthServiceConfig',
       useValue: {

@@ -1,9 +1,31 @@
+$primary-color: #3498db;
+$secondary-color: #1071b3;
+$danger-color: #e74c3c;
+$dark-text: #34495e;
+$light-text: #ecf0f1;
+$light-text-hover: #91c9d7;
+$background-color: #ecf0f1;
+
 :host ::ng-deep{
+
+  .button{
+    background-color: $dark-text;
+    padding: 10px;
+    border-radius: 5px;
+    color: #efefef;
+    border: none;
+    cursor: pointer;
+    font-weight: 700;
+
+    &:hover{
+      color: #fff;
+    }
+  }
 
   .accordion{
     .p-accordion-header-link{
-      color:#3498db;
-      background-color: #e7ebed;
+      color:$dark-text;
+      background-color: $background-color;
       font-weight: 500;
 
       .p-icon-wrapper{
@@ -12,3 +34,4 @@
     }
   }
 }
+

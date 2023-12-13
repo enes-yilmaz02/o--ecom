@@ -128,11 +128,15 @@
         <div class="icon-social flex justify-content-center">
           <a>
             <div class="flex-1 font-bold text-center cursor-pointer p-4 w-full">
-              <asl-google-signin-button
-                *ngIf="!user"
-                type="icon"
-                class="pi google"
-              ></asl-google-signin-button>
+              <!-- <div *ngIf="isLoggedIn()">
+                <div class="container">Hi and welcome!</div>
+                <div class="container">Name: {{ userInfo?.info?.name }}</div>
+                <div class="container"><img src="{{ userInfo?.info?.picture }}"></div>
+                <div class="container">
+                  <button (click)="logout()">Logout from Google</button>
+                </div>
+              </div> -->
+              <!-- <div class="g-signin2" data-onsuccess="onSignIn"> login</div> -->
               <p>{{ "startForm.piGoogle" | transloco }}</p>
             </div>
           </a>

@@ -46,7 +46,7 @@ $background-color: #ecf0f1;
           margin: 10px;
           position: relative;
           width: 100%;
-          input {
+          input , select {
             width: calc(100% - 30px);
             padding: 10px;
             padding-left: 35px;
