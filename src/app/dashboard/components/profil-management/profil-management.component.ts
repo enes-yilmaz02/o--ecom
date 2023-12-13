@@ -16,6 +16,7 @@ export class ProfilManagementComponent {
   userId: any;
   selectedUser: any;
   genders: any;
+  selectedGender:any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -40,6 +41,7 @@ export class ProfilManagementComponent {
       { name: 'Another', code: 'a' },
     ];
   }
+
 
   getUserId(): Observable<any> {
     return this.userService.getTokenId().pipe(

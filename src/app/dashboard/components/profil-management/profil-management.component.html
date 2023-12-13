@@ -23,15 +23,12 @@
         </span>
         <span class="p-float-label m-4">
           <i class="pi pi-users" style="color: #000;"></i>
-          <p-dropdown
-            id="gender"
-            formControlName="gender"
-            placeholder="Select..."
-            styleClass="dropdown"
-            [options]="genders"
-            optionLabel="name"
-          ></p-dropdown>
-          <label htmlFor="gender" class="dropdown-label">{{ "userinfoForm.gender" | transloco  }}</label>
+          <select formControlName="gender">
+            <option value="" disabled selected hidden>{{ "userinfoForm.gender" | transloco  }}</option>
+            <option *ngFor="let gender of genders" [value]="gender">
+              {{ gender.name | transloco}}
+            </option>
+          </select>
         </span>
         <span class="p-float-label m-4">
           <i class="pi pi-calendar" style="color: #000"></i>

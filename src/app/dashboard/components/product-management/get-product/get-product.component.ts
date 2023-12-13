@@ -21,7 +21,7 @@ export class GetProductComponent {
 
   creoterId: any;
 
-  products: Product[];
+  products: any;
 
   isUserDialogOpen: boolean = false;
 
@@ -30,6 +30,7 @@ export class GetProductComponent {
   selectedPrice: any;
   selectedStatus: any;
   selectedRating: any;
+  companyNames:any;
   priceCategories: { name: string; range: string; }[];
   rating: { name: string; value: number; }[];
   status: { name: string; code: string; }[];
@@ -146,6 +147,7 @@ export class GetProductComponent {
     this.getUserId().subscribe(()=>{
       this.productService.getCreoterProducts(this.creoterId).subscribe((data: any) => {
         this.products = data;
+        this.companyNames = this.products.map((product: any) => product.companyName);
       });
     })
   }
