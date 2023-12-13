@@ -136,13 +136,14 @@ export class CardComponent implements OnInit {
 
 
   addToCart(product: any, productId: any) {
-    this.getUserId().subscribe(() => {
+    this.getUserId().subscribe((id) => {
       const quantity: number = 1;
       const body = {
         id: productId,
         creoterId:product.creoterId,
         email:product.email,
         product: {
+          id:id,
           ...product,
           quantity: quantity,
         },

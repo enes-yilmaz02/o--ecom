@@ -74,7 +74,7 @@ export class CardDetailComponent implements OnInit {
               this.updateUrlWithLikedParam(false);
               this.messageService.add({
                 severity: 'success',
-                summary: this.translocoService.translate('successMeassage'),
+                summary: this.translocoService.translate('successMessage'),
                 detail: this.translocoService.translate('cardDetail.messageDetailsuccess'),
               });
               this.badgeService.emitFavoritesRemovedEvent(productId);
@@ -84,7 +84,7 @@ export class CardDetailComponent implements OnInit {
               console.error('Favori kaldırma işleminde hata:', error);
               this.messageService.add({
                 severity: 'error',
-                summary: this.translocoService.translate('errorMeassage'),
+                summary: this.translocoService.translate('errorMessage'),
                 detail: this.translocoService.translate('cardDetail.messageDetailerror'),
               });
             }
@@ -163,11 +163,12 @@ export class CardDetailComponent implements OnInit {
             creoterId: this.product.creoterId,
             email: this.product.email,
             product: {
-              id: productId,
+              id: id,
               ...product,
               quantity: quantityDefault,
             },
           };
+          console.log('body id',body.product.id);
           this.userService.addCart(this.userId, productId, body).subscribe(
             (response: any) => {
               if (response) {

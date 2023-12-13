@@ -461,7 +461,10 @@
   },
   "dUpdateProduct":{
     "header":"Ürünü Güncelle",
-    "update":"Güncelle"
+    "update":"Güncelle",
+    "messageDetailsuccess": " Ürün güncelleme işlemi başarılı",
+    "messageDetailerror": "Ürün güncelleme işlemi başarısız oldu... Tekrar deneyiniz",
+    "messageDetailwarn":"Form bilgilerini doldurunuz"
   },
   "dSidebar":{
     "pm":"Ürün Yönetimi",

@@ -34,6 +34,10 @@ export class ContentCartsComponent {
 
   carts: any;
 
+  productStatus:any;
+
+  productStocks:any;
+
   // Parent'a bildireceğimiz olayı tanımlıyoruz
   @Output() allCartsDeleted = new EventEmitter<void>();
 
@@ -206,10 +210,7 @@ export class ContentCartsComponent {
           if (response) {
             // Her bir ürün için stok miktarını güncelle
             this.carts.forEach((cartItem: any) => {
-              console.log(cartItem);
-              this.updateProductStock(cartItem.product.id, cartItem.product.quantity);
-              console.log(cartItem.product.id);
-              console.log(cartItem.product.quantity)
+            this.updateProductStock(cartItem.product.id, cartItem.product.quantity);
             });
 
             this.productService.addProductOrders(orderData).subscribe(() => {
@@ -245,9 +246,24 @@ export class ContentCartsComponent {
       (productData: any) => {
         const totalquantity = productData.quantity;
         const updatedQuantity = totalquantity - quantity;
+        let selectedStatus= {name:'INSTOCK' , key:'IS'};
+
+        if(updatedQuantity<20){
+          selectedStatus={name:'LOWSTOCK' , key:'LS'}
+        }
+
+        if(updatedQuantity>20){
+          selectedStatus=selectedStatus;
+        }
+
+        if(updatedQuantity === 0){
+          selectedStatus={name:'OUTOFSTOCK' , key:'OS'}
+        }
+
         const updatedProduct = {
           ...productData,
           quantity: updatedQuantity,
+          selectedStatus:selectedStatus
         };
 
         // Ürünün stok miktarını güncelle
@@ -310,4 +326,11 @@ export class ContentCartsComponent {
         return null;
     }
   }
+
+  // getProducts(productId:any){
+  //   this.productService.patchProductById(productId).subscribe((data:any)=>{
+  //     this.productStocks=data.quantitiy;
+  //     console.log(this.productStocks);
+  //   })
+  // }
 }
