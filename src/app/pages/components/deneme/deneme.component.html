@@ -1,14 +1,3 @@
-<div class="card">
-  <p-toast></p-toast>
-  <p-steps
-    [model]="items"
-    [readonly]="false"
-    [activeIndex]="activeIndex"
-    (activeIndexChange)="onActiveIndexChange($event)"
-  ></p-steps>
-
-  <!-- Display the countdown timer -->
-  <div *ngIf="activeIndex !== items.length - 1" class="countdown-timer">
-    Time remaining: {{ countdown }}
-  </div>
-</div>
+<button (click)="loginWithGoogle()">Login with Google</button>
+<div *ngIf="isAuthenticated(); else notAuthenticated">User is authenticated</div>
+<ng-template #notAuthenticated>User is not authenticated</ng-template>

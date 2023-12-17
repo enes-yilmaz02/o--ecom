@@ -2,8 +2,7 @@
   <form [formGroup]="userFormLogin">
     <div
       class="block justify-content-center align-content-center text-2xl"
-      style="background: transparent"
-    >
+      style="background: transparent">
       <h2>{{ "loginForm.header" | transloco }}</h2>
     </div>
     <span class="p-float-label mt-4">
@@ -12,9 +11,7 @@
         pInputText
         type="email"
         id="email"
-        formControlName="email"
-
-      />
+        formControlName="email" />
       <label htmlFor="email">{{ "loginForm.emailLabel" | transloco }}</label>
     </span>
     <small
@@ -22,19 +19,18 @@
         userFormLogin.get('email')?.invalid &&
         userFormLogin.get('email')?.touched
       "
-      class="text-red-500"
-    >
+      class="text-red-500">
       {{
-        userFormLogin.get("email").errors != null &&
-        userFormLogin.get("email").errors["whitespace"]
-          ? ("registerForm.emailSmall" | transloco)
-          : ""
+      userFormLogin.get("email").errors != null &&
+      userFormLogin.get("email").errors["whitespace"]
+      ? ("registerForm.emailSmall" | transloco)
+      : ""
       }}
       {{
-        userFormLogin.get("email").errors != null &&
-        userFormLogin.get("email").errors["required"]
-          ? ("registerForm.emailSmall" | transloco)
-          : ""
+      userFormLogin.get("email").errors != null &&
+      userFormLogin.get("email").errors["required"]
+      ? ("registerForm.emailSmall" | transloco)
+      : ""
       }}
     </small>
     <span class="p-float-label mt-4">
@@ -44,30 +40,28 @@
         formControlName="password"
         styleClass="password"
         [toggleMask]="true"
-        [feedback]="false"
-      ></p-password>
+        [feedback]="false"></p-password>
       <label htmlFor="password">{{
         "loginForm.passwordLabel" | transloco
-      }}</label>
+        }}</label>
     </span>
     <small
       *ngIf="
         userFormLogin.get('password')?.invalid &&
         userFormLogin.get('password')?.touched
       "
-      class="text-red-500"
-    >
+      class="text-red-500">
       {{
-        userFormLogin.get("password").errors != null &&
-        userFormLogin.get("password").errors["whitespace"]
-          ? ("registerForm.passwordSmall" | transloco)
-          : ""
+      userFormLogin.get("password").errors != null &&
+      userFormLogin.get("password").errors["whitespace"]
+      ? ("registerForm.passwordSmall" | transloco)
+      : ""
       }}
       {{
-        userFormLogin.get("password").errors != null &&
-        userFormLogin.get("password").errors["required"]
-          ? ("registerForm.passwordSmall" | transloco)
-          : ""
+      userFormLogin.get("password").errors != null &&
+      userFormLogin.get("password").errors["required"]
+      ? ("registerForm.passwordSmall" | transloco)
+      : ""
       }}
       <!-- {{userFormLogin.get('password')?.value.lenght() < 8 ? ("Şifre en az 8 karakter uzunluğunda olmalıdır") : '' }} -->
     </small>
@@ -80,17 +74,15 @@
                 id="remember"
                 name="remember"
                 type="checkbox"
-                style="width: 15px; height: 15px"
-              />
+                style="width: 15px; height: 15px" />
               <label for="remember">
-                {{ "loginForm.rememberme" | transloco }}</label
-              >
+                {{ "loginForm.rememberme" | transloco }}</label>
             </div>
           </div>
           <div class="mb-3">
             <a routerLink="/reset-password">{{
               "loginForm.dontforget" | transloco
-            }}</a>
+              }}</a>
           </div>
         </div>
       </span>
@@ -104,8 +96,7 @@
     </div>
     <div>
       <span
-        class="register-span flex flex-row justify-content-between align-items-center mb-3"
-      >
+        class="register-span flex flex-row justify-content-between align-items-center mb-3">
         <div>
           <p>{{ "loginForm.haveaccount" | transloco }}</p>
         </div>
@@ -115,8 +106,7 @@
       </span>
     </div>
     <div
-      class="social block align-items-center text-center justify-content-center align-self-center"
-    >
+      class="social block align-items-center text-center justify-content-center align-self-center">
       <div class="container-social">
         <div class="header-social">
           <h3>{{ "startForm.headerSocial" | transloco }}</h3>
@@ -128,16 +118,12 @@
         <div class="icon-social flex justify-content-center">
           <a>
             <div class="flex-1 font-bold text-center cursor-pointer p-4 w-full">
-              <!-- <div *ngIf="isLoggedIn()">
-                <div class="container">Hi and welcome!</div>
-                <div class="container">Name: {{ userInfo?.info?.name }}</div>
-                <div class="container"><img src="{{ userInfo?.info?.picture }}"></div>
-                <div class="container">
-                  <button (click)="logout()">Logout from Google</button>
-                </div>
-              </div> -->
-              <!-- <div class="g-signin2" data-onsuccess="onSignIn"> login</div> -->
-              <p>{{ "startForm.piGoogle" | transloco }}</p>
+              <span class="button-style">
+                <button class="button" (click)="loginWithGoogle()">
+                  <i class="pi pi-google"></i>
+                {{
+                  "startForm.piGoogle" | transloco }}</button>
+              </span>
             </div>
           </a>
         </div>

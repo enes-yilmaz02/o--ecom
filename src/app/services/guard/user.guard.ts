@@ -5,9 +5,9 @@ import {
 } from '@angular/router';
 
 import { Injectable } from '@angular/core';
-import { AuthService } from '../auth/auth.service';
 import { UserService } from '../user.service';
-import { Observable, catchError, map, of } from 'rxjs';
+import { Observable, catchError, forkJoin, map, of, switchMap } from 'rxjs';
+import { GoogleService } from '../auth/google.service';
 
 @Injectable({
   providedIn: 'root',
@@ -16,14 +16,20 @@ export class UserGuard implements CanActivate {
   constructor(
     private userService: UserService,
     private router: Router,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private googleService:GoogleService
   ) {}
 
   canActivate(): Observable<boolean> {
-    return this.userService.getUserByTokenId().pipe(
-      map((role: string) => {
-        if (role === 'USER') {
-          return true;
+    return forkJoin({
+      role: this.userService.getUserByTokenId(),
+      isAuthenticated: this.googleService.isAuthenticated(),
+    }).pipe(
+      switchMap((data) => {
+        const { role, isAuthenticated } = data;
+
+        if (role === 'USER' ) {
+          return of(true);
         } else {
           this.messageService.add({
             severity: 'error',
@@ -31,12 +37,12 @@ export class UserGuard implements CanActivate {
             detail: 'Bu kaynağa erişim izniniz yok.',
           });
           this.router.navigate(['/']);
-          return false;
+          return of(false);
         }
       }),
       catchError((error) => {
-        console.error('Error in HasRoleGuard:', error);
-        return of(false); // or handle the error and redirect accordingly
+        console.error('Error in UserGuard:', error);
+        return of(false);
       })
     );
   }

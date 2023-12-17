@@ -29,9 +29,6 @@ import { DenemeComponent } from './components/deneme/deneme.component';
             path:'' , component:ProductComponent
           },
           {
-            path:'deneme' , component:DenemeComponent
-          },
-          {
             path: 'account',
             component: AccountComponent,
             children:[

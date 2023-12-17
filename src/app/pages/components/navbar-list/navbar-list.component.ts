@@ -106,6 +106,7 @@ export class NavbarListComponent implements OnInit {
 
   logout() {
     localStorage.clear();
+    sessionStorage.clear();
     this.router.navigate(['/'])
   }
 

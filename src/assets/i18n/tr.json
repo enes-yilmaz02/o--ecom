@@ -9,41 +9,45 @@
   "changePassword": "Şifre Yenileme",
   "changePasswordcode": "Şifre Yenileme kodunuz: ",
   "newOrderMessage": "Yeni Siparişiniz var :)",
+  "newMessage": "Yeni Markanız hayırlı olsun :)",
+  "newMessageContent": "olarak satış yapmaya başlayabilirsiniz.",
+  "newMessageerror": "Your request to become a seller was not approved :(",
+  "newMessageContenterror": "Benzersiz bir deneyim sunmak adına vermiş olduğumuz hizmetin bu tür sonuçları olduğunuda biliyoruz. Bu yüzden ilerleyen bir zamanda tekrar başvurunuzu bekliyoruz.",
   "completeOrderMessage": "Sipariş Tamamlandı",
   "uncompleteOrderMessage": "Sipariş Tamamlanmadı",
-  "stockUpdatedMessage":"Stok Güncellendi",
-  "allDoneOrderMessage":"Tüm siparişler alındı.",
-  "unallDoneOrderMessage":"Sepet Boşaltılamadı. ",
-  "pleaseWait":"Lütfen Bekleyiniz...",
+  "stockUpdatedMessage": "Stok Güncellendi",
+  "allDoneOrderMessage": "Tüm siparişler alındı.",
+  "unallDoneOrderMessage": "Sepet Boşaltılamadı. ",
+  "pleaseWait": "Lütfen Bekleyiniz...",
   "Electronics": "Elektronik",
   "Fitness": "Spor",
   "Accessories": "Aksesuarlar",
   "Clothing": "Giysi",
-  "InStock":"Stokta var",
-  "OutofStock":"Stokta yok",
-  "LowStock":"Tükenmek üzere",
-  "categoryStatus":"Kategori Durumu",
-  "stockStatusTable":"Stok Miktarı",
-  "status":"Durum",
+  "InStock": "Stokta var",
+  "OutofStock": "Stokta yok",
+  "LowStock": "Tükenmek üzere",
+  "categoryStatus": "Kategori Durumu",
+  "stockStatusTable": "Stok Miktarı",
+  "status": "Durum",
   "All Products": "Tüm Ürünler",
   "INSTOCK": "Stokta Var",
   "LOWSTOCK": "Tükenmek Üzere",
   "OUTOFSTOCK": "Stokta Yok",
-  "All":"Tümü",
-  "1":"1",
-  "2":"2",
-  "3":"3",
-  "4":"4",
-  "5":"5",
-  "0-100$":"0-100$",
-  "101-200$":"101-200$",
-  "201-300$":"201-300$",
-  "301-500$":"301-500$",
-  "501-1000$":"501-1000$",
-  "1000$ +":"1001-100000$",
-  "Male":"Erkek",
-  "Female":"Kadın",
-  "Another":"Diğer",
+  "All": "Tümü",
+  "1": "1",
+  "2": "2",
+  "3": "3",
+  "4": "4",
+  "5": "5",
+  "0-100$": "0-100$",
+  "101-200$": "101-200$",
+  "201-300$": "201-300$",
+  "301-500$": "301-500$",
+  "501-1000$": "501-1000$",
+  "1000$ +": "1001-100000$",
+  "Male": "Erkek",
+  "Female": "Kadın",
+  "Another": "Diğer",
 
   "loginForm": {
     "header": "Giriş",
@@ -166,7 +170,7 @@
     "addressLabel": "adres",
     "phoneLabel": "Telefon",
     "date": "Doğum Tarihi",
-    "gender":"Cinsiyet",
+    "gender": "Cinsiyet",
     "buttonLabel": "Güncelle",
     "contactHeader": "İletişim Bilgileri",
     "contactHeaderP": "Bu bilgileri değiştirebilmek için yeni e-posta adresinizi doğrulamanızı isteyeceğiz.",
@@ -223,7 +227,6 @@
     "totalPrice": "Toplam Tutar",
     "actions": "İşlem",
     "messageDetailsuccess": "Siparişiniz silindi"
-
   },
   "managerSidebar": {
     "profile": "Profil Yönetimi",
@@ -330,7 +333,7 @@
     "OUTOFSTOCK": "Stokta Yok"
   },
   "categoryName": {
-    "All Products":"Tüm Ürünler",
+    "All Products": "Tüm Ürünler",
     "Accessories": "Aksesuar",
     "Electronics": "Elektronik",
     "Clothing": "Giyim",
@@ -343,7 +346,6 @@
     "male": "Erkek",
     "female": "Kadın",
     "another": "Diğer"
-
   },
   "cardForm": {
     "buttonLabel": "Sepete ekle",
@@ -369,9 +371,8 @@
     "messageDetailwarn": "Seçilen miktar, ürün adet miktarından fazla. ",
     "messageDetailsuccessaddcart": "Ürün sepete eklendi",
     "messageDetailerroraddcart": "Ürün sepete eklenemedi",
-    "messageDetailwarnpiece":"Ürün miktarı giriniz",
+    "messageDetailwarnpiece": "Ürün miktarı giriniz",
     "messageDetailsuccessaddfavorite": "Ürün favorinize eklendi"
-
   },
   "contentCartsForm": {
     "header": "Sepetteki Ürünler",
@@ -397,7 +398,7 @@
   },
   "dGetorders": {
     "header": "Sipariş Listesi",
-    "header2":"Filtreleme",
+    "header2": "Filtreleme",
     "headerproduct": "Ürünler Tablosu",
     "headeruser": "Kullanıcılar Tablosu",
     "pdf": "pdf'i dışa aktar",
@@ -416,144 +417,142 @@
     "defaultDecs": "Sipariş Listesin Herhangi Bir Ürün Bulunmamaktadır.",
     "close": "Detayları Gizle",
     "open": "Detayları Göster",
-    "filterCategory":"Kategoriye Göre Filtrele",
-    "filterStatus":"Stok Durumuna Göre Filtrele",
-    "filterPrice":"Fiyata Göre Filtrele",
-    "filterRating":"Yıldıza Göre Filtrele"
+    "filterCategory": "Kategoriye Göre Filtrele",
+    "filterStatus": "Stok Durumuna Göre Filtrele",
+    "filterPrice": "Fiyata Göre Filtrele",
+    "filterRating": "Yıldıza Göre Filtrele"
   },
   "codeForm": {
     "approve": "Doğrula",
     "code": "Kod"
   },
-  "dGetProduct":{
-    "add":"Ekle",
-    "delete":"Sil",
-    "update":"Düzenle",
-    "id":"Id",
-    "name":"Ürün Adı",
-    "img":"Resim",
-    "price":"Fiyat",
-    "quantity":"Ürün Miktarı(adet)",
-    "rating":"Değerlendirme",
-    "status":"Durum",
-    "category":"Kategori",
-    "companyName":"Satıcı",
-    "actions":"İşlemler",
-    "notFound":"Belirtilen Hiçbir Ürününüz Bulunmamaktadır",
+  "dGetProduct": {
+    "add": "Ekle",
+    "delete": "Sil",
+    "update": "Düzenle",
+    "id": "Id",
+    "name": "Ürün Adı",
+    "img": "Resim",
+    "price": "Fiyat",
+    "quantity": "Ürün Miktarı(adet)",
+    "rating": "Değerlendirme",
+    "status": "Durum",
+    "category": "Kategori",
+    "companyName": "Satıcı",
+    "actions": "İşlemler",
+    "notFound": "Belirtilen Hiçbir Ürününüz Bulunmamaktadır",
     "messageDetailsuccess": "Ürün başarılı bir şekilde kaldırıldı",
     "messageDetailerror": "Yükleme işlemi başarısız oldu... Tekrar deneyiniz"
   },
-  "dAddProduct":{
-    "header":"Ürün Ekle",
-    "name":"Ürün Adı",
-    "desc":"Açıklama",
-    "pcode":"Ürün kodu",
-    "quantity":"Ürün Miktarı(adet)",
-    "price":"Fiyat",
-    "file":"Ürün Dosyası",
-    "category":"Kategori",
-    "rating":"Değerlendirme",
-    "status":"Durum",
-    "add":"Ekle",
+  "dAddProduct": {
+    "header": "Ürün Ekle",
+    "name": "Ürün Adı",
+    "desc": "Açıklama",
+    "pcode": "Ürün kodu",
+    "quantity": "Ürün Miktarı(adet)",
+    "price": "Fiyat",
+    "file": "Ürün Dosyası",
+    "category": "Kategori",
+    "rating": "Değerlendirme",
+    "status": "Durum",
+    "add": "Ekle",
     "messageDetailsuccess": "Yükleme işlemi başarılı",
     "messageDetailerror": "Yükleme işlemi başarısız oldu... Tekrar deneyiniz",
-    "messageDetailwarn":"Form bilgilerini doldurunuz"
+    "messageDetailwarn": "Form bilgilerini doldurunuz"
   },
-  "dUpdateProduct":{
-    "header":"Ürünü Güncelle",
-    "update":"Güncelle",
+  "dUpdateProduct": {
+    "header": "Ürünü Güncelle",
+    "update": "Güncelle",
     "messageDetailsuccess": " Ürün güncelleme işlemi başarılı",
     "messageDetailerror": "Ürün güncelleme işlemi başarısız oldu... Tekrar deneyiniz",
-    "messageDetailwarn":"Form bilgilerini doldurunuz"
+    "messageDetailwarn": "Form bilgilerini doldurunuz"
   },
-  "dSidebar":{
-    "pm":"Ürün Yönetimi",
-    "om":"Sipariş Yönetimi",
-    "rpt":"İstatikler",
-    "ps":"Profil Yonetimi"
+  "dSidebar": {
+    "pm": "Ürün Yönetimi",
+    "om": "Sipariş Yönetimi",
+    "rpt": "İstatikler",
+    "ps": "Profil Yonetimi"
   },
-  "aSidebar":{
-    "um":"Kullanıcı Yönetimi",
-    "pm":"Ürün Yönetimi",
-    "om":"Sipariş Yönetimi",
-    "rpt":"İstatikler",
-    "wm":"Bekleme Listesi"
+  "aSidebar": {
+    "um": "Kullanıcı Yönetimi",
+    "pm": "Ürün Yönetimi",
+    "om": "Sipariş Yönetimi",
+    "rpt": "İstatikler",
+    "wm": "Bekleme Listesi"
   },
-  "dReporting":{
-    "totalOrder":" Sipariş Sayısı",
-    "totalProduct":" Ürün Sayısı",
-    "totalPrice":" Hasılat Miktarı",
-    "totalRating":" Rating Ortalaması",
-    "statusTable":" Durum Tablosu",
-    "categoryTable":" Kategori Tablosu",
-    "stockTable":" Stok Tablosu",
-    "bestSelling":"En Çok Satılan Ürünler"
+  "dReporting": {
+    "totalOrder": " Sipariş Sayısı",
+    "totalProduct": " Ürün Sayısı",
+    "totalPrice": " Hasılat Miktarı",
+    "totalRating": " Rating Ortalaması",
+    "statusTable": " Durum Tablosu",
+    "categoryTable": " Kategori Tablosu",
+    "stockTable": " Stok Tablosu",
+    "bestSelling": "En Çok Satılan Ürünler"
   },
-  "topbar":{
-    "header":"Yönetici Modül Sayfası",
-    "headeradmin":"Admin Modül Sayfası",
-    "logout":"Oturumu kapat"
+  "topbar": {
+    "header": "Yönetici Modül Sayfası",
+    "headeradmin": "Admin Modül Sayfası",
+    "logout": "Oturumu kapat"
   },
-  "aGetOrders":{
-    "Name":"Ad",
-    "Email":"Email",
-    "Role":"Rol",
-    "Address":"Adres",
-    "Phone":"Telefon",
-    "CompanyName":"Satıcı",
-    "taxNumber":"Vergi No",
-    "buttonAdd":"Ekle",
-    "buttonCancel":"Geri",
-    "buttonAddUser":"Kullanıcı Ekle",
-    "gSearch":"Ara",
-    "update":"Düzenle",
-    "delete":"Sil",
-    "nf":"Hiçbir Kayıt Bulunmadı",
-    "filterCategory":"Kategoriye Göre Filtrele",
-    "filterStatus":"Stok Durumuna Göre Filtrele",
-    "filterPrice":"Fiyata Göre Filtrele",
-    "filterRating":"Yıldıza Göre Filtrele"
+  "aGetOrders": {
+    "Name": "Ad",
+    "Email": "Email",
+    "Role": "Rol",
+    "Address": "Adres",
+    "Phone": "Telefon",
+    "CompanyName": "Satıcı",
+    "taxNumber": "Vergi No",
+    "buttonAdd": "Ekle",
+    "buttonCancel": "Geri",
+    "buttonAddUser": "Kullanıcı Ekle",
+    "gSearch": "Ara",
+    "update": "Düzenle",
+    "delete": "Sil",
+    "nf": "Hiçbir Kayıt Bulunmadı",
+    "filterCategory": "Kategoriye Göre Filtrele",
+    "filterStatus": "Stok Durumuna Göre Filtrele",
+    "filterPrice": "Fiyata Göre Filtrele",
+    "filterRating": "Yıldıza Göre Filtrele"
   },
-  "aGetList":{
-    "header":"Satıcı Onay Listesi",
-    "userId":"Kullanıcı id",
-    "email":"Email",
-    "Role":"Rol",
-    "companyName":"Satıcı",
-    "taxNumber":"Vergi No",
-    "Actions":"İşlemler",
-    "approve":"Onayla",
-    "delete":"Sil",
-    "headerdesc":"Bekleme Listesi boş",
-    "desc":"Bekleme listesinde onay durumu bekleyen kullanıcı bulunmamaktadır.",
-    "messageDetailsuccess":"Kullanıcı rolü başarılı bir şekilde güncellendi",
-    "messageDetailerror":"Kullanıcı rolü güncellenemedi",
-    "messageDetailsuccessdeleteuser":"Kullanıcı bekleme listesinden kaldırıldı.",
-    "messageDetailerroradeleteuser":"Kullanıcı bekleme listesinden kaldırılamadı."
-
+  "aGetList": {
+    "header": "Satıcı Onay Listesi",
+    "userId": "Kullanıcı id",
+    "email": "Email",
+    "Role": "Rol",
+    "companyName": "Satıcı",
+    "taxNumber": "Vergi No",
+    "Actions": "İşlemler",
+    "approve": "Onayla",
+    "delete": "Sil",
+    "headerdesc": "Bekleme Listesi boş",
+    "desc": "Bekleme listesinde onay durumu bekleyen kullanıcı bulunmamaktadır.",
+    "messageDetailsuccess": "Kullanıcı rolü başarılı bir şekilde güncellendi",
+    "messageDetailerror": "Kullanıcı rolü güncellenemedi",
+    "messageDetailsuccessdeleteuser": "Kullanıcı bekleme listesinden kaldırıldı.",
+    "messageDetailerroradeleteuser": "Kullanıcı bekleme listesinden kaldırılamadı."
   },
-  "aStatistic":{
-    "totalOrder":"Toplam Sipariş",
-    "totalRevenue":"Toplam Hasılat",
-    "totalUser":"Toplam Kullanıcı",
-    "totalProduct":"Toplam Ürün",
-    "roleTable":"Kullanıcı Role Grafiği",
-    "categoryTable":"Ürün Kategori Grafiği",
-    "statusTable":"Ürün Stok Grafiği"
+  "aStatistic": {
+    "totalOrder": "Toplam Sipariş",
+    "totalRevenue": "Toplam Hasılat",
+    "totalUser": "Toplam Kullanıcı",
+    "totalProduct": "Toplam Ürün",
+    "roleTable": "Kullanıcı Role Grafiği",
+    "categoryTable": "Ürün Kategori Grafiği",
+    "statusTable": "Ürün Stok Grafiği"
   },
-  "aGetProduct":{
+  "aGetProduct": {
     "messageDetailsuccess": "Ürün başarıyla silindi",
     "messageDetailerror": "Ürün başarıyla silinmedi",
-    "name":"Ürün Adı",
-    "image":"Resim",
-    "price":"Fiyat",
-    "category":"Kategori",
-    "rating":"Değerlendirme",
-    "status":"Durum",
-    "actions":"İşlemler"
-
+    "name": "Ürün Adı",
+    "image": "Resim",
+    "price": "Fiyat",
+    "category": "Kategori",
+    "rating": "Değerlendirme",
+    "status": "Durum",
+    "actions": "İşlemler"
   },
-  "aGetUser":{
+  "aGetUser": {
     "messageDetailsuccess": "Kullanıcı başarıyla güncellendi",
     "messageDetailerror": "Kullanıcı başarıyla güncellenemedi",
     "messageDetailsuccessadduser": "Kullanıcı başarıyla eklendi",
@@ -561,9 +560,8 @@
     "messageDetailsuccessdeleteuser": "Kullanıcı başarıyla silindi",
     "messageDetailerroradeleteuser": "Kullanıcı başarıyla silinemedi"
   },
-  "rpc":{
+  "rpc": {
     "messageDetailsuccess": "Kod Doğrulandı , Şifre değişikliği için yönlendiriliyorsunuz",
     "messageDetailerror": "Kod Doğrulanmadı , Lütfen tekrar deneyiniz"
-
   }
 }

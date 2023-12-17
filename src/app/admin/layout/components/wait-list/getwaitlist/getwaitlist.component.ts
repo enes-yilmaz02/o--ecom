@@ -76,6 +76,13 @@ export class GetwaitlistComponent {
           summary: this.translocoService.translate('succesMessage'),
           detail: this.translocoService.translate('aGetList.messageDetailsuccess'),
         });
+        const body = {
+          to: userToUpdate.email, // Include 'to' property here
+          subject: this.translocoService.translate('newMessage'),
+          text: userToUpdate.companyName + this.translocoService.translate('newMessageContent'),
+        };
+
+        this.userService.sendEmailGlobal(body);
 
         if (this.users.length > 0) {
           this.creoterService.deleteCreoter(this.waitListId).subscribe(() => {
@@ -106,9 +113,17 @@ export class GetwaitlistComponent {
       () => {
         this.messageService.add({
           severity: 'success',
-          summary: this.translocoService.translate('succesMessage'),
+          summary: this.translocoService.translate('successMessage'),
           detail: this.translocoService.translate('aGetList.messageDetailsuccessdeleteuser'),
         });
+        const userToUpdate = this.users[0];
+        const body = {
+          to: userToUpdate.email, // Include 'to' property here
+          subject: this.translocoService.translate('newMessageerror'),
+          text: this.translocoService.translate('newMessageContenterror'),
+        };
+
+        this.userService.sendEmailGlobal(body);
         this.getAllCreoterUsers();
       },
       (error) => {
