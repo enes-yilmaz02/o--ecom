@@ -60,7 +60,7 @@ form {
   }
 }
 
-input ,textarea , .custom-file-input{
+input ,textarea , .custom-file-input  {
   width: 100%;
   padding: 15px;
   padding-left: 10px;
@@ -74,6 +74,18 @@ input ,textarea , .custom-file-input{
     outline: none;
     border-bottom: 2px solid $secondary-color;
   }
+}
+
+select{
+  width: 100%;
+  padding: 15px;
+  padding-left: 10px;
+  border-radius: 5px;
+  font-size: 1rem;
+  border: 1px solid $primary-color;
+  background-color: transparent;
+  color: $dark-text;
+  transition: border-color 0.3s;
 }
 
 .custom-file-input{

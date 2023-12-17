@@ -28,46 +28,26 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 
 
+Readme for Configuration Module
+This module handles the configuration of the application using the dotenv package. It loads environment variables from a .env file and exports a configuration object.
 
+#Installation
+To use this configuration module, you need to install the dotenv package. Run the following command:
 
+bash
 
-#######################################################################
+`npm install dotenv`
 
-* orders gelmiyor firebaseden undefined dönüyor (DONE)
+#Configuration
+The configuration module loads the following environment variables from the .env file:
 
-* favorites aynı şekilde  (DONE)
-
-* uı çok buyuk 
-
-* stock - lowstock - outstock dropdown vs (DONE)
-
-* chart kullan
-
-* excel - pdf 
-
-* yönetici sipariş listesi 
- -arama
- -mail 
-
-* orders default sayfası düzenle --> (DONE)
-
-* ürün ekle çıkarma 
-
-* json veri yükleme 
-
-* footer genişlet sss --> (DONE)
-
-*? top button 
-
-** yönetici için nav bar düzenlemesi  (lazy load ile  ayrı bir layout )  
-
-** işlevsellik oncellikli 
-
-* ui extra bir özen 
- - Fontlar 
- - marginler
- - paddingler
- - pbutton ezme 
- - style ezme primeng 
-  
-* logout <-> tr-en
+PORT: The port on which the server will run.
+HOST: The host address or IP on which the server will bind.
+HOST_URL: The URL of the host.
+API_KEY: Firebase API key.
+AUTH_DOMAIN: Firebase authentication domain.
+DATABASE_URL: Firebase database URL.
+PROJECT_ID: Firebase project ID.
+STORAGE_BUCKET: Firebase storage bucket.
+MESSAGING_SENDER_ID: Firebase messaging sender ID.
+APP_ID: Firebase application ID.

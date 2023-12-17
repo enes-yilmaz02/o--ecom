@@ -19,6 +19,21 @@
         </div>
       </div>
       <!-- Name input end-->
+          <!-- Image input start-->
+    <div class="wrapper block w-full">
+      <div class="flex-auto mt-4">
+        <label htmlFor="file" class="mb-2 block">{{'dAddProduct.file' | transloco}}</label>
+        <input
+          type="file"
+          pInputText
+          id="file"
+          formControlName="file"
+          (change)="onFileSelected($event)"
+          class="custom-file-input"
+        />
+      </div>
+    </div>
+    <!-- Image input end-->
        <!-- desc  input start-->
     <div class="wrapper mt-4 block">
       <label for="float-input">{{'dAddProduct.desc' | transloco}}</label>
@@ -34,7 +49,7 @@
       </span>
     </div>
     <!-- input end-->
-   <div class="flex flex-row">
+<div class="flex flex-row">
      <!-- Code input start-->
      <div class="wrapper">
       <div class="flex-auto mt-4">
@@ -81,37 +96,22 @@
       </div>
     </div>
     <!-- Price input end-->
-   </div>
+</div>
 
-    <!-- Image input start-->
-    <div class="wrapper block w-full">
-      <div class="flex-auto mt-4">
-        <label htmlFor="file" class="mb-2 block">{{'dAddProduct.file' | transloco}}</label>
-        <input
-          type="file"
-          pInputText
-          id="file"
-          formControlName="file"
-          (change)="onFileSelected($event)"
-          class="custom-file-input"
-        />
-      </div>
-    </div>
-    <!-- Image input end-->
 
-   <div class="flex flex-row align-items-center">
-     <!-- category  input start-->
+
+<div class="flex flex-column align-items-start">
+    <div class="flex flex-row w-full">
+       <!-- category  input start-->
      <div class="wrapper block w-full">
       <div class="flex-auto mt-4">
-        <label htmlFor="category" class="mb-2 block">{{'dAddProduct.category' | transloco}}</label>
-        <p-dropdown
-          id="category"
-          formControlName="category"
-          placeholder="Select..."
-          [options]="categorys"
-          optionLabel="name"
-          class="w-full"
-        ></p-dropdown>
+        <label for="valueRating" class="mb-2 block">{{'dAddProduct.category' | transloco}}</label>
+        <select formControlName="category">
+          <option value="" disabled selected hidden>{{'dAddProduct.category' | transloco}}</option>
+          <option *ngFor="let category of categorys" [value]="category">
+            {{ category.name | transloco}}
+          </option>
+        </select>
       </div>
     </div>
     <!-- category  input end-->
@@ -120,17 +120,18 @@
     <div class="flex-auto mt-4">
       <div class="flex flex-column justify-content-center border-round">
         <label for="valueRating" class="mb-2 block">{{'dAddProduct.rating' | transloco}}</label>
-        <p-dropdown
-          [options]="items"
-          formControlName="valueRating"
-          placeholder="Select..."
-          [virtualScroll]="true"
-          [virtualScrollItemSize]="38"
-        ></p-dropdown>
+
+        <select formControlName="valueRating">
+          <option value="" disabled selected hidden>{{'dAddProduct.rating' | transloco}}</option>
+          <option *ngFor="let item of items" [value]="item">
+            {{ item.value | transloco}}
+          </option>
+        </select>
       </div>
     </div>
   </div>
   <!-- rating  input end-->
+    </div>
     <!-- InventoryStatus input start-->
     <div class="wrapper mt-4 flex flex-column">
       <div>
@@ -144,7 +145,7 @@
             formControlName="selectedStatus"
             class="flex flex-row ml-2"
           ></p-radioButton>
-          <label [for]="status.key" class="ml-2">{{ status.name }}</label>
+          <label [for]="status.key" class="ml-2">{{ status.name | transloco }}</label>
         </div>
       </div>
     </div>

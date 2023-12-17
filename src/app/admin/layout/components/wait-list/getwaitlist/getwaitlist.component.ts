@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { TranslocoService } from '@ngneat/transloco';
+import { error } from 'jquery';
 import { MessageService } from 'primeng/api';
 import { UserRole } from 'src/app/models/role.enum';
 import { CereoterService } from 'src/app/services/cereoter.service';
@@ -123,7 +124,20 @@ export class GetwaitlistComponent {
           text: this.translocoService.translate('newMessageContenterror'),
         };
 
-        this.userService.sendEmailGlobal(body);
+        this.userService.sendEmailGlobal(body).subscribe(()=>{
+          this.messageService.add({
+            severity: 'success',
+            summary: this.translocoService.translate('successMessage'),
+          });
+        },
+        (error)=>{
+          this.messageService.add({
+            severity: 'error',
+            summary: this.translocoService.translate('errorMessage'),
+          });
+        }
+
+        )
         this.getAllCreoterUsers();
       },
       (error) => {

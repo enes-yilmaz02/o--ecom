@@ -11,7 +11,7 @@
   "newOrderMessage": "Yeni Siparişiniz var :)",
   "newMessage": "Yeni Markanız hayırlı olsun :)",
   "newMessageContent": "olarak satış yapmaya başlayabilirsiniz.",
-  "newMessageerror": "Your request to become a seller was not approved :(",
+  "newMessageerror": "Satıcı olma isteğiniz onaylanmadı :(",
   "newMessageContenterror": "Benzersiz bir deneyim sunmak adına vermiş olduğumuz hizmetin bu tür sonuçları olduğunuda biliyoruz. Bu yüzden ilerleyen bir zamanda tekrar başvurunuzu bekliyoruz.",
   "completeOrderMessage": "Sipariş Tamamlandı",
   "uncompleteOrderMessage": "Sipariş Tamamlanmadı",
