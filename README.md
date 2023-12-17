@@ -39,7 +39,7 @@ bash
 
 `npm install dotenv`
 
-## Configuration
+#### Configuration
 
 The configuration module loads the following environment variables from the .env file:
 
@@ -74,24 +74,24 @@ bash
 
 `npm install firebase-admin`
 
-## Configuration
+#### Configuration
 
 The module uses the config.js file for Firebase configuration. Ensure that the config.js file is correctly set up with the required Firebase credentials. Refer to the Firebase documentation for details on obtaining Firebase credentials.
 
 ## Readme for Express Application
 This repository contains an Express.js application with Google Cloud Storage integration and Google OAuth authentication using Passport.
 
-## Prerequisites
+#### Prerequisites
 Before running the application, make sure you have the following installed:
 
-## Node.js
+#### Node.js
 npm (Node Package Manager)
 
 Google Cloud Storage credentials (for file upload/download)
 
 Google OAuth client credentials (for authentication)
 
-## Installation
+#### Installation
 
 Clone the repository:
 
@@ -109,7 +109,7 @@ Set up environment variables:
 
 Create a .env file in the project root and add the following variables:
 
-## env
+#### env
 
 PORT=3000
 
@@ -126,7 +126,7 @@ SESSION_SECRET='mysecret'
 Update the values with your actual configurations.
 
 
-## Run the application:
+#### Run the application:
 
 bash
 
@@ -134,7 +134,7 @@ bash
 
 The application will be available at http://localhost:3000.
 
-## Features
+#### Features
 
 File Upload and Download:
 
@@ -150,7 +150,7 @@ Successful authentication redirects to http://localhost:4200/pages.
 
 Failed authentication redirects to http://localhost:4200/notfound.
 
-## Session Management:
+#### Session Management:
 
 The application uses Express session middleware for session management.
 
@@ -161,7 +161,7 @@ Role Assignment:
 Upon successful authentication, the user role is assigned.
 If the role is not available, it defaults to 'USER'.
 
-## Usage
+#### Usage
 File Upload:
 
 Use the /upload endpoint to upload a file.
@@ -185,19 +185,19 @@ Logout by accessing the /auth/logout endpoint.
 ## Passport Configuration for Google OAuth
 This file configures Passport.js to use Google OAuth2. It uses the passport-google-oauth2 strategy for authentication.
 
-## Installation
+#### Installation
 Before using this configuration, make sure to install the necessary dependencies:
 
 bash
 
 `npm install passport passport-google-oauth20 dotenv`
 
-## Configuration
+#### Configuration
 This configuration assumes that you have registered your application with the Google Developer Console and obtained the clientID and clientSecret.
 
 Create a .env file in the project root:
 
-## env
+#### env
 
 GOOGLE_CLIENT_ID='<your-client-id>'
 
@@ -207,7 +207,7 @@ Update the values with your actual Google OAuth credentials.
 
 Configure the Passport strategy in the provided file (e.g., passport-config.js):
 
-#javascript
+#### javascript
 
 `const passport = require('passport');`
 
@@ -247,7 +247,7 @@ Configure the Passport strategy in the provided file (e.g., passport-config.js):
 
 Integrate this Passport configuration into your main application file (e.g., app.js or index.js):
 
-#javascript
+#### javascript
 
 `const express = require('express');`
 
@@ -279,7 +279,7 @@ Feel free to customize the configuration based on your application's requirement
 ## API Routes Overview
 The API routes are organized into different modules to handle user-related operations, orders, favorites, carts, and email sending functionality. Here's a brief overview of each route and its corresponding functionality:
 
-## User Routes (/users)
+#### User Routes (/users)
 
 POST /users: Adds a new user.
 
@@ -297,7 +297,7 @@ PUT /users/:userId/password: Updates user password.
 
 DELETE /users/:userId: Deletes a user.
 
-## Order Routes (/orders)
+#### Order Routes (/orders)
 
 POST /orders: Adds a new order.
 
@@ -311,7 +311,7 @@ PUT /users/:userId/orders/:orderId: Updates order information.
 
 DELETE /users/:userId/orders/:orderId: Deletes an order.
 
-## Favorite Routes (/favorites)
+#### Favorite Routes (/favorites)
 
 POST /users/:userId/favorites/:favoriteId: Adds a new favorite product for a user.
 
@@ -325,7 +325,7 @@ DELETE /users/:userId/favorites/product/:productId: Deletes a favorite product b
 
 PUT /users/:userId/favorites/:favoriteId: Updates favorite product information.
 
-## Cart Routes (/carts)
+#### Cart Routes (/carts)
 
 POST /users/:userId/carts/:cartId: Adds a new product to the user's cart.
 
@@ -339,11 +339,11 @@ DELETE /users/:userId/carts/:cartId: Deletes a product from the user's cart.
 
 DELETE /users/:userId/carts: Clears all products from the user's cart.
 
-## Email Sending Routes (/users/sendEmail)
+#### Email Sending Routes (/users/sendEmail)
 
 POST /users/sendEmail: Sends an email.
 
-## Login/Logout Routes (/login, /logout)
+#### Login/Logout Routes (/login, /logout)
 
 POST /login: Logs in a user.
 
