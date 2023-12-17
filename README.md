@@ -115,13 +115,13 @@ PORT=3000
 
 HOST=http://localhost
 
-STORAGE_BUCKET=<your-storage-bucket-name>
+STORAGE_BUCKET='<your-storage-bucket-name>'
 
-GOOGLE_CLIENT_ID=<your-google-client-id>
+GOOGLE_CLIENT_ID='<your-google-client-id>'
 
-GOOGLE_CLIENT_SECRET=<your-google-client-secret>
+GOOGLE_CLIENT_SECRET='<your-google-client-secret>'
 
-SESSION_SECRET=mysecret
+SESSION_SECRET='mysecret'
 
 Update the values with your actual configurations.
 
@@ -199,9 +199,9 @@ Create a .env file in the project root:
 
 ## env
 
-GOOGLE_CLIENT_ID=<your-client-id>
+GOOGLE_CLIENT_ID='<your-client-id>'
 
-GOOGLE_CLIENT_SECRET=<your-client-secret>
+GOOGLE_CLIENT_SECRET='<your-client-secret>'
 
 Update the values with your actual Google OAuth credentials.
 
@@ -209,13 +209,13 @@ Configure the Passport strategy in the provided file (e.g., passport-config.js):
 
 #javascript
 
-const passport = require('passport');
+`const passport = require('passport');`
 
-const GoogleStrategy = require('passport-google-oauth20').Strategy;
+`const GoogleStrategy = require('passport-google-oauth20').Strategy;`
 
-require('dotenv').config();
+`require('dotenv').config();`
 
-passport.use(new GoogleStrategy({
+`passport.use(new GoogleStrategy({`
 
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
@@ -223,26 +223,25 @@ passport.use(new GoogleStrategy({
     passReqToCallback: true
   },
 
-  function(request, accessToken, refreshToken, profile, done) {
+  `function(request, accessToken, refreshToken, profile, done) {`
 
     done(null, profile);
 
-  }
-));
+ ` }));`
 
-passport.serializeUser((user, done) => {
-
-    done(null, user);
-
-});
-
-passport.deserializeUser((user, done) => {
+`passport.serializeUser((user, done) => {`
 
     done(null, user);
 
-});
+`});`
 
-module.exports = passport;
+`passport.deserializeUser((user, done) => {`
+
+    done(null, user);
+
+`});`
+
+`module.exports = passport;`
 
 
 
@@ -250,28 +249,28 @@ Integrate this Passport configuration into your main application file (e.g., app
 
 #javascript
 
-const express = require('express');
+`const express = require('express');`
 
-const passport = require('./path-to-passport-config-file');
+`const passport = require('./path-to-passport-config-file');`
 
-const app = express();
+`const app = express();`
 
 // ... Other configurations ...
 
 // Initialize Passport and restore authentication state, if any, from the session.
-app.use(passport.initialize());
-app.use(passport.session());
+`app.use(passport.initialize());`
+`app.use(passport.session());`
 
 // ... Other routes and middleware ...
 
 // Start the server
-const PORT = process.env.PORT || 8080;
-
-app.listen(PORT, () => {
+`const PORT = process.env.PORT || 8080;
+`
+`app.listen(PORT, () => {`
 
     console.log(`Server is running on http://localhost:${PORT}`);
 
-});
+`});`
 
 Ensure that your routes and callbacks are correctly set up to handle authentication.
 
