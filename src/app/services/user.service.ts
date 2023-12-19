@@ -17,6 +17,7 @@ export class UserService {
   // API endpoint'leri
   usersEndPoint = 'users';
   loginuser = 'login';
+  loginuserWithEmail = 'loginEmail'
   ordersEndPoint = 'orders';
   favoritesEndPoint = 'favorites';
   cartsEndPoint = 'carts';
@@ -242,6 +243,9 @@ getFavoriteById(userId: string, productId: string): Observable<boolean> {
       `${this.usersEndPoint}/${userId}/${this.cartsEndPoint}`
     );
   }
+
+
+
   // Tüm kullanıcıları getiren fonksiyon
   getUsers(): Observable<Users[]> {
     return this.commonService.get(this.usersEndPoint);
@@ -297,6 +301,18 @@ getFavoriteById(userId: string, productId: string): Observable<boolean> {
   loginUser(user: any): Observable<{ token: string }> {
     return this.commonService
       .post<{ token: string }>(this.loginuser, user)
+      .pipe(
+        tap((response) => {
+          this.authToken = response.token;
+          this.authService.setAuthToken(response.token);
+        })
+      );
+  }
+
+   // Kullanıcı girişi sağlayan fonksiyon
+   loginUserWithEmail(email: any): Observable<{ token: string }> {
+    return this.commonService
+      .post<{ token: string }>(this.loginuserWithEmail, email)
       .pipe(
         tap((response) => {
           this.authToken = response.token;

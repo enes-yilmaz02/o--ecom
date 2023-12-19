@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { TranslocoService } from '@ngneat/transloco';
 import { MessageService } from 'primeng/api';
 import { Observable, forkJoin, tap } from 'rxjs';
@@ -46,12 +47,15 @@ export class ContentCartsComponent {
     private userService: UserService,
     private productService: ProductService,
     private badgeService: BadgeService,
-    private translocoService:TranslocoService
+    private translocoService:TranslocoService,
+    private router:Router
   ) {
     this.getUserId().subscribe(() => {
       this.getCarts();
       this.getUserData(this.userId);
     });
+
+
   }
 
   getUserId(): Observable<any> {
@@ -195,15 +199,18 @@ export class ContentCartsComponent {
     return this.productService.patchProductById(productId);
   }
 
+
+
   completeOrder() {
-    // Toplam tutarı ve diğer siparişle ilgili bilgileri içeren ana sipariş nesnesini oluşturun
     const orderData = {
       totalAmount: this.totalPrice,
       orders: this.carts,
       userId: this.userId,
       orderDate: this.orderDate,
     };
-
+    const address= this.userData.address;
+    console.log(address);
+   if(address){
     this.getUserId().subscribe(() => {
       this.userService.addOrder(this.userId, orderData).subscribe(
         (response: any) => {
@@ -238,6 +245,9 @@ export class ContentCartsComponent {
         }
       );
     });
+   }else{
+    this.router.navigate(['account/user-info'])
+   }
   }
 
   updateProductStock(productId: any, quantity: any) {

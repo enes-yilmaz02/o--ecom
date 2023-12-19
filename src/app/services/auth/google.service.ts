@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of, tap } from 'rxjs';
+import { UserService } from '../user.service';
 
 
 @Injectable({
@@ -10,19 +11,24 @@ export class GoogleService {
   private apiUrl = 'http://localhost:8080';
 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient , private userService:UserService) { }
 
 
   loginWithGoogle(): void {
     window.location.href = `${this.apiUrl}/auth/google`;
   }
 
-  handleGoogleCallback(): Observable<any>{
-    return this.http.get<any>(`${this.apiUrl}/auth/google/callback`).pipe(
-      tap((response) => {
+  handleGoogleCallback(): void {
+    this.http.get<any>(`${this.apiUrl}/auth/google/callback`).subscribe(
+      (response) => {
         console.log('giriş başarılı', response);
-        localStorage.setItem('token', response.token); // Token bilgisini sakla
-      })
+        this.userService.loginUserWithEmail(response).subscribe(()=>{
+          console.log('google service conf başarılı');
+        })
+      },
+      (error) => {
+        console.error('Giriş başarısız', error);
+      }
     );
   }
 
