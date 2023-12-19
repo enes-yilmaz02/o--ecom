@@ -132,9 +132,8 @@
             ></p-tag>
           </td>
           <td>
-            {{
-              product?.category.name| categoryStatus
-            }}
+            {{ product?.category | categoryStatus }}
+
           </td>
           <td>{{ product?.companyName  }}</td>
           <td>

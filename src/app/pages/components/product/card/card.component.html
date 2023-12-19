@@ -19,12 +19,6 @@
       <div (click)="getProductByFilter('Fitness')">
         {{ "cardForm.Fitness" | transloco }}
       </div>
-      <div (click)="getProductByFilter('Man')">
-        {{ "Male" | transloco }}
-      </div>
-      <div (click)="getProductByFilter('Women')">
-        {{ "Female" | transloco }}
-      </div>
     </div>
   </div>
   <div class="flex flex-column w-full">
@@ -63,7 +57,7 @@
                 </h2>
                 <div class="flex flex-row justify-content-between">
                   <p class="product-description">
-                    {{ product.category.name | categoryStatus }}
+                    {{ product.category | categoryStatus }}
                   </p>
                   <p class="product-description">
                     <p-tag

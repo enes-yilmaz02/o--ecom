@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { TranslocoService } from '@ngneat/transloco';
 import { MessageService, SelectItem } from 'primeng/api';
@@ -79,6 +79,22 @@ export class AddproductFormComponent  {
   }
 
 
+  onCategoryChange(event: Event): void {
+    const selectedCategory = (event.target as HTMLSelectElement).value;
+
+    // Şimdi seçilen kategoriyi kullanabilirsiniz
+    console.log('Selected Category:', selectedCategory);
+  }
+
+  onRatingChange(selectedRating: any) {
+  console.log('Selected Rating:', selectedRating);
+  const ratingValue = selectedRating;
+  this.addproductForm.get('valueRating').setValue(ratingValue);
+  }
+
+
+
+
 
   getUserId(): Observable<any> {
     return this.userService.getTokenId().pipe(
@@ -122,6 +138,7 @@ export class AddproductFormComponent  {
     this.getUserId().subscribe(() => {
       this.userService.getUser(this.userId).subscribe((data) => {
         const productData = this.addproductForm.value;
+        console.log(productData)
         if (this.addproductForm.valid) {
           productData.file = this.selectedFile.name;
           productData.creoterId = this.userId;
@@ -136,6 +153,7 @@ export class AddproductFormComponent  {
                 summary: this.translocoService.translate('successMessage'),
                 detail:  this.translocoService.translate('dAddProduct.messageDetailsuccess'),
               });
+              this.addproductForm.reset();
             },
             (error) => {
               this.messageService.add({
@@ -147,7 +165,7 @@ export class AddproductFormComponent  {
           );
         }else{
           this.messageService.add({
-            severity: 'success',
+            severity: 'warn',
             summary: this.translocoService.translate('warnMessage'),
             detail:  this.translocoService.translate('dAddProduct.messageDetailwarn'),
           });

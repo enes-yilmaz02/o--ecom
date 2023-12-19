@@ -27,8 +27,8 @@ export class UserGuard implements CanActivate {
     }).pipe(
       switchMap((data) => {
         const { role, isAuthenticated } = data;
-
-        if (role === 'USER' ) {
+        console.log(isAuthenticated);
+        if (role === 'USER' ||  isAuthenticated ) {
           return of(true);
         } else {
           this.messageService.add({

@@ -16,7 +16,7 @@ const routes: Routes = [
   },
   {
     path: 'pages',
-     canActivate:[UserGuard],
+    //canActivate:[UserGuard],
     loadChildren: () =>import('./pages/pages.module').then((m) => m.PagesModule),
   },
   {
