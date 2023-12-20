@@ -1,61 +1,151 @@
-
-.navbar{
-  justify-content: space-evenly;
-  background-color: transparent;
-  cursor: pointer;
-  background-color: transparent; /* Özel renk ekleyebilirsiniz */
-  color: #fff;
-  backdrop-filter: blur(15px);
-  margin-top: 0;
-}
-
-.navbar a{
-  color: #fff;
-}
-
-.menu{
-  justify-content: center;
+.navbar {
+  justify-content: start;
   align-items: center;
-}
-.menu-item{
-  margin-left: auto;
-  margin-right: auto;
-  list-style-type: none;
+  text-align: start;
+  background-color: transparent;
+  backdrop-filter: blur(5px);
   cursor: pointer;
+  color: #fff;
+  margin: 0;
+  position: relative;
+  width: 100%;
+}
 
-  i{
-    font-size: 20px;
-    color: #000;
+.dropdown {
+  height: fit-content;
+  position: relative;
+  display: inline-block;
+}
+.dropdown-toggle {
+  background-color: transparent;
+  color: #333;
+  padding: .75rem 2.5rem;
+  border: none;
+  border-radius: .5rem;
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: -20px;
+  background-color: transparent;
+  border-radius: 1rem;
+  padding: 0;
+  list-style: none;
+  display: none;
+}
+.dropdown-menu .menu-item:first-child{
+  border-radius: 1rem 1rem 0 0 ;
+}
+.dropdown-menu .menu-item:last-child{
+  border-radius: 0 0 1rem 1rem  ;
+}
+.dropdown-menu .menu-item {
+  width: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 1rem 1rem;
+  background-color: #fff;
+  border: none;
+  font-size: 0.4rem;
+}
+.dropdown-menu .item-icon i{
+  font-size: 10px;
+  color: #000;
+}
+.dropdown-menu .item-txt{
+  width: 50%;
+  text-align: left;
+}
+.dropdown-menu .menu-item:hover{
+  cursor: pointer;
+  color: rgb(19, 98, 255);
+}
+button:focus ~ .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu .attribute{
+  position: absolute;
+  bottom: 10px;
+}
+
+@media (max-width:768px) {
+  .dropdown{
+      width: 350px;
+  }
+  .dropdown-menu .menu-item{
+      width: 320px;
   }
 }
-.menu-item a{
-  text-decoration: none;
-  color: #000;
-  font-size: 18px;
-  margin: 5px;
+
+ul {
+  display: block;
+  list-style-type: none;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
 }
 
-.custom-select{
-  color: #000;
-  border: none;
-  background: transparent;
+.navbar a {
+  color: #fff;
 }
 
-  .menu-item i{
+.navbar{
+  .menu {
+    justify-content: start;
+    text-align: start;
+    align-items: center;
+  }
+  .menu-item {
+    list-style-type: none;
+    cursor: pointer;
+
+    i {
+      font-size: 15px;
+      color: #000;
+    }
+  }
+  .menu-item a {
+    text-decoration: none;
+    color: #000;
+    font-size: 10px;
+    margin: 5px;
+  }
+
+  .custom-select {
+    color: #000;
+    border: none;
+    background: transparent;
+  }
+
+  .menu-item i {
     margin-right: 5px;
   }
 
+}
 
-  :host ::ng-deep{
-
-    .pi-shopping-bag .p-badge{
-      background-color: #3498db;
-
-    }
-    .pi-shopping-bag .p-badge{
-      background-color: green;
-    }
-    .pi-heart .p-badge{
-      background-color: red;
-    }
+:host ::ng-deep {
+  .p-panel {
+    background-color: transparent;
+    cursor: pointer;
+    color: #fff;
+    backdrop-filter: blur(15px);
+    margin-top: 0;
+    border: none;
   }
+
+  .pi-shopping-bag .p-badge {
+    background-color: #3498db;
+  }
+  .pi-shopping-bag .p-badge {
+    background-color: green;
+  }
+  .pi-heart .p-badge {
+    background-color: red;
+  }
+}

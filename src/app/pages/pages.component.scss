@@ -1,14 +1,24 @@
 .app-layout {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Sayfa yüksekliğinin en az ekran yüksekliği kadar olmasını sağlar */
+  min-height: 100vh;
+}
+.app-header{
+  padding-left:50px;
+  padding-right:50px;
+  position: fixed;
+  height: 30px;
+  width: 100%;
+  z-index:1;
 }
 
-.app-content {
-  flex: 1; /* İçeriğin geri kalan boş alana genişlemesini sağlar */
+.app-content{
+  flex: 1;
+  margin-top: 50px;
+  padding-left:50px;
+  padding-right:50px;
 }
 
-.app-footer {
-  /* Footer'ın en altta olması için gerekli stiller */
-  margin-top: auto;
+.app-footer{
+  margin-top: auto ;
 }

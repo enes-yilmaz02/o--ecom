@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Observable, tap } from 'rxjs';
-import { CartService } from 'src/app/services/cart.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({

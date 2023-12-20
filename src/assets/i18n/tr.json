@@ -49,6 +49,8 @@
   "Female": "Kadın",
   "Another": "Diğer",
 
+  "account":"Hesabım",
+
   "loginForm": {
     "header": "Giriş",
     "emailTooltip": "Emaili giriniz",

@@ -1,8 +1,21 @@
-import { MessageService } from 'primeng/api';
+
+//Moduller
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NavbarListComponent } from './components/navbar-list/navbar-list.component';
 import { SharedModule } from '../shared/shared.module';
+import { RouterModule } from '@angular/router';
+
+//Servisler
+import { MessageService } from 'primeng/api';
+import { CartService } from '../services/cart.service';
+import { CitiesService } from '../services/cities.service';
+
+//Pipelar
+import { TruncatePipe } from '../services/pipes/truncate.pipe';
+
+
+//Componentler
+import { NavbarListComponent } from './components/navbar-list/navbar-list.component';
 import { AboutComponent } from './components/about/about.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { AccountComponent } from './components/account/account.component';
@@ -16,8 +29,6 @@ import { ProductComponent } from './components/product/product.component';
 import { CardComponent } from './components/product/card/card.component';
 import { CardDetailComponent } from './components/product/card-detail/card-detail.component';
 import { PagesComponent } from './pages.component';
-import { RouterModule } from '@angular/router';
-import { CartService } from '../services/cart.service';
 import { LoadingComponent } from './components/loading/loading.component';
 import { DefaultContentComponent } from './components/orders/default-content/default-content.component';
 import { ContentTableComponent } from './components/orders/content-table/content-table.component';
@@ -29,10 +40,9 @@ import { CartsComponent } from './components/carts/carts.component';
 import { ContentCartsComponent } from './components/carts/content-carts/content-carts.component';
 import { DefaultCartsComponent } from './components/carts/default-carts/default-carts.component';
 import { CreoterFormComponent } from './components/creoter-form/creoter-form.component';
-import { TruncatePipe } from '../services/pipes/truncate.pipe';
-
 import { DenemeComponent } from './components/deneme/deneme.component';
-import { CitiesService } from '../services/cities.service';
+
+
 @NgModule({
   declarations: [
     NavbarListComponent,
@@ -61,8 +71,6 @@ import { CitiesService } from '../services/cities.service';
      CreoterFormComponent,
      TruncatePipe,
      DenemeComponent
-
-
   ],
   imports: [
     CommonModule,

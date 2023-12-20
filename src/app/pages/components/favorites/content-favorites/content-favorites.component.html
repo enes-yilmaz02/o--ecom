@@ -1,45 +1,106 @@
 <div
-  class="surface-section px-4 py-8 md:px-6 lg:px-8 border-1 surface-border border-round"
+  class="surface-section  px-4 py-8 md:px-6 lg:px-8 border-1 surface-border border-round"
 >
-  <div class="text-900 font-medium text-4xl mb-4">{{'favoritesForm.header' | transloco}}</div>
-  <div class="grid -mt-3 -ml-3 -mr-3" >
-    <div class="col-12 md:col-6 lg:col-4"  *ngFor="let product of products">
-      <div class="p-2">
-        <div class="shadow-2 surface-card-parent border-round">
-          <div class="relative mb-3">
-            <span
-              class="surface-card text-900 shadow-2 px-3 py-2 absolute"
-              style="border-radius: 1.5rem; left: 1rem; top: 1rem"
-              >{{product?.category.name | categoryStatus}}</span
-            >
-            <img
-              [src]="getFileUrl(product?.file)"
-              [alt]="product?.name"
-              class="w-full"
-            />
+  <div class="text-900 text-4xl mb-4">
+    {{ "favoritesForm.header" | transloco }}
+  </div>
+  <div>
+    <div class="align-items-center"
+      *ngFor="let product of products"
+    >
+        <div class="shadow-1 p-4 flex flex-row align-items-center ">
+            <div class="image flex mx-1">
+              <img
+                [src]="getFileUrl(product?.file)"
+                [alt]="product?.name"
+                width="100"
+                height="100"
+              />
+            </div>
+            <div class="name flex align-items-center mx-4">
+              <span>{{
+                product?.name | truncate : 15
+              }}</span>
+            </div>
+            <div class="category flex align-items-center mx-4">
+              <span>{{
+                product?.category | categoryStatus
+              }}</span>
+            </div>
+          <div class="description flex align-items-center mx-4">
+            <p >
+              {{ product?.description | truncate : 230 }}
+            </p>
           </div>
-          <div class="flex justify-content-between align-items-start mb-3">
-            <span class="text-900 font-medium text-xl">{{product?.name| truncate:15}}</span>
-          </div>
-          <p class="mt-0 mb-3 text-700 line-height-3">
-            {{product?.description | truncate:100}}
-          </p>
 
-          <div class="flex flex-row w-full justify-content-between">
-            <span class="text-xl font-medium"> ${{
-              product?.priceStacked
-            }}</span>
+          <div class="price flex align-items-center mx-4">
+            <span
+              >{{ product?.priceStacked | currency:'USD' }}</span
+            >
             <i
-            class="pi text-2xl cursor-pointer ml-3"
-            [ngClass]="{
-              'pi-heart text-600': !liked,
-              'pi-heart-fill text-red-500': liked
-            }"
-            (click)="deleteFavorites(product.productId)"
-          ></i>
+              class="pi text-2xl cursor-pointer ml-3"
+              [ngClass]="{
+                'pi-heart text-600': !liked,
+                'pi-heart-fill text-red-500': liked
+              }"
+              (click)="deleteFavorites(product.productId)"
+            ></i>
           </div>
         </div>
-      </div>
     </div>
   </div>
+
+  <hr>
+
+  <div class="text-900 text-4xl mb-4">
+    {{ "favoritesForm.header" | transloco }}
+  </div>
+  <div>
+    <div class="align-items-center"
+      *ngFor="let product of products"
+    >
+        <div class="shadow-1 p-4 flex flex-row align-items-center ">
+            <div class="image flex mx-1">
+              <img
+                [src]="getFileUrl(product?.file)"
+                [alt]="product?.name"
+                width="100"
+                height="100"
+              />
+            </div>
+            <div class="name flex align-items-center mx-4">
+              <span>{{
+                product?.name | truncate : 15
+              }}</span>
+            </div>
+            <div class="category flex align-items-center mx-4">
+              <span>{{
+                product?.category | categoryStatus
+              }}</span>
+            </div>
+          <div class="description flex align-items-center mx-4">
+            <p >
+              {{ product?.description | truncate : 230 }}
+            </p>
+          </div>
+
+          <div class="price flex align-items-center mx-4">
+            <span
+              >{{ product?.priceStacked | currency:'USD' }}</span
+            >
+            <i
+              class="pi text-2xl cursor-pointer ml-3"
+              [ngClass]="{
+                'pi-heart text-600': !liked,
+                'pi-heart-fill text-red-500': liked
+              }"
+              (click)="deleteFavorites(product.productId)"
+            ></i>
+          </div>
+        </div>
+    </div>
+  </div>
+
 </div>
+
+

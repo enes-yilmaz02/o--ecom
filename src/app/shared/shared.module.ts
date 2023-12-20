@@ -41,7 +41,11 @@ import { StockStatusPipe } from '../services/helper/stock-status.pipe';
 import { CategoryStatus } from '../services/helper/category-status.pipe';
 import { GenderStatus } from '../services/helper/gender-status.pipe';
 import { TranslocoRootModule } from '../transloco-root.module';
-import {  TRANSLOCO_CONFIG, TranslocoModule, TranslocoService, translocoConfig } from '@ngneat/transloco';
+import { TranslocoModule } from '@ngneat/transloco';
+import { PanelModule } from 'primeng/panel';
+import { AvatarModule } from 'primeng/avatar';
+import { AvatarGroupModule } from 'primeng/avatargroup';
+
 @NgModule({
   declarations: [StockStatusPipe, CategoryStatus, GenderStatus],
   imports: [
@@ -85,7 +89,10 @@ import {  TRANSLOCO_CONFIG, TranslocoModule, TranslocoService, translocoConfig }
     SidebarModule,
     StepsModule,
     TranslocoModule,
-    TranslocoRootModule
+    TranslocoRootModule,
+    PanelModule,
+    AvatarModule,
+    AvatarGroupModule
 
   ],
   exports: [
@@ -132,7 +139,10 @@ import {  TRANSLOCO_CONFIG, TranslocoModule, TranslocoService, translocoConfig }
     CategoryStatus,
     GenderStatus,
     TranslocoModule,
-    TranslocoRootModule
+    TranslocoRootModule,
+    PanelModule,
+    AvatarModule,
+    AvatarGroupModule
 
 
 

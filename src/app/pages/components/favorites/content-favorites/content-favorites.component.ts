@@ -21,9 +21,7 @@ export class ContentFavoritesComponent {
 
   productId: any;
 
-
-    // Parent'a bildireceğimiz olayı tanımlıyoruz
-    @Output() allFavoritesDeleted = new EventEmitter<void>();
+  @Output() allFavoritesDeleted = new EventEmitter<void>();
 
   constructor(
     private userService: UserService,
@@ -44,14 +42,17 @@ export class ContentFavoritesComponent {
   }
   getFavorites() {
     return this.userService.getFavorites(this.userId).subscribe((data: any) => {
-      // productId değerlerini products dizisine ekle
       this.products = data
         .map((item: any) => {
           const product = item.product;
-          product.productId = item.id; // productId değerini ekle
+          product.productId = item.id;
           return product;
         })
         .flat();
+
+        if (this.products.length === 0) {
+          this.allFavoritesDeleted.emit();
+        }
     });
   }
 
@@ -65,9 +66,7 @@ export class ContentFavoritesComponent {
             detail:this.tranlocoService.translate('favoritesForm.messageDetailsuccess')
           });
           this.badgeService.emitCartUpdatedEvent();
-          this.allFavoritesDeleted.emit();
           this.getFavorites();
-
         },
         (error) => {
           console.log(productId);

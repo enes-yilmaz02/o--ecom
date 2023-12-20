@@ -193,8 +193,8 @@ getFavoriteById(userId: string, productId: string): Observable<boolean> {
       .delete(
         `${this.usersEndPoint}/${userId}/${this.favoritesEndPoint}/${this.productEndPoint}/${productId}`
       );
-
   }
+
   // Belirli bir kullanıcının favorilerini getiren fonksiyon
   getCarts(userId: string): Observable<Users> {
     return this.commonService

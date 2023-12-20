@@ -5,6 +5,7 @@ import { BadgeService } from 'src/app/services/badge.service';
 import { UserService } from 'src/app/services/user.service';
 import { StockStatusPipe } from 'src/app/services/helper/stock-status.pipe';
 import { Router } from '@angular/router';
+import { MenuItem } from 'primeng/api';
 @Component({
   selector: 'app-navbar-list',
   templateUrl: './navbar-list.component.html',
@@ -28,6 +29,9 @@ export class NavbarListComponent implements OnInit {
   userId : any;
 
   translatedStockStatus: string;
+
+  items: MenuItem[] | undefined;
+
 
   constructor(
     private transloco: TranslocoService,
@@ -76,6 +80,44 @@ export class NavbarListComponent implements OnInit {
           // Diğer badge'leri güncelle
           this.updateBadges();
         });
+
+        this.items = [
+          {
+              label: 'Enes Yilmaz',
+              icon: 'pi pi-user',
+              items: [
+                  {
+                      label: this.transloco.translate('account'),
+                      icon: 'pi pi-user',
+
+                  },
+                  {
+                      label: 'Sepetim',
+                      icon: 'pi pi-shopping-cart'
+                  },
+                  {
+                    label: 'Favorilerim',
+                    icon: 'pi pi-heart'
+                },
+                {
+                  label: 'Siparişlerim',
+                  icon: 'pi pi-shopping-bag'
+              },
+              {
+                label: 'Satıcı ol',
+                icon: 'pi pi-user-plus'
+            },
+                  {
+                      separator: true
+                  },
+                  {
+                      label: 'Çıkış Yap',
+                      icon: 'pi pi-sign-out'
+                  }
+              ]
+          }
+
+      ];
 
       }
 

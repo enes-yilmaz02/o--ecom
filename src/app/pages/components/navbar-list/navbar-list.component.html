@@ -1,59 +1,82 @@
 <nav class="navbar align-items-center justify-content-evenly ">
-  <ul class="menu flex flex-row  ">
+  <ul class="menu flex flex-row justify-content-between  ">
       <li class="menu-item ">
         <img src="assets/images/OI_logo.png" height="60" class="mr-2" [routerLink]="['/pages','product']" />
       </li>
-        <li class="menu-item ">
-          <a [routerLink]="['/pages','account']">
-            <i class="pi pi-user"></i> {{'navigationForm.account' | transloco}}
-          </a>
-        </li>
-        <li class="menu-item ">
-          <a [routerLink]="['/pages','shopping-cart']">
-            <i class="pi pi-shopping-cart">
-              <span pBadge  [value]="cartsBadge"></span>
-            </i> {{'navigationForm.cart' | transloco}}
-          </a>
-        </li>
-        <li class="menu-item ">
-          <a [routerLink]="['/pages','orders']">
-            <i class="pi pi-shopping-bag">
-              <span pBadge  [value]="orderBadge"></span>
-            </i> {{'navigationForm.orders' | transloco}}
-          </a>
-        </li>
-        <li class="menu-item">
-          <a [routerLink]="['/pages','favorites']">
-            <i class="pi pi-heart">
-              <span pBadge  [value]="favoritesBadge"></span>
-            </i> {{'navigationForm.favorites' | transloco}}
-          </a>
-        </li>
-        <li class="menu-item">
-          <i class="pi pi-user-plus">
-          </i>
-          <a [routerLink]="['/pages','creoter-form']">
-            {{'navigationForm.seller' | transloco}}
-          </a>
-        </li>
-        <li class="menu-item">
-          <a [routerLink]="['/pages','about']">
-            <i class="pi pi-question-circle"></i> {{'navigationForm.about' | transloco}}
-          </a>
-        </li>
-        <li class="menu-item">
-          <a [routerLink]="['/pages','support']">
-            <i class="pi pi-question"></i> {{'navigationForm.help&support' | transloco}}
-          </a>
-        </li>
-        <select (change)="setLanguage()" [(ngModel)]="selectedLanguage" class="custom-select flex border-0 text-lg ml-3">
-          <option *ngFor="let option of stateOptions" [ngValue]="option.value">{{ option.label }}</option>
-        </select>
-        <li class="menu-item">
-          <a (click)="logout()" >
-            <i class="pi pi-sign-out"></i> {{'navigationForm.logout' | transloco}}
-          </a>
-        </li>
+    <li>
+      <ul class="flex flex-row align-items-center">
+        <li>
+          <select (change)="setLanguage()" [(ngModel)]="selectedLanguage" class="custom-select flex border-0 text-lg ml-3">
+            <option *ngFor="let option of stateOptions" [ngValue]="option.value">{{ option.label }}</option>
+          </select>
+         </li>
+         <li>
+          <p-menubar [model]="items"></p-menubar>
+         </li>
+         <!-- <li>
+          <div class="dropdown">
+            <button class="dropdown-toggle menu-item">
+                <span class="item-icon">
+                    <i class='pi pi-user'></i>
+                </span>
+                <span class="item-txt">
+                    Enes Yilmaz
+                </span>
+            </button>
+            <ul class="dropdown-menu">
+                <li class="menu-item ">
+                  <a [routerLink]="['/pages','account']">
+                    <i class="pi pi-user"></i> {{'navigationForm.account' | transloco}}
+                  </a>
+                </li>
+                <li class="menu-item ">
+                  <a [routerLink]="['/pages','shopping-cart']">
+                    <i class="pi pi-shopping-cart">
+                      <span pBadge  [value]="cartsBadge"></span>
+                    </i> {{'navigationForm.cart' | transloco}}
+                  </a>
+                </li>
+                <li class="menu-item ">
+                  <a [routerLink]="['/pages','orders']">
+                    <i class="pi pi-shopping-bag">
+                      <span pBadge  [value]="orderBadge"></span>
+                    </i> {{'navigationForm.orders' | transloco}}
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a [routerLink]="['/pages','favorites']">
+                    <i class="pi pi-heart">
+                      <span pBadge  [value]="favoritesBadge"></span>
+                    </i> {{'navigationForm.favorites' | transloco}}
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <i class="pi pi-user-plus">
+                  </i>
+                  <a [routerLink]="['/pages','creoter-form']">
+                    {{'navigationForm.seller' | transloco}}
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a [routerLink]="['/pages','about']">
+                    <i class="pi pi-question-circle"></i> {{'navigationForm.about' | transloco}}
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a [routerLink]="['/pages','support']">
+                    <i class="pi pi-question"></i> {{'navigationForm.help&support' | transloco}}
+                  </a>
+                </li>
+                <li class="menu-item">
+                  <a (click)="logout()" >
+                    <i class="pi pi-sign-out"></i> {{'navigationForm.logout' | transloco}}
+                  </a>
+                </li>
+            </ul>
+          </div>
+         </li> -->
+      </ul>
+    </li>
       </ul>
 </nav>
 
