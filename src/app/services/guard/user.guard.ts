@@ -1,5 +1,7 @@
+import { TokenGuard } from './token.guard';
 import { MessageService } from 'primeng/api';
 import {
+  ActivatedRoute,
   CanActivate,
   Router,
 } from '@angular/router';
@@ -17,18 +19,19 @@ export class UserGuard implements CanActivate {
     private userService: UserService,
     private router: Router,
     private messageService: MessageService,
-    private googleService:GoogleService
+    private googleService:GoogleService,
+    private tokenGuard:TokenGuard,
+    private route:ActivatedRoute
   ) {}
 
   canActivate(): Observable<boolean> {
     return forkJoin({
       role: this.userService.getUserByTokenId(),
-      isAuthenticated: this.googleService.isAuthenticated(),
     }).pipe(
       switchMap((data) => {
-        const { role, isAuthenticated } = data;
-        console.log(isAuthenticated);
-        if (role === 'USER' ||  isAuthenticated ) {
+        const { role } = data;
+
+        if (role === 'USER') {
           return of(true);
         } else {
           this.messageService.add({

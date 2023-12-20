@@ -359,6 +359,7 @@ getFavoriteById(userId: string, productId: string): Observable<boolean> {
     return this.getUser(userId).pipe(
       map((data: any) => {
         this.userData = data['role'];
+        console.log('userdata role:' , this.userData);
         return this.userData;
       }),
       catchError((error) => {

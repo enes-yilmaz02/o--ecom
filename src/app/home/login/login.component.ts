@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TranslocoService } from '@ngneat/transloco';
 import { MessageService } from 'primeng/api';
 import { Observable, tap } from 'rxjs';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { GoogleService } from 'src/app/services/auth/google.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -26,6 +27,8 @@ export class LoginComponent {
     private messageService: MessageService,
     private userService: UserService,
     private router: Router,
+    private route:ActivatedRoute,
+    private authService:AuthService,
     private translocoService: TranslocoService,
     private googleService: GoogleService
   ) {}
@@ -42,6 +45,17 @@ export class LoginComponent {
     this.userFormLogin = this.formBuilder.group({
       email: ['', [Validators.required, Validators.minLength(2)]],
       password: ['', [Validators.required, Validators.minLength(8)]],
+    });
+
+     // Token'ı URL'den oku
+     this.route.queryParams.subscribe(params => {
+      const token = params['token'] as string;
+
+      // Token'ı işle (örneğin, AuthService ile sakla)
+      this.authService.setAuthToken(token);
+
+      // İstediğiniz sayfaya yönlendirme yapabilirsiniz
+      this.router.navigate(['/pages']);
     });
   }
 
