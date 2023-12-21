@@ -12,3 +12,13 @@ $gutter: 1rem; //for primeflex grid system
 @import "assets/demo/styles/badges.scss";
 @import "assets/demo/styles/code.scss";
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: 'Proxima Nova';
+  src: url('assets/fonts/ProximaNovaRegular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+*{
+  font-family: 'Proxima Nova', sans-serif;
+}

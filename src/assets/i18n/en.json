@@ -445,7 +445,7 @@
     "category":"Category",
     "companyName":"Creoter",
     "actions":"Actions",
-    "notFound":"You Do Not Have Any Product Specified",
+    "notFound":"No records found",
     "messageDetailsuccess": "The product was successfully removed",
     "messageDetailerror": "Installation failed... Try again"
   },

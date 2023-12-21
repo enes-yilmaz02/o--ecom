@@ -19,8 +19,8 @@ import { TranslocoService } from '@ngneat/transloco';
 export class CardComponent implements OnInit {
   layout: 'grid' | 'list' = 'grid';
   products: any;
-  searchText: string = ''; // Arama metni için bir değişken
-  filteredProducts: Product[] = []; // Filtrelenmiş ürünleri saklamak için bir dizi
+  searchText: string = '';
+  filteredProducts: Product[] = [];
   defaultValue: any;
   sortOrder: number = 0;
   sortField: string = '';
@@ -92,18 +92,6 @@ export class CardComponent implements OnInit {
 
       return productNameIncludes || categoryIncludes;
     });
-  }
-
-  onSortChange(event: any) {
-    const value = event.value;
-
-    if (value.indexOf('!') === 0) {
-      this.sortOrder = -1;
-      this.sortField = value.substring(1, value.length);
-    } else {
-      this.sortOrder = 1;
-      this.sortField = value;
-    }
   }
 
   onFilter(dv: DataView, event: Event) {

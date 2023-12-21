@@ -442,7 +442,7 @@
     "category": "Kategori",
     "companyName": "Satıcı",
     "actions": "İşlemler",
-    "notFound": "Belirtilen Hiçbir Ürününüz Bulunmamaktadır",
+    "notFound": "Hiçbir kayıt bulunmadı",
     "messageDetailsuccess": "Ürün başarılı bir şekilde kaldırıldı",
     "messageDetailerror": "Yükleme işlemi başarısız oldu... Tekrar deneyiniz"
   },

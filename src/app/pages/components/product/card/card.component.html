@@ -1,5 +1,4 @@
 <div class="card flex flex-row">
-  <div>
     <div class="category-filter flex">
       <div class="title">
         <h3>{{ "cardForm.title" | transloco }}</h3>
@@ -20,7 +19,6 @@
         {{ "cardForm.Fitness" | transloco }}
       </div>
     </div>
-  </div>
   <div class="flex flex-column w-full">
     <div class="search">
       <div class="p-input-icon-left search-text mr-3">
@@ -43,6 +41,7 @@
       [sortOrder]="sortOrder"
       [showCurrentPageReport]="true"
       [rowsPerPageOptions]="[10, 25, 50]"
+      [emptyMessage]="'dGetProduct.notFound' | transloco"
     >
       <ng-template let-product pTemplate="gridItem">
         <div class="flex flex-row">
@@ -66,11 +65,7 @@
                     ></p-tag>
                   </p>
                 </div>
-                <!-- <div class="flex flex-row justify-content-between">
-          <p class="product-description">
-            {{ product.description | truncate : 50 }}
-          </p>
-        </div> -->
+
                 <div
                   class="product-price flex flex-row flex-auto justify-content-between"
                 >
@@ -82,9 +77,7 @@
                     styleClass="rating"
                   ></p-rating>
                 </div>
-                <!-- <button class="more-cart" [routerLink]="['/pages/product', product.id]">
-          More +
-        </button> -->
+
                 <button
                   class="add-to-cart"
                   *ngIf="isOutOfStock(product)"

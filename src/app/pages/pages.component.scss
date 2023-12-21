@@ -4,19 +4,13 @@
   min-height: 100vh;
 }
 .app-header{
-  padding-left:50px;
-  padding-right:50px;
-  position: fixed;
-  height: 30px;
-  width: 100%;
-  z-index:1;
+  padding-left:100px;
+  padding-right:100px;
 }
 
 .app-content{
-  flex: 1;
-  margin-top: 50px;
-  padding-left:50px;
-  padding-right:50px;
+  padding-left:90px;
+  padding-right:100px;
 }
 
 .app-footer{
