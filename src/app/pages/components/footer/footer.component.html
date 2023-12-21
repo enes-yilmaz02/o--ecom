@@ -1,42 +1,70 @@
 <footer class="footer">
   <div class="container">
-   <div class="row">
-     <div class="footer-col">
-       <h4>company</h4>
-       <ul>
-         <li><a href="#">about us</a></li>
-         <li><a href="#">our services</a></li>
-         <li><a href="#">privacy policy</a></li>
-         <li><a href="#">affiliate program</a></li>
-       </ul>
-     </div>
-     <div class="footer-col">
-       <h4>get help</h4>
-       <ul>
-         <li><a href="#">FAQ</a></li>
-         <li><a href="#">shipping</a></li>
-         <li><a href="#">returns</a></li>
-         <li><a href="#">order status</a></li>
-         <li><a href="#">payment options</a></li>
-       </ul>
-     </div>
-     <div class="footer-col">
-       <h4>About us</h4>
-       <ul>
-         <li><a href="#">+901234567890</a></li>
-         <li><a href="#">İstanbul</a></li>
-         <li><a href="#">info@gmail.com</a></li>
-       </ul>
-     </div>
-     <div class="footer-col">
-       <h4>follow us</h4>
-       <div class="social-links">
-         <a href="#"><i class="pi pi-facebook"></i></a>
-         <a href="#"><i class="pi pi-twitter"></i></a>
-         <a href="#"><i class="pi pi-instagram"></i></a>
-         <a href="#"><i class="pi pi-linkedin"></i></a>
-       </div>
-     </div>
-   </div>
+    <div class="row">
+      <div class="footer-col">
+        <h4>{{"footer.contact" | transloco}}</h4>
+        <ul>
+          <li><a href="#">+901234567890</a></li>
+          <li><a href="#">İstanbul</a></li>
+          <li><a href="#">info@gmail.com</a></li>
+          <li>
+            <div class="flex flex-row align-items-center">
+              <a [routerLink]="['/pages', 'about']">
+                <i class="pi pi-question-circle mr-2" style="color: #bbb;"></i>
+              {{
+                "navigationForm.about" | transloco
+              }}</a>
+            </div>
+          </li>
+          <li>
+            <div class="flex flex-row align-content-center">
+              <a [routerLink]="['/pages', 'support']">
+                <i class="pi pi-question mr-2" style="color: #bbb;"></i
+                >{{ "navigationForm.help&support" | transloco }}</a
+              >
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>{{"footer.follow" | transloco}}</h4>
+        <div class="social-links">
+          <span class="flex flex-row align-items-center"
+            ><a href="#"><i class="pi pi-facebook"></i></a>
+            <p>Facebook</p></span
+          >
+          <span class="flex flex-row align-items-center"
+            ><a href="#"><i class="pi pi-twitter"></i></a>
+            <p>Twitter</p></span
+          >
+          <span class="flex flex-row align-items-center"
+            ><a href="#"><i class="pi pi-instagram"></i></a>
+            <p>Instagram</p></span
+          >
+          <span class="flex flex-row align-items-center"
+            ><a href="#"><i class="pi pi-linkedin"></i></a>
+            <p>Linkedin</p></span
+          >
+        </div>
+      </div>
+      <div class="footer-col">
+        <div class="col-xl-4 col-lg-4 col-md-6 mb-50">
+          <div class="footer-widget">
+            <div class="footer-widget-heading">
+              <h3>{{"footer.subscribe" | transloco}}</h3>
+            </div>
+            <div class="footer-text mb-2">
+              <p>{{ "footer.subscribedesc" | transloco }}</p>
+            </div>
+            <div class="subscribe-form">
+              <form action="#">
+                <input type="text" placeholder="{{'footer.input' | transloco}}" />
+                <button><i class="pi pi-telegram"></i></button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </footer>

@@ -12,10 +12,12 @@ ul{
 .footer{
   background-color: #24262b;
     padding: 40px 0;
+
 }
 .footer-col{
-   width: 25%;
+   width: 30%;
    padding: 0 15px;
+  margin-left: 30px;
 }
 .footer-col h4{
   font-size: 18px;
@@ -39,12 +41,12 @@ ul{
   margin-bottom: 10px;
 }
 .footer-col ul li a{
-  font-size: 16px;
+  font-size: 1rem;
   text-transform: capitalize;
-  color: #ffffff;
   text-decoration: none;
   font-weight: 300;
   color: #bbbbbb;
+  padding: 5px;
   display: block;
   transition: all 0.3s ease;
 }
@@ -53,20 +55,85 @@ ul{
   padding-left: 8px;
 }
 .footer-col .social-links a{
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
   height: 40px;
   width: 40px;
-  background-color: rgba(255,255,255,0.2);
-  margin:0 10px 10px 0;
+  background-color: #3498db;
+  margin:10px 8px 0 10px;
   text-align: center;
-  line-height: 40px;
+  align-items: center;
+  justify-content: center;
   border-radius: 50%;
   color: #ffffff;
   transition: all 0.5s ease;
 }
 .footer-col .social-links a:hover{
-  color: #24262b;
+  color: #3498db;
   background-color: #ffffff;
+}
+
+.footer-col .social-links p{
+  color: #bbbbbb;
+  font-size: 1rem;
+}
+
+
+.footer-widget-heading h3 {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 40px;
+  position: relative;
+}
+.footer-widget-heading h3::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -15px;
+  height: 2px;
+  width: 50px;
+  background: #3498db;
+}
+.footer-widget ul li {
+  display: inline-block;
+  width: 50%;
+  margin-bottom: 12px;
+}
+.footer-widget ul li a:hover{
+  color: #3498db;
+}
+.footer-widget ul li a {
+  color: #fff;
+  text-transform: capitalize;
+}
+
+.footer-widget .footer-text{
+  color: #bbbbbb;
+}
+.subscribe-form {
+  position: relative;
+  overflow: hidden;
+}
+.subscribe-form input {
+  width: 100%;
+  padding: 14px 28px;
+  background: #2E2E2E;
+  border: none;
+  color: #fff;
+}
+.subscribe-form button {
+    position: absolute;
+    right: 0;
+    background: #3498db;
+    padding: 13px 20px;
+    border: 1px solid #3498db;
+    top: 0;
+}
+.subscribe-form button i {
+  color: #fff;
+  font-size: 22px;
+  transform: rotate(-6deg);
 }
 
 /*responsive*/

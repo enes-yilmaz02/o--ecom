@@ -354,7 +354,7 @@
   },
   "cardForm":{
     "buttonLabel":"Add to Cart",
-    "search":"search...",
+    "search":"Write the product you are looking for",
     "title":"Filter",
     "notStock":"Out of stock",
     "allProducts":"All Products",
@@ -567,7 +567,14 @@
   "rpc":{
     "messageDetailsuccess": "Code Verified, you are directed to change your password",
     "messageDetailerror": "Code Not Verified, Please try again"
+  },
 
+  "footer":{
+    "subscribedesc":"Don't miss to subscribe to our new feeds, kindly fill the form below.",
+    "contact":"Contact Information and Support",
+    "follow":"Follow us",
+    "subscribe":"Subscribe",
+    "input":"Email address"
   }
 
 

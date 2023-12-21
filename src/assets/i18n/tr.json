@@ -351,7 +351,7 @@
   },
   "cardForm": {
     "buttonLabel": "Sepete ekle",
-    "search": "ara...",
+    "search": "Aradığınız ürünü yazınız",
     "title": "Filtrele",
     "notStock": "Stokta yok",
     "allProducts": "Tüm ürünler",
@@ -565,5 +565,13 @@
   "rpc": {
     "messageDetailsuccess": "Kod Doğrulandı , Şifre değişikliği için yönlendiriliyorsunuz",
     "messageDetailerror": "Kod Doğrulanmadı , Lütfen tekrar deneyiniz"
+  },
+
+  "footer":{
+    "subscribedesc":"Yeni yayınlarımıza abone olmayı unutmayın, lütfen aşağıdaki formu doldurun.",
+    "contact":"İletişim Bilgileri ve Destek",
+    "follow":"Bizi Takip et",
+    "subscribe":"Abone ol",
+    "input":"Email adresinizi giriniz"
   }
 }
