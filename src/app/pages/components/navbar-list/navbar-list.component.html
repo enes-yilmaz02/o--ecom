@@ -94,18 +94,6 @@
                   </a>
                 </li>
                 <li class="menu-item">
-                  <a [routerLink]="['/pages', 'about']">
-                    <i class="pi pi-question-circle"></i>
-                    {{ "navigationForm.about" | transloco }}
-                  </a>
-                </li>
-                <li class="menu-item">
-                  <a [routerLink]="['/pages', 'support']">
-                    <i class="pi pi-question"></i>
-                    {{ "navigationForm.help&support" | transloco }}
-                  </a>
-                </li>
-                <li class="menu-item">
                   <a (click)="logout()">
                     <i class="pi pi-sign-out"></i>
                     {{ "navigationForm.logout" | transloco }}
