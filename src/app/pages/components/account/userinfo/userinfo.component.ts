@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { TranslocoService } from '@ngneat/transloco';
 import { MessageService } from 'primeng/api';
-import { Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -20,6 +20,8 @@ export class UserinfoComponent implements OnInit {
   userId: any;
 
   genders: any;
+
+  edit:boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -42,9 +44,9 @@ export class UserinfoComponent implements OnInit {
   ngOnInit(): void {
     this.getTokenUser();
     this.genders = [
-      { name: 'Male', code: 'm' },
-      { name: 'Female', code: 'fm' },
-      { name: 'Another', code: 'a' },
+      { name: 'Male' },
+      { name: 'Female' },
+      { name: 'Another' },
     ];
   }
 
@@ -92,5 +94,9 @@ export class UserinfoComponent implements OnInit {
         });
       });
     }
+  }
+
+  editUser(){
+    this.edit= !this.edit;
   }
 }

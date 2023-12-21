@@ -1,4 +1,109 @@
-<div class="container">
+<div class="page-content page-container w-full" id="page-content" *ngIf="!edit">
+  <div class="padding">
+    <div class="row container d-flex justify-content-center w-full">
+      <div class="col-xl-6 col-md-12">
+        <div class="card user-card-full">
+          <div class="row m-l-0 m-r-0">
+            <div class="col-sm-4 bg-c-lite-green user-profile">
+              <div class="card-block text-center text-white">
+                <div class="m-b-25">
+                  <img
+                    src="https://img.icons8.com/bubbles/100/000000/user.png"
+                    class="img-radius"
+                    alt="User-Profile-Image"
+                  />
+                </div>
+                <h6 class="f-w-600">
+                  {{ selectedUser?.name | uppercase }}
+                  {{ selectedUser?.surname | uppercase }}
+                </h6>
+                <p>{{ selectedUser?.username | lowercase }}</p>
+                <i
+                  class="mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"
+                ></i>
+              </div>
+            </div>
+            <div class="col-sm-8">
+              <div class="card-block">
+                <h6
+                  class="m-b-20 p-b-5 b-b-default f-w-600"
+                  style="color: #000"
+                >
+                {{ "userinfoForm.information" | transloco }}
+                </h6>
+                <div class="flex flex-row w-full">
+                  <div class="row w-full">
+                    <div class="col-sm-6">
+                      <p class="m-b-10 f-w-600">{{ "userinfoForm.nameLabel" | transloco }}</p>
+                      <h6 class="text-muted f-w-400">
+                        {{ selectedUser?.name }}
+                      </h6>
+                    </div>
+                    <div class="col-sm-6">
+                      <p class="m-b-10 f-w-600">{{ "userinfoForm.surnameLabel" | transloco }}</p>
+                      <h6 class="text-muted f-w-400">
+                        {{ selectedUser?.surname }}
+                      </h6>
+                    </div>
+                  </div>
+                  <div class="row w-full">
+                    <div class="col-sm-6">
+                      <p class="m-b-10 f-w-600">{{ "userinfoForm.emailLabel" | transloco }}</p>
+                      <h6 class="text-muted f-w-400">
+                        {{ selectedUser?.email }}
+                      </h6>
+                    </div>
+                    <div class="col-sm-6">
+                      <p class="m-b-10 f-w-600">{{ "userinfoForm.phoneLabel" | transloco }}</p>
+                      <h6 class="text-muted f-w-400">
+                        {{ selectedUser?.phone }}
+                      </h6>
+                    </div>
+                  </div>
+                </div>
+                <div class="flex flex-row w-full">
+                  <div class="row w-full">
+                    <div class="col-sm-6">
+                      <p class="m-b-10 f-w-600">{{ "userinfoForm.usernameLabel" | transloco }}</p>
+                      <h6 class="text-muted f-w-400">
+                        {{ selectedUser?.username }}
+                      </h6>
+                    </div>
+                    <div class="col-sm-6">
+                      <p class="m-b-10 f-w-600">{{ "userinfoForm.date" | transloco }}</p>
+                      <h6 class="text-muted f-w-400">
+                        {{ selectedUser?.bDate | date : "dd/MM/yyyy" }}
+                      </h6>
+                    </div>
+                  </div>
+                  <div class="row w-full">
+                    <div class="col-sm-6">
+                      <p class="m-b-10 f-w-600">{{ "userinfoForm.addressLabel" | transloco }}</p>
+                      <h6 class="text-muted f-w-400">
+                        {{ selectedUser?.address }}
+                      </h6>
+                    </div>
+                    <div class="col-sm-6">
+                      <p class="m-b-10 f-w-600">{{ "userinfoForm.gender" | transloco }}</p>
+                      <h6 class="text-muted f-w-400">
+                        {{ selectedUser?.gender | transloco}}
+                      </h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <button pInputText class="button" style="color: #fff;" (click)="editUser()">{{ "userinfoForm.buttonLabeledit" | transloco }}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container" *ngIf="edit">
   <div class="row">
     <div class="header">
       <h2>{{ "userinfoForm.header" | transloco }}</h2>
@@ -17,37 +122,16 @@
         </span>
         <span class="p-float-label m-4">
           <i class="pi pi-user" style="color: #000"></i>
-          <input pInputText id="username" formControlName="username" />
-          <label htmlFor="username">{{
-            "userinfoForm.usernameLabel" | transloco
-          }}</label>
-        </span>
-        <span class="p-float-label m-4">
-          <i class="pi pi-users" style="color: #000;"></i>
-          <select formControlName="gender">
-            <option value="" disabled selected hidden>{{ "userinfoForm.gender" | transloco  }}</option>
-            <option *ngFor="let gender of genders" [value]="gender">
-              {{ gender.name | transloco}}
-            </option>
-          </select>
-        </span>
-        <span class="p-float-label m-4">
-          <i class="pi pi-calendar" style="color: #000"></i>
-          <p-calendar
-            formControlName="bDate"
-            styleClass="calendar"
-            [showIcon]="false"
-            id="calendar"
-          ></p-calendar>
-          <label htmlFor="bDate">{{ "userinfoForm.date" | transloco }}</label>
-        </span>
-      </div>
-      <div class="form-container">
-        <span class="p-float-label m-4">
-          <i class="pi pi-user" style="color: #000"></i>
           <input pInputText id="surname" formControlName="surname" />
           <label htmlFor="surname">{{
             "userinfoForm.surnameLabel" | transloco
+          }}</label>
+        </span>
+        <span class="p-float-label m-4">
+          <i class="pi pi-user" style="color: #000"></i>
+          <input pInputText id="username" formControlName="username" />
+          <label htmlFor="username">{{
+            "userinfoForm.usernameLabel" | transloco
           }}</label>
         </span>
         <span class="p-float-label m-4">
@@ -58,6 +142,25 @@
           }}</label>
         </span>
         <span class="p-float-label m-4">
+          <i class="pi pi-map-marker" style="color: #000"></i>
+          <input pInputText id="address" formControlName="address" />
+          <label htmlFor="address">{{
+            "userinfoForm.addressLabel" | transloco
+          }}</label>
+        </span>
+
+        <span class="p-float-label m-4">
+          <i class="pi pi-calendar" style="color: #000"></i>
+          <p-calendar
+            formControlName="bDate"
+            styleClass="calendar"
+            [showIcon]="false"
+            id="calendar"
+          ></p-calendar>
+          <label htmlFor="bDate">{{ "userinfoForm.date" | transloco }}</label>
+        </span>
+
+        <span class="p-float-label m-4">
           <i class="pi pi-phone" style="color: #000"></i>
           <input pInputText id="phone" formControlName="phone" />
           <label htmlFor="phone">{{
@@ -65,17 +168,25 @@
           }}</label>
         </span>
         <span class="p-float-label m-4">
-          <i class="pi pi-map-marker" style="color: #000"></i>
-          <input pInputText id="address" formControlName="address" />
-          <label htmlFor="address">{{
-            "userinfoForm.addressLabel" | transloco
-          }}</label>
+          <i class="pi pi-users" style="color: #000"></i>
+          <!-- <label htmlFor="gender"> {{ "userinfoForm.gender" | transloco }}</label> -->
+          <select formControlName="gender">
+            <option value="" disabled selected hidden>
+              {{ "userinfoForm.gender" | transloco }}
+            </option>
+            <option *ngFor="let gender of genders" [value]="gender.name">
+              {{ gender.name | transloco }}
+            </option>
+          </select>
         </span>
-      </div>
-      <div class="flex justify-content-center mt-4">
-        <span class="button-style w-full">
+        <span class="button-style m-2">
           <button pButton type="submit" (click)="updateUser()" class="button">
             {{ "userinfoForm.buttonLabel" | transloco }}
+          </button>
+        </span>
+        <span class="button-style">
+          <button pButton type="submit" (click)="editUser()" class="button">
+            {{ "userinfoForm.buttonLabelback" | transloco }}
           </button>
         </span>
       </div>

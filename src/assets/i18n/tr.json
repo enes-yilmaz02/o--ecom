@@ -174,11 +174,16 @@
     "date": "Doğum Tarihi",
     "gender": "Cinsiyet",
     "buttonLabel": "Güncelle",
+    "buttonLabeledit": "Düzenle",
+    "buttonLabelback": "Geri",
     "contactHeader": "İletişim Bilgileri",
     "contactHeaderP": "Bu bilgileri değiştirebilmek için yeni e-posta adresinizi doğrulamanızı isteyeceğiz.",
     "emailLabel": "email",
     "emailButton": "Güncelle",
-    "messageDetailsuccess": "Hesap Bilgileri Güncellendi"
+    "messageDetailsuccess": "Hesap Bilgileri Güncellendi",
+    "information":"Bilgiler",
+    "projects":"Projeler"
+
   },
   "userpassForm": {
     "infoP": "Şifreniz en az bir harf, rakam veya özel karakter içermeli. Ayrıca şifreniz en az 8 karakterden oluşmalı.",

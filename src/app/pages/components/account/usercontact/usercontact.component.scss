@@ -9,8 +9,9 @@ $background-color: #ecf0f1;
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 600px; // Özel bir genişlik belirleyebilirsiniz
-  margin: 0 auto; // Sayfanın ortalanması için
+  max-width: 100%;
+  margin: 0 auto;
+
 
   .row {
     display: flex;

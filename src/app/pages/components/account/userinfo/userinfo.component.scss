@@ -10,6 +10,7 @@ $background-color: #ecf0f1;
   flex-direction: column;
   width: 100%;
 
+
   .row {
     display: flex;
     flex-direction: column;
@@ -31,7 +32,7 @@ $background-color: #ecf0f1;
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 50%; // Tam genişlikte olacak
+        width: 100%;
 
         .p-float-radio {
           display: flex;
@@ -49,17 +50,17 @@ $background-color: #ecf0f1;
           input , select {
             width: calc(100% - 30px);
             padding: 10px;
+            border-radius:5px;
             padding-left: 35px;
             font-size: 1rem;
-            border: none;
-            border-bottom: 2px solid #3498db;
+            border: 1px solid #3498db;
             background-color: transparent;
             color: #34495e;
             transition: border-color 0.3s;
 
             &:focus {
               outline: none;
-              border-bottom: 2px solid #1071b3;
+
             }
           }
 
@@ -88,6 +89,29 @@ $background-color: #ecf0f1;
           }
         }
 
+        .button-style {
+          position: relative;
+          width: 100%;
+          height: 40px;
+
+          button {
+            width: calc(100% - 30px);
+            padding: 10px;
+            background-color: #3498db;
+            justify-content: center;
+            color: #ecf0f1;
+            font-size: 1rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+
+            &:hover {
+              background-color: #1071b3;
+            }
+          }
+        }
+
         .contact {
           .contact-header {
             h2,
@@ -105,15 +129,13 @@ $background-color: #ecf0f1;
                 padding: 10px;
                 padding-left: 30px;
                 font-size: 1rem;
-                border: none;
-                border-bottom: 2px solid #3498db;
+                border: 1px solid #3498db;
                 background-color: transparent;
                 color: #34495e;
                 transition: border-color 0.3s;
 
                 &:focus {
                   outline: none;
-                  border-bottom: 2px solid #1071b3;
                 }
               }
 
@@ -125,31 +147,7 @@ $background-color: #ecf0f1;
             }
           }
 
-          .contact-button {
-            .button-style {
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              margin-top: 10px;
 
-              button {
-                width: 100%; // Tam genişlikte olacak
-                padding: 15px;
-                background-color: #3498db;
-                justify-content: center;
-                color: #ecf0f1;
-                font-size: 1rem;
-                border: none;
-                border-radius: 4px;
-                cursor: pointer;
-                transition: background-color 0.3s;
-
-                &:hover {
-                  background-color: #1071b3;
-                }
-              }
-            }
-          }
         }
       }
     }
@@ -158,23 +156,21 @@ $background-color: #ecf0f1;
 
 :host ::ng-deep {
   .calendar {
-    width: 95%;
+    width: calc(100% - 30px);
     input {
       display: flex;
       flex-direction: column;
-      width: calc(90% - 30px);
+      width: calc(100% - 30px);
       padding: 10px;
       padding-left: 30px;
       font-size: 1rem;
-      border: none;
-      border-bottom: 2px solid #3498db;
+      border: 1px solid #3498db;
       background-color: transparent;
       color: #34495e;
       transition: border-color 0.3s;
 
       &:focus {
         outline: none;
-        border-bottom: 2px solid #1071b3;
       }
     }
 
@@ -187,19 +183,17 @@ $background-color: #ecf0f1;
 
 
     .dropdown {
-      width: 95%;
+      width: 100%;
       display: flex;
       font-size: 1rem;
       border: none;
       padding-left: 25px;
-      border-bottom: 2px solid #3498db;
       background-color: transparent;
       color: #34495e;
       transition: border-color 0.3s;
 
       &:focus {
         outline: none;
-        border-bottom: 2px solid #1071b3;
       }
 
       .p-dropdown-trigger {
@@ -255,3 +249,142 @@ $background-color: #ecf0f1;
     }
   }
 }
+
+
+
+
+.padding {
+  width: 100%;
+}
+
+.user-card-full {
+  overflow: hidden;
+}
+
+.card {
+  border-radius: 5px;
+  width: 100%;
+  -webkit-box-shadow: 0 1px 20px 0 rgba(69,90,100,0.08);
+  box-shadow: 0 1px 20px 0 rgba(69,90,100,0.08);
+  border: none;
+  margin-bottom: 30px;
+}
+
+.m-r-0 {
+  margin-right: 0px;
+}
+
+.m-l-0 {
+  margin-left: 0px;
+}
+
+.user-card-full .user-profile {
+  border-radius: 5px 0 0 5px;
+}
+
+.bg-c-lite-green {
+  background: -webkit-gradient(linear, left top, right top, from(#f29263), to(#ee5a6f));
+  background: linear-gradient(to right, #555, #252626);
+}
+
+.user-profile {
+  padding: 20px 0;
+}
+
+.card-block {
+  padding: 1.25rem;
+}
+
+.m-b-25 {
+  margin-bottom: 25px;
+}
+
+.img-radius {
+  border-radius: 5px;
+}
+
+
+
+h6 {
+  font-size: 14px;
+  color: #fff;
+}
+
+.card .card-block p {
+  line-height: 25px;
+}
+
+@media only screen and (min-width: 1400px){
+p {
+  font-size: 14px;
+}
+}
+
+.card-block {
+  padding: 1.25rem;
+}
+
+.b-b-default {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.m-b-20 {
+  margin-bottom: 20px;
+}
+
+.p-b-5 {
+  padding-bottom: 5px !important;
+}
+
+.card .card-block p {
+  line-height: 25px;
+}
+
+.m-b-10 {
+  margin-bottom: 10px;
+}
+
+.text-muted {
+  color: #919aa3 !important;
+}
+
+.b-b-default {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.f-w-600 {
+  font-weight: 600;
+}
+
+.m-b-20 {
+  margin-bottom: 20px;
+}
+
+.m-t-40 {
+  margin-top: 20px;
+}
+
+.p-b-5 {
+  padding-bottom: 5px !important;
+}
+
+.m-b-10 {
+  margin-bottom: 10px;
+}
+
+.m-t-40 {
+  margin-top: 5px;
+}
+
+.user-card-full .social-link li {
+  display: inline-block;
+}
+
+.user-card-full .social-link li a {
+  font-size: 20px;
+  margin: 0 10px 0 0;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+

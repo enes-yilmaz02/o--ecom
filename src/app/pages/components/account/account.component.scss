@@ -13,7 +13,7 @@ $background-color: #ecf0f1;
 }
 
 .container {
-  padding: 1%; // Oranlı padding
+  padding: 1%;
   width: 100%;
   align-items: center;
   background-color: #f6f6f6;
@@ -25,27 +25,28 @@ $background-color: #ecf0f1;
   margin-top: 10px;
 
   @media (min-width: $breakpoint-tablet) {
-    flex-direction: row; // Mobilde sütun düzeni
+    flex-direction: row;
   }
 }
 
 .product-filter {
-  max-width: 100%; // Maksimum genişlik
-  height: auto; // Yüksekliği otomatik
-  margin-bottom: 10px; // Mobilde biraz boşluk bırak
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 10px;
 
   @media (min-width: $breakpoint-tablet) {
-    max-width: 250px; // Tablet ve üstü için maksimum genişlik
+    max-width: 250px;
     height: 100%;
-    margin-bottom: 0; // Tablet ve üstü için boşluk olmasın
+    margin-bottom: 0;
   }
 }
 
 .product-list {
-  width: 100%; // Tam genişlik
+  width: 100%;
+  min-height: 100vh;
 
   @media (min-width: $breakpoint-desktop) {
-    width: calc(100% - 250px); // Desktop için filtre genişliği çıkarılsın
-    margin-left: 250px; // Desktop için filtre genişliği kadar sola kaydırılsın
+    width: calc(100% - 250px);
+    margin-left:50px;
   }
 }

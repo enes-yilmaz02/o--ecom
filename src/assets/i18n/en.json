@@ -174,11 +174,15 @@
     "date": "Date of birth",
     "gender":"Gender",
     "buttonLabel": "Update",
+    "buttonLabeledit": "Edit",
+    "buttonLabelback": "Back",
     "contactHeader": "Contact information",
     "contactHeaderP": "We will ask you to verify your new email address before we can change this information.",
     "emailLabel": "email",
     "emailButton": "Update",
-    "messageDetailsuccess":"Account Information Updated"
+    "messageDetailsuccess":"Account Information Updated",
+    "information":"Information",
+    "projects":"Projects"
   },
   "userpassForm": {
     "infoP": "Your password must contain at least one letter, number or special character. Additionally, your password must consist of at least 8 characters.",
