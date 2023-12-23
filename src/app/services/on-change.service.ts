@@ -1,15 +1,22 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class SearchtextService {
+export class OnChangeService {
 
   private searchTextSubject = new BehaviorSubject<string>('');
+  private updateSubject = new Subject<any>();
+
+  update$ = this.updateSubject.asObservable();
   searchText$ = this.searchTextSubject.asObservable();
 
   setSearchText(searchText: string) {
     this.searchTextSubject.next(searchText);
+  }
+
+  notifyUpdate(value: any) {
+    this.updateSubject.next(value);
   }
 }

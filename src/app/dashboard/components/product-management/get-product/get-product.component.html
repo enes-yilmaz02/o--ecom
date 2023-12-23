@@ -1,8 +1,8 @@
 <div class="conatiner flex flex-column">
   <div>
-    <div class="category-filter flex">
+    <div class="category-filter flex ">
 
-      <div class="card flex flex-column justify-content-start">
+      <div class="card flex flex-column justify-content-center">
         <div>
           <h2 class>{{'dGetorders.header2' | transloco}}</h2>
         </div>
@@ -56,21 +56,22 @@
       [paginator]="true"
       [globalFilterFields]="[
         'name',
-        'product.price',
-        'product.category.name',
-        'product.selectedStatus.name'
+        'priceStacked',
+        'category',
+        'selectedStatus',
+        'quantity'
       ]"
       styleClass="table"
     >
       <ng-template pTemplate="caption">
         <div class="flex flex-row justify-content-between align-items-center">
           <div
-            class="flex flex-row justify-content-between align-content-center w-21rem"
+            class="flex flex-row justify-content-between align-content-center w-8rem"
           >
             <div>
-              <span class="button-style">
+              <span class="button-style ">
                 <button
-                  class="button border-round"
+                  class="button w-full border-round"
                   [routerLink]="['/creoter/product-management', 'add-product']"
                 >
                   <i class="pi pi-plus" style="color: white"></i> {{'dGetProduct.add' | transloco}}
@@ -78,11 +79,17 @@
               </span>
             </div>
           </div>
-          <div class="flex">
-            <span class="p-input-icon-left ml-auto">
+          <div class="flex w-full">
+            <span class="p-input-icon-left w-full">
               <i class="pi pi-search"></i>
+              <!--
+              startsWith: değer, arama ifadesi ile başlıyorsa
+              contains: değer, arama ifadesini içeriyorsa
+              endsWith: değer, arama ifadesi ile bitiyorsa
+             -->
               <input
                 pInputText
+                class="w-full"
                 type="text"
                 (input)="dt2.filterGlobal($any($event.target).value, 'contains')"
                 placeholder="{{'cardForm.search' | transloco}}"

@@ -171,6 +171,7 @@
     "nameLabel": "Name",
     "surnameLabel": "Surname",
     "usernameLabel":"Username",
+    "companyNameLabel": "Company Name",
     "addressLabel":"address",
     "phoneLabel":"Phone",
     "date": "Date of birth",

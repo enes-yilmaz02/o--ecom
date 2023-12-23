@@ -171,6 +171,7 @@
     "nameLabel": "Ad",
     "surnameLabel": "Soyad",
     "usernameLabel": "Kullanıcı adı",
+    "companyNameLabel": "Marka Adı",
     "addressLabel": "adres",
     "phoneLabel": "Telefon",
     "date": "Doğum Tarihi",

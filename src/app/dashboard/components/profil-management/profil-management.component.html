@@ -3,10 +3,9 @@
   <div class="row">
     <div class="header">
       <h2>{{ "userinfoForm.header" | transloco }}</h2>
-
     </div>
     <form [formGroup]="profilForm">
-      <div class="form-container">
+       <div class="form-container">
         <span class="p-float-label m-4">
           <i class="pi pi-user" style="color: #000"></i>
           <input pInputText id="name" formControlName="name" />
@@ -16,37 +15,16 @@
         </span>
         <span class="p-float-label m-4">
           <i class="pi pi-user" style="color: #000"></i>
-          <input pInputText id="username" formControlName="username" />
-          <label htmlFor="username">{{
-            "userinfoForm.usernameLabel" | transloco
-          }}</label>
-        </span>
-        <span class="p-float-label m-4">
-          <i class="pi pi-users" style="color: #000;"></i>
-          <select formControlName="gender">
-            <option value="" disabled selected hidden>{{ "userinfoForm.gender" | transloco  }}</option>
-            <option *ngFor="let gender of genders" [value]="gender">
-              {{ gender.name | transloco}}
-            </option>
-          </select>
-        </span>
-        <span class="p-float-label m-4">
-          <i class="pi pi-calendar" style="color: #000"></i>
-          <p-calendar
-            formControlName="bDate"
-            styleClass="calendar"
-            [showIcon]="false"
-            id="calendar"
-          ></p-calendar>
-          <label htmlFor="bDate">{{ "userinfoForm.date" | transloco }}</label>
-        </span>
-      </div>
-      <div class="form-container">
-        <span class="p-float-label m-4">
-          <i class="pi pi-user" style="color: #000"></i>
           <input pInputText id="surname" formControlName="surname" />
           <label htmlFor="surname">{{
             "userinfoForm.surnameLabel" | transloco
+          }}</label>
+        </span>
+        <span class="p-float-label m-4">
+          <i class="pi pi-user" style="color: #000"></i>
+          <input pInputText id="username" formControlName="username" />
+          <label htmlFor="username">{{
+            "userinfoForm.usernameLabel" | transloco
           }}</label>
         </span>
         <span class="p-float-label m-4">
@@ -64,14 +42,40 @@
           }}</label>
         </span>
         <span class="p-float-label m-4">
+          <i class="pi pi-building" style="color: #000"></i>
+          <input pInputText id="companyName" formControlName="companyName" />
+          <label htmlFor="companyName">{{
+            "userinfoForm.companyNameLabel" | transloco
+          }}</label>
+        </span>
+        <span class="p-float-label m-4">
+          <i class="pi pi-calendar" style="color: #000"></i>
+          <p-calendar
+            formControlName="bDate"
+            styleClass="calendar"
+            [showIcon]="false"
+            id="calendar"
+          ></p-calendar>
+          <label htmlFor="bDate">{{ "userinfoForm.date" | transloco }}</label>
+        </span>
+        <span class="p-float-label m-4">
           <i class="pi pi-map-marker" style="color: #000"></i>
           <input pInputText id="address" formControlName="address" />
           <label htmlFor="address">{{
             "userinfoForm.addressLabel" | transloco
           }}</label>
         </span>
-      </div>
-      <div class="flex justify-content-center mt-4">
+        <span class="p-float-label m-4">
+          <i class="pi pi-users" style="color: #000;"></i>
+          <select formControlName="gender">
+            <option value="" disabled selected hidden>{{ "userinfoForm.gender" | transloco  }}</option>
+            <option *ngFor="let gender of genders" [value]="gender">
+              {{ gender.name | transloco}}
+            </option>
+          </select>
+        </span>
+       </div>
+      <div class="flex justify-content-center w-full mt-4">
         <span class="button-style w-full">
           <button pButton type="submit" (click)="updateUser()" class="button">
             {{ "userinfoForm.buttonLabel" | transloco }}

@@ -29,7 +29,7 @@ $background-color: #ecf0f1;
 
   select{
     margin-right: 15px;
-    width: 220px;
+    width: 240px;
     height: 30px;
     cursor: pointer;
   }
@@ -98,6 +98,7 @@ $background-color: #ecf0f1;
   .button{
     background-color: $dark-text;
     border: none;
+    width: 100%;
     padding: 10px;
     color:#fff;
   }
@@ -114,6 +115,13 @@ $background-color: #ecf0f1;
 
   .p-icon{
     color: RGB(255,170,74);
+  }
+
+  .p-inputText{
+    width: 100%;
+    input{
+      width: 100%;
+    }
   }
 }
 

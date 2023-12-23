@@ -7,7 +7,7 @@ import { StockStatusPipe } from 'src/app/services/helper/stock-status.pipe';
 import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { Renderer2 } from '@angular/core';
-import { SearchtextService } from 'src/app/services/searchtext.service';
+import { OnChangeService } from 'src/app/services/on-change.service';
 // import { dropdownAnimation } from './dropdown.animations';
 @Component({
   selector: 'app-navbar-list',
@@ -47,7 +47,7 @@ export class NavbarListComponent implements OnInit {
     private stockStatusPipe: StockStatusPipe,
     private router: Router,
     private renderer: Renderer2,
-    private searchService:SearchtextService
+    private searchService:OnChangeService
   ) {}
 
   ngOnInit(): void {

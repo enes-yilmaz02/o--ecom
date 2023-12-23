@@ -10,7 +10,8 @@ import { BadgeService } from 'src/app/services/badge.service';
 import { StockStatusPipe } from 'src/app/services/helper/stock-status.pipe';
 import { CategoryStatus } from 'src/app/services/helper/category-status.pipe';
 import { TranslocoService } from '@ngneat/transloco';
-import { SearchtextService } from 'src/app/services/searchtext.service';
+import { OnChangeService } from 'src/app/services/on-change.service';
+
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
@@ -40,7 +41,7 @@ export class CardComponent implements OnInit {
     private route : ActivatedRoute,
     private badgeService:BadgeService,
     private translocoService:TranslocoService,
-    private searchService:SearchtextService
+    private searchService:OnChangeService
   ) {}
 
   ngOnInit() {

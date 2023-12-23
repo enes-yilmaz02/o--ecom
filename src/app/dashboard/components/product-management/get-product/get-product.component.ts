@@ -22,7 +22,6 @@ export class GetProductComponent {
   selectedPrice: any;
   selectedStatus: any;
   selectedRating: any;
-  companyNames: any;
   priceCategories: { name: string; range: string }[];
   rating: { name: string; value: number }[];
   status: { name: string; code: string }[];
@@ -127,15 +126,14 @@ export class GetProductComponent {
     );
   }
 
+
+
   getAllProducts() {
     this.getUserId().subscribe(() => {
       this.productService
         .getCreoterProducts(this.creoterId)
         .subscribe((data: any) => {
           this.products = data;
-          this.companyNames = this.products.map(
-            (product: any) => product.companyName
-          );
         });
     });
   }
