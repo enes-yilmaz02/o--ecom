@@ -43,44 +43,7 @@
     </div>
     <!-- email input end-->
 
-    <!-- <div class="wrapper">
-        <span class="p-float-radio mt-4" >
-          <div>
-            <i class="pi pi-user"></i>
-            <label for="gender" class="mr-4">{{'registerForm.genderLabel' | transloco}}</label>
-          </div>
-          <div *ngFor="let gender of Genders" class="mr-2">
-            <p-radioButton
-              [inputId]="gender.key"
-              [value]="gender"
-              id="gender"
-              formControlName="gender"
-              styleClass="radio"
-            ></p-radioButton>
-            <label [for]="gender.key">{{ gender.name }}</label>
-          </div>
-        </span>
-        <small
-          *ngIf="
-            userFormRegister.get('gender')?.invalid &&
-            userFormRegister.get('gender')?.touched
-          "
-          class="text-red-500"
-        >
-          {{
-            userFormRegister.get("gender").errors != null &&
-            userFormRegister.get("gender").errors["whitespace"]
-              ? ("registerForm.genderSmall" | transloco)
-              : ""
-          }}
-          {{
-            userFormRegister.get("gender").errors != null &&
-            userFormRegister.get("gender").errors["required"]
-              ? ("registerForm.genderSmall" | transloco)
-              : ""
-          }}
-        </small>
-      </div> -->
+
     <!-- password input start-->
     <div class="wrapper">
       <span class="p-float-label mt-4">
@@ -116,7 +79,7 @@
             : ""
         }}
       </small>
-      
+
     </div>
     <!-- password input end-->
 

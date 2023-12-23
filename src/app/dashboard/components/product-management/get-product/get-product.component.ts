@@ -12,38 +12,28 @@ import { UserService } from 'src/app/services/user.service';
   selector: 'app-get-product',
   templateUrl: './get-product.component.html',
   styleUrls: ['./get-product.component.scss'],
-
 })
 export class GetProductComponent {
-
-  categoryForm:FormGroup;
-
+  categoryForm: FormGroup;
   creoterId: any;
-
   products: any;
-
   isUserDialogOpen: boolean = false;
-
-
   selectedCategory: any;
   selectedPrice: any;
   selectedStatus: any;
   selectedRating: any;
-  companyNames:any;
-  priceCategories: { name: string; range: string; }[];
-  rating: { name: string; value: number; }[];
-  status: { name: string; code: string; }[];
-  categories: { name: string; code: string; }[];
-
-
+  companyNames: any;
+  priceCategories: { name: string; range: string }[];
+  rating: { name: string; value: number }[];
+  status: { name: string; code: string }[];
+  categories: { name: string; code: string }[];
 
   constructor(
     private productService: ProductService,
     private messageService: MessageService,
-    private dialogService:DialogService,
     private userService: UserService,
     private translocoService: TranslocoService,
-    private formBuilder: FormBuilder,
+    private formBuilder: FormBuilder
   ) {
     this.getAllProducts();
 
@@ -72,25 +62,26 @@ export class GetProductComponent {
       { name: 'All', range: '0-100000' },
     ];
 
-    this.rating=[
-      { name: '1' , value:1},
-      { name: '2' , value:2},
-      { name: '3' , value:3},
-      { name: '4' , value:4},
-      { name: '5' , value:5},
-      { name: 'All' , value:6}
-    ]
+    this.rating = [
+      { name: '1', value: 1 },
+      { name: '2', value: 2 },
+      { name: '3', value: 3 },
+      { name: '4', value: 4 },
+      { name: '5', value: 5 },
+      { name: 'All', value: 6 },
+    ];
 
     this.categoryForm = this.formBuilder.group({
       category: ['', Validators.required],
       status: ['', Validators.required],
       price: ['', Validators.required],
-      rating:['',Validators.required]
+      rating: ['', Validators.required],
     });
   }
 
-
-
+  ngOnInit() {
+    this.getAllProducts();
+  }
 
   onCategoryChange() {
     this.selectedCategory = this.categoryForm.get('category')?.value;
@@ -128,12 +119,6 @@ export class GetProductComponent {
     }
   }
 
-  ngOnInit() {
-    this.getAllProducts();
-
-
-  }
-
   getUserId(): Observable<any> {
     return this.userService.getTokenId().pipe(
       tap((id: any) => {
@@ -143,27 +128,35 @@ export class GetProductComponent {
   }
 
   getAllProducts() {
-    this.getUserId().subscribe(()=>{
-      this.productService.getCreoterProducts(this.creoterId).subscribe((data: any) => {
-        this.products = data;
-        this.companyNames = this.products.map((product: any) => product.companyName);
-      });
-    })
+    this.getUserId().subscribe(() => {
+      this.productService
+        .getCreoterProducts(this.creoterId)
+        .subscribe((data: any) => {
+          this.products = data;
+          this.companyNames = this.products.map(
+            (product: any) => product.companyName
+          );
+        });
+    });
   }
 
   getFileUrl(fileName: string): string {
     return `http://localhost:8080/files/${fileName}`;
   }
 
-  deleteProduct(productId:any) {
-    this.getUserId().subscribe((userId:any)=>{
-      this.productService.deleteCreoterProduct(userId,productId).subscribe(() => {
-        this.messageService.add({
-          severity: 'success',
-          summary: this.translocoService.translate('successMessage'),
-          detail: this.translocoService.translate('dGetProduct.messageDetailsuccess'),
+  deleteProduct(productId: any) {
+    this.getUserId().subscribe((userId: any) => {
+      this.productService
+        .deleteCreoterProduct(userId, productId)
+        .subscribe(() => {
+          this.messageService.add({
+            severity: 'success',
+            summary: this.translocoService.translate('successMessage'),
+            detail: this.translocoService.translate(
+              'dGetProduct.messageDetailsuccess'
+            ),
+          });
         });
-      });
     });
     this.getAllProducts();
   }
@@ -188,11 +181,11 @@ export class GetProductComponent {
     }
   }
 
-  getProductByFilter(category:any){
-    this.productService.getProductsByFilter(category).subscribe((data:any)=>{
-      this.products=data;
+  getProductByFilter(category: any) {
+    this.productService.getProductsByFilter(category).subscribe((data: any) => {
+      this.products = data;
       console.log(data);
-    })
+    });
   }
 
   getProductByPrice(range: any) {

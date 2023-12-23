@@ -1,14 +1,14 @@
 <div class="surface-section px-6 py-6 border-1 surface-border border-round">
-  <div class="flex flex-row justify-content-start align-content-start">
-    <div class="flex ">
+  <div class="flex flex-row justify-content-evenly align-content-evenly">
+    <div class="flex">
       <img
         [src]="getFileUrl(product?.file)"
         class="border-2 border-transparent border-round image"
       />
     </div>
     <div class="col-12 lg:col-4 py-3 lg:pl-6">
-      <div class="flex align-items-center text-xl font-medium text-900 mb-4">
-        {{ product?.name }}
+      <div class="flex font-bold align-items-center text-xl font-medium text-900 mb-4">
+        {{ product?.name | uppercase }}
       </div>
       <hr />
       <div class="flex flex-column align-items-start mb-5">
@@ -30,7 +30,7 @@
         </div>
       </div>
       <hr />
-      <div class="font-bold text-900 mb-3">
+      <div class="font-light text-500 mb-3">
         {{ "cardDetail.quantity" | transloco }} {{ product?.quantity }}
       </div>
       <div class="flex flex-column">

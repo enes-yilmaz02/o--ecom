@@ -14,6 +14,7 @@ export class CommonService {
       this.baseUrl = environment.baseUrl;
   }
   post<T>(endPoint: string, body: any): Observable<T> {
+
       return this.http.post<T>(this.baseUrl + endPoint, body);
   }
   get<T>(endPoint: string): Observable<T> {

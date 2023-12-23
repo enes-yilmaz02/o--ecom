@@ -7,7 +7,7 @@
       <h3>{{ "creoterForm.header" | transloco }}</h3>
     </div>
     <!-- Company Name input start-->
-    <div class="wrapper">
+    <div class="wrapper mt-5">
       <span class="p-float-label mt-4">
         <i class="pi pi-building" style="color: #000"></i>
         <input pInputText id="companyName" formControlName="companyName" />
@@ -39,10 +39,10 @@
     <!-- Company Name input end-->
 
     <!-- Tax number input start-->
-    <div class="wrapper">
+    <div class="wrapper mt-5">
       <span class="p-float-label mt-4">
         <i class="pi pi-id-card" style="color: #000"></i>
-        <input pInputText id="taxNumber" formControlName="taxNumber" />
+        <input pInputText id="taxNumber" formControlName="taxNumber" maxlength="11" />
         <label htmlFor="taxNumber">{{
           "creoterForm.taxNumberLabel" | transloco
         }}</label>
@@ -62,6 +62,18 @@
         }}
         {{
           creoterForm.get("taxNumber").errors != null &&
+          creoterForm.get("taxNumber").hasError("minlength")
+            ? ("registerForm.taxNumberSmallLength" | transloco)
+            : ""
+        }}
+         {{
+          creoterForm.get("taxNumber").errors != null &&
+          creoterForm.get("taxNumber").hasError("maxlength")
+            ? ("registerForm.taxNumberSmallLength" | transloco)
+            : ""
+        }}
+        {{
+          creoterForm.get("taxNumber").errors != null &&
           creoterForm.get("taxNumber").errors["required"]
             ? ("creoterForm.taxNumberSmall" | transloco)
             : ""
@@ -71,8 +83,8 @@
     <!-- Tax number input end-->
 
     <!-- email input start-->
-    <div class="wrapper">
-      <span class="p-float-label mt-4">
+    <div class="wrapper mt-5">
+      <span class="p-float-label ">
         <i class="pi pi-envelope" style="color: #000"></i>
         <input pInputText id="email" formControlName="email" />
         <label htmlFor="email">{{
@@ -101,7 +113,7 @@
     </div>
     <!-- email input end-->
     <!-- city input start-->
-    <div class="wrapper">
+    <div class="wrapper mt-6">
       <span class="p-float-label mt-4">
         <i class="pi pi-envelope" style="color: #000"></i>
         <p-dropdown
@@ -137,7 +149,7 @@
     </div>
     <!-- city input end-->
     <!-- discrits input start-->
-    <div class="wrapper">
+    <div class="wrapper mt-6">
       <span class="p-float-label mt-4">
         <i class="pi pi-envelope" style="color: #000"></i>
         <p-dropdown
@@ -184,7 +196,7 @@
     <!-- button end-->
 
     <!-- <div class="verifyCode" *ngIf="senderMail | async">
-    
+
       <div class="wrapper">
         <span class="p-float-label mt-4">
           <i class="pi pi-key" style="color: #000"></i>
@@ -213,13 +225,13 @@
           }}
         </small>
       </div>
-      
+
       <span class="button-style mt-4">
         <button class="button" (click)="verifyCode()">
           {{ "creoterForm.codeButton" | transloco }}
         </button>
       </span>
-     
+
     </div> -->
   </form>
 </div>

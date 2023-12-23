@@ -7,7 +7,13 @@
             <div class="col-sm-4 bg-c-lite-green user-profile">
               <div class="card-block text-center text-white">
                 <div class="m-b-25">
-                  <p-avatar icon="pi pi-user" styleClass="mr-2 " size="xlarge"></p-avatar>
+                  <p-avatar
+                    icon="pi pi-user"
+                    styleClass="mr-2"
+                    shape="circle"
+                    size="xlarge"
+                    [style]="{ 'background-color': '#1071b3', color: '#ffffff' }"
+                  ></p-avatar>
                 </div>
                 <h6 class="f-w-600">
                   {{ selectedUser?.name | uppercase }}
@@ -25,32 +31,40 @@
                   class="m-b-20 p-b-5 b-b-default f-w-600"
                   style="color: #000"
                 >
-                {{ "userinfoForm.information" | transloco }}
+                  {{ "userinfoForm.information" | transloco }}
                 </h6>
                 <div class="flex flex-row w-full">
                   <div class="row w-full">
                     <div class="col-sm-6">
-                      <p class="m-b-10 f-w-600">{{ "userinfoForm.nameLabel" | transloco }}</p>
+                      <p class="m-b-10 f-w-600">
+                        {{ "userinfoForm.nameLabel" | transloco }}
+                      </p>
                       <h6 class="text-muted f-w-400">
-                        {{ selectedUser?.name | uppercase}}
+                        {{ selectedUser?.name | uppercase }}
                       </h6>
                     </div>
                     <div class="col-sm-6">
-                      <p class="m-b-10 f-w-600">{{ "userinfoForm.surnameLabel" | transloco }}</p>
+                      <p class="m-b-10 f-w-600">
+                        {{ "userinfoForm.surnameLabel" | transloco }}
+                      </p>
                       <h6 class="text-muted f-w-400">
-                        {{ selectedUser?.surname | uppercase}}
+                        {{ selectedUser?.surname | uppercase }}
                       </h6>
                     </div>
                   </div>
                   <div class="row w-full">
                     <div class="col-sm-6">
-                      <p class="m-b-10 f-w-600">{{ "userinfoForm.emailLabel" | transloco }}</p>
+                      <p class="m-b-10 f-w-600">
+                        {{ "userinfoForm.emailLabel" | transloco }}
+                      </p>
                       <h6 class="text-muted f-w-400">
                         {{ selectedUser?.email }}
                       </h6>
                     </div>
                     <div class="col-sm-6">
-                      <p class="m-b-10 f-w-600">{{ "userinfoForm.phoneLabel" | transloco }}</p>
+                      <p class="m-b-10 f-w-600">
+                        {{ "userinfoForm.phoneLabel" | transloco }}
+                      </p>
                       <h6 class="text-muted f-w-400">
                         {{ selectedUser?.phone }}
                       </h6>
@@ -60,13 +74,17 @@
                 <div class="flex flex-row w-full">
                   <div class="row w-full">
                     <div class="col-sm-6">
-                      <p class="m-b-10 f-w-600">{{ "userinfoForm.usernameLabel" | transloco }}</p>
+                      <p class="m-b-10 f-w-600">
+                        {{ "userinfoForm.usernameLabel" | transloco }}
+                      </p>
                       <h6 class="text-muted f-w-400">
                         {{ selectedUser?.username }}
                       </h6>
                     </div>
                     <div class="col-sm-6">
-                      <p class="m-b-10 f-w-600">{{ "userinfoForm.date" | transloco }}</p>
+                      <p class="m-b-10 f-w-600">
+                        {{ "userinfoForm.date" | transloco }}
+                      </p>
                       <h6 class="text-muted f-w-400">
                         {{ selectedUser?.bDate | date : "dd/MM/yyyy" }}
                       </h6>
@@ -74,15 +92,19 @@
                   </div>
                   <div class="row w-full">
                     <div class="col-sm-6">
-                      <p class="m-b-10 f-w-600">{{ "userinfoForm.addressLabel" | transloco }}</p>
+                      <p class="m-b-10 f-w-600">
+                        {{ "userinfoForm.addressLabel" | transloco }}
+                      </p>
                       <h6 class="text-muted f-w-400">
                         {{ selectedUser?.address }}
                       </h6>
                     </div>
                     <div class="col-sm-6">
-                      <p class="m-b-10 f-w-600">{{ "userinfoForm.gender" | transloco }}</p>
+                      <p class="m-b-10 f-w-600">
+                        {{ "userinfoForm.gender" | transloco }}
+                      </p>
                       <h6 class="text-muted f-w-400">
-                        {{ selectedUser?.gender | transloco}}
+                        {{ selectedUser?.gender | transloco }}
                       </h6>
                     </div>
                   </div>
@@ -90,7 +112,14 @@
               </div>
             </div>
             <div>
-              <button pInputText class="button" style="color: #fff;" (click)="editUser()">{{ "userinfoForm.buttonLabeledit" | transloco }}</button>
+              <button
+                pButton
+                class="button"
+                style="color: #fff"
+                (click)="editUser()"
+              >
+                {{ "userinfoForm.buttonLabeledit" | transloco }}
+              </button>
             </div>
           </div>
         </div>
@@ -161,7 +190,6 @@
           ></p-calendar>
           <label htmlFor="bDate">{{ "userinfoForm.date" | transloco }}</label>
         </span>
-
 
         <span class="p-float-label m-4">
           <i class="pi pi-users" style="color: #000"></i>

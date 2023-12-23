@@ -2,19 +2,19 @@
   class="surface-section border-1 surface-border border-round px-4 py-4 md:px-6 lg:px-8"
 >
   <div
-    class="flex justify-content-center align-content-center px-4 py-2 md:px-6 lg:px-8"
+    class="flex justify-content-start align-content-start text-900 text-4xl mb-4"
   >
-    <h3>{{ "contentCartsForm.header" | transloco }}</h3>
+    <div>{{ "contentCartsForm.header" | transloco }}</div>
   </div>
   <ul class="list-none p-0 m-0">
     <li
       *ngFor="let cart of carts"
       class="flex flex-column md:flex-row border-top-1 border-bottom-1 surface-border md:align-items-center py-4"
     >
-      <!-- Her cart için gerekli bilgileri göster -->
+
       <img
         [src]="getFileUrl(cart?.product?.file)"
-        class="w-12rem flex-shrink-0 mx-2 md:mx-2"
+        class="w-12rem h-14rem flex-shrink-0 mx-2 md:mx-2"
       />
       <div
         class="flex flex-row justify-content-between align-items-center w-full"

@@ -1,8 +1,7 @@
 import { UserService } from 'src/app/services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { BehaviorSubject, EMPTY, Observable, map, switchMap, tap } from 'rxjs';
-import { UserRole } from 'src/app/models/role.enum';
+import { BehaviorSubject,  Observable, tap } from 'rxjs';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
 import { CitiesService } from 'src/app/services/cities.service';
@@ -40,7 +39,7 @@ export class CreoterFormComponent implements OnInit {
   ) {
     this.creoterForm = this.formBuilder.group({
       companyName: ['', [Validators.required]],
-      taxNumber: ['', [Validators.required]],
+      taxNumber: ['', [Validators.required, Validators.minLength(11) , Validators.maxLength(11)]],
       email: ['', [Validators.required, Validators.email]],
       city: ['', Validators.required],
       distcrits: [''],
@@ -64,21 +63,13 @@ export class CreoterFormComponent implements OnInit {
     this.getUserData();
   }
 
-  // noWhitespaceValidator(control: { value: string }): null | { whitespace: boolean } {
-  //   const isWhitespace = (control.value || '').trim().length === 0;
-  //   return isWhitespace ? { whitespace: true } : null;
-  // }
-
   onCityChange(event: any): void {
     if (event && event.value) {
       const selectedCity = event.value;
-
-      // Seçilen şehir varsa ilçeleri güncelle
       this.districts = selectedCity.discrits.map((district: string) => ({
         label: district,
       }));
     } else {
-      // Seçilen şehir yoksa ilçeleri temizle
       this.districts = [];
     }
   }
@@ -90,15 +81,6 @@ export class CreoterFormComponent implements OnInit {
       })
     );
   }
-
-  // checkEmailAvailability(email: string): Observable<{ available: boolean }> {
-  //   return this.creoterService.getCreoter().pipe(
-  //     map((users) => {
-  //       const userWithEmail = users.find((user) => user.email === email);
-  //       return { available: !userWithEmail }; // Eğer userWithEmail değeri varsa e-posta adresi kullanılmaktadır.
-  //     })
-  //   );
-  // }
 
   getUserData() {
     this.getUserId().subscribe(() => {
@@ -150,11 +132,9 @@ export class CreoterFormComponent implements OnInit {
     let result = '';
     const characters = '0123456789';
     const charactersLength = characters.length;
-
     for (let i = 0; i < 6; i++) {
       result += characters.charAt(Math.floor(Math.random() * charactersLength));
     }
-
     return result;
   }
 }

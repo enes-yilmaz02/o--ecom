@@ -5,6 +5,7 @@ import { CommonService } from './common.service';
 import { AuthService } from './auth/auth.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { BadgeService } from './badge.service';
+import { HttpHeaders } from '@angular/common/http';
 
 // Kullanıcı işlemlerini yöneten servis
 @Injectable({
@@ -17,27 +18,25 @@ export class UserService {
   // API endpoint'leri
   usersEndPoint = 'users';
   loginuser = 'login';
-  loginuserWithEmail = 'loginEmail'
+  loginuserWithEmail = 'loginEmail';
   ordersEndPoint = 'orders';
   favoritesEndPoint = 'favorites';
   cartsEndPoint = 'carts';
   sendEmailEndPoint = 'sendEmail';
   usersAdminEndPoint = 'users-admin';
-  productEndPoint= 'product';
+  productEndPoint = 'product';
   emailEndPoint = 'email';
-  passwordEndPoint= 'password';
+  passwordEndPoint = 'password';
+  checkPasswordEndPoint = 'checkpassword';
 
-  // Rol ve kullanıcı verilerini saklamak için değişkenler
   role: any;
   userData: any;
 
-  // Constructor, servis bağımlılıklarını enjekte eder
   constructor(
     private commonService: CommonService,
     private authService: AuthService,
     private jwtHelper: JwtHelperService,
-    private badgeService: BadgeService,
-
+    private badgeService: BadgeService
   ) {}
 
   checkIfUserExists(email: string): Observable<boolean> {
@@ -53,7 +52,7 @@ export class UserService {
       })
     );
   }
- registerUser(user: any): Observable<any> {
+  registerUser(user: any): Observable<any> {
     // Önce kullanıcının kayıtlı olup olmadığını kontrol et
     return this.checkIfUserExists(user.email).pipe(
       map((userExists: boolean) => {
@@ -148,13 +147,12 @@ export class UserService {
     );
   }
 
-// Belirli bir kullanıcının favorisini product id değerine göre getiren fonksiyon
-getFavoriteById(userId: string, productId: string): Observable<boolean> {
-  return this.commonService.get(
-    `${this.usersEndPoint}/${userId}/${this.favoritesEndPoint}/${this.productEndPoint}/${productId}`
-  )
-}
-
+  // Belirli bir kullanıcının favorisini product id değerine göre getiren fonksiyon
+  getFavoriteById(userId: string, productId: string): Observable<boolean> {
+    return this.commonService.get(
+      `${this.usersEndPoint}/${userId}/${this.favoritesEndPoint}/${this.productEndPoint}/${productId}`
+    );
+  }
 
   // Belirli bir kullanıcının favorilerine yeni bir favori ekleyen fonksiyon
   addFavorite(
@@ -189,10 +187,9 @@ getFavoriteById(userId: string, productId: string): Observable<boolean> {
 
   // Belirli bir kullanıcının favorilerini id değerine göre silen fonksiyon
   deleteFavoriteById(userId: string, productId: string): Observable<any> {
-    return this.commonService
-      .delete(
-        `${this.usersEndPoint}/${userId}/${this.favoritesEndPoint}/${this.productEndPoint}/${productId}`
-      );
+    return this.commonService.delete(
+      `${this.usersEndPoint}/${userId}/${this.favoritesEndPoint}/${this.productEndPoint}/${productId}`
+    );
   }
 
   // Belirli bir kullanıcının favorilerini getiren fonksiyon
@@ -244,8 +241,6 @@ getFavoriteById(userId: string, productId: string): Observable<boolean> {
     );
   }
 
-
-
   // Tüm kullanıcıları getiren fonksiyon
   getUsers(): Observable<Users[]> {
     return this.commonService.get(this.usersEndPoint);
@@ -256,9 +251,11 @@ getFavoriteById(userId: string, productId: string): Observable<boolean> {
     return this.commonService.get(`${this.usersEndPoint}/${id}`);
   }
 
-   // Belirli bir kullanıcıyı email datası ile getiren fonksiyon
-   getUserWithEmail(email:any): Observable<Users> {
-    return this.commonService.get(`${this.usersEndPoint}/${this.emailEndPoint}/${email}`);
+  // Belirli bir kullanıcıyı email datası ile getiren fonksiyon
+  getUserWithEmail(email: any): Observable<Users> {
+    return this.commonService.get(
+      `${this.usersEndPoint}/${this.emailEndPoint}/${email}`
+    );
   }
 
   // Yeni bir kullanıcı ekleyen fonksiyon
@@ -276,11 +273,20 @@ getFavoriteById(userId: string, productId: string): Observable<boolean> {
     return this.commonService.put(`${this.usersEndPoint}/${userId}`, body);
   }
 
-    // Belirli bir kullanıcının bilgilerini güncelleyen fonksiyon
-    updateUserPassword(userId: any, body: any) {
-      return this.commonService.put(`${this.usersEndPoint}/${userId}/${this.passwordEndPoint}`, body);
-    }
+  // Belirli bir kullanıcının şifre bilgilerini güncelleyen fonksiyon
+  updateUserPassword(userId: any, body: any) {
+    return this.commonService.put(
+      `${this.usersEndPoint}/${userId}/${this.passwordEndPoint}`,
+      body
+    );
+  }
 
+  // Belirli bir kullanıcının şifre bilgilerinin doğruluğunu kontrol eden  fonksiyon
+  checkUserPassword(userId: any, password: any) {
+    const body = { password: password };
+    return this.commonService.post(
+      `${this.checkPasswordEndPoint}/${userId}`,body);
+  }
 
   // Belirli bir kullanıcıyı silen fonksiyon
   deleteUser(userId: any) {
@@ -309,8 +315,8 @@ getFavoriteById(userId: string, productId: string): Observable<boolean> {
       );
   }
 
-   // Kullanıcı girişi sağlayan fonksiyon
-   loginUserWithEmail(email: any): Observable<{ token: string }> {
+  // Kullanıcı girişi sağlayan fonksiyon
+  loginUserWithEmail(email: any): Observable<{ token: string }> {
     return this.commonService
       .post<{ token: string }>(this.loginuserWithEmail, email)
       .pipe(
@@ -359,7 +365,7 @@ getFavoriteById(userId: string, productId: string): Observable<boolean> {
     return this.getUser(userId).pipe(
       map((data: any) => {
         this.userData = data['role'];
-        console.log('userdata role:' , this.userData);
+        console.log('userdata role:', this.userData);
         return this.userData;
       }),
       catchError((error) => {

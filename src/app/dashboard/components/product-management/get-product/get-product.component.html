@@ -84,10 +84,8 @@
               <input
                 pInputText
                 type="text"
-                (input)="
-                  dt2.filterGlobal($any($event.target).value, 'contains')
-                "
-                placeholder="Search keyword"
+                (input)="dt2.filterGlobal($any($event.target).value, 'contains')"
+                placeholder="{{'cardForm.search' | transloco}}"
               />
             </span>
           </div>

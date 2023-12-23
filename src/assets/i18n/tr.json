@@ -98,6 +98,8 @@
     "passwordTooltip": "Şifrenizi giriniz",
     "passwordLabel": "Şifre",
     "passwordSmall": "* Şifre alanı boş bırakılamaz",
+    "passwordSmallLength":"* Şifre en 8 karakterden oluşmalıdır",
+    "taxNumberSmallLength":"* Vergi no 11 karakterden oluşmalıdır",
     "confirmTooltip": "Şifre (Tekrar) giriniz",
     "confirmLabel": "Şifre (Tekrar) ",
     "confirmSmall": "* Şifre  alanı boş bırakılamaz",
@@ -584,5 +586,12 @@
     "follow":"Bizi Takip et",
     "subscribe":"Abone ol",
     "input":"Email adresinizi giriniz"
+  },
+
+  "newPassForm":{
+    "messageDetailwarn":"Form bilgilerini doldurunuz",
+    "messageDetailerror":"Girdiğiniz şifre doğru değil."
   }
+
+
 }
