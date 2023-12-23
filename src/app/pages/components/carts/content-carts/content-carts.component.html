@@ -1,6 +1,10 @@
-<div class="surface-section border-1 surface-border border-round px-4 py-4 md:px-6 lg:px-8">
-  <div class="flex justify-content-center align-content-center px-4 py-2 md:px-6 lg:px-8">
-    <h3>{{ 'contentCartsForm.header' | transloco }}</h3>
+<div
+  class="surface-section border-1 surface-border border-round px-4 py-4 md:px-6 lg:px-8"
+>
+  <div
+    class="flex justify-content-center align-content-center px-4 py-2 md:px-6 lg:px-8"
+  >
+    <h3>{{ "contentCartsForm.header" | transloco }}</h3>
   </div>
   <ul class="list-none p-0 m-0">
     <li
@@ -8,55 +12,83 @@
       class="flex flex-column md:flex-row border-top-1 border-bottom-1 surface-border md:align-items-center py-4"
     >
       <!-- Her cart için gerekli bilgileri göster -->
-      <img [src]="getFileUrl(cart?.product?.file)" class="w-12rem flex-shrink-0 mx-2 md:mx-2" />
-      <div class="flex flex-row justify-content-between align-items-center w-full">
-        <div class="flex flex-column">
+      <img
+        [src]="getFileUrl(cart?.product?.file)"
+        class="w-12rem flex-shrink-0 mx-2 md:mx-2"
+      />
+      <div
+        class="flex flex-row justify-content-between align-items-center w-full"
+      >
+        <div class="flex flex-column w-full">
           <span class="inline-flex align-items-center mb-3">
             <i class="pi pi-box text-700 mr-2"></i>
             <span>
-              {{ 'contentCartsForm.productName' | transloco }}
+              {{ "contentCartsForm.productName" | transloco }}
               <span class="text-700 mr-2">{{ cart?.product?.name }}</span>
             </span>
           </span>
           <span class="inline-flex align-items-center mb-3">
             <i class="pi pi-envelope text-700 mr-2"></i>
             <span>
-              {{ 'contentCartsForm.buyerEmail' | transloco }}
+              {{ "contentCartsForm.buyerEmail" | transloco }}
               <span class="text-700 mr-2">{{ cart?.product?.email }}</span>
             </span>
           </span>
           <span class="inline-flex align-items-center mb-3">
             <i class="pi pi-user-plus text-700 mr-2"></i>
             <span>
-              {{ 'contentCartsForm.companyName' | transloco }}
-              <span class="text-700 mr-2">{{ cart?.product?.companyName }}</span>
+              {{ "contentCartsForm.companyName" | transloco }}
+              <span class="text-700 mr-2">{{
+                cart?.product?.companyName
+              }}</span>
             </span>
           </span>
           <span class="inline-flex align-items-center mb-3">
             <i class="pi pi-chart-line text-700 mr-2"></i>
             <span>
-              {{ 'contentCartsForm.quantity' | transloco }}
+              {{ "contentCartsForm.quantity" | transloco }}
               <span class="text-700 mr-2">{{ cart?.product?.quantity }}</span>
             </span>
           </span>
-         
+        </div>
+        <div class="flex align-items-center w-full justify-content-center">
+          <div class="inputNumber" style="width: 20px">
+            <p-inputNumber
+              [(ngModel)]="cart.product.quantity"
+              (ngModelChange)="onQuantityChange(cart)"
+              [showButtons]="true"
+              styleClass="p-inputnumber"
+              buttonLayout="horizontal"
+              spinnerMode="horizontal"
+              inputId="horizontal"
+              decrementButtonClass="p-button-secondary"
+              incrementButtonClass="p-button-secondary"
+              incrementButtonIcon="pi pi-plus"
+              decrementButtonIcon="pi pi-minus"
+              [min]="1"
+              [max]="cart.product.maxQuantity"
+            ></p-inputNumber>
+
+          </div>
         </div>
         <div
-          class="flex flex-wrap align-items-start sm:align-items-center sm:flex-row sm:justify-content-between surface-border pb-6"
+          class="flex flex-column w-full justify-content-end align-items-center pb-5"
         >
           <div
             class="w-full sm:w-6 flex align-items-end justify-content-end mt-3 sm:mt-0"
           >
-            <div class="flex flex-column sm:align-items-end ">
+            <div class="flex flex-column sm:align-items-end">
               <span class="text-900 text-xl font-medium mb-2 sm:mb-3 mr-1">
-                {{ '$' + cart?.product?.priceStacked }}
+                {{ "$" + cart?.product?.priceStacked }}
               </span>
               <button
                 pButton
                 (click)="deleteCarts(cart.id)"
                 class="cursor-pointer transition-colors transition-duration-300"
                 tabindex="0"
-                >{{ 'contentCartsForm.delete' | transloco }}</button>
+              >
+                {{ "contentCartsForm.delete" | transloco }}
+              </button>
             </div>
           </div>
         </div>
@@ -64,28 +96,29 @@
     </li>
   </ul>
   <div class="flex flex-column w-full justify-content-end mt-4 complete">
-      <div class="flex flex-column justify-content-end">
-          <span class="flex justify-content-end mr-3">
-            <span class="text-xl text-700 ">
-              {{ 'contentCartsForm.totalPrice' | transloco }}
-            </span>
-            <span class="text-xl text-700">  {{ totalPrice | currency:'USD' }}</span>
-          </span>
-       <div class="flex justify-content-end">
+    <div class="flex flex-column justify-content-end">
+      <span class="flex justify-content-end mr-3">
+        <span class="text-xl text-700">
+          {{ "contentCartsForm.totalPrice" | transloco }}
+        </span>
+        <span class="text-xl text-700">
+          {{ totalPrice | currency : "USD" }}</span
+        >
+      </span>
+      <div class="flex justify-content-end">
         <button
-        pButton
-        (click)="completeOrder()"
-        label="{{ 'contentCartsForm.buttonLabel' | transloco }}"
-      ></button>
-       </div>
-        <div class="flex justify-content-end">
-          <button
+          pButton
+          (click)="completeOrder()"
+          label="{{ 'contentCartsForm.buttonLabel' | transloco }}"
+        ></button>
+      </div>
+      <div class="flex justify-content-end">
+        <button
           pButton
           (click)="clearCart()"
           label="{{ 'contentCartsForm.clearButton' | transloco }}"
         ></button>
-        </div>
       </div>
-     
+    </div>
   </div>
 </div>

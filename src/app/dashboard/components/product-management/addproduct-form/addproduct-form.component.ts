@@ -31,7 +31,7 @@ export class AddproductFormComponent  {
 
   createDate = new Date();
 
-  inventoryStatus: any = [
+   selectedStatus: any = [
     { name: 'INSTOCK', key: 'IS' },
     { name: 'LOWSTOCK', key: 'LS' },
     { name: 'OUTOFSTOCK', key: 'OS' },
@@ -52,7 +52,7 @@ export class AddproductFormComponent  {
       priceStacked: ['', Validators.required],
       file: ['', Validators.required],
       category: ['', Validators.required],
-      selectedStatus: ['', Validators.required],
+      //selectedStatus: ['', Validators.required],
       valueRating: ['', Validators.required],
       description: ['', Validators.required],
     });
@@ -62,13 +62,6 @@ export class AddproductFormComponent  {
       this.items.push({ label: ' ' + i, value:i });
     }
 
-    // this.categorys  = [
-    //   { name: this.translocoService.translate('Electronics'), code: 'ELT' },
-    //   { name: this.translocoService.translate('Fitness'), code: 'FT' },
-    //   { name: this.translocoService.translate('Accessories'), code: 'ACS' },
-    //   { name: this.translocoService.translate('Clothing'), code: 'CLT' },
-    // ];
-
     this.categorys  = [
       { name: 'Electronics', code: 'ELT' },
       { name: 'Fitness', code: 'FT' },
@@ -77,24 +70,6 @@ export class AddproductFormComponent  {
     ];
 
   }
-
-
-  onCategoryChange(event: Event): void {
-    const selectedCategory = (event.target as HTMLSelectElement).value;
-
-    // Şimdi seçilen kategoriyi kullanabilirsiniz
-    console.log('Selected Category:', selectedCategory);
-  }
-
-  onRatingChange(selectedRating: any) {
-  console.log('Selected Rating:', selectedRating);
-  const ratingValue = selectedRating;
-  this.addproductForm.get('valueRating').setValue(ratingValue);
-  }
-
-
-
-
 
   getUserId(): Observable<any> {
     return this.userService.getTokenId().pipe(
@@ -138,13 +113,13 @@ export class AddproductFormComponent  {
     this.getUserId().subscribe(() => {
       this.userService.getUser(this.userId).subscribe((data) => {
         const productData = this.addproductForm.value;
-        console.log(productData)
         if (this.addproductForm.valid) {
           productData.file = this.selectedFile.name;
           productData.creoterId = this.userId;
           productData.companyName = data.companyName;
           productData.email = data.email;
           productData.createDate = this.createDate;
+          productData.selectedStatus = { name: 'INSTOCK', key: 'IS' };
           this.productService.addProduct(productData).subscribe(
             () => {
               this.onUpload(this.selectedFile);

@@ -10,6 +10,7 @@ import { BadgeService } from 'src/app/services/badge.service';
 import { StockStatusPipe } from 'src/app/services/helper/stock-status.pipe';
 import { CategoryStatus } from 'src/app/services/helper/category-status.pipe';
 import { TranslocoService } from '@ngneat/transloco';
+import { SearchtextService } from 'src/app/services/searchtext.service';
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
@@ -38,7 +39,8 @@ export class CardComponent implements OnInit {
     private messageService:MessageService,
     private route : ActivatedRoute,
     private badgeService:BadgeService,
-    private translocoService:TranslocoService
+    private translocoService:TranslocoService,
+    private searchService:SearchtextService
   ) {}
 
   ngOnInit() {
@@ -47,6 +49,10 @@ export class CardComponent implements OnInit {
       { label: 'Price High to Low', value: '!price' },
       { label: 'Price Low to High', value: 'price' },
     ];
+
+    this.searchService.searchText$.subscribe((searchText) => {
+      this.searchText = searchText;
+    });
   }
 
 
@@ -83,14 +89,21 @@ export class CardComponent implements OnInit {
 
   filterProducts(): any[] {
     const search = this.searchText.toLowerCase();
+
     return this.products?.filter((product: any) => {
       const productNameIncludes = product.name.toLowerCase().includes(search);
-      // Kontrol ekleniyor: Eğer product.category bir dize değilse, false döndür
+
       const categoryIncludes =
         typeof product.category === 'string' &&
         product.category.toLowerCase().includes(search);
 
-      return productNameIncludes || categoryIncludes;
+      const priceMatches = product.priceStacked.toString().includes(search);
+
+      const stockStatusMatches =
+        typeof product.stockStatus === 'string' &&
+        product.selectedStatus.toLowerCase().includes(search);
+
+      return productNameIncludes || categoryIncludes || priceMatches || stockStatusMatches;
     });
   }
 

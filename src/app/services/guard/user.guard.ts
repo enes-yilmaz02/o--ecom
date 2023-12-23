@@ -5,11 +5,9 @@ import {
   CanActivate,
   Router,
 } from '@angular/router';
-
 import { Injectable } from '@angular/core';
 import { UserService } from '../user.service';
-import { Observable, catchError, forkJoin, map, of, switchMap } from 'rxjs';
-import { GoogleService } from '../auth/google.service';
+import { Observable, catchError, forkJoin, of, switchMap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -19,9 +17,6 @@ export class UserGuard implements CanActivate {
     private userService: UserService,
     private router: Router,
     private messageService: MessageService,
-    private googleService:GoogleService,
-    private tokenGuard:TokenGuard,
-    private route:ActivatedRoute
   ) {}
 
   canActivate(): Observable<boolean> {

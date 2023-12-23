@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { catchError, switchMap } from 'rxjs/operators';
 import { AuthService } from '../auth/auth.service'; // Auth servisi örnek olarak, kullanılan servise göre değiştirilmelidir.
 
 @Injectable({
   providedIn: 'root',
 })
 export class TokenGuard implements CanActivate {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -21,7 +20,9 @@ export class TokenGuard implements CanActivate {
     return of(false);
   } else {
     try {
-      this.authService.setAuthToken(token);
+      if(token){
+        this.authService.setAuthToken(token);
+      }
       return of(true);
     } catch (error) {
       console.error('Error while processing token:', error);

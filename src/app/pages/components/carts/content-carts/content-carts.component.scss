@@ -11,7 +11,7 @@ $background-color: #ecf0f1;
     .spancomplete{
       width: 200px;
     }
-    
+
     button{
       width: 200px;
       margin-bottom: 5px;
@@ -20,7 +20,7 @@ $background-color: #ecf0f1;
       border: none;
       margin-right: 10px;
       font-weight: 500;
-      
+
     }
   }
   .p-button{
@@ -29,6 +29,21 @@ $background-color: #ecf0f1;
     font-size:14px;
     font-weight: 500;
   }
- 
-  
+
+  .inputNumber{
+
+    input{
+      width: 60px;
+      border:1px solid $dark-text;
+    }
+    .p-button{
+      background-color: $dark-text;
+      border: none;
+      width: 40px;
+      font-size:8px;
+      font-weight: 300;
+    }
+  }
+
+
 }

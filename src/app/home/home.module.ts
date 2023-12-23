@@ -21,7 +21,8 @@ import { HttpClientModule } from '@angular/common/http';
     RegisterComponent,
     ResetPasswordComponent,
     ResetpasswordCodeComponent,
-    ResetPasswordPasswordComponent
+    ResetPasswordPasswordComponent,
+
   ],
   imports: [
     CommonModule,
@@ -30,6 +31,7 @@ import { HttpClientModule } from '@angular/common/http';
     SocialLoginModule,
     GoogleSigninButtonModule,
     HttpClientModule,
+
   ],
   exports:[
     HomeComponent,
@@ -39,7 +41,7 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   providers:[
     CartService,
-    MessageService,
+    MessageService
 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA], // Eklendi

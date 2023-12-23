@@ -5,8 +5,6 @@ import { MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { Table } from 'primeng/table';
 import { Observable, tap } from 'rxjs';
-import { Product } from 'src/app/models/product';
-
 import { ProductService } from 'src/app/services/product.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -14,6 +12,7 @@ import { UserService } from 'src/app/services/user.service';
   selector: 'app-get-product',
   templateUrl: './get-product.component.html',
   styleUrls: ['./get-product.component.scss'],
+
 })
 export class GetProductComponent {
 

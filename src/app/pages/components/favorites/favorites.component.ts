@@ -8,7 +8,6 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./favorites.component.scss'],
 })
 export class FavoritesComponent {
-
   showLoading = true;
 
   hasData = true;
@@ -17,56 +16,49 @@ export class FavoritesComponent {
 
   userId: any;
 
-
-  constructor(private userService: UserService) {
-  }
+  constructor(private userService: UserService) {}
 
   ngOnInit() {
     this.loadData();
-    // 5 saniye sonra "loading" şablonunu gizle
     setTimeout(() => {
       this.showLoading = false;
-    }, 3000);
-
+    }, 1000);
   }
 
   getUserId(): Observable<any> {
     return this.userService.getTokenId().pipe(
       tap((id: any) => {
         this.userId = id;
-        console.log(this.userId);
       })
     );
   }
 
   loadData() {
-   this.getUserId().subscribe(()=>{
-    this.userService.getFavorites(this.userId).subscribe(
-      (data :any) => {
-        this.contentData = data;
-        if(data != null && data.length>0){
-          this.hasData = true;
-        }else{
-          this.hasData = false;
-        }
+    this.getUserId().subscribe(() => {
+      this.userService.getFavorites(this.userId).subscribe(
+        (data: any) => {
+          this.contentData = data;
+          if (data != null && data.length > 0) {
+            this.hasData = true;
+          } else {
+            this.hasData = false;
+          }
 
-        this.showLoading = false;
-
-      },
-      (error) => {
-        console.error(error);
-        this.showLoading = false;
-
-      }
-    );
-   })
-  }
-       // Tüm siparişler silindiğinde bu fonksiyon çalışacak
-       handleAllFavoritesDeleted() {
-        this.showLoading=true;
-        setTimeout(() => {
-          this.hasData=false;
           this.showLoading = false;
-        }, 3000);
-      }
+        },
+        (error) => {
+          console.error(error);
+          this.showLoading = false;
+        }
+      );
+    });
+  }
+
+  handleAllFavoritesDeleted() {
+    this.showLoading = true;
+    setTimeout(() => {
+      this.hasData = false;
+      this.showLoading = false;
+    }, 3000);
+  }
 }

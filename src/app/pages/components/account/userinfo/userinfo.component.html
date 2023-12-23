@@ -7,11 +7,7 @@
             <div class="col-sm-4 bg-c-lite-green user-profile">
               <div class="card-block text-center text-white">
                 <div class="m-b-25">
-                  <img
-                    src="https://img.icons8.com/bubbles/100/000000/user.png"
-                    class="img-radius"
-                    alt="User-Profile-Image"
-                  />
+                  <p-avatar icon="pi pi-user" styleClass="mr-2 " size="xlarge"></p-avatar>
                 </div>
                 <h6 class="f-w-600">
                   {{ selectedUser?.name | uppercase }}
@@ -36,13 +32,13 @@
                     <div class="col-sm-6">
                       <p class="m-b-10 f-w-600">{{ "userinfoForm.nameLabel" | transloco }}</p>
                       <h6 class="text-muted f-w-400">
-                        {{ selectedUser?.name }}
+                        {{ selectedUser?.name | uppercase}}
                       </h6>
                     </div>
                     <div class="col-sm-6">
                       <p class="m-b-10 f-w-600">{{ "userinfoForm.surnameLabel" | transloco }}</p>
                       <h6 class="text-muted f-w-400">
-                        {{ selectedUser?.surname }}
+                        {{ selectedUser?.surname | uppercase}}
                       </h6>
                     </div>
                   </div>
@@ -148,7 +144,13 @@
             "userinfoForm.addressLabel" | transloco
           }}</label>
         </span>
-
+        <span class="p-float-label m-4">
+          <i class="pi pi-phone" style="color: #000"></i>
+          <input pInputText id="phone" formControlName="phone" />
+          <label htmlFor="phone">{{
+            "userinfoForm.phoneLabel" | transloco
+          }}</label>
+        </span>
         <span class="p-float-label m-4">
           <i class="pi pi-calendar" style="color: #000"></i>
           <p-calendar
@@ -160,13 +162,7 @@
           <label htmlFor="bDate">{{ "userinfoForm.date" | transloco }}</label>
         </span>
 
-        <span class="p-float-label m-4">
-          <i class="pi pi-phone" style="color: #000"></i>
-          <input pInputText id="phone" formControlName="phone" />
-          <label htmlFor="phone">{{
-            "userinfoForm.phoneLabel" | transloco
-          }}</label>
-        </span>
+
         <span class="p-float-label m-4">
           <i class="pi pi-users" style="color: #000"></i>
           <!-- <label htmlFor="gender"> {{ "userinfoForm.gender" | transloco }}</label> -->

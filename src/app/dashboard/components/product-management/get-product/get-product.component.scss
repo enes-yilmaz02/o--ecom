@@ -91,6 +91,7 @@ $background-color: #ecf0f1;
 :host ::ng-deep{
 
   td,th{
+    width: auto;
     justify-content: center;
   }
 

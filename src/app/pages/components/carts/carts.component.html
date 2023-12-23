@@ -6,12 +6,10 @@
     </ng-container>
     <ng-template #contentLoading>
       <ng-container *ngIf="hasData; else default">
-        <!-- app-content-carts componentini burada çağırıyoruz ve allCartsDeleted olayını dinliyoruz -->
         <app-content-carts (allCartsDeleted)="handleAllCartsDeleted()"></app-content-carts>
       </ng-container>
     </ng-template>
     <ng-template #default>
-      <!-- app-default-carts componentini burada çağırıyoruz -->
       <app-default-carts></app-default-carts>
     </ng-template>
   </div>

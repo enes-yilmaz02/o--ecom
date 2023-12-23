@@ -106,7 +106,7 @@
      <div class="wrapper block w-full">
       <div class="flex-auto mt-4">
         <label for="valueRating" class="mb-2 block">{{'dAddProduct.category' | transloco}}</label>
-        <select formControlName="category" (change)="onCategoryChange($event)">
+        <select formControlName="category">
           <option value="" disabled selected hidden>{{'dAddProduct.category' | transloco}}</option>
           <option *ngFor="let category of categorys" [ngValue]="category.name">
             {{ category.name }}
@@ -131,25 +131,6 @@
   </div>
   <!-- rating  input end-->
     </div>
-    <!-- InventoryStatus input start-->
-    <div class="wrapper mt-4 flex flex-column">
-      <div>
-        <label htmlFor="selectedStatus" class="mb-2 block w-full">{{'dAddProduct.status' | transloco}}</label>
-      </div>
-      <div class="flex  flex-row">
-        <div *ngFor="let status of inventoryStatus" class="field-checkbox">
-          <p-radioButton
-            [inputId]="status.key"
-            [value]="status"
-            formControlName="selectedStatus"
-            class="flex flex-row ml-2"
-          ></p-radioButton>
-          <label [for]="status.key" class="ml-2">{{ status.name | transloco }}</label>
-        </div>
-      </div>
-    </div>
-    <!-- InventoryStatus input end-->
-
    </div>
 
 

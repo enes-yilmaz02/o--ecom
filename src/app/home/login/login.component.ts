@@ -47,16 +47,6 @@ export class LoginComponent {
       password: ['', [Validators.required, Validators.minLength(8)]],
     });
 
-     // Token'ı URL'den oku
-     this.route.queryParams.subscribe(params => {
-      const token = params['token'] as string;
-
-      // Token'ı işle (örneğin, AuthService ile sakla)
-      this.authService.setAuthToken(token);
-
-      // İstediğiniz sayfaya yönlendirme yapabilirsiniz
-      this.router.navigate(['/pages']);
-    });
   }
 
   getUserId(): Observable<any> {

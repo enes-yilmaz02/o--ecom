@@ -13,17 +13,23 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./content-carts.component.scss'],
 })
 export class ContentCartsComponent {
-  products: any[]; // Sepetteki ürünleri içeren dizi
+  products: any[];
 
   totalPrice: number;
 
-  dataAvailable: boolean = false; // Veri var mı yok mu kontrolü
+  dataAvailable: boolean = false;
 
-  userId: any; //Tokenden gelen user için tanımlı değişken
+  userId: any;
 
   userData: any;
 
   creoterId: any;
+
+  product: any;
+
+  productId: any;
+
+  productMaxQuantity: any;
 
   creotersData: any;
 
@@ -35,11 +41,12 @@ export class ContentCartsComponent {
 
   carts: any;
 
-  productStatus:any;
+  productStatus: any;
 
-  productStocks:any;
+  productStocks: any;
 
-  // Parent'a bildireceğimiz olayı tanımlıyoruz
+  groupedCarts: Record<string, any[]> = {};
+
   @Output() allCartsDeleted = new EventEmitter<void>();
 
   constructor(
@@ -47,15 +54,13 @@ export class ContentCartsComponent {
     private userService: UserService,
     private productService: ProductService,
     private badgeService: BadgeService,
-    private translocoService:TranslocoService,
-    private router:Router
+    private translocoService: TranslocoService,
+    private router: Router
   ) {
     this.getUserId().subscribe(() => {
       this.getCarts();
       this.getUserData(this.userId);
     });
-
-
   }
 
   getUserId(): Observable<any> {
@@ -69,33 +74,35 @@ export class ContentCartsComponent {
   getUserData(userId: any) {
     this.userService.getUser(userId).subscribe((data: any) => {
       this.userData = data;
-      console.log('user Data:', this.userData); // Corrected log statement
     });
   }
 
   getCarts() {
     return this.userService.getCarts(this.userId).subscribe((data: any) => {
       this.carts = data;
-      // Extract id and quantity from each item and create a new array
+
       this.orderQuantity = this.carts
         .map((item: any) => ({
           id: item.id,
           quantity: item.quantity,
         }))
         .flat();
-      // Assign creoterId to the variable
+
       this.creoterId = this.carts.map((item: any) => {
         const ids = item.creoterId;
         return ids;
       });
 
-      // Assign the entire data to the products variable
       this.products = this.carts.map((item: any) => {
         const product = item.product;
+        this.productId = product.id;
         return product;
       });
 
-      // Calculate total price and fetch creoter data
+      if(this.carts.length === 0){
+        this.allCartsDeleted.emit();
+      }
+
       this.calculateTotalPrice();
       this.getCroeterData();
     });
@@ -143,18 +150,22 @@ export class ContentCartsComponent {
           await this.messageService.add({
             severity: 'success',
             summary: this.translocoService.translate('successMessage'),
-            detail: this.translocoService.translate('contentCartsForm.messageDetailsuccess')
+            detail: this.translocoService.translate(
+              'contentCartsForm.messageDetailsuccess'
+            ),
           });
           this.getCarts();
         },
         (error) => {
-          // Hata durumunda mesaj göster
+
           this.messageService.add({
             severity: 'error',
             summary: this.translocoService.translate('errorMessage'),
-            detail: this.translocoService.translate('contentCartsForm.messageDetailerror'),
+            detail: this.translocoService.translate(
+              'contentCartsForm.messageDetailerror'
+            ),
           });
-          // Hatanın nedenini konsola yazdır
+
           console.error('Sipariş silinemedi!', error);
         }
       );
@@ -162,7 +173,6 @@ export class ContentCartsComponent {
   }
 
   getFileUrl(fileName: string): string {
-    // Update the URL template based on your file structure in Google Cloud Storage
     return `http://localhost:8080/files/${fileName}`;
   }
 
@@ -174,7 +184,7 @@ export class ContentCartsComponent {
           to: email, // Include 'to' property here
           subject: this.translocoService.translate('newOrderMessage'),
           text:
-          this.translocoService.translate('contentCartsForm.customer') +
+            this.translocoService.translate('contentCartsForm.customer') +
             this.userData.name +
             this.totalPrice +
             this.translocoService.translate('contentCartsForm.luckMessage'),
@@ -183,7 +193,7 @@ export class ContentCartsComponent {
         // Send email for the current email address
         this.userService.sendEmailGlobal(body).subscribe(
           () => {
-            console.log('satıcıya mail gönderildi')
+            console.log('satıcıya mail gönderildi');
           },
           (error) => {
             console.error('Error sending email', error);
@@ -199,7 +209,13 @@ export class ContentCartsComponent {
     return this.productService.patchProductById(productId);
   }
 
-
+  onQuantityChange(cart: any) {
+    this.productService.patchProductById(cart.product.id).subscribe((data) => {
+      this.product = data;
+      cart.product.maxQuantity = this.product.quantity;
+      this.calculateTotalPrice()
+    });
+  }
 
   completeOrder() {
     const orderData = {
@@ -208,87 +224,81 @@ export class ContentCartsComponent {
       userId: this.userId,
       orderDate: this.orderDate,
     };
-    const address= this.userData.address;
+    const address = this.userData.address;
     console.log(address);
-   if(address){
-    this.getUserId().subscribe(() => {
-      this.userService.addOrder(this.userId, orderData).subscribe(
-        (response: any) => {
-          if (response) {
-            // Her bir ürün için stok miktarını güncelle
-            this.carts.forEach((cartItem: any) => {
-            this.updateProductStock(cartItem.product.id, cartItem.product.quantity);
-            });
-
-            this.productService.addProductOrders(orderData).subscribe(() => {
-              this.sendEmail();
-              this.messageService.add({
-                severity: 'success',
-                summary:  this.translocoService.translate('successMessage'),
-                detail:  this.translocoService.translate('completeOrderMessage'),
+    if (address) {
+      this.getUserId().subscribe(() => {
+        this.userService.addOrder(this.userId, orderData).subscribe(
+          (response: any) => {
+            if (response) {
+              // Her bir ürün için stok miktarını güncelle
+              this.carts.forEach((cartItem: any) => {
+                this.updateProductStock(
+                  cartItem.product.id,
+                  cartItem.product.quantity
+                );
               });
-              this.badgeService.emitCartUpdatedEvent();
-              // Sipariş tamamlandıktan sonra sepeti boşalt
-              this.clearCart();
-            });
-          } else {
-            this.messageService.add({
-              severity: 'error',
-              summary: this.translocoService.translate('errorMessage'),
-              detail:  this.translocoService.translate('uncompleteOrderMessage'),
-            });
+
+              this.productService.addProductOrders(orderData).subscribe(() => {
+                this.sendEmail();
+                this.messageService.add({
+                  severity: 'success',
+                  summary: this.translocoService.translate('successMessage'),
+                  detail: this.translocoService.translate(
+                    'completeOrderMessage'
+                  ),
+                });
+                this.badgeService.emitCartUpdatedEvent();
+                this.clearCart();
+              });
+            } else {
+              this.messageService.add({
+                severity: 'error',
+                summary: this.translocoService.translate('errorMessage'),
+                detail: this.translocoService.translate(
+                  'uncompleteOrderMessage'
+                ),
+              });
+            }
+          },
+          (error) => {
+            // Hata durumunda mesaj göster
+            console.log(error);
           }
-        },
-        (error) => {
-          // Hata durumunda mesaj göster
-          console.log(error);
-        }
-      );
-    });
-   }else{
-    this.router.navigate(['account/user-info'])
-   }
+        );
+      });
+    } else {
+      this.router.navigate(['account/user-info']);
+    }
   }
 
   updateProductStock(productId: any, quantity: any) {
-
     this.getProduct(productId).subscribe(
       (productData: any) => {
         const totalquantity = productData.quantity;
         const updatedQuantity = totalquantity - quantity;
-        let selectedStatus= {name:'INSTOCK' , key:'IS'};
+        let selectedStatus = { name: 'INSTOCK', key: 'IS' };
 
-        if(updatedQuantity<20){
-          selectedStatus={name:'LOWSTOCK' , key:'LS'}
+        if (updatedQuantity < 20) {
+          selectedStatus = { name: 'LOWSTOCK', key: 'LS' };
         }
 
-        if(updatedQuantity>20){
-          selectedStatus=selectedStatus;
+        if (updatedQuantity > 20) {
+          selectedStatus = selectedStatus;
         }
 
-        if(updatedQuantity === 0){
-          selectedStatus={name:'OUTOFSTOCK' , key:'OS'}
+        if (updatedQuantity === 0) {
+          selectedStatus = { name: 'OUTOFSTOCK', key: 'OS' };
         }
 
         const updatedProduct = {
           ...productData,
           quantity: updatedQuantity,
-          selectedStatus:selectedStatus
+          selectedStatus: selectedStatus,
         };
 
         // Ürünün stok miktarını güncelle
-        this.productService.updateProduct(productId, updatedProduct).subscribe(
-          (response) => {
-            this.messageService.add({
-              severity: 'success',
-              summary: this.translocoService.translate('successMessage'),
-              detail: this.translocoService.translate('stockUpdatedMessage')
-            });
-          },
-          (error) => {
-            console.log(error);
-          }
-        );
+        this.productService.updateProduct(productId, updatedProduct);
       },
       (error: any) => {
         console.error('Error fetching product:', error);
@@ -303,12 +313,11 @@ export class ContentCartsComponent {
           this.messageService.add({
             severity: 'success',
             summary: this.translocoService.translate('successMessage'),
-            detail: this.translocoService.translate('allDoneOrderMessage')
-          })
+            detail: this.translocoService.translate('allDoneOrderMessage'),
+          });
           this.getCarts();
           this.badgeService.emitCartUpdatedEvent();
-           // Tüm siparişler silindi, olayı tetikle
-           this.allCartsDeleted.emit();
+          this.allCartsDeleted.emit();
           this.products = [];
           this.totalPrice = 0;
         },
@@ -336,11 +345,4 @@ export class ContentCartsComponent {
         return null;
     }
   }
-
-  // getProducts(productId:any){
-  //   this.productService.patchProductById(productId).subscribe((data:any)=>{
-  //     this.productStocks=data.quantitiy;
-  //     console.log(this.productStocks);
-  //   })
-  // }
 }

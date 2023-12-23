@@ -12,8 +12,22 @@
         </div>
         <div>
           <h1 class="title" [routerLink]="['/pages', 'product']">
-            Orion Innovation
+            Orion Shop
           </h1>
+        </div>
+      </div>
+    </li>
+    <li>
+      <div class="search">
+        <div class="p-input-icon-left search-text mr-3">
+          <i class="pi pi-search"></i>
+          <input
+            pInputText
+            type="text"
+            [(ngModel)]="searchText"
+            (input)="onSearchInputChange()"
+            placeholder="{{'cardForm.search' | transloco}}"
+          />
         </div>
       </div>
     </li>

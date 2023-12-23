@@ -2,8 +2,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  max-height: 100vh;
-  padding: 20px;
+
+
 
   .column {
     display: flex;
@@ -14,17 +14,17 @@
     a {
       width: 100%;
       text-decoration: none;
-      color: #fff;
+      color: #555;
       margin: 10px;
       padding: 10px;
       border-radius: 5px;
       font-size: 1rem;
       cursor: pointer;
-      background-color: #3498db;
+      background-color: transparent;
       transition: background-color 0.3s;
 
       &:hover {
-        background-color: #1071b3;
+        background-color: #555;
         color: #ecf0f1;
       }
 

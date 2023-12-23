@@ -186,12 +186,18 @@
 
   },
   "userpassForm": {
-    "infoP": "Şifreniz en az bir harf, rakam veya özel karakter içermeli. Ayrıca şifreniz en az 8 karakterden oluşmalı.",
+    "header": "Kullanıcı Şifre Değiştirme",
     "currentPass": "Mevcut Şifre",
     "newPass": "Yeni Şifre",
     "newCPass": "Yeni Şifre Tekrar",
     "warnP": " Güvenliğiniz için adınız, soyadınız ve doğum tarihinizi içermeyen bir şifre belirleyin.",
-    "buttonLabel": "Güncelle"
+    "buttonLabel": "Güncelle",
+    "selectpass":"Bir şifre seç",
+    "suggestions":"Öneriler",
+    "lowercase":"En az bir küçük harf",
+    "uppercase":"En az bir büyük harf",
+    "numeric":"En az bir sayısal değer",
+    "8character":"En az 8 karakter içermelidir"
   },
   "helpsupportForm": {
     "header": "Yardım & Destek",
@@ -206,7 +212,7 @@
     "title": "Sepetiniz Boş",
     "desc": "Hemen ürünleri sepete ekleyebilir, Satın alabilir ve sevdikleriniz ile paylaşabilirsiniz!",
     "buttonLabel": "Ürün ekle",
-    "header": " Sepettim"
+    "header": " Sepetim"
   },
   "favoritesForm": {
     "title": "Favorileriniz Yok",

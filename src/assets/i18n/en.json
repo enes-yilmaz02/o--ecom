@@ -185,12 +185,18 @@
     "projects":"Projects"
   },
   "userpassForm": {
-    "infoP": "Your password must contain at least one letter, number or special character. Additionally, your password must consist of at least 8 characters.",
+    "header": "Changing User Password",
     "currentPass": "Current Password",
     "newPass": "New Password",
     "newCPass":"New Password Again",
     "warnP": " For your security, choose a password that does not include your name, surname and date of birth.",
-    "buttonLabel": "Update"
+    "buttonLabel": "Update",
+    "selectpass":"Pick a password",
+    "suggetions":"Suggestions",
+    "lowercase":"At least one lowercase",
+    "uppercase":"At least one uppercase",
+    "numeric":"At least one numeric",
+    "8character":"Minimum 8 characters"
   },
   "helpsupportForm": {
     "header": "Help & Support",

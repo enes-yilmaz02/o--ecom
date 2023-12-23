@@ -89,17 +89,15 @@ export class CardDetailComponent implements OnInit {
               });
             }
           );
-          return true; // Favori var
+          return true;
         } else {
-          return false; // Favori yok
+          return false;
         }
       }),
       catchError((error) => {
-        // API 404 hatası döndüğünde bu kısım çalışır
         if (error.status === 404) {
-          return of(false); // Favori yoksa false döndür
+          return of(false);
         } else {
-          // Diğer hatalar için ise hatayı tekrar fırlat
           throw error;
         }
       })
@@ -107,10 +105,6 @@ export class CardDetailComponent implements OnInit {
   }
 
   getFileUrl(fileName: string): string {
-    if (!fileName) {
-      // Eğer dosya adı null veya boş ise, boş bir URL döndür
-      return '';
-    }
     return `http://localhost:8080/files/${fileName}`;
   }
 
@@ -144,20 +138,18 @@ export class CardDetailComponent implements OnInit {
   }
 
   addToCart(product: any, productId: any) {
-    if (this.defaultValue >= 1) {
-
+    if(this.defaultValue >= 1) {
       if (this.defaultValue > this.product.quantity) {
-        // Eğer seçilen miktar stok miktarından fazlaysa uyarı mesajı göster
         this.messageService.add({
           severity: 'warn',
           summary: this.translocoService.translate('warnMessage'),
           detail:this.translocoService.translate('cardDetail.messageDetailwarn'),
         });
-        return; // Fonksiyonu burada sonlandır
+        return;
       }
       this.getUserId().subscribe(() => {
         this.getProductId().subscribe((id) => {
-          const quantityDefault = this.defaultValue;
+          const quantityValue = this.defaultValue;
           const body = {
             id: productId,
             creoterId: this.product.creoterId,
@@ -165,11 +157,11 @@ export class CardDetailComponent implements OnInit {
             product: {
               id: id,
               ...product,
-              quantity: quantityDefault,
+              quantity: quantityValue,
             },
           };
-          console.log('body id',body.product.id);
-          this.userService.addCart(this.userId, productId, body).subscribe(
+
+          this.userService.addCart(this.userId, id, body).subscribe(
             (response: any) => {
               if (response) {
                 this.messageService.add({

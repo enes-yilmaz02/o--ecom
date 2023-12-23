@@ -7,6 +7,7 @@ import { StockStatusPipe } from 'src/app/services/helper/stock-status.pipe';
 import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { Renderer2 } from '@angular/core';
+import { SearchtextService } from 'src/app/services/searchtext.service';
 // import { dropdownAnimation } from './dropdown.animations';
 @Component({
   selector: 'app-navbar-list',
@@ -34,6 +35,8 @@ export class NavbarListComponent implements OnInit {
 
   isOpen = false;
 
+  searchText : string ='';
+
   items: MenuItem[] | undefined;
   user:any;
 
@@ -43,7 +46,8 @@ export class NavbarListComponent implements OnInit {
     private badgeService: BadgeService,
     private stockStatusPipe: StockStatusPipe,
     private router: Router,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private searchService:SearchtextService
   ) {}
 
   ngOnInit(): void {
@@ -105,6 +109,10 @@ export class NavbarListComponent implements OnInit {
         this.cartsBadge = carts.length.toString();
       });
     });
+  }
+
+  onSearchInputChange() {
+    this.searchService.setSearchText(this.searchText);
   }
 
   getUserId(): Observable<any> {

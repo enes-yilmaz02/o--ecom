@@ -130,7 +130,30 @@ ul {
   }
 }
 
+.search{
+  margin-bottom: 1rem;
+  width: 100%;
+
+
+  .pi-search{
+    color: #555;
+    font-size: 1rem;
+  }
+}
+
 :host ::ng-deep {
+
+  .search {
+    .p-inputtext{
+      width: 500px;
+      height: 35px;
+      background-color: #d5d6d8ef;
+      border: 1px solid #d5d6d8;
+      @media screen and (max-width: 768px) {
+       max-width:300px;
+      }
+    }
+  }
   .pi-shopping-bag .p-badge {
     background-color: #3498db;
     font-size: 0.7rem;
@@ -144,5 +167,34 @@ ul {
   .pi-heart .p-badge {
     background-color: red;
     font-size: 0.7rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+
+    img{
+      display: none;
+    }
+  }
+
+  .navbar .right-menu {
+    margin-top: 10px;
+    justify-content: flex-start;
+  }
+
+  .dropdown-container {
+    .button {
+      padding: 5px;
+    }
+
+    .dropdown-content {
+      top: 50%;
+      right: 0;
+      width: 100%;
+      transform: translateY(-50%);
+    }
   }
 }
