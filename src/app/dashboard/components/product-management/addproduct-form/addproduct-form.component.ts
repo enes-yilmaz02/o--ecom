@@ -14,23 +14,14 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class AddproductFormComponent  {
   private uploadApi = 'http://localhost:8080/upload';
-
   addproductForm: FormGroup;
-
   ingredient!: string;
-
   categorys: any[] ;
-
   items: SelectItem[];
-
   selectedFile: File | null = null;
-
   userId: any;
-
   creoterData: any;
-
   createDate = new Date();
-
    selectedStatus: any = [
     { name: 'INSTOCK', key: 'IS' },
     { name: 'LOWSTOCK', key: 'LS' },
@@ -45,8 +36,9 @@ export class AddproductFormComponent  {
     private userService: UserService,
     private translocoService:TranslocoService
   ) {
+
     this.addproductForm = this.formBuilder.group({
-      code: ['', Validators.required], // Örnek: Validators ekleyerek girişin zorunlu olup olmadığını belirleyebilirsiniz
+      code: ['', Validators.required],
       name: ['', Validators.required],
       quantity: ['', Validators.required],
       priceStacked: ['', Validators.required],
@@ -57,16 +49,19 @@ export class AddproductFormComponent  {
       description: ['', Validators.required],
     });
 
-    this.items = [];
-    for (let i = 1; i < 6; i++) {
-      this.items.push({ label: ' ' + i, value:i });
-    }
+    this.items = [
+      { value: '1' },
+      { value: '2' },
+      { value: '3' },
+      { value: '4' },
+      { value: '5' },
+    ];
 
     this.categorys  = [
-      { name: 'Electronics', code: 'ELT' },
-      { name: 'Fitness', code: 'FT' },
-      { name: 'Accessories', code: 'ACS' },
-      { name: 'Clothing', code: 'CLT' },
+      { name: 'Electronics' },
+      { name: 'Fitness' },
+      { name: 'Accessories' },
+      { name: 'Clothing' },
     ];
 
   }

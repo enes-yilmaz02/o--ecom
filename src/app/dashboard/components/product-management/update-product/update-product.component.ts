@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -11,57 +12,66 @@ import { ProductService } from 'src/app/services/product.service';
   styleUrls: ['./update-product.component.scss'],
 })
 export class UpdateProductComponent implements OnInit {
+  private uploadApi = 'http://localhost:8080/upload';
   @Input() id: any;
-
   updateProductForm: FormGroup;
-
   categorys: any;
-
   items: any;
-
   selecteProducts: any;
+  selectedStatus: any;
+  getFile: any;
+  inventoryStatus: any;
+  selectedFile: File | null = null;
 
-  selectedStatus:any;
-
-  file: any;
-
-  inventoryStatus: any = [
-    { name: 'INSTOCK', key: 'IS' },
-    { name: 'LOWSTOCK', key: 'LS' },
-    { name: 'OUTOFSTOCK', key: 'OS' },
-  ];
 
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
     private formBuilder: FormBuilder,
-    private messageService:MessageService,
-    private translocoService:TranslocoService
+    private messageService: MessageService,
+    private translocoService: TranslocoService,
+    private http: HttpClient,
   ) {
     this.updateProductForm = this.formBuilder.group({
-      name: ['' , Validators.required],
+      name: ['', Validators.required],
       code: ['', Validators.required],
       category: ['', Validators.required],
       description: ['', Validators.required],
+      file:[''],
       priceStacked: ['', Validators.required],
       quantity: ['', Validators.required],
       selectedStatus: [''],
       valueRating: ['', Validators.required],
     });
-
-    this.items = [];
-    for (let i = 1; i < 6; i++) {
-      this.items.push({ label: ' ' + i, value: ' ' + i });
-    }
   }
 
   ngOnInit(): void {
+
+    this.loadData();
+
     this.categorys = [
-      { name: 'Electronics', code: 'ELT' },
-      { name: 'Fitness', code: 'FT' },
-      { name: 'Accessories', code: 'ACS' },
-      { name: 'Clothing', code: 'CLT' },
+      { name: 'Electronics' },
+      { name: 'Fitness' },
+      { name: 'Accessories' },
+      { name: 'Clothing' },
     ];
+
+    this.items = [
+      { value: '1' },
+      { value: '2' },
+      { value: '3' },
+      { value: '4' },
+      { value: '5' },
+    ];
+
+    this.inventoryStatus = [
+      { name: 'INSTOCK' },
+      { name: 'LOWSTOCK' },
+      { name: 'OUTOFSTOCK' },
+    ];
+  }
+
+  loadData(){
     this.route.params.subscribe((params) => {
       this.id = params['id'];
       this.productService
@@ -74,27 +84,47 @@ export class UpdateProductComponent implements OnInit {
             code: this.selecteProducts.code,
             description: this.selecteProducts.description,
             priceStacked: this.selecteProducts.priceStacked,
-            file: this.selecteProducts.file,
+            getFile: this.selecteProducts.file,
             quantity: this.selecteProducts.quantity,
             selectedStatus: this.selecteProducts.selectedStatus.name,
             valueRating: this.selecteProducts.valueRating,
           });
-          this.file = this.selecteProducts.file;
+          this.getFile = this.selecteProducts.file;
         });
     });
   }
 
   getFileUrl(fileName: string): string {
-    // Update the URL template based on your file structure in Google Cloud Storage
     return `http://localhost:8080/files/${fileName}`;
+  }
+
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0];
+    event.preventDefault();
+  }
+
+  onUpload(file: any) {
+    if (file) {
+      const formData = new FormData();
+      formData.append('filename', file);
+
+      this.http.post(this.uploadApi, formData).subscribe(
+        (response) => {
+          console.log(response);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    } else {
+      console.warn('Dosya seçilmedi');
+    }
   }
 
   updateProduct() {
     if (this.updateProductForm.valid) {
       const formValues = this.updateProductForm.value;
       const updatedQuantity = formValues.quantity;
-
-
       if (updatedQuantity < 20 && updatedQuantity > 1) {
         this.selectedStatus = { name: 'LOWSTOCK', key: 'LS' };
       } else if (updatedQuantity >= 20) {
@@ -102,9 +132,10 @@ export class UpdateProductComponent implements OnInit {
       } else if (updatedQuantity < 1) {
         this.selectedStatus = { name: 'OUTOFSTOCK', key: 'OS' };
       }
-
       if (!this.selectedStatus) {
-        console.error('Selected status is undefined. Check the conditions for updating.');
+        console.error(
+          'statu hatası'
+        );
         return;
       }
 
@@ -114,26 +145,32 @@ export class UpdateProductComponent implements OnInit {
         code: formValues.code,
         description: formValues.description,
         priceStacked: formValues.priceStacked,
-        file: formValues.file,
+        file: this.selectedFile.name,
         quantity: formValues.quantity,
         valueRating: formValues.valueRating,
-        selectedStatus: this.selectedStatus
+        selectedStatus: this.selectedStatus,
       };
 
       this.productService.updateProduct(this.id, body).subscribe(
         () => {
+          this.onUpload(this.selectedFile);
           this.messageService.add({
             severity: 'success',
             summary: this.translocoService.translate('successMessage'),
-            detail: this.translocoService.translate('dUpdateProduct.messageDetailsuccess')
+            detail: this.translocoService.translate(
+              'dUpdateProduct.messageDetailsuccess'
+            ),
           });
+          this.loadData();
         },
         (error) => {
           console.log(error);
           this.messageService.add({
             severity: 'error',
             summary: this.translocoService.translate('errorMessage'),
-            detail: this.translocoService.translate('dUpdateProduct.messageDetailerror')
+            detail: this.translocoService.translate(
+              'dUpdateProduct.messageDetailerror'
+            ),
           });
         }
       );
@@ -141,9 +178,10 @@ export class UpdateProductComponent implements OnInit {
       this.messageService.add({
         severity: 'warn',
         summary: this.translocoService.translate('warnMessage'),
-        detail: this.translocoService.translate('dUpdateProduct.messageDetailwarn')
+        detail: this.translocoService.translate(
+          'dUpdateProduct.messageDetailwarn'
+        ),
       });
     }
   }
-
 }

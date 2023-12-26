@@ -131,7 +131,7 @@ export class NavbarListComponent implements OnInit {
   onDocumentClick(event: any) {
     const dropdownContainer = document.querySelector('.dropdown-container');
 
-    if (!dropdownContainer.contains(event.target) ) {
+    if (!dropdownContainer?.contains(event.target) ) {
       this.isOpen = false;
     }
   }

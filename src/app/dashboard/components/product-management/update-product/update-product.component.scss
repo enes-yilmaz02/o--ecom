@@ -13,7 +13,7 @@ form {
   margin: auto 30px auto 30px;
   float: left;
 
-  label{
+  label {
     margin-bottom: 5px;
     display: flex;
     font-size: 1rem;
@@ -51,17 +51,17 @@ form {
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s;
-
-    &:hover {
-      background-color: $secondary-color;
-    }
   }
 }
 
-input ,textarea , .custom-file-input{
+input,
+textarea,
+select,
+.custom-file-input {
   width: 100%;
   padding: 15px;
   padding-left: 10px;
+  border-radius: 5px;
   font-size: 1rem;
   border: 1px solid $dark-text;
   background-color: transparent;
@@ -73,7 +73,7 @@ input ,textarea , .custom-file-input{
   }
 }
 
-.custom-file-input{
+.custom-file-input {
   width: 90%;
   padding: 15px;
   padding-left: 10px;
@@ -83,52 +83,56 @@ input ,textarea , .custom-file-input{
   color: $dark-text;
   transition: border-color 0.3s;
 
-  &:focus {
-    outline: none;
-  }
+
 }
 
-:host ::ng-deep{
-  .p-element{
+.custom-file-input::file-selector-button {
+  background-color: $dark-text;
+  color: $light-text;
+  padding: 10px;
+}
+
+
+
+
+
+:host ::ng-deep {
+  .p-element {
     input {
-    width: 100%;
-    padding: 15px;
-    padding-left: 10px;
-    font-size: 1rem;
-    border: 1px solid $dark-text;
-    background-color: transparent;
-    color: $dark-text;
-    transition: border-color 0.3s;
-
-    &:focus {
-      outline: none;
-    }
-    }
-
-    .p-dropdown{
-    width: 100%;
-    padding-left: 10px;
-    font-size: 1rem;
-    border: 1px solid $dark-text;
-    background-color: transparent;
-    color: $dark-text;
-    transition: border-color 0.3s;
-
-    &:focus {
-      outline: none;
+      width: 100%;
+      padding: 15px;
+      padding-left: 10px;
+      font-size: 1rem;
       border: 1px solid $dark-text;
-    }
-    }
+      background-color: transparent;
+      color: $dark-text;
+      transition: border-color 0.3s;
 
+      &:focus {
+        outline: none;
+      }
+    }
   }
-  .field-checkbox{
-    .p-radiobutton-box{
+  .field-checkbox {
+    .p-radiobutton-box {
       border: 1px solid $dark-text;
     }
-    label{
+    label {
       color: #000;
       margin-right: 10px;
     }
   }
 
+  .p-inputnumber-button-group{
+    background-color: $dark-text;
+    border: none;
+    border-radius: 5px;
+
+    .p-button{
+      background-color: $dark-text;
+      border: none;
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+    }
+  }
 }

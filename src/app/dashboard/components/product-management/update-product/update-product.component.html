@@ -1,10 +1,8 @@
-
 <div class="bg-white p-4 w-full">
   <form [formGroup]="updateProductForm">
     <div class="flex w-full align-items-center justify-content-center">
       <h4>{{'dUpdateProduct.header' | transloco}}</h4>
     </div>
-
       <!-- Name input start-->
       <div class="wrapper">
         <div class="flex-auto mt-4">
@@ -34,9 +32,9 @@
       </span>
     </div>
     <!-- input end-->
-   <div class="flex flex-row">
+   <div class="flex flex-row w-full">
      <!-- Code input start-->
-     <div class="wrapper">
+     <div class="wrapper w-full">
       <div class="flex-auto mt-4">
         <label class="mb-2 block" for="code">{{'dAddProduct.pcode' | transloco}}</label>
         <input
@@ -48,9 +46,8 @@
       </div>
     </div>
     <!-- Code input end-->
-
     <!-- Quantitiy input start-->
-    <div class="wrapper">
+    <div class="wrapper w-full">
       <div class="flex-auto mt-4">
         <label class="mb-2 block" for="quantity">{{'dAddProduct.quantity' | transloco}}</label>
         <input
@@ -59,18 +56,16 @@
           inputId="quantity"
           class="w-full"
         >
-
       </div>
     </div>
     <!-- Quantitiy input end-->
-
     <!-- Price input start-->
-    <div class="wrapper">
+    <div class="wrapper w-full">
       <div class="flex-auto mt-4">
         <label class="mb-2 block" for="priceStacked">{{'dAddProduct.price' | transloco}}</label>
         <p-inputNumber
           formControlName="priceStacked"
-          [showButtons]="false"
+          [showButtons]="true"
           inputId="priceStacked"
           mode="currency"
           currency="USD"
@@ -81,35 +76,38 @@
     </div>
     <!-- Price input end-->
    </div>
-
     <!-- Image input start-->
-    <div class="wrapper block w-full">
+    <div class="wrapper w-full flex flex-row align-items-center">
       <div class="flex-auto mt-4">
         <img
-        [src]="getFileUrl(file)"
-        class="w-12rem flex-shrink-0 mx-auto md:mx-0"
+        [src]="getFileUrl(getFile)"
+        class="flex-shrink-0 mx-auto md:mx-0"
+        width="300"
+        height="300"
       />
+      </div>
+      <div class="flex-auto mt-4 ml-2 w-full">
+        <label htmlFor="file" class="mb-2 block">{{'dAddProduct.file' | transloco}}</label>
+        <input
+          type="file"
+          pInputText
+          id="file"
+          formControlName="file"
+          (change)="onFileSelected($event)"
+          class="custom-file-input"
+        />
       </div>
     </div>
     <!-- Image input end-->
-
    <div class="flex flex-row align-items-center">
      <!-- category  input start-->
      <div class="wrapper block w-full">
       <div class="flex-auto mt-4">
         <label htmlFor="category" class="mb-2 block">{{'dAddProduct.category' | transloco}}</label>
-        <p-dropdown
-          id="category"
-          formControlName="category"
-          placeholder="Select..."
-          [options]="categorys"
-          optionLabel="name"
-          class="w-full"
-        ></p-dropdown>
         <select formControlName="category">
           <option value="" disabled selected hidden>{{ 'dAddProduct.category' | transloco }}</option>
-          <option *ngFor="let category of categorys" [value]="category.value">
-            {{ category.value | transloco }}
+          <option *ngFor="let category of categorys" [value]="category.name">
+            {{ category.name | transloco }}
           </option>
         </select>
       </div>
@@ -131,8 +129,6 @@
   </div>
   <!-- rating  input end-->
 </div>
-
-
     <!-- button start-->
     <div class="wrapper w-full justify-content-center mt-4">
       <span class="button-style mt-4 w-full">
