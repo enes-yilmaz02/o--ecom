@@ -405,14 +405,18 @@
     "messageDetailsuccess": "Product removed from cart",
     "messageDetailerror": "The product could not be removed from the cart, an unknown error occurred.",
     "customer": "Customer",
-    "luckMessage": "$ placed a new order worth . Good luck OI family"
+    "luckMessage": "$ placed a new order worth . Good luck OI family",
+    "stockSubject":"Stock Status",
+    "stockUpdatedMessage":" The stock status has been updated as nearly out of stock and the stock has decreased.",
+    "stockEmptydMessage":"  The stock status of the product is updated as out of stock and the product is out of stock."
   },
   "contentOrdersForm":{
     "header":"My orders",
     "orderId":"Order Id",
     "totalAmount":"Price",
-    "quantity":"Product Quantity (pcs): ",
-    "name":"Product Name: "
+    "quantity":"Order Quantity (pcs): ",
+    "name":"Product Name: ",
+    "seller":"Company Name: "
   },
   "dGetorders":{
     "header":"Order List",

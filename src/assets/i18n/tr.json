@@ -403,14 +403,19 @@
     "messageDetailsuccess": "Ürün seppetten kaldırıldı",
     "messageDetailerror": "Ürün seppetten kaldırılamadı , bilinmeyen bir hata oluştu.",
     "customer": "Müşteri ",
-    "luckMessage": "$ değerinde yeni bir sipariş vermiştir . Bol kazançlar OI ailesi"
+    "luckMessage": "$ değerinde yeni bir sipariş vermiştir . Bol kazançlar OI ailesi",
+    "stockSubject":"Stok Durumu",
+    "stockUpdatedMessage":" Ürünün stok durumu tükenmek üzere olarak güncellenip , stoğu azalmıştır",
+    "stockEmptydMessage":"  Ürünün stok durumu stokta yok  olarak güncellenip , stoğu bitmiştir"
+
   },
   "contentOrdersForm": {
     "header": "Siparişlerim",
-    "orderId": "Sipariş Id",
+    "orderId": "Sipariş No",
     "totalAmount": "Fiyat",
-    "quantity": "Ürün Miktarı(adet): ",
-    "name": "Ürün Adı: "
+    "quantity": "Sipariş Miktarı(adet): ",
+    "name": "Ürün Adı: ",
+    "seller":"Marka Adı: "
   },
   "dGetorders": {
     "header": "Sipariş Listesi",

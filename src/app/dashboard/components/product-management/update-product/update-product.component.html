@@ -106,6 +106,12 @@
           optionLabel="name"
           class="w-full"
         ></p-dropdown>
+        <select formControlName="category">
+          <option value="" disabled selected hidden>{{ 'dAddProduct.category' | transloco }}</option>
+          <option *ngFor="let category of categorys" [value]="category.value">
+            {{ category.value | transloco }}
+          </option>
+        </select>
       </div>
     </div>
     <!-- category  input end-->
@@ -114,13 +120,12 @@
     <div class="flex-auto mt-4">
       <div class="flex flex-column justify-content-center border-round">
         <label for="valueRating" class="mb-2 block">{{'dAddProduct.rating' | transloco}}</label>
-        <p-dropdown
-          [options]="items"
-          formControlName="valueRating"
-          placeholder="Select..."
-          [virtualScroll]="true"
-          [virtualScrollItemSize]="38"
-        ></p-dropdown>
+        <select formControlName="valueRating">
+          <option value="" disabled selected hidden>{{ 'dAddProduct.rating' | transloco }}</option>
+          <option *ngFor="let item of items" [value]="item.value">
+            {{ item.value | transloco }}
+          </option>
+        </select>
       </div>
     </div>
   </div>
@@ -130,8 +135,8 @@
 
     <!-- button start-->
     <div class="wrapper w-full justify-content-center mt-4">
-      <span class="button-style mt-4">
-        <button class="button w-12rem" (click)="updateProduct()">{{'dUpdateProduct.update' | transloco}}</button>
+      <span class="button-style mt-4 w-full">
+        <button class="button" (click)="updateProduct()">{{'dUpdateProduct.update' | transloco}}</button>
       </span>
     </div>
     <!-- button end-->

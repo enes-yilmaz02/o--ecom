@@ -22,7 +22,7 @@ form {
 .custom-file-input {
   width: 100%;
   padding: 1rem;
-  border: 1px solid #e0e0e0;
+  border: 1px solid $dark-text;
   border-radius: 0.25rem;
   margin: 0.5rem 0;
   cursor: pointer;
@@ -37,13 +37,14 @@ form {
   color: #000;
 }
 .button-style {
-  text-align: center;
+  text-align: start;
   margin-top: 20px;
+  width: 100%;
 
   button {
-    width: 100%;
+    width: calc(100% - 50px);
     padding: 15px;
-    background-color: $primary-color;
+    background-color: $dark-text;
     color: $light-text;
     font-size: 1rem;
     border: none;
@@ -62,14 +63,13 @@ input ,textarea , .custom-file-input{
   padding: 15px;
   padding-left: 10px;
   font-size: 1rem;
-  border: 1px solid $primary-color;
+  border: 1px solid $dark-text;
   background-color: transparent;
   color: $dark-text;
   transition: border-color 0.3s;
 
   &:focus {
     outline: none;
-    border-bottom: 2px solid $secondary-color;
   }
 }
 
@@ -78,14 +78,13 @@ input ,textarea , .custom-file-input{
   padding: 15px;
   padding-left: 10px;
   font-size: 1rem;
-  border: 1px solid $primary-color;
+  border: 1px solid $dark-text;
   background-color: transparent;
   color: $dark-text;
   transition: border-color 0.3s;
 
   &:focus {
     outline: none;
-    border-bottom: 2px solid $secondary-color;
   }
 }
 
@@ -96,14 +95,13 @@ input ,textarea , .custom-file-input{
     padding: 15px;
     padding-left: 10px;
     font-size: 1rem;
-    border: 1px solid $primary-color;
+    border: 1px solid $dark-text;
     background-color: transparent;
     color: $dark-text;
     transition: border-color 0.3s;
 
     &:focus {
       outline: none;
-      border-bottom: 2px solid $secondary-color;
     }
     }
 
@@ -111,21 +109,21 @@ input ,textarea , .custom-file-input{
     width: 100%;
     padding-left: 10px;
     font-size: 1rem;
-    border: 1px solid $primary-color;
+    border: 1px solid $dark-text;
     background-color: transparent;
     color: $dark-text;
     transition: border-color 0.3s;
 
     &:focus {
       outline: none;
-      border-bottom: 2px solid $secondary-color;
+      border: 1px solid $dark-text;
     }
     }
 
   }
   .field-checkbox{
     .p-radiobutton-box{
-      border: 1px solid $primary-color;
+      border: 1px solid $dark-text;
     }
     label{
       color: #000;

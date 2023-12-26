@@ -1,29 +1,28 @@
-import { Component } from '@angular/core';
-import { TranslocoService } from '@ngneat/transloco';
+import { Component, OnInit } from '@angular/core';
+import { LanguageService } from '../services/language.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent {
-
+export class HomeComponent implements OnInit {
   stateOptions: any[] = [
     { label: '🇹🇷 TR', value: 'tr' },
     { label: '🇬🇧 EN', value: 'en' },
   ];
 
-  selectedLanguage: string = 'tr';
+  selectedLanguage: string;
 
-  constructor(
-    private transloco: TranslocoService,
-  ) {}
+  constructor(private languageService: LanguageService) {}
+
+  ngOnInit(): void {
+    this.languageService.language$.subscribe((language) => {
+      this.selectedLanguage = language;
+    });
+  }
+
   setLanguage() {
-    if (this.selectedLanguage === 'tr') {
-      this.transloco.setActiveLang('tr');
-    }
-    if (this.selectedLanguage === 'en') {
-      this.transloco.setActiveLang('en');
-    }
+    this.languageService.setLanguage(this.selectedLanguage);
   }
 }

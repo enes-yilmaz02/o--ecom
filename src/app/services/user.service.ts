@@ -348,24 +348,23 @@ export class UserService {
   getUserByTokenId(): Observable<string> {
     const authToken = localStorage.getItem('authToken');
     if (!authToken) {
-      // Eğer authToken localStorage'ta bulunmuyorsa işlem yapma
+
       return of('');
     }
     const decodedToken = this.jwtHelper.decodeToken(authToken);
     if (!decodedToken || !decodedToken.id) {
-      // Eğer decodedToken veya user ID yoksa işlem yapma
+
       return of('');
     }
-    // Kullanıcı ID'sini kullanarak kullanıcı bilgilerini getir
+    // Kullanıcı ID'sini kullanarak kullanıcı bilgilerini getiren fonk.
     return this.getTokenUser(decodedToken.id);
   }
 
-  // Kullanıcı bilgilerini getiren fonksiyon
+  // Kullanıcının role bilgisini getiren fonksiyon
   getTokenUser(userId: string): Observable<string> {
     return this.getUser(userId).pipe(
       map((data: any) => {
         this.userData = data['role'];
-        console.log('userdata role:', this.userData);
         return this.userData;
       }),
       catchError((error) => {

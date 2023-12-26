@@ -8,35 +8,26 @@ import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { Renderer2 } from '@angular/core';
 import { OnChangeService } from 'src/app/services/on-change.service';
-// import { dropdownAnimation } from './dropdown.animations';
+import { LanguageService } from 'src/app/services/language.service';
+
 @Component({
   selector: 'app-navbar-list',
   templateUrl: './navbar-list.component.html',
   styleUrls: ['./navbar-list.component.scss'],
-  //animations: [dropdownAnimation]
 })
 export class NavbarListComponent implements OnInit {
   stateOptions: any[] = [
     { label: '🇹🇷 TR', value: 'tr' },
     { label: '🇬🇧 EN', value: 'en' },
   ];
-
-  selectedLanguage: string = 'tr';
-
+  selectedLanguage: string;
   orderBadge: any;
-
   favoritesBadge: any;
-
   cartsBadge: any;
-
   userId: any;
-
   translatedStockStatus: string;
-
   isOpen = false;
-
   searchText : string ='';
-
   items: MenuItem[] | undefined;
   user:any;
 
@@ -47,13 +38,18 @@ export class NavbarListComponent implements OnInit {
     private stockStatusPipe: StockStatusPipe,
     private router: Router,
     private renderer: Renderer2,
-    private searchService:OnChangeService
+    private searchService:OnChangeService,
+    private languageService: LanguageService
   ) {}
 
   ngOnInit(): void {
     this.getUserId().subscribe(userId => {
       this.userService.getOrders(userId).subscribe((orders: any) => {
         this.orderBadge = orders.length.toString();
+      });
+
+      this.languageService.language$.subscribe((language) => {
+        this.selectedLanguage = language;
       });
     });
 
@@ -81,7 +77,6 @@ export class NavbarListComponent implements OnInit {
     });
 
     this.badgeService.cartUpdated$.subscribe(() => {
-      // Diğer badge'leri güncelle
       this.updateBadges();
     });
 
@@ -126,7 +121,6 @@ export class NavbarListComponent implements OnInit {
   getUser(){
     this.userService.getUser(this.userId).subscribe((data)=>{
       this.user= data;
-      console.log(this.user)
     })
   }
 
@@ -149,12 +143,7 @@ export class NavbarListComponent implements OnInit {
   }
 
   setLanguage() {
-    if (this.selectedLanguage === 'tr') {
-      this.transloco.setActiveLang('tr');
-    }
-    if (this.selectedLanguage === 'en') {
-      this.transloco.setActiveLang('en');
-    }
+    this.languageService.setLanguage(this.selectedLanguage);
   }
 
   updateStockStatusTranslation(stockstatus: any) {

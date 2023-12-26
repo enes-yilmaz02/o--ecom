@@ -14,39 +14,22 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ContentCartsComponent {
   products: any[];
-
   totalPrice: number;
-
   dataAvailable: boolean = false;
-
   userId: any;
-
   userData: any;
-
   creoterId: any;
-
   product: any;
-
   productId: any;
-
   productMaxQuantity: any;
-
   creotersData: any;
-
   creotersEmail: any;
-
   orderDate = new Date();
-
   orderQuantity: any;
-
   carts: any;
-
   productStatus: any;
-
   productStocks: any;
-
   groupedCarts: Record<string, any[]> = {};
-
   @Output() allCartsDeleted = new EventEmitter<void>();
 
   constructor(
@@ -178,10 +161,10 @@ export class ContentCartsComponent {
 
   sendEmail() {
     if (Array.isArray(this.creotersEmail) && this.creotersEmail.length > 0) {
-      // Loop through each creoterEmail and send an email
+
       this.creotersEmail.forEach((email: string) => {
         const body = {
-          to: email, // Include 'to' property here
+          to: email,
           subject: this.translocoService.translate('newOrderMessage'),
           text:
             this.translocoService.translate('contentCartsForm.customer') +
@@ -190,7 +173,7 @@ export class ContentCartsComponent {
             this.translocoService.translate('contentCartsForm.luckMessage'),
         };
 
-        // Send email for the current email address
+
         this.userService.sendEmailGlobal(body).subscribe(
           () => {
             console.log('satıcıya mail gönderildi');
@@ -223,15 +206,14 @@ export class ContentCartsComponent {
       orders: this.carts,
       userId: this.userId,
       orderDate: this.orderDate,
+
     };
     const address = this.userData.address;
-    console.log(address);
     if (address) {
       this.getUserId().subscribe(() => {
         this.userService.addOrder(this.userId, orderData).subscribe(
           (response: any) => {
             if (response) {
-              // Her bir ürün için stok miktarını güncelle
               this.carts.forEach((cartItem: any) => {
                 this.updateProductStock(
                   cartItem.product.id,
@@ -275,12 +257,23 @@ export class ContentCartsComponent {
   updateProductStock(productId: any, quantity: any) {
     this.getProduct(productId).subscribe(
       (productData: any) => {
+        this.productId=productData.id;
         const totalquantity = productData.quantity;
         const updatedQuantity = totalquantity - quantity;
         let selectedStatus = { name: 'INSTOCK', key: 'IS' };
 
-        if (updatedQuantity < 20) {
+        if (updatedQuantity < 20 && updatedQuantity > 0) {
           selectedStatus = { name: 'LOWSTOCK', key: 'LS' };
+          const body = {
+            to: productData.email,
+            subject: this.translocoService.translate('contentCartsForm.stockSubject'),
+            text: productData.name + this.translocoService.translate('contentCartsForm.stockUpdatedMessage')
+
+          };
+          this.userService.sendEmailGlobal(body).subscribe(()=>{
+            return;
+          },
+          (error)=>{console.log("Error sending email", error)});
         }
 
         if (updatedQuantity > 20) {
@@ -289,6 +282,16 @@ export class ContentCartsComponent {
 
         if (updatedQuantity === 0) {
           selectedStatus = { name: 'OUTOFSTOCK', key: 'OS' };
+          const body = {
+            to: productData.email,
+            subject: this.translocoService.translate('contentCartsForm.stockSubject'),
+            text: productData.name + this.translocoService.translate('contentCartsForm.stockEmptydMessage')
+
+          };
+          this.userService.sendEmailGlobal(body).subscribe(()=>{
+            return;
+          },
+          (err)=>{console.log("Error sending email", err)});
         }
 
         const updatedProduct = {
@@ -297,8 +300,13 @@ export class ContentCartsComponent {
           selectedStatus: selectedStatus,
         };
 
-        // Ürünün stok miktarını güncelle
-        this.productService.updateProduct(productId, updatedProduct);
+
+        this.productService.updateProduct(productId, updatedProduct).subscribe(()=>{
+          console.log('ürün stoğu güncellendi');
+        },(error)=>{
+          console.log('ürün stoğu güncellenemedi' ,error);
+        }
+        )
       },
       (error: any) => {
         console.error('Error fetching product:', error);
