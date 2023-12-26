@@ -77,8 +77,7 @@ export class CardDetailComponent implements OnInit {
                 summary: this.translocoService.translate('successMessage'),
                 detail: this.translocoService.translate('cardDetail.messageDetailsuccess'),
               });
-              this.badgeService.emitFavoritesRemovedEvent(productId);
-              this.badgeService.emitCartUpdatedEvent();
+              this.badgeService.updateFavoritesBadge();
             },
             (error) => {
               console.error('Favori kaldırma işleminde hata:', error);
@@ -234,13 +233,15 @@ export class CardDetailComponent implements OnInit {
                   this.userService
                     .addFavorite(userId, productId, body)
                     .subscribe(() => {
-                      this.messageService.add({
-                        severity: 'success',
-                        summary: this.translocoService.translate('successMessage'),
-                        detail: this.translocoService.translate('cardDetail.messageDetailsuccessaddfavorite')
+                      this.userService.deleteExFavorite(userId , productId).subscribe(()=>{
+                        this.messageService.add({
+                          severity: 'success',
+                          summary: this.translocoService.translate('successMessage'),
+                          detail: this.translocoService.translate('cardDetail.messageDetailsuccessaddfavorite')
+                        });
                       });
                       this.liked = true;
-                      this.badgeService.emitCartUpdatedEvent();
+                      this.badgeService.updateFavoritesBadge();
                     });
                 }
               }

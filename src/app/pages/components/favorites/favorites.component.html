@@ -1,15 +1,26 @@
 <div class="page-layout">
   <div class="content">
-        <ng-container *ngIf="showLoading; else contentLoading">
-          <app-loading></app-loading>
-        </ng-container>
-        <ng-template #contentLoading>
-          <ng-container *ngIf="hasData; else default">
-            <app-content-favorites (allFavoritesDeleted)="handleAllFavoritesDeleted()"></app-content-favorites>
-          </ng-container>
-        </ng-template>
-        <ng-template #default>
-          <app-default-favorites></app-default-favorites>
-        </ng-template>
-   </div>
+    <ng-container *ngIf="showLoading; else contentLoading">
+      <app-loading></app-loading>
+    </ng-container>
+    <ng-template #contentLoading>
+      <!-- Eğer hem favoriler hem de ex-favoriler varsa -->
+      <ng-container *ngIf="hasExData || hasData ; else default">
+        <!-- Eğer sadece favoriler varsa -->
+        <app-content-favorites
+          *ngIf="hasData"
+          (allFavoritesDeleted)="handleAllFavoritesDeleted()"
+        ></app-content-favorites>
+        <!-- Eğer sadece ex-favoriler varsa -->
+        <app-ex-favorites
+          *ngIf="hasExData"
+          (allExFavoritesDeleted)="handleAllExFavoritesDeleted()"
+        ></app-ex-favorites>
+      </ng-container>
+      <!-- Eğer ne favoriler ne de ex-favoriler yoksa -->
+      <ng-template #default>
+        <app-default-favorites></app-default-favorites>
+      </ng-template>
+    </ng-template>
+  </div>
 </div>

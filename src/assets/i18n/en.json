@@ -222,6 +222,7 @@
     "desc":"You can immediately add the products to your favorites and share them with your loved ones!",
     "buttonLabel":"Add product",
     "header": " Favorite Products",
+    "headerEx":"You liked before",
     "messageDetailsuccess": "The product has been removed from your favorites."
 
   },

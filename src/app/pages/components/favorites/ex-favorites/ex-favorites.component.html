@@ -1,1 +1,19 @@
-<p>ex-favorites works!</p>
+<div
+  class="surface-section px-4 py-8 md:px-6 lg:px-8 border-1 surface-border border-round"
+>
+  <div class="text-900 text-4xl mb-4">
+    {{ "favoritesForm.headerEx" | transloco }}
+  </div>
+  <hr />
+  <div>
+    <div class="align-items-center" *ngFor="let product of products">
+      <app-favorites-card
+        [product]="product"
+        [liked]="false"
+        [isExFavorites]="true"
+        (onDelete)="addFavorites(product.productId)"
+        (onDeleteExFavorites)="deleteExFavorites(product.productId)"
+      ></app-favorites-card>
+    </div>
+  </div>
+</div>

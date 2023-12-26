@@ -221,6 +221,7 @@
     "desc": "Hemen ürünleri favorilere ekleyebilir , sevdiklerinizle paylaşabilirsiniz!",
     "buttonLabel": "Ürün ekle",
     "header": " Favori Ürünler",
+    "headerEx":"Daha önce beğendiklerin",
     "messageDetailsuccess": "Ürün favorilerinizden kaldırıldı."
   },
   "collectionForm": {

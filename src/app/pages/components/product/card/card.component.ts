@@ -10,7 +10,7 @@ import { BadgeService } from 'src/app/services/badge.service';
 import { StockStatusPipe } from 'src/app/services/helper/stock-status.pipe';
 import { CategoryStatus } from 'src/app/services/helper/category-status.pipe';
 import { TranslocoService } from '@ngneat/transloco';
-import { OnChangeService } from 'src/app/services/on-change.service';
+import { OnChangeService } from 'src/app/services/onchange.service';
 
 @Component({
   selector: 'app-card',

@@ -204,13 +204,13 @@ export class UserService {
    *          Başarılı getirme durumunda: Kullanıcının favori ürünlerini içeren nesne.
    *          Hata durumunda: Boş bir nesne veya hata mesajını içeren nesne.
    */
-  getFavorites(userId: string): Observable<Users> {
+  getFavorites(userId: string): Observable<any> {
     return this.commonService
       .get(`${this.usersEndPoint}/${userId}/${this.favoritesEndPoint}`)
       .pipe(
         tap((items: any) => {
           if (items && items.length !== undefined) {
-            this.badgeService.updateFavoritesBadge(items.length);
+            this.badgeService.updateFavoritesBadge();
           }
         })
       );
@@ -225,7 +225,7 @@ export class UserService {
    *          Başarılı getirme durumunda: Belirtilen favori ürünü içeren nesne.
    *          Hata durumunda: Boş bir nesne veya hata mesajını içeren nesne.
    */
-  getFavorite(userId: string, favoriteId: string): Observable<Users> {
+  getFavorite(userId: string, favoriteId: string): Observable<any> {
     return this.commonService.get(
       `${this.usersEndPoint}/${userId}/${this.favoritesEndPoint}/${favoriteId}`
     );
@@ -327,13 +327,13 @@ export class UserService {
    *          Başarılı getirme durumunda: Kullanıcının favori ürünlerini içeren nesne.
    *          Hata durumunda: Boş bir nesne veya hata mesajını içeren nesne.
    */
-  getExFavorites(userId: string): Observable<Users> {
+  getExFavorites(userId: string): Observable<any> {
     return this.commonService
       .get(`${this.usersEndPoint}/${userId}/${this.exFavoritesEndPoint}`)
       .pipe(
         tap((items: any) => {
           if (items && items.length !== undefined) {
-            this.badgeService.updateFavoritesBadge(items.length);
+            this.badgeService.updateFavoritesBadge();
           }
         })
       );
@@ -348,7 +348,7 @@ export class UserService {
    *          Başarılı getirme durumunda: Belirtilen favori ürünü içeren nesne.
    *          Hata durumunda: Boş bir nesne veya hata mesajını içeren nesne.
    */
-  getExFavorite(userId: string, favoriteId: string): Observable<Users> {
+  getExFavorite(userId: string, favoriteId: string): Observable<any> {
     return this.commonService.get(
       `${this.usersEndPoint}/${userId}/${this.exFavoritesEndPoint}/${favoriteId}`
     );

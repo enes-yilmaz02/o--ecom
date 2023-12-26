@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { TranslocoService } from '@ngneat/transloco';
 import { Observable, tap } from 'rxjs';
 import { BadgeService } from 'src/app/services/badge.service';
 import { UserService } from 'src/app/services/user.service';
-import { StockStatusPipe } from 'src/app/services/helper/stock-status.pipe';
 import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { Renderer2 } from '@angular/core';
-import { OnChangeService } from 'src/app/services/on-change.service';
+import { OnChangeService } from 'src/app/services/onchange.service';
 import { LanguageService } from 'src/app/services/language.service';
 
 @Component({
@@ -32,10 +30,8 @@ export class NavbarListComponent implements OnInit {
   user:any;
 
   constructor(
-    private transloco: TranslocoService,
     private userService: UserService,
     private badgeService: BadgeService,
-    private stockStatusPipe: StockStatusPipe,
     private router: Router,
     private renderer: Renderer2,
     private searchService:OnChangeService,
@@ -43,33 +39,19 @@ export class NavbarListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getUserId().subscribe(userId => {
-      this.userService.getOrders(userId).subscribe((orders: any) => {
-        this.orderBadge = orders.length.toString();
-      });
 
-      this.languageService.language$.subscribe((language) => {
-        this.selectedLanguage = language;
-      });
+    this.languageService.language$.subscribe((language) => {
+      this.selectedLanguage = language;
     });
 
-    this.getUserId().subscribe(userId => {
-      this.userService.getFavorites(userId).subscribe((favorites: any) => {
-        this.favoritesBadge = favorites.length.toString();
-      });
-    });
+    this.updateBadges();
 
-    this.getUserId().subscribe(userId => {
-      this.userService.getCarts(userId).subscribe((carts: any) => {
-        this.cartsBadge = carts.length.toString();
-      });
-    });
     this.badgeService.orderBadge$.subscribe((count) => {
       this.orderBadge = count.toString();
     });
 
-    this.badgeService.favoritesBadge$.subscribe((count) => {
-      this.favoritesBadge = count.toString();
+    this.badgeService.favoritesBadge$.subscribe(() => {
+      this.updateBadges();
     });
 
     this.badgeService.cartsBadge$.subscribe((count) => {
@@ -90,7 +72,7 @@ export class NavbarListComponent implements OnInit {
   }
 
   private updateBadges() {
-    // Sipariş, favoriler ve sepet badge'lerini güncelle
+
     this.getUserId().subscribe((userId) => {
       this.userService.getOrders(userId).subscribe((orders: any) => {
         this.orderBadge = orders.length.toString();
@@ -146,7 +128,4 @@ export class NavbarListComponent implements OnInit {
     this.languageService.setLanguage(this.selectedLanguage);
   }
 
-  updateStockStatusTranslation(stockstatus: any) {
-    this.translatedStockStatus = this.stockStatusPipe.transform(stockstatus);
-  }
 }

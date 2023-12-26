@@ -42,6 +42,7 @@ import { DefaultCartsComponent } from './components/carts/default-carts/default-
 import { CreoterFormComponent } from './components/creoter-form/creoter-form.component';
 import { DenemeComponent } from './components/deneme/deneme.component';
 import { ExFavoritesComponent } from './components/favorites/ex-favorites/ex-favorites.component';
+import { FavoritesCardComponent } from './components/favorites/favorites-card/favorites-card.component';
 
 
 @NgModule({
@@ -72,7 +73,8 @@ import { ExFavoritesComponent } from './components/favorites/ex-favorites/ex-fav
      CreoterFormComponent,
      TruncatePipe,
      DenemeComponent,
-     ExFavoritesComponent
+     ExFavoritesComponent,
+     FavoritesCardComponent
   ],
   imports: [
     CommonModule,
@@ -91,7 +93,8 @@ import { ExFavoritesComponent } from './components/favorites/ex-favorites/ex-fav
     ProductComponent,
     PagesComponent,
     CardDetailComponent,
-    LoadingComponent
+    LoadingComponent,
+    FavoritesCardComponent
   ],
   providers:[
     CartService,

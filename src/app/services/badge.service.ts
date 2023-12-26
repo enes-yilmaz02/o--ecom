@@ -7,7 +7,7 @@ import { BehaviorSubject, Subject } from 'rxjs';
 export class BadgeService {
 
   private orderBadgeSubject = new BehaviorSubject<number>(0);
-  private favoritesBadgeSubject = new BehaviorSubject<number>(0);
+  private favoritesBadgeSubject = new Subject<void>();
   private cartsBadgeSubject = new BehaviorSubject<number>(0);
   private cartUpdatedSource = new Subject<void>();
   private favoritesAddedSubject = new Subject<string>();
@@ -20,13 +20,7 @@ export class BadgeService {
   favoritesBadge$ = this.favoritesBadgeSubject.asObservable();
   cartsBadge$ = this.cartsBadgeSubject.asObservable();
 
-  emitFavoritesAddedEvent(productId: string) {
-    this.favoritesAddedSubject.next(productId);
-  }
 
-  emitFavoritesRemovedEvent(productId: string) {
-    this.favoritesRemovedSubject.next(productId);
-  }
 
   emitCartUpdatedEvent() {
     this.cartUpdatedSource.next();
@@ -36,8 +30,8 @@ export class BadgeService {
     this.orderBadgeSubject.next(count);
   }
 
-  updateFavoritesBadge(count: number) {
-    this.favoritesBadgeSubject.next(count);
+  updateFavoritesBadge() {
+    this.favoritesBadgeSubject.next();
   }
 
   updateCartsBadge(count: number) {

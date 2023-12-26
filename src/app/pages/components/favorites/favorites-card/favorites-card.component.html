@@ -1,0 +1,29 @@
+<div class="shadow-1 p-4 flex flex-row align-items-center cursor-pointer">
+  <div class="image flex mx-1" [routerLink]="['/pages/product', product.productId]">
+    <img [src]="getFileUrl(product?.file)" [alt]="product?.name" width="150" height="150" />
+  </div>
+  <div class="name flex align-items-center mx-4">
+    <span>{{ product?.name | truncate : 20 }}</span>
+  </div>
+  <div class="category flex align-items-center mx-4">
+    <span>{{ product?.category | categoryStatus }}</span>
+  </div>
+  <div class="description flex align-items-center mx-4">
+    <p>{{ product?.description | truncate : 300 }}</p>
+  </div>
+  <div class="price flex align-items-center mx-4">
+    <span>{{ product?.priceStacked | currency:'USD' }}</span>
+    <ng-container *ngIf="isExFavorites">
+      <!-- Sadece Ex Favorites için silme butonu -->
+      <i class="pi text-2xl cursor-pointer ml-3 pi-trash" (click)="onDeleteExFavorites.emit(product.productId)"></i>
+    </ng-container>
+    <i
+      class="pi text-2xl cursor-pointer ml-3"
+      [ngClass]="{
+        'pi-heart text-600': !liked,
+        'pi-heart-fill text-red-500': liked
+      }"
+      (click)="onDelete.emit(product)"
+    ></i>
+  </div>
+</div>
