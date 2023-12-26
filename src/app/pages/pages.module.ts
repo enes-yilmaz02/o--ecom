@@ -41,6 +41,7 @@ import { ContentCartsComponent } from './components/carts/content-carts/content-
 import { DefaultCartsComponent } from './components/carts/default-carts/default-carts.component';
 import { CreoterFormComponent } from './components/creoter-form/creoter-form.component';
 import { DenemeComponent } from './components/deneme/deneme.component';
+import { ExFavoritesComponent } from './components/favorites/ex-favorites/ex-favorites.component';
 
 
 @NgModule({
@@ -70,7 +71,8 @@ import { DenemeComponent } from './components/deneme/deneme.component';
      DefaultCartsComponent,
      CreoterFormComponent,
      TruncatePipe,
-     DenemeComponent
+     DenemeComponent,
+     ExFavoritesComponent
   ],
   imports: [
     CommonModule,

@@ -17,6 +17,7 @@
   "uncompleteOrderMessage": "Order Not Completed",
   "stockUpdatedMessage":"Stock Updated",
   "allDoneOrderMessage":"All orders have been received.",
+  "clearcart":"The basket has been emptied.",
   "unallDoneOrderMessage":"Cart could not be emptied.",
   "pleaseWait":"Please wait...",
   "Electronics":"Electronics",

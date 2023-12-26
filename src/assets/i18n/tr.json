@@ -17,6 +17,7 @@
   "uncompleteOrderMessage": "Sipariş Tamamlanmadı",
   "stockUpdatedMessage": "Stok Güncellendi",
   "allDoneOrderMessage": "Tüm siparişler alındı.",
+  "clearcart":"Sepet boşaltıldı.",
   "unallDoneOrderMessage": "Sepet Boşaltılamadı. ",
   "pleaseWait": "Lütfen Bekleyiniz...",
   "Electronics": "Elektronik",
@@ -48,8 +49,6 @@
   "Male": "Erkek",
   "Female": "Kadın",
   "Another": "Diğer",
-
-  "account":"Hesabım",
 
   "loginForm": {
     "header": "Giriş",

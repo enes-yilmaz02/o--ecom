@@ -321,7 +321,7 @@ export class ContentCartsComponent {
           this.messageService.add({
             severity: 'success',
             summary: this.translocoService.translate('successMessage'),
-            detail: this.translocoService.translate('allDoneOrderMessage'),
+            detail: this.translocoService.translate('clearcart'),
           });
           this.getCarts();
           this.badgeService.emitCartUpdatedEvent();
