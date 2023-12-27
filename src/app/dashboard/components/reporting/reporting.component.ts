@@ -11,26 +11,17 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ReportingComponent {
   chartData: any;
-
   chartDataProduct: any;
-
   chartOptions: any;
-
   usersCount: any;
-
   ordersCount: any;
-
   productsCount: any;
-
   revenue: any;
-
   creoterId: any;
-
   creoterData: any;
-
   averageRating: any;
-
   products: any[] = [];
+  orders: any;
 
   chartDataProductStock: {
     labels: any[];
@@ -55,7 +46,7 @@ export class ReportingComponent {
       tension: number;
     }[];
   };
-  orders: any;
+
 
   constructor(
     private userService: UserService,
@@ -87,19 +78,13 @@ export class ReportingComponent {
         .getAllCreoterOrdersById(this.creoterId)
         .subscribe((data: any) => {
           this.ordersCount = data.length;
-          console.log(data);
-          // Assuming 'totalAmount' is the key for the price in each order
           const totalAmounts = data.map((order) => order.totalAmount);
-
-          // Calculate total revenue by summing up the 'totalAmount' values
           this.revenue = this.calculateTotalRevenue(totalAmounts);
-          console.log('Total revenue:', this.revenue);
         });
     });
   }
 
   calculateTotalRevenue(amounts: number[]): number {
-    // Use reduce to sum up all amounts
     return amounts.reduce((total, amount) => total + amount, 0);
   }
 
@@ -110,8 +95,6 @@ export class ReportingComponent {
         .subscribe((data: any) => {
           this.creoterData = data;
           this.productsCount = data.length;
-
-          // Diğer fonksiyonları çağırarak verileri kullanın
           this.updateChartDataProduct();
           this.updateChartDataProductStock();
           this.updateChartDataStatus();
@@ -122,21 +105,16 @@ export class ReportingComponent {
 
   updateChartDataRating() {
     if (this.creoterData && this.creoterData.length > 0) {
-      // valueRating değeri boş olanları filtrele
       const validProducts = this.creoterData.filter(
         (item) => item && item.valueRating !== ''
       );
-
       if (validProducts.length > 0) {
         const totalRating = validProducts.reduce(
           (total, item) => total + parseFloat(item.valueRating),
           0
         );
-        console.log('Toplam Rating:', totalRating);
-
         this.averageRating =
           validProducts.length > 0 ? totalRating / validProducts.length : 0;
-        console.log('Rating Ortalaması:', this.averageRating);
       } else {
         console.error('Geçerli ürün verisi bulunamadı.');
       }
@@ -146,21 +124,19 @@ export class ReportingComponent {
   updateChartDataProduct() {
     if (this.creoterData && this.creoterData.length > 0) {
       const roleCountMap = new Map();
-
       this.creoterData.forEach((product: any) => {
-        const categoryCount = product.category?.name;
+        const categoryCount = product.category;
         roleCountMap.set(
           categoryCount,
           (roleCountMap.get(categoryCount) || 0) + 1
         );
       });
-
       const eltCount = roleCountMap.get('Electronics') || 0;
       const cloCount = roleCountMap.get('Clothing') || 0;
       const acsCount = roleCountMap.get('Accessories') || 0;
       const fitCount = roleCountMap.get('Fitness') || 0;
 
-      // Diğer işlemleri yapabilirsiniz
+
       const documentStyle = getComputedStyle(document.documentElement);
       const categoryNameArray = [
         this.translocoService.translate('Electronics'),
@@ -169,7 +145,7 @@ export class ReportingComponent {
         this.translocoService.translate('Fitness'),
       ];
 
-      // chartDataProduct'u güncelle
+
       this.chartDataProduct = {
         labels: categoryNameArray,
         datasets: [
@@ -188,15 +164,15 @@ export class ReportingComponent {
 
   updateChartDataProductStock() {
     if (this.creoterData && this.creoterData.length > 0) {
-      const productNameArray = []; // Ürün adlarını içeren dizi
-      const stockQuantityArray = []; // Stok miktarlarını içeren dizi
+      const productNameArray = [];
+      const stockQuantityArray = [];
 
-      // data içindeki her bir ürünü işleyin
+
       this.creoterData.forEach((product: any) => {
         const productName = product.name;
         const stockQuantity = product.quantity;
 
-        // Ürün adlarını ve stok miktarlarını ilgili dizilere ekleyin
+
         productNameArray.push(productName);
         stockQuantityArray.push(stockQuantity);
       });

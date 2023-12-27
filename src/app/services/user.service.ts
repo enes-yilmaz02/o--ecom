@@ -210,7 +210,7 @@ export class UserService {
       .pipe(
         tap((items: any) => {
           if (items && items.length !== undefined) {
-            this.badgeService.updateFavoritesBadge();
+            this.badgeService.emitFavoritesUpdatedEvent();
           }
         })
       );
@@ -333,7 +333,7 @@ export class UserService {
       .pipe(
         tap((items: any) => {
           if (items && items.length !== undefined) {
-            this.badgeService.updateFavoritesBadge();
+            this.badgeService.emitFavoritesUpdatedEvent();
           }
         })
       );

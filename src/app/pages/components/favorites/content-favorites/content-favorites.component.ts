@@ -71,7 +71,7 @@ export class ContentFavoritesComponent {
               detail:this.tranlocoService.translate('favoritesForm.messageDetailsuccess')
             });
             this.liked=false;
-            this.badgeService.updateFavoritesBadge();
+            this.badgeService.emitFavoritesUpdatedEvent();
             this.getFavorites();
             this.onChangeService.changeExFavorites();
           });

@@ -1,9 +1,9 @@
-<div class="surface-section px-6 py-6 border-1 surface-border border-round">
-  <div class="flex flex-row justify-content-evenly align-content-evenly">
+<div class="surface-section px-6 py-6 border-1 surface-border border-round container">
+  <div class=" justify-content-evenly align-content-evenly row">
     <div class="flex">
       <img
         [src]="getFileUrl(product?.file)"
-        class="border-2 border-transparent border-round image"
+        class="image"
       />
     </div>
     <div class="col-12 lg:col-4 py-3 lg:pl-6">
@@ -41,8 +41,8 @@
             buttonLayout="horizontal"
             spinnerMode="horizontal"
             inputId="horizontal"
-            decrementButtonClass="p-button button w-3rem flex"
-            incrementButtonClass="p-button button w-3rem flex"
+            decrementButtonClass="p-button button w-3 flex"
+            incrementButtonClass="p-button button w-3 flex"
             incrementButtonIcon="pi pi-plus"
             decrementButtonIcon="pi pi-minus"
             [disabled]="isOutOfStock(product)"

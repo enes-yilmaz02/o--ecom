@@ -36,12 +36,12 @@ export class CardDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getProductId().subscribe((productId) => {
+     this.getProductId().subscribe((productId) => {
       this.productService
         .patchProductById(productId)
-        .subscribe(async (data: any) => {
-          this.product = await data;
-          this.productPrice = Number(this.product?.priceStacked);
+        .subscribe((data: any) => {
+          this.product = data;
+          this.productPrice = Number(this.product.priceStacked);
           this.checkIfProductIsLiked();
         });
     });
@@ -54,6 +54,21 @@ export class CardDetailComponent implements OnInit {
       this.favoritedProducts = Array(products.length).fill(false);
     });
   }
+
+  async loadDataAsync() {
+    try {
+      const productId = await this.getProductId().toPromise();
+      const data = await this.productService.patchProductById(productId).toPromise();
+
+      this.product = data;
+      this.productPrice = Number(this.product.priceStacked);
+      this.checkIfProductIsLiked();
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      // Hata durumunda yapılacak işlemleri ekleyebilirsiniz.
+    }
+  }
+
 
   updateUrlWithLikedParam(liked: boolean) {
     this.router.navigate([], {
@@ -77,7 +92,7 @@ export class CardDetailComponent implements OnInit {
                 summary: this.translocoService.translate('successMessage'),
                 detail: this.translocoService.translate('cardDetail.messageDetailsuccess'),
               });
-              this.badgeService.updateFavoritesBadge();
+              this.badgeService.emitFavoritesUpdatedEvent();
             },
             (error) => {
               console.error('Favori kaldırma işleminde hata:', error);
@@ -104,7 +119,11 @@ export class CardDetailComponent implements OnInit {
   }
 
   getFileUrl(fileName: string): string {
-    return `http://localhost:8080/files/${fileName}`;
+    if (fileName) {
+      return `http://localhost:8080/files/${fileName}`;
+    } else {
+      return ;
+    }
   }
 
   getUserId(): Observable<any> {
@@ -241,7 +260,7 @@ export class CardDetailComponent implements OnInit {
                         });
                       });
                       this.liked = true;
-                      this.badgeService.updateFavoritesBadge();
+                      this.badgeService.emitFavoritesUpdatedEvent();
                     });
                 }
               }
@@ -250,6 +269,7 @@ export class CardDetailComponent implements OnInit {
       });
     });
   }
+
   isOutOfStock(product: any): boolean {
     return product?.selectedStatus?.name === 'OUTOFSTOCK';
   }

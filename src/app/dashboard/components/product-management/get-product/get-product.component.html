@@ -118,9 +118,11 @@
           <td>{{ product.name }}</td>
           <td>
             <img
-              class="w-9 shadow-2 border-round"
+              class="border-round"
               [src]="getFileUrl(product?.file)"
               [alt]="product.name"
+              width="150"
+              height="170"
             />
           </td>
           <td>{{ product?.priceStacked }}</td>
@@ -143,7 +145,7 @@
           <td>{{ product?.companyName  }}</td>
           <td>
             <div
-              class="flex flex-row justify-content-start align-content-center w-21rem"
+              class="flex flex-row justify-content-start align-content-center"
             >
               <div>
                 <span class="button-style">

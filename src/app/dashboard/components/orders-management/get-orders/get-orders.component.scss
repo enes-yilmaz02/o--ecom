@@ -12,15 +12,14 @@ $background-color: #ecf0f1;
   border: 1px solid #ddd;
   border-radius: 5px;
   padding: 20px;
-background: white;
-  /* Başlık stili */
+  background: white;
+
   h2 {
     font-size: 1.5em;
     font-weight: bold;
     margin-bottom: 10px;
   }
 
-  /* Export butonları stili */
   .flex {
     display: flex;
     justify-content: flex-end;
@@ -30,16 +29,14 @@ background: white;
       min-height: 40px;
       margin: 2px;
       padding: 5px 10px;
-      border:none;
+      border: none;
     }
-
   }
 
-  /* Sipariş öğeleri stili */
   .order-item {
     margin: 10px;
     margin-bottom: 50px;
-    /* Sipariş bilgileri stili */
+
     .order-info {
       div {
         margin-bottom: 5px;
@@ -50,52 +47,45 @@ background: white;
           min-height: 40px;
           margin: 2px;
           padding: 5px 10px;
-          border:none;
+          border: none;
           cursor: pointer;
-         justify-content: center;
+          justify-content: center;
         }
       }
     }
 
-    /* Ürün listesi stili */
-
-      .product-table {
-        width: 100%;
-        margin-top: 10px;
-        thead{
-          th{
-            width: 200px;
-            padding: 8px;
-            text-align: center;
-          }
-        }
-        th, td {
+    .product-table {
+      width: 100%;
+      margin-top: 10px;
+      thead {
+        th {
           width: 200px;
           padding: 8px;
           text-align: center;
         }
+      }
+      th,
+      td {
+        width: 200px;
+        padding: 8px;
+        text-align: center;
+      }
 
-        th {
-          background-color: #f2f2f2;
-        }
-
-        img.product-image {
-          max-width: 50px;
-          max-height: 50px;
-        }
+      th {
+        background-color: #f2f2f2;
+      }
+      img.product-image {
+        max-width: 50px;
+        max-height: 50px;
       }
     }
-
+  }
 }
 
-.totalprice{
-position: relative;
-right: -365%;
+.totalprice {
+  position: relative;
+  right: -365%;
 }
-
-
-
-
 
 .page_404 {
   padding: 40px 0;
@@ -106,12 +96,10 @@ right: -365%;
 
 .page_404 img {
   width: 100%;
-
 }
 
 .four_zero_four_bg {
-
-  min-height:90vh ;
+  min-height: 90vh;
   background-repeat: no-repeat;
   background-position: center;
 }

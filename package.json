@@ -8,6 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
+
   "private": true,
   "dependencies": {
     "@abacritt/angularx-social-login": "^2.1.0",

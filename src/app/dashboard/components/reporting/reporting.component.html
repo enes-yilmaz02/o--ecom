@@ -73,13 +73,14 @@
       <h5>{{'dReporting.bestSelling' | transloco}}</h5>
     </div>
     <ul class="list-none p-0 m-0">
-      <!-- *ngFor ile sıralanmış ürünleri dön -->
       <li *ngFor="let product of products.slice(0, 5)" class="flex flex-column md:flex-row md:align-items-center md:justify-content-between mb-4">
         <div>
           <img
-          class="w-9 shadow-2 border-round"
+          class=" border-round"
           [src]="getFileUrl(product?.file)"
           [alt]="product.name"
+          width="80"
+          height="100"
         />
         </div>
         <div>

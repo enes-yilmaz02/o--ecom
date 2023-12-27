@@ -63,10 +63,11 @@ export class GetOrdersComponent implements OnInit {
         const header = columns.map((col) => col.title);
 
         this.orders.forEach((order) => {
+         if(order.userDataArray){
           (doc as any).autoTable({
             head: [header],
             body: order.userDataArray.flatMap(() =>
-                order.orders.map((orderItem: any) => [
+              order.orders.map((orderItem: any) => [
                 orderItem.product.name,
                 orderItem.product.priceStacked,
                 orderItem.product.quantity,
@@ -90,6 +91,7 @@ export class GetOrdersComponent implements OnInit {
             },
             margin: { top: 60 }, // Tablo üstündeki boşluk
           });
+         }
         });
 
         // Blob oluşturun

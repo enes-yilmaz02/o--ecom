@@ -7,31 +7,37 @@ import { BehaviorSubject, Subject } from 'rxjs';
 export class BadgeService {
 
   private orderBadgeSubject = new BehaviorSubject<number>(0);
-  private favoritesBadgeSubject = new Subject<void>();
+  private favoritesBadgeSubject = new BehaviorSubject<number>(0);
   private cartsBadgeSubject = new BehaviorSubject<number>(0);
   private cartUpdatedSource = new Subject<void>();
-  private favoritesAddedSubject = new Subject<string>();
-  private favoritesRemovedSubject = new Subject<string>();
+  private favoritesUpdatedSource = new Subject<void>();
+  private orderUpdatedSource = new Subject<void>();
 
-  favoritesAdded$ = this.favoritesAddedSubject.asObservable();
-  favoritesRemoved$ = this.favoritesRemovedSubject.asObservable();
-  cartUpdated$ = this.cartUpdatedSource.asObservable();
   orderBadge$ = this.orderBadgeSubject.asObservable();
+  orderUpdated$ = this.orderUpdatedSource.asObservable();
   favoritesBadge$ = this.favoritesBadgeSubject.asObservable();
+  favoritesUpdated$ = this.favoritesUpdatedSource.asObservable();
   cartsBadge$ = this.cartsBadgeSubject.asObservable();
-
-
+  cartUpdated$ = this.cartUpdatedSource.asObservable();
 
   emitCartUpdatedEvent() {
     this.cartUpdatedSource.next();
+  }
+
+  emitOrderUpdatedEvent() {
+    this.orderUpdatedSource.next();
+  }
+
+  emitFavoritesUpdatedEvent() {
+    this.favoritesUpdatedSource.next();
   }
 
   updateOrderBadge(count: number) {
     this.orderBadgeSubject.next(count);
   }
 
-  updateFavoritesBadge() {
-    this.favoritesBadgeSubject.next();
+  updateFavoritesBadge(count:number) {
+    this.favoritesBadgeSubject.next(count);
   }
 
   updateCartsBadge(count: number) {

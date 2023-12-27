@@ -18,61 +18,78 @@ export class NavbarListComponent implements OnInit {
     { label: '🇹🇷 TR', value: 'tr' },
     { label: '🇬🇧 EN', value: 'en' },
   ];
-  selectedLanguage: string;
-  orderBadge: any;
-  favoritesBadge: any;
-  cartsBadge: any;
-  userId: any;
-  translatedStockStatus: string;
-  isOpen = false;
-  searchText : string ='';
-  items: MenuItem[] | undefined;
-  user:any;
+
+  selectedLanguage: string; // Seçilen dil
+  orderBadge: any; // Sipariş batch bilgisi
+  favoritesBadge: any; // Favori ürünler batch bilgisi
+  cartsBadge: any; // Sepet batch bilgisi
+  userId: any; // Kullanıcı ID'si
+  translatedStockStatus: string; // Çevrilmiş stok durumu
+  isOpen = false; // Dropdown menü durumu
+  searchText: string = ''; // Arama metni
+  items: MenuItem[] | undefined; // PrimeNG menü öğeleri
+  user: any; // Kullanıcı bilgileri
 
   constructor(
     private userService: UserService,
     private badgeService: BadgeService,
     private router: Router,
     private renderer: Renderer2,
-    private searchService:OnChangeService,
+    private searchService: OnChangeService,
     private languageService: LanguageService
   ) {}
 
   ngOnInit(): void {
+    this.getUserId().subscribe(userId => {
+      this.userService.getOrders(userId).subscribe((orders: any) => {
+        this.orderBadge = orders.length.toString();
+      });
+    });
 
-    this.languageService.language$.subscribe((language) => {
+    this.getUserId().subscribe(userId => {
+      this.userService.getFavorites(userId).subscribe((favorites: any) => {
+        this.favoritesBadge = favorites.length.toString();
+      });
+    });
+
+    this.getUserId().subscribe(userId => {
+      this.userService.getCarts(userId).subscribe((carts: any) => {
+        this.cartsBadge = carts.length.toString();
+      });
+    });
+
+    // Dil değişikliklerini izle
+    this.languageService.language$.subscribe((language:any) => {
       this.selectedLanguage = language;
     });
-
-    this.updateBadges();
-
-    this.badgeService.orderBadge$.subscribe((count) => {
+    // Sipariş batch bilgisini güncelle
+    this.badgeService.orderBadge$.subscribe((count:any) => {
       this.orderBadge = count.toString();
     });
-
-    this.badgeService.favoritesBadge$.subscribe(() => {
-      this.updateBadges();
+    // Favori ürünler batch bilgisini güncelle
+    this.badgeService.favoritesBadge$.subscribe((count:any) => {
+      this.favoritesBadge = count.toString();
     });
-
-    this.badgeService.cartsBadge$.subscribe((count) => {
+    // Sepet batch bilgisini güncelle
+    this.badgeService.cartsBadge$.subscribe((count:any) => {
       this.cartsBadge = count.toString();
     });
-
+    // Sepet güncellendiğinde batch bilgisini güncelle
     this.badgeService.cartUpdated$.subscribe(() => {
       this.updateBadges();
     });
-
+    // Dış tıklamalarda dropdown'ı kapat
     this.renderer.listen('document', 'click', (event: any) => {
       this.onDocumentClick(event);
     });
-
-    this.getUserId().subscribe(()=>{
+    // Kullanıcı ID'sini al ve kullanıcı bilgilerini getir
+    this.getUserId().subscribe(() => {
       this.getUser();
     });
   }
 
+  // Batch bilgilerini güncelle
   private updateBadges() {
-
     this.getUserId().subscribe((userId) => {
       this.userService.getOrders(userId).subscribe((orders: any) => {
         this.orderBadge = orders.length.toString();
@@ -100,10 +117,10 @@ export class NavbarListComponent implements OnInit {
     );
   }
 
-  getUser(){
-    this.userService.getUser(this.userId).subscribe((data)=>{
-      this.user= data;
-    })
+  getUser() {
+    this.userService.getUser(this.userId).subscribe((data) => {
+      this.user = data;
+    });
   }
 
   toggleDropdown() {
@@ -113,7 +130,7 @@ export class NavbarListComponent implements OnInit {
   onDocumentClick(event: any) {
     const dropdownContainer = document.querySelector('.dropdown-container');
 
-    if (!dropdownContainer?.contains(event.target) ) {
+    if (!dropdownContainer?.contains(event.target)) {
       this.isOpen = false;
     }
   }
@@ -127,5 +144,4 @@ export class NavbarListComponent implements OnInit {
   setLanguage() {
     this.languageService.setLanguage(this.selectedLanguage);
   }
-
 }

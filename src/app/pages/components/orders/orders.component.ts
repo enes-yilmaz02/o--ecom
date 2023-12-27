@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MessageService } from 'primeng/api';
-import { Observable, empty, tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -24,10 +23,10 @@ export class OrdersComponent implements OnInit {
 
   ngOnInit() {
     this.loadData();
-    // 5 saniye sonra "loading" şablonunu gizle
+
     setTimeout(() => {
       this.showLoading = false;
-    }, 3000);
+    }, 1000);
   }
 
   getUserId(): Observable<any> {

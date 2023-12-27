@@ -145,7 +145,7 @@ export class UpdateProductComponent implements OnInit {
         code: formValues.code,
         description: formValues.description,
         priceStacked: formValues.priceStacked,
-        file: this.selectedFile.name,
+        file: this.selectedFile?.name && this.getFile,
         quantity: formValues.quantity,
         valueRating: formValues.valueRating,
         selectedStatus: this.selectedStatus,
