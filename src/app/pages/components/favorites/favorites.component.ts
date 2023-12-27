@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Observable, forkJoin, tap } from 'rxjs';
+import { OnChangeService } from 'src/app/services/onchange.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -14,7 +15,11 @@ export class FavoritesComponent {
   userId: any;
   hasExData: boolean;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService , private onChangeService:OnChangeService) {
+    this.onChangeService.exFavoritesUpdated$.subscribe(()=>{
+      this.loadData();
+    })
+  }
 
   ngOnInit() {
     this.loadData();

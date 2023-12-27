@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter,  Output } from '@angular/core';
 import { TranslocoService } from '@ngneat/transloco';
 import { MessageService } from 'primeng/api';
 import { Observable, tap } from 'rxjs';
@@ -12,7 +12,7 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './ex-favorites.component.html',
   styleUrls: ['./ex-favorites.component.scss']
 })
-export class ExFavoritesComponent {
+export class ExFavoritesComponent  {
   userId: any;
   products: any;
   productId:any;
@@ -31,6 +31,11 @@ export class ExFavoritesComponent {
   ){
     this.getUserId().subscribe(() => {
       this.getExFavorites();
+    });
+    this.onChangeService.exFavoritesUpdated$.subscribe(() => {
+      this.getUserId().subscribe(() => {
+        this.getExFavorites();
+      });
     });
   }
 

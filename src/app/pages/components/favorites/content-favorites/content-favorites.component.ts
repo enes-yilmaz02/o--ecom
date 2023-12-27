@@ -1,5 +1,5 @@
 import { MessageService } from 'primeng/api';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { Observable, tap } from 'rxjs';
 import { BadgeService } from 'src/app/services/badge.service';
@@ -33,12 +33,9 @@ export class ContentFavoritesComponent {
     this.onChangeService.exFavoritesUpdated$.subscribe(()=>{
       this.getUserId().subscribe(() => {
         this.getFavorites();
-        console.log('calışıyor')
       });
     })
   }
-
-
 
   getUserId(): Observable<any> {
     return this.userService.getTokenId().pipe(
@@ -65,17 +62,19 @@ export class ContentFavoritesComponent {
 
   deleteFavorites(productId: any , product:any) {
     this.getUserId().subscribe(() => {
-      this.userService.deleteFavoriteById(this.userId, productId).subscribe(
+      this.userService.addExFavorite(this.userId, productId , product).subscribe(
         () => {
-          this.userService.addExFavorite(this.userId , productId , product).subscribe(()=>{
+          this.userService.deleteFavorite(this.userId , productId ).subscribe(()=>{
             this.messageService.add({
               severity: 'success',
               summary: this.tranlocoService.translate('successMessage'),
               detail:this.tranlocoService.translate('favoritesForm.messageDetailsuccess')
             });
-          })
-          this.badgeService.updateFavoritesBadge();
-          this.getFavorites();
+            this.liked=false;
+            this.badgeService.updateFavoritesBadge();
+            this.getFavorites();
+            this.onChangeService.changeExFavorites();
+          });
         },
         (error) => {
           console.log(productId);
@@ -83,7 +82,6 @@ export class ContentFavoritesComponent {
         }
       );
     });
-    this.getFavorites();
   }
 
   getFileUrl(fileName: string): string {
