@@ -1,0 +1,14 @@
+$primary-color: #3498db;
+$secondary-color: #1071b3;
+$danger-color: #e74c3c;
+$dark-text: #34495e;
+$light-text: #ecf0f1;
+$light-text-hover: #91c9d7;
+$background-color: #ecf0f1;
+:host {
+  .header-order{
+    background: $dark-text;
+    color: $light-text;
+    opacity: 0.9;
+   }
+}

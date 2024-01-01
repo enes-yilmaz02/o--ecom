@@ -137,6 +137,7 @@ export class ContentCartsComponent {
               'contentCartsForm.messageDetailsuccess'
             ),
           });
+          this.badgeService.updateCarts();
           this.getCarts();
         },
         (error) => {
@@ -230,7 +231,7 @@ export class ContentCartsComponent {
                     'completeOrderMessage'
                   ),
                 });
-                this.badgeService.emitCartUpdatedEvent();
+                this.badgeService.updateCarts();
                 this.clearCart();
               });
             } else {
@@ -318,13 +319,13 @@ export class ContentCartsComponent {
     this.getUserId().subscribe(() => {
       this.userService.clearCart(this.userId).subscribe(
         () => {
-          this.messageService.add({
-            severity: 'success',
-            summary: this.translocoService.translate('successMessage'),
-            detail: this.translocoService.translate('clearcart'),
-          });
+          // this.messageService.add({
+          //   severity: 'success',
+          //   summary: this.translocoService.translate('successMessage'),
+          //   detail: this.translocoService.translate('clearcart'),
+          // });
           this.getCarts();
-          this.badgeService.emitCartUpdatedEvent();
+          this.badgeService.updateCarts();
           this.allCartsDeleted.emit();
           this.products = [];
           this.totalPrice = 0;

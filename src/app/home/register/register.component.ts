@@ -15,15 +15,11 @@ import { TranslocoService } from '@ngneat/transloco';
 })
 export class RegisterComponent {
   userFormRegister: FormGroup;
-
   generatedCode: any;
-
-
   senderMail: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-
   Genders: any[] = [
-    { name: 'Male', key: 'male' },
-    { name: 'Female', key: 'female' },
+    { name: 'Male'},
+    { name: 'Female' },
   ];
 
   constructor(
@@ -39,19 +35,20 @@ export class RegisterComponent {
       confirmpassword: ['', [Validators.required, Validators.minLength(8)]],
       code: [''],
     });
- 
-  }
-  
 
+  }
+
+  //bu fonk db de users collectionda bu email var mı yok mu kontrol ediyor ve bir boolean değer dönüyor
   checkEmailAvailability(email: string): Observable<{ available: boolean }> {
     return this.userService.getUsers().pipe(
       map((users) => {
         const userWithEmail = users.find((user) => user.email === email);
-        return { available: !userWithEmail }; // Eğer userWithEmail değeri varsa e-posta adresi kullanılmaktadır.
+        return { available: !userWithEmail };
       })
     );
   }
 
+  // random olarak 6 karakter uzunluğunda bir digit code oluşturan fonk.
   generateRandomCode(): string {
     let result = '';
     const characters = '0123456789';

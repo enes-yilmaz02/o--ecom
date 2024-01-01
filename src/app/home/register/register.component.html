@@ -72,6 +72,12 @@
             ? ("registerForm.passwordSmall" | transloco)
             : ""
         }}
+           {{
+            userFormRegister.get("password").errors != null &&
+            userFormRegister.get("password").errors["minlength"]
+              ? ("registerForm.passwordSmall" | transloco)
+              : ""
+          }}
         {{
           userFormRegister.get("password").errors != null &&
           userFormRegister.get("password").errors["required"]
@@ -108,6 +114,12 @@
         {{
           userFormRegister.get("confirmpassword").errors != null &&
           userFormRegister.get("confirmpassword").errors["whitespace"]
+            ? ("registerForm.confirmSmall" | transloco)
+            : ""
+        }}
+        {{
+          userFormRegister.get("confirmpassword").errors != null &&
+          userFormRegister.get("confirmpassword").errors["minlength"]
             ? ("registerForm.confirmSmall" | transloco)
             : ""
         }}

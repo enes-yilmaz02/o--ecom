@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslocoService } from '@ngneat/transloco';
 import { MessageService } from 'primeng/api';
-import { DialogService } from 'primeng/dynamicdialog';
 import { Table } from 'primeng/table';
 import { Observable, tap } from 'rxjs';
 import { ProductService } from 'src/app/services/product.service';

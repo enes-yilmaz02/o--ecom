@@ -104,7 +104,7 @@ export class ExFavoritesComponent  {
               detail: this.translocoService.translate('cardDetail.messageDetailsuccessaddfavorite')
             });
             this.liked = true;
-            this.badgeService.emitFavoritesUpdatedEvent();
+            this.badgeService.updateFavorites();
             this.getExFavorites();
             this.onChangeService.changeExFavorites();
           });

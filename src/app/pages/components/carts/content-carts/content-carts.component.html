@@ -1,9 +1,7 @@
 <div
   class="surface-section border-1 surface-border border-round px-4 py-4 md:px-6 lg:px-8"
 >
-  <div
-    class="flex justify-content-start align-content-start text-900 text-4xl mb-4"
-  >
+  <div class="flex justify-content-start align-content-start text-900 text-4xl mb-4">
     <div>{{ "contentCartsForm.header" | transloco }}</div>
   </div>
   <hr>
@@ -12,13 +10,16 @@
       *ngFor="let cart of carts"
       class="flex flex-column md:flex-row border-top-1 border-bottom-1 surface-border md:align-items-center py-4"
     >
-
+     <div>
       <img
-        [src]="getFileUrl(cart?.product?.file)"
-        class="w-12rem h-14rem flex-shrink-0 mx-2 md:mx-2"
-      />
+      [src]="getFileUrl(cart?.product?.file)"
+      class="flex-shrink-0 mx-2 md:mx-2 border-round"
+      width="200"
+      height="190"
+    />
+     </div>
       <div
-        class="flex flex-row justify-content-between align-items-center w-full"
+        class="justify-content-between align-items-center w-full content "
       >
         <div class="flex flex-column w-full">
           <span class="inline-flex align-items-center mb-3">
@@ -52,7 +53,7 @@
             </span>
           </span>
         </div>
-        <div class="flex align-items-center w-full justify-content-center">
+        <div class="p-inputNumber">
           <div class="inputNumber" style="width: 20px">
             <p-inputNumber
               [(ngModel)]="cart.product.quantity"
@@ -73,12 +74,12 @@
           </div>
         </div>
         <div
-          class="flex flex-column w-full justify-content-end align-items-center pb-5"
+          class="pb-5 piece-price "
         >
           <div
-            class="w-full sm:w-6 flex align-items-end justify-content-end mt-3 sm:mt-0"
+            class="w-full sm:w-6 flex mt-3 sm:mt-0 piece-price"
           >
-            <div class="flex flex-column sm:align-items-end">
+            <div class="piece-price">
               <span class="text-900 text-xl font-medium mb-2 sm:mb-3 mr-1">
                 {{ "$" + cart?.product?.priceStacked }}
               </span>

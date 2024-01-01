@@ -159,7 +159,7 @@ export class CardComponent implements OnInit {
               summary: this.translocoService.translate('successMessage'),
               detail: this.translocoService.translate('cardDetail.messageDetailsuccessaddcart'),
             });
-            this.badgeService.emitCartUpdatedEvent();
+            this.badgeService.updateCarts();
             this.getProduct(productId);
           } else {
             this.messageService.add({

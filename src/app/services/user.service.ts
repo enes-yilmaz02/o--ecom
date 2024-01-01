@@ -123,14 +123,7 @@ export class UserService {
    */
   getOrders(userId: string): Observable<Users> {
     return this.commonService
-      .get(`${this.usersEndPoint}/${userId}/${this.ordersEndPoint}`)
-      .pipe(
-        tap((items: any) => {
-          if (items && items.length !== undefined) {
-            this.badgeService.updateOrderBadge(items.length);
-          }
-        })
-      );
+      .get(`${this.usersEndPoint}/${userId}/${this.ordersEndPoint}`);
   }
 
   /**
@@ -206,14 +199,7 @@ export class UserService {
    */
   getFavorites(userId: string): Observable<any> {
     return this.commonService
-      .get(`${this.usersEndPoint}/${userId}/${this.favoritesEndPoint}`)
-      .pipe(
-        tap((items: any) => {
-          if (items && items.length !== undefined) {
-            this.badgeService.emitFavoritesUpdatedEvent();
-          }
-        })
-      );
+      .get(`${this.usersEndPoint}/${userId}/${this.favoritesEndPoint}`);
   }
 
   /**
@@ -329,14 +315,7 @@ export class UserService {
    */
   getExFavorites(userId: string): Observable<any> {
     return this.commonService
-      .get(`${this.usersEndPoint}/${userId}/${this.exFavoritesEndPoint}`)
-      .pipe(
-        tap((items: any) => {
-          if (items && items.length !== undefined) {
-            this.badgeService.emitFavoritesUpdatedEvent();
-          }
-        })
-      );
+      .get(`${this.usersEndPoint}/${userId}/${this.exFavoritesEndPoint}`);
   }
 
   /**
@@ -421,14 +400,7 @@ export class UserService {
    */
   getCarts(userId: string): Observable<Users> {
     return this.commonService
-      .get(`${this.usersEndPoint}/${userId}/${this.cartsEndPoint}`)
-      .pipe(
-        tap((items: any) => {
-          if (items && items.length !== undefined) {
-            this.badgeService.updateCartsBadge(items.length);
-          }
-        })
-      );
+      .get(`${this.usersEndPoint}/${userId}/${this.cartsEndPoint}`);
   }
 
   /**

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { BadgeService } from 'src/app/services/badge.service';
 import { UserService } from 'src/app/services/user.service';
@@ -13,7 +13,7 @@ import { LanguageService } from 'src/app/services/language.service';
   templateUrl: './navbar-list.component.html',
   styleUrls: ['./navbar-list.component.scss'],
 })
-export class NavbarListComponent implements OnInit {
+export class NavbarListComponent implements OnInit  {
   stateOptions: any[] = [
     { label: '🇹🇷 TR', value: 'tr' },
     { label: '🇬🇧 EN', value: 'en' },
@@ -30,6 +30,7 @@ export class NavbarListComponent implements OnInit {
   items: MenuItem[] | undefined; // PrimeNG menü öğeleri
   user: any; // Kullanıcı bilgileri
 
+
   constructor(
     private userService: UserService,
     private badgeService: BadgeService,
@@ -40,44 +41,41 @@ export class NavbarListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getUserId().subscribe(userId => {
+    this.getUserId().subscribe((userId) => {
       this.userService.getOrders(userId).subscribe((orders: any) => {
         this.orderBadge = orders.length.toString();
       });
     });
 
-    this.getUserId().subscribe(userId => {
+    this.getUserId().subscribe((userId) => {
       this.userService.getFavorites(userId).subscribe((favorites: any) => {
         this.favoritesBadge = favorites.length.toString();
       });
     });
 
-    this.getUserId().subscribe(userId => {
+    this.getUserId().subscribe((userId) => {
       this.userService.getCarts(userId).subscribe((carts: any) => {
         this.cartsBadge = carts.length.toString();
       });
     });
 
     // Dil değişikliklerini izle
-    this.languageService.language$.subscribe((language:any) => {
+    this.languageService.language$.subscribe((language: any) => {
       this.selectedLanguage = language;
-    });
-    // Sipariş batch bilgisini güncelle
-    this.badgeService.orderBadge$.subscribe((count:any) => {
-      this.orderBadge = count.toString();
-    });
-    // Favori ürünler batch bilgisini güncelle
-    this.badgeService.favoritesBadge$.subscribe((count:any) => {
-      this.favoritesBadge = count.toString();
-    });
-    // Sepet batch bilgisini güncelle
-    this.badgeService.cartsBadge$.subscribe((count:any) => {
-      this.cartsBadge = count.toString();
     });
     // Sepet güncellendiğinde batch bilgisini güncelle
     this.badgeService.cartUpdated$.subscribe(() => {
-      this.updateBadges();
+      this.updateBadgesCart();
     });
+    // Favori güncellendiğinde batch bilgisini güncelle
+    this.badgeService.favoritesUpdated$.subscribe(() => {
+      this.updateBadgesFavorites();
+    });
+    // Order güncellendiğinde batch bilgisini güncelle
+    this.badgeService.orderUpdated$.subscribe(() => {
+      this.updateBadgesOrder();
+    });
+
     // Dış tıklamalarda dropdown'ı kapat
     this.renderer.listen('document', 'click', (event: any) => {
       this.onDocumentClick(event);
@@ -88,22 +86,32 @@ export class NavbarListComponent implements OnInit {
     });
   }
 
-  // Batch bilgilerini güncelle
-  private updateBadges() {
+  // Favorite Batch bilgilerini günceller
+  private updateBadgesFavorites() {
+    this.getUserId().subscribe((userId) => {
+      this.userService.getFavorites(userId).subscribe((favorites: any) => {
+        this.favoritesBadge = favorites.length.toString();
+      });
+    });
+  }
+
+  //Order Batch bilgilerini günceller
+  private updateBadgesOrder() {
     this.getUserId().subscribe((userId) => {
       this.userService.getOrders(userId).subscribe((orders: any) => {
         this.orderBadge = orders.length.toString();
       });
-
-      this.userService.getFavorites(userId).subscribe((favorites: any) => {
-        this.favoritesBadge = favorites.length.toString();
-      });
-
-      this.userService.getCarts(userId).subscribe((carts: any) => {
-        this.cartsBadge = carts.length.toString();
-      });
     });
   }
+
+    //Cart Batch bilgilerini günceller
+    private updateBadgesCart() {
+      this.getUserId().subscribe((userId) => {
+        this.userService.getCarts(userId).subscribe((carts: any) => {
+          this.cartsBadge = carts.length.toString();
+        });
+      });
+    }
 
   onSearchInputChange() {
     this.searchService.setSearchText(this.searchText);
@@ -144,4 +152,6 @@ export class NavbarListComponent implements OnInit {
   setLanguage() {
     this.languageService.setLanguage(this.selectedLanguage);
   }
+
+
 }

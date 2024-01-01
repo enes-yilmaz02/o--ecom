@@ -24,11 +24,9 @@ export class ContentTableComponent {
 
   userId: any; // Sipariş ID'sini saklamak için değişken
 
-  // Constructor, servis bağımlılıklarını enjekte eder
+
   constructor(
-    private messageService: MessageService,
     private userService: UserService,
-    private translocoService: TranslocoService
   ) {
     this.getUserId().subscribe(() => {
       this.getOrders();

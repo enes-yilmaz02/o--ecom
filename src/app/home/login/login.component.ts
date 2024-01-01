@@ -17,7 +17,6 @@ export class LoginComponent {
   userFormLogin: FormGroup;
   userProfile: any;
   user: any;
-
   userId: any;
   role: any;
   isLoggedIn$ = this.googleService.isAuthenticated();
@@ -27,16 +26,15 @@ export class LoginComponent {
     private messageService: MessageService,
     private userService: UserService,
     private router: Router,
-    private route:ActivatedRoute,
-    private authService:AuthService,
     private translocoService: TranslocoService,
     private googleService: GoogleService
   ) {}
 
+  // Google ile giriş fonk.
   loginWithGoogle(): void {
     this.googleService.loginWithGoogle();
   }
-
+  //Google ile giriş yapıldığında boolean dönen bir fonk.
   isAuthenticated() {
     this.googleService.isAuthenticated();
   }
@@ -49,6 +47,7 @@ export class LoginComponent {
 
   }
 
+  // localstorageda ki tokeni çözdükten sonra alınan id'yi alan fonk.
   getUserId(): Observable<any> {
     return this.userService.getTokenId().pipe(
       tap((id: any) => {
@@ -57,6 +56,7 @@ export class LoginComponent {
     );
   }
 
+  // userId ile kullanıcı datsını getiren fonk.
   getUserData() {
     this.getUserId().subscribe((userId: any) => {
       this.userService.getTokenUser(userId).subscribe((data: any) => {
@@ -66,12 +66,13 @@ export class LoginComponent {
     });
   }
 
+  // Giriş butonuna basılınca çalışan fonk.
   onSubmitLogin() {
     if (this.userFormLogin.valid) {
       const formValuesArray = this.userFormLogin.value;
       this.userService.loginUser(formValuesArray).subscribe(
-        (response) => {
-          const authToken = localStorage.getItem('authToken');
+        () => {
+          //const authToken = localStorage.getItem('authToken');
           this.userService.getTokenId().subscribe(() => {
             this.getUserId().subscribe(() => {
               this.userService
@@ -123,6 +124,7 @@ export class LoginComponent {
               'loginForm.messageDetailerror'
             ),
           });
+          console.log(error);
         }
       );
     } else {
@@ -136,6 +138,7 @@ export class LoginComponent {
     }
   }
 
+ //form elementlerinin olaylarını takip eder dirty -touched vb.
   markFormGroupTouched(formGroup: FormGroup) {
     Object.values(formGroup.controls).forEach((control) => {
       if (control instanceof FormGroup) {

@@ -219,10 +219,10 @@ $background-color: #ecf0f1;
   }
 }
 
-@media screen and (max-width: 345px) {
+@media screen and (max-width: 375px) {
 
   .container{
-    width: 370px;
+    width: 100%;
   }
 
   .row{

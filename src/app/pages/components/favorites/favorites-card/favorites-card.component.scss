@@ -1,5 +1,15 @@
+
+
+.container{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  cursor: pointer;
+  padding: 21px;
+}
+
 .surface-section {
-  padding: 2rem; /* px-4 */
   border: 1px solid #e1e1e1;
   border-radius: 0.75rem;
 
@@ -15,7 +25,7 @@
 }
 
 .surface-section .p-4 {
-  padding: 1rem; /* p-4 */
+  padding: 1rem;
 }
 
 .surface-section .shadow-1 {
@@ -32,25 +42,141 @@
   margin-right: 0.25rem;
 }
 
-.surface-section .image img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 0.5rem;
+.image img {
+  display: flex;
+  margin: 3px;
+  width: 120px;
+  height: 120px;
+  border-radius:10px;
 }
 
-.surface-section .category span {
+ .category  {
   margin-right: 0.5rem;
+  display: flex;
+  align-items: center;
+  margin-left: 21px;
+  margin-right: 21px;
 }
 
-.surface-section .name span {
+.name  {
   font-size: 1rem;
+  display: flex;
+  align-items: center;
+  margin-left: 21px;
+  margin-right: 21px;
 }
 
-.surface-section .description p {
+ .description  {
   margin: 0;
+  display: flex;
+  align-items: center;
+  margin-left:21px;
+  margin-right:21px;
+  text-align: justify;
+  text-justify: inter-word;
 }
 
-.surface-section .price {
+.price {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left:21px;
+  margin-right:21px;
   cursor: pointer;
   margin-left: 0.75rem;
+}
+
+@media screen and (min-width: 376px) and (max-width: 768px){
+  .container{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    cursor: pointer;
+    width: 100%;
+  }
+
+   .description {
+    margin: 0;
+    display: flex;
+    align-items: normal;
+    float: left;
+    margin-left:0;
+    margin-right:21px;
+    width: 100%;
+  }
+
+
+.surface-section .price {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-left:21px;
+  margin-right:21px;
+  cursor: pointer;
+  margin-left: 0.75rem;
+}
+}
+
+@media screen and (max-width: 375px){
+  .container{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    cursor: pointer;
+    width: 100%;
+  }
+
+  .image img {
+    width: 100%;
+    height: 70%;
+    margin-left:0;
+    border-radius: 0.5rem;
+  }
+
+   .description {
+    margin: 0;
+    display: flex;
+    align-items: normal;
+    float: left;
+    margin-left:10px;
+    width: 100%;
+    p{
+      float: left;
+      text-align: justify;
+    }
+  }
+  .name {
+    margin-left: 10px;
+    span {
+      font-size: 1rem;
+      font-weight: bold;
+      margin-left:0;
+      margin-bottom:10px ;
+    }
+  }
+
+.category {
+  margin-left:10px;
+  span {
+    margin-right: 0.5rem;
+    font-weight: bold;
+    margin-bottom:10px ;
+    margin-left:0;
+  }
+}
+
+
+
+ .price {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  margin-top: 10px;
+  margin-left:21px;
+  margin-right:21px;
+  cursor: pointer;
+  margin-left: 0.75rem;
+}
 }

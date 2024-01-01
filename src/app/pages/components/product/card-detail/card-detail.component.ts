@@ -32,18 +32,16 @@ export class CardDetailComponent implements OnInit {
     private userService: UserService,
     private router: Router,
     private badgeService: BadgeService,
-    private translocoService:TranslocoService
+    private translocoService: TranslocoService
   ) {}
 
   ngOnInit(): void {
-     this.getProductId().subscribe((productId) => {
-      this.productService
-        .patchProductById(productId)
-        .subscribe((data: any) => {
-          this.product = data;
-          this.productPrice = Number(this.product.priceStacked);
-          this.checkIfProductIsLiked();
-        });
+    this.getProductId().subscribe((productId) => {
+      this.productService.patchProductById(productId).subscribe((data: any) => {
+        this.product = data;
+        this.productPrice = Number(this.product.priceStacked);
+        this.checkIfProductIsLiked();
+      });
     });
 
     this.route.queryParams.subscribe((params) => {
@@ -58,17 +56,17 @@ export class CardDetailComponent implements OnInit {
   async loadDataAsync() {
     try {
       const productId = await this.getProductId().toPromise();
-      const data = await this.productService.patchProductById(productId).toPromise();
+      const data = await this.productService
+        .patchProductById(productId)
+        .toPromise();
 
       this.product = data;
       this.productPrice = Number(this.product.priceStacked);
       this.checkIfProductIsLiked();
     } catch (error) {
       console.error('Error fetching data:', error);
-      // Hata durumunda yapılacak işlemleri ekleyebilirsiniz.
     }
   }
-
 
   updateUrlWithLikedParam(liked: boolean) {
     this.router.navigate([], {
@@ -87,19 +85,23 @@ export class CardDetailComponent implements OnInit {
             () => {
               this.liked = false;
               this.updateUrlWithLikedParam(false);
+              this.badgeService.updateFavorites();
               this.messageService.add({
                 severity: 'success',
                 summary: this.translocoService.translate('successMessage'),
-                detail: this.translocoService.translate('cardDetail.messageDetailsuccess'),
+                detail: this.translocoService.translate(
+                  'cardDetail.messageDetailsuccess'
+                ),
               });
-              this.badgeService.emitFavoritesUpdatedEvent();
             },
             (error) => {
               console.error('Favori kaldırma işleminde hata:', error);
               this.messageService.add({
                 severity: 'error',
                 summary: this.translocoService.translate('errorMessage'),
-                detail: this.translocoService.translate('cardDetail.messageDetailerror'),
+                detail: this.translocoService.translate(
+                  'cardDetail.messageDetailerror'
+                ),
               });
             }
           );
@@ -122,7 +124,7 @@ export class CardDetailComponent implements OnInit {
     if (fileName) {
       return `http://localhost:8080/files/${fileName}`;
     } else {
-      return ;
+      return;
     }
   }
 
@@ -156,12 +158,14 @@ export class CardDetailComponent implements OnInit {
   }
 
   addToCart(product: any, productId: any) {
-    if(this.defaultValue >= 1) {
+    if (this.defaultValue >= 1) {
       if (this.defaultValue > this.product.quantity) {
         this.messageService.add({
           severity: 'warn',
           summary: this.translocoService.translate('warnMessage'),
-          detail:this.translocoService.translate('cardDetail.messageDetailwarn'),
+          detail: this.translocoService.translate(
+            'cardDetail.messageDetailwarn'
+          ),
         });
         return;
       }
@@ -185,14 +189,18 @@ export class CardDetailComponent implements OnInit {
                 this.messageService.add({
                   severity: 'success',
                   summary: this.translocoService.translate('successMessage'),
-                  detail:this.translocoService.translate('cardDetail.messageDetailsuccessaddcart') ,
+                  detail: this.translocoService.translate(
+                    'cardDetail.messageDetailsuccessaddcart'
+                  ),
                 });
-                this.badgeService.emitCartUpdatedEvent();
+                this.badgeService.updateCarts();
               } else {
                 this.messageService.add({
                   severity: 'error',
                   summary: this.translocoService.translate('errorMessage'),
-                  detail: this.translocoService.translate('cardDetail.messageDetailerroraddcart'),
+                  detail: this.translocoService.translate(
+                    'cardDetail.messageDetailerroraddcart'
+                  ),
                 });
               }
             },
@@ -207,7 +215,9 @@ export class CardDetailComponent implements OnInit {
       this.messageService.add({
         severity: 'warn',
         summary: this.translocoService.translate('warnMessage'),
-        detail: this.translocoService.translate('cardDetail.messageDetailwarnpiece'),
+        detail: this.translocoService.translate(
+          'cardDetail.messageDetailwarnpiece'
+        ),
       });
     }
     this.defaultValue = 1;
@@ -242,25 +252,28 @@ export class CardDetailComponent implements OnInit {
           .subscribe((product: any) => {
             this.checkIfProductIsFavorites(userId, productId).subscribe(
               (isFavorited: boolean) => {
-
                 if (!isFavorited) {
                   const body = {
                     id: productId,
                     product: product,
                   };
-
                   this.userService
                     .addFavorite(userId, productId, body)
                     .subscribe(() => {
-                      this.userService.deleteExFavorite(userId , productId).subscribe(()=>{
-                        this.messageService.add({
-                          severity: 'success',
-                          summary: this.translocoService.translate('successMessage'),
-                          detail: this.translocoService.translate('cardDetail.messageDetailsuccessaddfavorite')
+                      this.userService
+                        .deleteExFavorite(userId, productId)
+                        .subscribe(() => {
+                          this.badgeService.updateFavorites();
+                          this.liked = true;
+                          this.messageService.add({
+                            severity: 'success',
+                            summary:
+                              this.translocoService.translate('successMessage'),
+                            detail: this.translocoService.translate(
+                              'cardDetail.messageDetailsuccessaddfavorite'
+                            ),
+                          });
                         });
-                      });
-                      this.liked = true;
-                      this.badgeService.emitFavoritesUpdatedEvent();
                     });
                 }
               }
