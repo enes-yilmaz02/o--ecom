@@ -11,6 +11,17 @@ $background-color: #ecf0f1;
   flex-direction: row;
 }
 
+
+.image{
+
+  img{
+    width: 200px;
+    height: 180px;
+    margin: 10px;
+  }
+}
+
+
 .piece-price{
   align-items: flex-end;
   justify-content: flex-end;

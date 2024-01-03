@@ -122,6 +122,18 @@
       li {
         margin-right: 15px;
       }
+      a{
+        color: #3498db;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-decoration: underline;
+        margin-right: 15px;
+
+
+        &:hover{
+          text-decoration: underline;
+        }
+      }
     }
   }
 

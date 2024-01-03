@@ -6,7 +6,7 @@ import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
 
 //Servisler
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { CartService } from '../services/cart.service';
 import { CitiesService } from '../services/cities.service';
 
@@ -99,7 +99,8 @@ import { FavoritesCardComponent } from './components/favorites/favorites-card/fa
   providers:[
     CartService,
     MessageService,
-    CitiesService
+    CitiesService,
+    ConfirmationService
   ]
 })
 export class PagesModule { }

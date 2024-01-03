@@ -45,6 +45,8 @@ import { TranslocoModule } from '@ngneat/transloco';
 import { PanelModule } from 'primeng/panel';
 import { AvatarModule } from 'primeng/avatar';
 import { AvatarGroupModule } from 'primeng/avatargroup';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
 
 @NgModule({
   declarations: [StockStatusPipe, CategoryStatus, GenderStatus],
@@ -92,7 +94,9 @@ import { AvatarGroupModule } from 'primeng/avatargroup';
     TranslocoRootModule,
     PanelModule,
     AvatarModule,
-    AvatarGroupModule
+    AvatarGroupModule,
+    ConfirmDialogModule,
+    ConfirmPopupModule
 
   ],
   exports: [
@@ -142,7 +146,9 @@ import { AvatarGroupModule } from 'primeng/avatargroup';
     TranslocoRootModule,
     PanelModule,
     AvatarModule,
-    AvatarGroupModule
+    AvatarGroupModule,
+    ConfirmDialogModule,
+    ConfirmPopupModule
 
 
 

@@ -10,12 +10,9 @@
       *ngFor="let cart of carts"
       class="flex flex-column md:flex-row border-top-1 border-bottom-1 surface-border md:align-items-center py-4"
     >
-     <div>
+     <div class="image">
       <img
       [src]="getFileUrl(cart?.product?.file)"
-      class="flex-shrink-0 mx-2 md:mx-2 border-round"
-      width="200"
-      height="190"
     />
      </div>
       <div

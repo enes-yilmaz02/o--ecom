@@ -152,7 +152,22 @@ $background-color: #ecf0f1;
   }
 }
 
+
+
 :host ::ng-deep{
+
+
+  .p-dialog .p-dialog-header , .p-dialog-content{
+    background:$background-color;
+    backdrop-filter: blur(1px);
+    border: $dark-text 2px solid;
+    width: 60vw;
+    margin: 0;
+
+  }
+  .p-dialog .p-dialog-header .p-dialog-header-icon{
+    color: #000;
+  }
   .p-rating{
     .p-icon{
       color: RGB(255,170,74);

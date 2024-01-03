@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product.service';
 import { DataView } from 'primeng/dataview';
-import { SelectItem, MessageService } from 'primeng/api';
+import { SelectItem, MessageService, ConfirmationService } from 'primeng/api';
 import { Observable, map, tap } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
 import { ActivatedRoute } from '@angular/router';
@@ -16,7 +16,7 @@ import { OnChangeService } from 'src/app/services/onchange.service';
   selector: 'app-card',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss'],
-  providers:[StockStatusPipe,CategoryStatus]
+  providers: [StockStatusPipe, CategoryStatus],
 })
 export class CardComponent implements OnInit {
   layout: 'grid' | 'list' = 'grid';
@@ -31,20 +31,27 @@ export class CardComponent implements OnInit {
   userId: any;
   liked: boolean = true;
   translatedStockStatus: any;
-  productData:any;
-
+  productData: any;
+  visible: boolean = false;
+  isFirstLoad: boolean = true;
 
   constructor(
     private productService: ProductService,
     private userService: UserService,
-    private messageService:MessageService,
-    private route : ActivatedRoute,
-    private badgeService:BadgeService,
-    private translocoService:TranslocoService,
-    private searchService:OnChangeService
+    private messageService: MessageService,
+    private route: ActivatedRoute,
+    private badgeService: BadgeService,
+    private translocoService: TranslocoService,
+    private searchService: OnChangeService,
+    private renderer: Renderer2,
   ) {}
 
   ngOnInit() {
+    const isFirstLoadString = localStorage.getItem('isFirstLoad');
+    if (!isFirstLoadString || isFirstLoadString === 'true') {
+      this.showDialog();
+      localStorage.setItem('isFirstLoad', 'false');
+    }
     this.getAllProducts();
     this.sortOptions = [
       { label: 'Price High to Low', value: '!price' },
@@ -54,8 +61,12 @@ export class CardComponent implements OnInit {
     this.searchService.searchText$.subscribe((searchText) => {
       this.searchText = searchText;
     });
-  }
 
+     // Dış tıklamalarda form'u kapat
+     this.renderer.listen('document', 'click', (event: any) => {
+      this.onDocumentClick(event);
+    });
+  }
 
   getFileUrl(fileName: string): string {
     return `http://localhost:8080/files/${fileName}`;
@@ -70,7 +81,6 @@ export class CardComponent implements OnInit {
   getProduct(productId: any): Observable<any> {
     return this.productService.patchProductById(productId);
   }
-
 
   getSeverity(product: any) {
     switch (product.selectedStatus.name) {
@@ -104,7 +114,12 @@ export class CardComponent implements OnInit {
         typeof product.stockStatus === 'string' &&
         product.selectedStatus.toLowerCase().includes(search);
 
-      return productNameIncludes || categoryIncludes || priceMatches || stockStatusMatches;
+      return (
+        productNameIncludes ||
+        categoryIncludes ||
+        priceMatches ||
+        stockStatusMatches
+      );
     });
   }
 
@@ -124,40 +139,38 @@ export class CardComponent implements OnInit {
     );
   }
   getProductId(): Observable<string> {
-    return this.route.params.pipe(
-      map(params => params['id'])
-    );
+    return this.route.params.pipe(map((params) => params['id']));
   }
 
-  getProductByFilter(category:any){
-    this.productService.getProductsByFilter(category).subscribe((data:any)=>{
-      this.products=data;
+  getProductByFilter(category: any) {
+    this.productService.getProductsByFilter(category).subscribe((data: any) => {
+      this.products = data;
       console.log(data);
-    })
+    });
   }
-
 
   addToCart(product: any, productId: any) {
     this.getUserId().subscribe((id) => {
       const quantity: number = 1;
       const body = {
         id: productId,
-        creoterId:product.creoterId,
-        email:product.email,
+        creoterId: product.creoterId,
+        email: product.email,
         product: {
-          id:id,
+          id: id,
           ...product,
           quantity: quantity,
         },
       };
-      console.log(body);
       this.userService.addCart(this.userId, productId, body).subscribe(
         (response: any) => {
           if (response) {
             this.messageService.add({
               severity: 'success',
               summary: this.translocoService.translate('successMessage'),
-              detail: this.translocoService.translate('cardDetail.messageDetailsuccessaddcart'),
+              detail: this.translocoService.translate(
+                'cardDetail.messageDetailsuccessaddcart'
+              ),
             });
             this.badgeService.updateCarts();
             this.getProduct(productId);
@@ -165,17 +178,30 @@ export class CardComponent implements OnInit {
             this.messageService.add({
               severity: 'error',
               summary: this.translocoService.translate('errorMessage'),
-              detail: this.translocoService.translate('cardDetail.messageDetailerroraddcart'),
+              detail: this.translocoService.translate(
+                'cardDetail.messageDetailerroraddcart'
+              ),
             });
           }
         },
         (error) => {
           console.log(error);
         }
-
       );
     });
-
   }
+
+  showDialog() {
+    this.visible = true;
+  }
+
+  onDocumentClick(event: any) {
+    const visible = document.querySelector('.visible');
+
+    if (!visible?.contains(event.target)) {
+      this.visible = false;
+    }
+  }
+
 
 }

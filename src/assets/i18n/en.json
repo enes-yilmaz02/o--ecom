@@ -55,7 +55,7 @@
   "loginForm": {
     "header":"Login",
     "emailTooltip": "Enter your email",
-    "emailLabel": "email",
+    "emailLabel": "Email",
     "emailSmall": "* Email field cannot be left blank",
     "passwordTooltip": "Enter your password",
     "passwordLabel": "Password",
@@ -173,7 +173,7 @@
     "surnameLabel": "Surname",
     "usernameLabel":"Username",
     "companyNameLabel": "Company Name",
-    "addressLabel":"address",
+    "addressLabel":"Address",
     "phoneLabel":"Phone",
     "date": "Date of birth",
     "gender":"Gender",
@@ -182,7 +182,7 @@
     "buttonLabelback": "Back",
     "contactHeader": "Contact information",
     "contactHeaderP": "We will ask you to verify your new email address before we can change this information.",
-    "emailLabel": "email",
+    "emailLabel": "Email",
     "emailButton": "Update",
     "messageDetailsuccess":"Account Information Updated",
     "information":"Information",
@@ -237,7 +237,7 @@
     "desc2":"Millions of products are waiting for you at Orion Innovation.",
     "buttonLabel":"Start shopping",
     "id":"Order ID",
-    "image":"İmage",
+    "image":"Image",
     "name":"Product Name",
     "stock":"Quantity",
     "category":"Category",
@@ -301,7 +301,7 @@
     "confirmLabel": "Password (Repeat) ",
     "confirmSmall": "* Password field cannot be left blank",
     "confirmSmallSecond": "* Passwords you entered do not match",
-    "buttonLabel": "update"
+    "buttonLabel": "Update"
   },
   "creoterForm":{
     "header":"Become a Seller",
@@ -595,8 +595,5 @@
     "subscribe":"Subscribe",
     "input":"Email address"
   }
-
-
-
 }
 

@@ -25,6 +25,4 @@ export class BadgeService {
   updateFavorites() {
     this.favoritesUpdatedSource.next();
   }
-
-
 }

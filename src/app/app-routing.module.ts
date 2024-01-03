@@ -39,6 +39,13 @@ const routes: Routes = [
             (m) => m.NotfoundModule
         ),
 },
+{
+  path: 'server-error',
+  loadChildren: () =>
+      import('./server-error/server-error.module').then(
+          (m) => m.ServerErrorModule
+      ),
+},
 { path: '**', redirectTo: '/notfound' },
 
 ];

@@ -1,4 +1,4 @@
-import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
+import { JwtHelperService, JWT_OPTIONS, JwtInterceptor } from '@auth0/angular-jwt';
 import { MessageService } from 'primeng/api';
 import { SharedModule } from './shared/shared.module';
 import { NgModule } from '@angular/core';
@@ -13,6 +13,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { JwtModule } from '@auth0/angular-jwt';
 import { HttperrorInterceptor } from './services/interceptors/httperror.interceptor';
 import { TranslocoRootModule } from './transloco-root.module';
+import { ServerErrorModule } from './server-error/server-error.module';
+import { JwtTokenInterceptor } from './services/interceptors/jwt-token.interceptor';
 
 
 @NgModule({
@@ -24,7 +26,8 @@ import { TranslocoRootModule } from './transloco-root.module';
     SharedModule,
     BrowserAnimationsModule,
     JwtModule,
-    TranslocoRootModule
+    TranslocoRootModule,
+    ServerErrorModule
 
 
   ],
@@ -39,6 +42,11 @@ import { TranslocoRootModule } from './transloco-root.module';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttperrorInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtTokenInterceptor,
       multi: true,
     },
 
