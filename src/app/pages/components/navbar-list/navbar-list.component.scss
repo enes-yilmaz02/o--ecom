@@ -145,7 +145,6 @@
   }
 
   .search {
-    margin-bottom: 1rem;
     width: 100%;
 
     .pi-search {
@@ -156,7 +155,9 @@
 
   :host ::ng-deep {
     .search {
+      align-items: center;
       .p-inputtext {
+        display: flex;
         width: 500px;
         height: 35px;
         background-color: #d5d6d8ef;
@@ -401,17 +402,17 @@
       }
 
       .item-txt {
-        font-size: 0.8rem;
+        font-size: 1rem;
 
       }
 
       i.pi {
-        font-size: 0.8rem;
+        font-size: 1rem;
       }
 
       i.pi-chevron-down,
       i.pi-chevron-up {
-        font-size: 0.8rem;
+        font-size: 1rem;
         color: #333333cb;
       }
     }
@@ -434,7 +435,7 @@
         .menu-item {
           padding: 5px;
           display: flex;
-          font-size: 1.2rem;
+          font-size: 1rem;
 
           a {
             display: flex;
@@ -464,7 +465,7 @@
     .title {
       letter-spacing: 0;
       font-weight: bold;
-      font-size: 1rem;
+      font-size: 1.5rem;
       justify-content: center;
       display: flex;
       align-items: center;
@@ -473,7 +474,7 @@
       color: #000;
       border: none;
       background: transparent;
-      font-size: 0.9rem;
+      font-size: 1rem;
     }
     .right-menu {
       display: flex;
@@ -495,7 +496,7 @@
         letter-spacing: 1px;
         text-decoration: underline;
         margin-right: auto;
-        font-size: 0.8rem;
+        font-size: 1rem;
 
 
         &:hover{

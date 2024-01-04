@@ -1,6 +1,4 @@
-
-
-.container{
+.container {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -12,7 +10,6 @@
 .surface-section {
   border: 1px solid #e1e1e1;
   border-radius: 0.75rem;
-
 }
 
 .surface-section .text-4xl {
@@ -30,7 +27,6 @@
 
 .surface-section .shadow-1 {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
 }
 
 .surface-section .flex {
@@ -47,10 +43,10 @@
   margin: 3px;
   width: 120px;
   height: 120px;
-  border-radius:10px;
+  border-radius: 10px;
 }
 
- .category  {
+.category {
   margin-right: 0.5rem;
   display: flex;
   align-items: center;
@@ -58,7 +54,7 @@
   margin-right: 21px;
 }
 
-.name  {
+.name {
   font-size: 1rem;
   display: flex;
   align-items: center;
@@ -66,12 +62,12 @@
   margin-right: 21px;
 }
 
- .description  {
+.description {
   margin: 0;
   display: flex;
   align-items: center;
-  margin-left:21px;
-  margin-right:21px;
+  margin-left: 21px;
+  margin-right: 21px;
   text-align: justify;
   text-justify: inter-word;
 }
@@ -80,14 +76,14 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-left:21px;
-  margin-right:21px;
+  margin-left: 21px;
+  margin-right: 21px;
   cursor: pointer;
   margin-left: 0.75rem;
 }
 
-@media screen and (min-width: 376px) and (max-width: 768px){
-  .container{
+@media screen and (min-width: 376px) and (max-width: 768px) {
+  .container {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -95,31 +91,52 @@
     width: 100%;
   }
 
-   .description {
+  .category {
+    margin-right: 0.5rem;
+    display: flex;
+    align-items: center;
+    margin-left: 0;
+    margin-right: 21px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+
+  .name {
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    margin-left: 0;
+    margin-right: 21px;
+    margin-top: 10px;
+    font-weight: bold;
+  }
+
+  .description {
     margin: 0;
     display: flex;
     align-items: normal;
     float: left;
-    margin-left:0;
-    margin-right:21px;
+    margin-left: 0;
+    margin-right: 21px;
     width: 100%;
   }
 
-
-.surface-section .price {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  margin-left:21px;
-  margin-right:21px;
-  cursor: pointer;
-  margin-left: 0.75rem;
+  .price {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-left: 21px;
+    margin-right: 21px;
+    margin-top: 10px;
+    cursor: pointer;
+    margin-left: 0.75rem;
+  }
 }
-}
 
-@media screen and (max-width: 375px){
-  .container{
+@media screen and (max-width: 375px) {
+  .container {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -130,18 +147,18 @@
   .image img {
     width: 100%;
     height: 70%;
-    margin-left:0;
+    margin-left: 0;
     border-radius: 0.5rem;
   }
 
-   .description {
+  .description {
     margin: 0;
     display: flex;
     align-items: normal;
     float: left;
-    margin-left:10px;
+    margin-left: 10px;
     width: 100%;
-    p{
+    p {
       float: left;
       text-align: justify;
     }
@@ -151,32 +168,30 @@
     span {
       font-size: 1rem;
       font-weight: bold;
-      margin-left:0;
-      margin-bottom:10px ;
+      margin-left: 0;
+      margin-bottom: 10px;
     }
   }
 
-.category {
-  margin-left:10px;
-  span {
-    margin-right: 0.5rem;
-    font-weight: bold;
-    margin-bottom:10px ;
-    margin-left:0;
+  .category {
+    margin-left: 10px;
+    span {
+      margin-right: 0.5rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+      margin-left: 0;
+    }
   }
-}
 
-
-
- .price {
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  width: 100%;
-  margin-top: 10px;
-  margin-left:21px;
-  margin-right:21px;
-  cursor: pointer;
-  margin-left: 0.75rem;
-}
+  .price {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+    margin-top: 10px;
+    margin-left: 21px;
+    margin-right: 21px;
+    cursor: pointer;
+    margin-left: 0.75rem;
+  }
 }
