@@ -225,9 +225,9 @@ $background-color: #ecf0f1;
   }
 
   .product-card {
-    width: 300px;
+    width: 280px;
     margin: 1px;
-    padding: 16px;
+    padding: 10px;
     max-height: 350px;
     background-color: #ffffff;
     box-shadow: 0 0 10px $dark-text;
@@ -262,7 +262,7 @@ $background-color: #ecf0f1;
       }
 
       .product-price {
-        font-size: 1.2rem;
+        font-size: 1rem;
         font-weight: bold;
         margin-bottom: 16px;
       }
