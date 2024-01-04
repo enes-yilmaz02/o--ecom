@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import {  Router } from '@angular/router';
 import { TranslocoService } from '@ngneat/transloco';
 import { MessageService } from 'primeng/api';
 import { Observable, tap } from 'rxjs';
-import { AuthService } from 'src/app/services/auth/auth.service';
 import { GoogleService } from 'src/app/services/auth/google.service';
 import { UserService } from 'src/app/services/user.service';
 

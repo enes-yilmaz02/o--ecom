@@ -136,11 +136,146 @@ ul{
   transform: rotate(-6deg);
 }
 
-/*responsive*/
+
 @media(max-width: 767px){
-  .footer-col{
-    width: 50%;
-    margin-bottom: 30px;
+
+.container{
+  max-width: auto;
+  margin:auto;
+}
+.row{
+  display: flex;
+  flex-wrap: wrap;
+}
+ul{
+  list-style: none;
+}
+.footer{
+  background-color: #24262b;
+    padding: 40px 0;
+
+}
+.footer-col{
+   width: 30%;
+   padding: 0 15px;
+   margin-left:0;
+   margin-bottom: 10px;
+}
+.footer-col h4{
+  font-size: 18px;
+  color: #ffffff;
+  text-transform: capitalize;
+  margin-bottom: 35px;
+  font-weight: 500;
+  position: relative;
+}
+.footer-col h4::before{
+  content: '';
+  position: absolute;
+  left:0;
+  bottom: -10px;
+  background-color: #3498db;
+  height: 2px;
+  box-sizing: border-box;
+  width: 40px;
+}
+.footer-col div:not(:last-child){
+  margin-bottom: 10px;
+}
+.footer-col div a{
+  font-size: 1rem;
+  text-transform: capitalize;
+  text-decoration: none;
+  font-weight: 300;
+  color: #bbbbbb;
+  padding: 5px;
+  display: block;
+  transition: all 0.3s ease;
+}
+.footer-col div a:hover{
+  color: #ffffff;
+  padding-left: 8px;
+}
+.footer-col .social-links a{
+  display: flex;
+  flex-direction: column;
+  height: 35px;
+  width: 35px;
+  background-color: #3498db;
+  margin:8px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: #ffffff;
+  transition: all 0.5s ease;
+}
+.footer-col .social-links a:hover{
+  color: #3498db;
+  background-color: #ffffff;
+}
+
+.footer-col .social-links p{
+  color: #bbbbbb;
+  font-size: 1rem;
+}
+
+
+.footer-widget-heading h3 {
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 40px;
+  position: relative;
+}
+.footer-widget-heading h3::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -15px;
+  height: 2px;
+  width: 50px;
+  background: #3498db;
+}
+.footer-widget ul li {
+  display: inline-block;
+  width: 50%;
+  margin-bottom: 12px;
+}
+.footer-widget ul li a:hover{
+  color: #3498db;
+}
+.footer-widget ul li a {
+  color: #fff;
+  text-transform: capitalize;
+}
+
+.footer-widget .footer-text{
+  color: #bbbbbb;
+}
+.subscribe-form {
+  position: relative;
+  overflow: hidden;
+}
+.subscribe-form input {
+  width: 100%;
+  padding: 14px 28px;
+  background: #2E2E2E;
+  border: none;
+  color: #fff;
+}
+.subscribe-form button {
+    position: absolute;
+    right: 0;
+    background: #3498db;
+    padding: 13px 20px;
+    border: 1px solid #3498db;
+    top: 0;
+}
+.subscribe-form button i {
+  color: #fff;
+  font-size: 22px;
+  transform: rotate(-6deg);
 }
 }
 @media(max-width: 574px){
