@@ -18,6 +18,7 @@ ul{
    width: 30%;
    padding: 0 15px;
   margin-left: 30px;
+  margin-bottom: 10px;
 }
 .footer-col h4{
   font-size: 18px;
@@ -37,10 +38,10 @@ ul{
   box-sizing: border-box;
   width: 40px;
 }
-.footer-col ul li:not(:last-child){
+.footer-col div:not(:last-child){
   margin-bottom: 10px;
 }
-.footer-col ul li a{
+.footer-col div a{
   font-size: 1rem;
   text-transform: capitalize;
   text-decoration: none;
@@ -50,7 +51,7 @@ ul{
   display: block;
   transition: all 0.3s ease;
 }
-.footer-col ul li a:hover{
+.footer-col div a:hover{
   color: #ffffff;
   padding-left: 8px;
 }
