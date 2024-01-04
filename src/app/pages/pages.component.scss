@@ -19,6 +19,29 @@
   margin-top: auto ;
 }
 
+@media screen and (min-width: 1024px) and (max-width: 1216px){
+  .app-layout {
+    display: flex;
+    flex-direction: column;
+
+  }
+  .app-header{
+    padding-left:20px;
+    padding-right:20px;
+  }
+
+  .app-content{
+    padding-left:40px;
+    padding-right:40px;
+    min-height: 70vh;
+
+  }
+
+  .app-footer{
+    margin-top: auto ;
+  }
+}
+
 @media screen and (min-width: 768px) and (max-width: 1023px) {
   .app-layout {
     display: flex;

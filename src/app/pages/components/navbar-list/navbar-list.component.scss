@@ -7,6 +7,7 @@
     margin-inline-start: 0px;
     margin-inline-end: 0px;
     padding-inline-start: 0px;
+    align-items: center;
   }
   .navbar {
     justify-content: start;
@@ -14,7 +15,6 @@
     text-align: start;
     background-color: transparent;
     cursor: pointer;
-    color: #fff;
     width: 100%;
     padding-top: 20px;
     padding-bottom: 10px;
@@ -100,10 +100,12 @@
 
 
   .navbar {
+    align-items: center;
     .title {
       letter-spacing: 0;
       font-weight: bold;
-      font-size: 2rem;
+      font-size: 1.5rem;
+      color: #000;
     }
     .custom-select {
       color: #000;
@@ -117,6 +119,7 @@
       display: flex;
       flex-direction: row;
       justify-content: space-evenly;
+      align-items: center;
 
       i {
         color: #333;
@@ -197,7 +200,6 @@
     text-align: start;
     background-color: transparent;
     cursor: pointer;
-    color: #fff;
     width: 100%;
     padding-top: 20px;
     padding-bottom: 10px;
@@ -276,15 +278,13 @@
     }
   }
 
-  .navbar a {
-    color: #fff;
-  }
+
 
   .navbar {
     .title {
       letter-spacing: 0;
       font-weight: bold;
-      font-size: 2rem;
+      font-size: 1.2rem;
     }
     .custom-select {
       color: #000;
@@ -305,13 +305,26 @@
       li {
         margin-right: 15px;
       }
+      a{
+        color: #3498db;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-decoration: underline;
+        margin-right: auto;
+        font-size: 1.1rem;
+
+
+        &:hover{
+          text-decoration: underline;
+        }
+      }
     }
   }
 
   .search {
     margin-bottom: 1rem;
     width: 50%;
-    display: none;
+
 
     .pi-search {
       color: #555;
@@ -322,7 +335,7 @@
   :host ::ng-deep {
     .search {
       .p-inputtext {
-        width: 500px;
+        width: 200px;
         height: 35px;
         background-color: #d5d6d8ef;
         border: 1px solid #d5d6d8;
@@ -357,6 +370,7 @@
     margin-inline-start: 0px;
     margin-inline-end: 0px;
     padding-inline-start: 0px;
+    align-items: center;
   }
 
   .navbar {
@@ -365,10 +379,8 @@
     text-align: start;
     background-color: transparent;
     cursor: pointer;
-    color: #fff;
     width: 100%;
     padding-top: 20px;
-    padding-bottom: 10px;
   }
 
   .dropdown-container {
@@ -385,20 +397,21 @@
       cursor: pointer;
 
       .item-icon {
-        margin-right: 8px;
+        margin-right: 3px;
       }
 
       .item-txt {
-        font-size: 1.2rem;
+        font-size: 0.8rem;
+
       }
 
       i.pi {
-        font-size: 1rem;
+        font-size: 0.8rem;
       }
 
       i.pi-chevron-down,
       i.pi-chevron-up {
-        font-size: 1rem;
+        font-size: 0.8rem;
         color: #333333cb;
       }
     }
@@ -408,7 +421,7 @@
       background-color: #f9f9f9;
       padding: 5px;
       top: 100%;
-      right: -30px;
+      right: -75px;
       width: 180px;
       border-radius: 8px;
       z-index: 2;
@@ -444,34 +457,50 @@
     }
   }
 
-  .navbar a {
-    color: #fff;
-  }
+
 
   .navbar {
+    align-items: center;
     .title {
       letter-spacing: 0;
       font-weight: bold;
-      font-size: 2rem;
+      font-size: 1rem;
+      justify-content: center;
+      display: flex;
+      align-items: center;
     }
     .custom-select {
       color: #000;
       border: none;
       background: transparent;
-      font-size: 1.2rem;
+      font-size: 0.9rem;
     }
     .right-menu {
       display: flex;
       flex-direction: row;
       justify-content: space-evenly;
+      align-items: center;
 
       i {
         color: #333;
-        font-size: 1.2rem;
+        font-size: 1rem;
       }
 
       li {
         margin-right: 15px;
+      }
+      a{
+        color: #3498db;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-decoration: underline;
+        margin-right: auto;
+        font-size: 0.8rem;
+
+
+        &:hover{
+          text-decoration: underline;
+        }
       }
     }
   }
@@ -535,6 +564,7 @@
     cursor: pointer;
     color: #fff;
     width: 100%;
+    margin-top: 5px;
   }
 
   .dropdown-container {
@@ -551,7 +581,7 @@
       cursor: pointer;
 
       .item-icon {
-        margin-right: 8px;
+        margin-right: 3px;
       }
 
       .item-txt {
@@ -632,21 +662,24 @@
       display: flex;
       flex-direction: row;
       justify-content: space-evenly;
+      align-items: center;
 
       i {
         color: #333;
-        font-size: 0.9rem;
+        font-size: 1.1rem;
+        margin-right: auto;
       }
 
       li {
-        margin-right: 15px;
+        margin-right: 5px;
       }
       a{
         color: #3498db;
         font-weight: 700;
         letter-spacing: 1px;
         text-decoration: underline;
-        margin-right: 15px;
+        margin-right: auto;
+        font-size: 0.9rem;
 
 
         &:hover{
@@ -679,6 +712,7 @@
         }
       }
     }
+
     .pi-shopping-bag .p-badge {
       background-color: #3498db;
       font-size: 0.7rem;
