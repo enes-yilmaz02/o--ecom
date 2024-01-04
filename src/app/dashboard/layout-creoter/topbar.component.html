@@ -1,5 +1,5 @@
 <div class="layout-topbar">
-  <a class="layout-topbar-logo" (click)="logout()">
+  <a class="layout-topbar-logo  " (click)="logout()">
       <img src="assets/layout/images/{{layoutService.config.colorScheme === 'light' ? 'logo-dark' : 'logo-white'}}.svg" alt="logo">
       <span>OI</span>
   </a>
@@ -7,11 +7,9 @@
       <i class="pi pi-bars"></i>
   </button>
   <div class="w-full flex justify-content-center align-content-center">
-    <h3>{{'topbar.header' | transloco}}</h3>
+    <div>{{'topbar.header' | transloco}}</div>
   </div>
-  <button #topbarmenubutton class="p-link layout-topbar-menu-button layout-topbar-button" (click)="layoutService.showProfileSidebar()">
-      <i class="pi pi-ellipsis-v"></i>
-  </button>
+
   <a class="logout" (click)="logout()">
     <i class="pi pi-sign-out mr-1 text-lg" ></i>
     <span>{{'topbar.logout' | transloco}}</span>

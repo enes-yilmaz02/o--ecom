@@ -126,28 +126,28 @@
     "messageDetailwarn":"Enter your email address"
   },
   "startForm": {
-    "header": "Orion Innovation",
+    "header": "Orion Shop",
     "loginText": "Login",
     "forgetText": "Did you forget your password?",
     "registerText": "Sign up",
     "newPassText": "Reset Password",
     "headerSocial": "log in with social account",
     "descSocialOne": "You can connect your Google account to log in to",
-    "descSocialTwo": "Orion Innovation without a password.",
+    "descSocialTwo": "Orion Shop without a password.",
     "piGoogle": "Sign in with Google"
   },
   "userContact": {
     "header": "Communication Preferences",
     "headerP": "Within the scope of the Consent Text, you can specify the methods you prefer to be informed about important campaigns.",
     "sms": "SMS",
-    "smsP": "Messages that will be sent to your mobile phone by Orion Innovation via SMS",
+    "smsP": "Messages that will be sent to your mobile phone by Orion Shop via SMS",
     "eposta": "E-posta",
-    "epostaP": "Messages will be sent to your e-mail address registered in your Orion Innovation account.",
+    "epostaP": "Messages will be sent to your e-mail address registered in your Orion Shop account.",
     "phoneCall": "Phone Call",
-    "phoneCallP": "Calls coming to your mobile phone from Orion Innovation via the search method",
-    "textP": " Within the scope of your orders from Orion Innovation platforms; You can specify your preferred methods for conducting satisfaction surveys within the scope of the Information Text.",
+    "phoneCallP": "Calls coming to your mobile phone from Orion Shop via the search method",
+    "textP": " Within the scope of your orders from Orion Shop platforms; You can specify your preferred methods for conducting satisfaction surveys within the scope of the Information Text.",
     "whatsapp": "Whatsapp",
-    "whatsappP": "Messages will be sent via Whatsapp application to your mobile phone number registered in your Orion Innovation account."
+    "whatsappP": "Messages will be sent via Whatsapp application to your mobile phone number registered in your Orion Shop account."
   },
   "navigationForm": {
     "cart":"Shopping Cart",
@@ -168,7 +168,7 @@
   },
   "userinfoForm": {
     "header": "Information Profile",
-    "headerP": "You can edit the information you need here so that we can keep your experience at Orion Innovation at the best level.",
+    "headerP": "You can edit the information you need here so that we can keep your experience at Orion Shop at the best level.",
     "nameLabel": "Name",
     "surnameLabel": "Surname",
     "usernameLabel":"Username",
@@ -234,7 +234,7 @@
   "ordersForm":{
     "title":"Orders",
     "desc":"You don't have any orders, but now is a great time to start shopping...",
-    "desc2":"Millions of products are waiting for you at Orion Innovation.",
+    "desc2":"Millions of products are waiting for you at Orion Shop.",
     "buttonLabel":"Start shopping",
     "id":"Order ID",
     "image":"Image",

@@ -7,7 +7,7 @@
           <h2 class>{{'dGetorders.header2' | transloco}}</h2>
         </div>
         <div>
-          <form [formGroup]="categoryForm" class="flex flex-row">
+          <form [formGroup]="categoryForm" class="form-content">
             <div class="drpdwn">
               <select formControlName="category" (change)="onCategoryChange()">
                 <option value="" disabled selected hidden>{{'dGetorders.filterCategory' |transloco}}</option>

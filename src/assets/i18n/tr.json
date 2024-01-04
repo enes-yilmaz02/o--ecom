@@ -124,13 +124,13 @@
     "messageDetailwarn": "Email adresinizi giriniz"
   },
   "startForm": {
-    "header": "Orion Innovation",
+    "header": "Orion Shop",
     "loginText": "Giriş Yap",
     "forgetText": "Şifeni mi unuttun?",
     "registerText": "Üye Ol",
     "newPassText": "Şifreyi Yenile",
     "headerSocial": "Sosyal hesap ile giriş yap",
-    "descSocialOne": "Orion Innovation'a şifresiz giriş yapabilmek için Google",
+    "descSocialOne": "Orion Shop'a şifresiz giriş yapabilmek için Google",
     "descSocialTwo": " hesabınızı bağlayabilirsiniz.",
     "piGoogle": "Google ile giriş yap"
   },
@@ -138,14 +138,14 @@
     "header": "İletişim Tercihlerim",
     "headerP": "Rıza Metni kapsamında önemli kampanyalardan haberdar olmak için tercih ettiğiniz yöntemleri belirtebilirsiniz.",
     "sms": "SMS",
-    "smsP": "SMS yöntemiyle cep telefonunuza Orion Innovation tarafından gelecek olan mesajlar",
+    "smsP": "SMS yöntemiyle cep telefonunuza Orion Shop tarafından gelecek olan mesajlar",
     "eposta": "E-posta",
     "epostaP": "Orion Innovation hesabınızda kayıtlı olan e-posta adresinize gelecek olan iletiler.",
     "phoneCall": "Telefon Araması",
-    "phoneCallP": "Arma yöntemiyle cep telefonunuza Orion Innovation tarafından gelecek olan aramalar",
-    "textP": " Orion Innovation platformlarından gerçekleştirdiğiniz siparişler kapsamında; Aydınlatma Metni kapsamında memnuniyet anketlerinin gerçekleştirilmesi için tercih ettiğiniz yöntemleri belirtebilirsiniz.",
+    "phoneCallP": "Arma yöntemiyle cep telefonunuza Orion Shop tarafından gelecek olan aramalar",
+    "textP": " Orion Shop platformlarından gerçekleştirdiğiniz siparişler kapsamında; Aydınlatma Metni kapsamında memnuniyet anketlerinin gerçekleştirilmesi için tercih ettiğiniz yöntemleri belirtebilirsiniz.",
     "whatsapp": "Whatsapp",
-    "whatsappP": "Orion Innovation hesabınızda kayıtlı olan cep telefon numaranıza Whatsapp uygulaması aracılığıyla gelecek olan iletiler"
+    "whatsappP": "Orion Shop hesabınızda kayıtlı olan cep telefon numaranıza Whatsapp uygulaması aracılığıyla gelecek olan iletiler"
   },
   "navigationForm": {
     "cart": "Sepetim",
@@ -166,7 +166,7 @@
   },
   "userinfoForm": {
     "header": "Profil Bilgileri",
-    "headerP": "Orion Innovation’daki deneyiminizi en iyi seviyede tutabilmemiz için gereken bilgilerinizi buradan düzenleyebilirsiniz.",
+    "headerP": "Orion Shop’daki deneyiminizi en iyi seviyede tutabilmemiz için gereken bilgilerinizi buradan düzenleyebilirsiniz.",
     "nameLabel": "Ad",
     "surnameLabel": "Soyad",
     "usernameLabel": "Kullanıcı adı",
@@ -232,7 +232,7 @@
   "ordersForm": {
     "title": "Siparişlerim",
     "desc": "Hiç siparişin yok ama şimdi alışverişe başlamak için çok güzel bir an…",
-    "desc2": "Orion Innovation’da milyonlarca ürün seni bekliyor.",
+    "desc2": "Orion Shop’da milyonlarca ürün seni bekliyor.",
     "buttonLabel": "Alışverişe başla",
     "id": "Sipariş ID",
     "image": "Resim",
@@ -514,7 +514,7 @@
   "topbar": {
     "header": "Yönetici Modül Sayfası",
     "headeradmin": "Admin Modül Sayfası",
-    "logout": "Oturumu kapat"
+    "logout": "Çıkış Yap"
   },
   "aGetOrders": {
     "Name": "Ad",

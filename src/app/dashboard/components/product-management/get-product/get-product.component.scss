@@ -5,7 +5,7 @@ $dark-text: #34495e;
 $light-text: #ecf0f1;
 $background-color: #ecf0f1;
 
-/* product-table.scss */
+
 
 .container {
   display: flex;
@@ -13,6 +13,15 @@ $background-color: #ecf0f1;
   align-items: center;
   height: auto;
   width: auto;
+}
+
+.form-content{
+  display: flex;
+  flex-wrap: wrap;
+
+  .drpdwn{
+    margin: 5px;
+  }
 }
 .category-filter{
   width: 100%;
@@ -128,9 +137,145 @@ $background-color: #ecf0f1;
   }
 }
 
-/* Responsive Tasarım */
+
 @media screen and (max-width: 768px) {
   .category-filter {
-    flex-direction: column; /* Ekran genişliği 768 piksele düştüğünde sütun düzenine geç */
+    flex-direction: column;
   }
+
+  .form-content{
+    display: flex;
+    flex-wrap: wrap;
+    .drpdwn{
+      margin: 5px;
+    }
+  }
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  width: auto;
+}
+.category-filter{
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+
+
+  .title{
+    border: none;
+    background-color: transparent;
+    justify-content: start;
+  }
+
+  select{
+    margin-right: 15px;
+    width: 240px;
+    height: 30px;
+    cursor: pointer;
+  }
+}
+.card {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.table {
+  margin-top: 20px;
+
+  .button-style {
+    button {
+      background-color: $dark-text;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      cursor: pointer;
+      border-radius: 4px;
+      font-size: 14px;
+
+
+    }
+  }
+
+
+
+  th, td {
+    text-align: center;
+    padding: 10px;
+  }
+
+  img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+  }
+
+  .p-input-icon-left {
+    margin-left: auto;
+    margin-right: 10px;
+
+    input {
+      padding-left: 30px;
+    }
+  }
+
+  .flex {
+    display: flex;
+  }
+
+  .justify-content-between {
+    justify-content: space-between;
+  }
+
+  .align-items-center {
+    align-items: center;
+  }
+}
+
+:host ::ng-deep{
+
+  td,th{
+    width: auto;
+    height: 150px;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+  }
+
+
+
+  .button{
+    background-color: $dark-text;
+    border: none;
+    width: 100%;
+    padding: 10px;
+    color:#fff;
+  }
+
+  .p-tag-value{
+    width: 60px;
+  }
+
+  .p-paginator{
+    .p-icon{
+      color: $dark-text;
+    }
+  }
+
+  .p-icon{
+    color: RGB(255,170,74);
+  }
+
+  .p-inputText{
+    width: 100%;
+    input{
+      width: 100%;
+    }
+  }
+}
+
 }

@@ -16,3 +16,43 @@ img {
   max-height: 100px;
   object-fit: cover;
 }
+
+
+@media screen and (min-width: 769px) and (max-width: 1023px){
+  .chart-global{
+    width: 100%;
+    display:flex;
+    flex-direction: column;
+
+    .card{
+      margin:5px;
+    }
+
+  }
+}
+
+@media screen and (min-width: 376px) and (max-width: 768px){
+  .chart-global{
+    width: 100%;
+    display:flex;
+    flex-direction: column;
+
+    .card{
+      margin:5px;
+    }
+
+  }
+}
+
+@media screen and (max-width: 375px){
+  .chart-global{
+    width: 100%;
+    display:flex;
+    flex-direction: column;
+
+    .card{
+      margin:5px;
+    }
+
+  }
+}
