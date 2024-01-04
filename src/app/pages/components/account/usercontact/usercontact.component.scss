@@ -4,7 +4,7 @@ $danger-color: #e74c3c;
 $dark-text: #34495e;
 $light-text: #ecf0f1;
 $background-color: #ecf0f1;
-
+$breakpoint-tablet: 768px;
 .container {
   display: flex;
   flex-direction: column;
@@ -13,6 +13,10 @@ $background-color: #ecf0f1;
   margin: 0 auto;
   border-left: 1px solid  #d5d6d8;
   padding-left: 15px;
+  padding-right: 15px;
+  @media (max-width: $breakpoint-tablet) {
+    border-left: none;
+  }
 
 
   .row {

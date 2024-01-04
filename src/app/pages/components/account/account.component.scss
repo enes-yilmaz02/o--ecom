@@ -12,6 +12,10 @@ $background-color: #ecf0f1;
   margin: 1rem;
 }
 
+hr{
+  display: none;
+}
+
 .container {
   padding: 1%;
   width: 100%;
@@ -27,6 +31,9 @@ $background-color: #ecf0f1;
 
   @media (max-width: $breakpoint-tablet) {
     flex-direction: column;
+    hr{
+      display: block;
+    }
   }
 }
 
@@ -40,6 +47,9 @@ $background-color: #ecf0f1;
     max-width: 350px;
     height: 100%;
     margin-bottom: 0;
+    hr{
+      display: block;
+    }
   }
 }
 

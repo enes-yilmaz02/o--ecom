@@ -9,9 +9,13 @@ $background-color: #ecf0f1;
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-left: 10px;
   border-left: 1px solid  #d5d6d8;
   padding-left: 15px;
+  padding-right: 15px;
+
+  @media (max-width: $breakpoint-tablet) {
+    border-left: none;
+  }
 
 
   .row {
