@@ -8,13 +8,23 @@ $light-text: #ecf0f1;
 $light-text-hover: #91c9d7;
 $background-color: #ecf0f1;
 $module-color:#253741;
-/* Dialog Penceresi */
+
 .card{
   background: $module-color;
-  border: 0.1px solid ;
 
   h2{
     color:$background-color;
+  }
+}
+
+.form-content{
+  display: flex;
+  flex-wrap: wrap;
+
+  .drpdwn{
+    margin: 5px;
+    width: auto;
+
   }
 }
 
@@ -26,9 +36,11 @@ $module-color:#253741;
 
   select{
     margin-right: 15px;
-    width: 220px;
+    width: 290px;
     height: 30px;
     cursor: pointer;
+    font-weight: 600;
+    letter-spacing: 1px;
   }
 
   form{
@@ -82,6 +94,8 @@ $module-color:#253741;
     background-color: $module-color;
     color:$background-color;
     border: 0.1px solid gray ;
+    font-weight: 600;
+    letter-spacing: 1px;
   }
 
   .drpdwn{

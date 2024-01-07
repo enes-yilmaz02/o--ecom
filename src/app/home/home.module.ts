@@ -8,11 +8,15 @@ import { RegisterComponent } from './register/register.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { MessageService } from 'primeng/api';
 import { CartService } from '../services/cart.service';
-import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from '@abacritt/angularx-social-login';
 import {  GoogleSigninButtonModule } from '@abacritt/angularx-social-login';
 import { ResetpasswordCodeComponent } from './reset-password/resetpassword-code/resetpassword-code.component';
 import { ResetPasswordPasswordComponent } from './reset-password/reset-password-password/reset-password-password.component';
 import { HttpClientModule } from '@angular/common/http';
+import {
+  SocialLoginModule,
+  SocialAuthServiceConfig,
+} from '@abacritt/angularx-social-login';
+import { GoogleLoginProvider } from '@abacritt/angularx-social-login';
 
 @NgModule({
   declarations: [
@@ -41,7 +45,19 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   providers:[
     CartService,
-    MessageService
+    MessageService,
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider('614449184147-9gnmmtskp97qaccqqirdo0jfo1he55na.apps.googleusercontent.com'),
+          },
+        ],
+      } as SocialAuthServiceConfig,
+    },
 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA], // Eklendi

@@ -8,10 +8,9 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
-
   "private": true,
   "dependencies": {
-    "@abacritt/angularx-social-login": "^2.1.0",
+    "@abacritt/angularx-social-login": "^2.2.0",
     "@angular/animations": "^16.2.12",
     "@angular/cdk": "^17.0.1",
     "@angular/common": "^16.2.0",
@@ -30,6 +29,7 @@
     "@types/bcrypt": "^5.0.2",
     "angular-mixed-cdk-drag-drop": "^2.1.0",
     "angular-oauth2-oidc": "^15.0.1",
+    "angularx-social-login": "^4.1.0",
     "bcrypt": "^5.1.1",
     "bcryptjs-then": "^1.0.1",
     "chart.js": "^4.4.0",

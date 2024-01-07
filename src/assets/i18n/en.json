@@ -49,6 +49,7 @@
   "Male":"Male",
   "Female":"Female",
   "Another":"Another",
+  "complateUserInfoMessage":"Complete your user information.",
 
 
 
@@ -581,7 +582,7 @@
     "messageDetailsuccessadduser": "User added successfully",
     "messageDetailerroradduser": "Failed to add user successfully",
     "messageDetailsuccessdeleteuser": "User deleted successfully",
-    "messageDetailerroradeleteuser": "User could not be deleted successfully"
+    "messageDetailerrordeleteuser": "User could not be deleted successfully"
   },
   "rpc":{
     "messageDetailsuccess": "Code Verified, you are directed to change your password",

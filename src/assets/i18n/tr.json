@@ -49,6 +49,7 @@
   "Male": "Erkek",
   "Female": "Kadın",
   "Another": "Diğer",
+  "complateUserInfoMessage":"Kullanıcı bilgilerinizi tamamlayınız.",
 
   "loginForm": {
     "header": "Giriş",
@@ -579,7 +580,7 @@
     "messageDetailsuccessadduser": "Kullanıcı başarıyla eklendi",
     "messageDetailerroradduser": "Kullanıcı başarıyla eklenemedi",
     "messageDetailsuccessdeleteuser": "Kullanıcı başarıyla silindi",
-    "messageDetailerroradeleteuser": "Kullanıcı başarıyla silinemedi"
+    "messageDetailerrordeleteuser": "Kullanıcı başarıyla silinemedi"
   },
   "rpc": {
     "messageDetailsuccess": "Kod Doğrulandı , Şifre değişikliği için yönlendiriliyorsunuz",

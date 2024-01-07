@@ -74,7 +74,6 @@ export class RegisterComponent {
   }
 
   onSubmit() {
-    debugger;
     if (this.userFormRegister.valid) {
       this.generatedCode = this.generateRandomCode();
       const formValuesArray = this.userFormRegister.value;
@@ -100,7 +99,6 @@ export class RegisterComponent {
               console.error('Error sending email', error);
             }
           );
-          // return this.userService.registerWithEmail(formValuesArray);
         } else {
           this.messageService.clear();
           this.messageService.add({
@@ -109,8 +107,7 @@ export class RegisterComponent {
             detail:
             this.translocoService.translate('registerForm.messageDetailerror'),
           });
-          // Benzer bir e-posta adresi bulunduğunda da bir hata mesajı göster
-          return EMPTY; // Boş bir Observable döndür
+          return EMPTY;
         }
       });
     } else {

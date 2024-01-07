@@ -80,7 +80,6 @@ export class CardDetailComponent implements OnInit {
     return this.userService.getFavoriteById(userId, productId).pipe(
       map((isProductFavorited: any) => {
         if (Object.keys(isProductFavorited).length !== 0) {
-          this.liked = false;
           this.userService.deleteFavoriteById(userId, productId).subscribe(
             () => {
               this.liked = false;
@@ -119,6 +118,7 @@ export class CardDetailComponent implements OnInit {
       })
     );
   }
+
 
   getFileUrl(fileName: string): string {
     if (fileName) {
@@ -263,6 +263,7 @@ export class CardDetailComponent implements OnInit {
                       this.userService
                         .deleteExFavorite(userId, productId)
                         .subscribe(() => {
+                          console.log('giriyor');
                           this.badgeService.updateFavorites();
                           this.liked = true;
                           this.messageService.add({

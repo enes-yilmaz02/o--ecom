@@ -27,7 +27,7 @@ import { JwtTokenInterceptor } from './services/interceptors/jwt-token.intercept
     BrowserAnimationsModule,
     JwtModule,
     TranslocoRootModule,
-    ServerErrorModule
+    ServerErrorModule,
 
 
   ],
@@ -37,8 +37,11 @@ import { JwtTokenInterceptor } from './services/interceptors/jwt-token.intercept
     UserService,
     ProductService,
     MessageService,
-    { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
     JwtHelperService,
+    {
+      provide: JWT_OPTIONS,
+      useValue: JWT_OPTIONS
+    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttperrorInterceptor,

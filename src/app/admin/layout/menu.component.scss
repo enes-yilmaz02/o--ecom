@@ -18,9 +18,12 @@ $module-color:#253741;
     width: auto;
     justify-content: center;
     align-items: center;
+
   }
 }
 
 h6, i {
   color: $background-color;
+  font-weight: 700;
+  letter-spacing: 0.7px;
 }

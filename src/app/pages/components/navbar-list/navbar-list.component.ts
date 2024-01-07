@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { BadgeService } from 'src/app/services/badge.service';
 import { UserService } from 'src/app/services/user.service';
@@ -112,6 +112,9 @@ export class NavbarListComponent implements OnInit  {
         });
       });
     }
+
+
+
 
   onSearchInputChange() {
     this.searchService.setSearchText(this.searchText);

@@ -1,9 +1,7 @@
 <div class="card">
   <h2>{{ "dGetorders.headeruser" | transloco }}</h2>
-  <!-- Yeni kullanıcı eklemek için dialog penceresi -->
   <p-dialog header="Add New User" [(visible)]="displayAddUserDialog">
     <div class="p-dialog-form">
-      <!-- Yeni kullanıcı eklemek için form -->
       <form (ngSubmit)="addUser()" #addUserForm="ngForm">
         <div class="p-field">
           <label for="newUserName">{{ "aGetOrders.Name" | transloco }}</label>
@@ -137,9 +135,9 @@
           <button
             pButton
             type="button"
-            icon="pi pi-plus"
+            icon="pi pi-plus mr-2 font-bold"
             (click)="showAddUserDialog()"
-            class="p-button-add mb-2"
+            class="p-button-add font-bold text-base mb-2"
           >
             {{ "aGetOrders.buttonAddUser" | transloco }}
           </button>
@@ -234,7 +232,7 @@
               <input pInputText type="text" [(ngModel)]="user.name" />
             </ng-template>
             <ng-template pTemplate="output">
-              {{ user.name }}
+              {{ user.name | uppercase }}
             </ng-template>
           </p-cellEditor>
         </td>

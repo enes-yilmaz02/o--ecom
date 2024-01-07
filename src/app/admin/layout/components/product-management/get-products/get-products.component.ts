@@ -1,11 +1,9 @@
-import { TranslationService } from './../../../../../services/helper/translation.service';
 import { Component,  } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslocoService } from '@ngneat/transloco';
 import { MessageService } from 'primeng/api';
 import { BehaviorSubject } from 'rxjs';
 import { ProductService } from 'src/app/services/product.service';
-import { UserService } from 'src/app/services/user.service';
 
 
 @Component({
@@ -15,41 +13,26 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class GetProductsComponent {
   categoryForm: FormGroup;
-
   products!: any;
-
   userId: any;
-
   buyUserData: any;
-
   categories: any;
-
   status: any[] = [];
-
   priceCategories: any[] = [];
-
   rating: any[] = [];
-
   selectedCategory: any;
-
   selectedStatus: any;
-
   selectedPrice: any;
-
   selectedRating: any;
-
   isLoading: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-
 
   constructor(
     private productService: ProductService,
     private messageService: MessageService,
-    private userService: UserService,
     private translocoService: TranslocoService,
     private formBuilder: FormBuilder,
   ) {
     this.getAllProducts();
-    this.getCreoterBuyUsers();
 
     this.categories = [
       { name: 'All Products', code: 'allProducts' },
@@ -163,17 +146,9 @@ export class GetProductsComponent {
     );
   }
 
-  getCreoterBuyUsers() {
-    this.productService.getAllCreoterOrders().subscribe((data: any) => {
-      this.userId = data[0].userId;
-      this.userService.getUser(this.userId).subscribe((data: any) => {
-        this.buyUserData = data;
-      });
-    });
-  }
+
 
   getFileUrl(fileName: string): string {
-    // Update the URL template based on your file structure in Google Cloud Storage
     return `http://localhost:8080/files/${fileName}`;
   }
 

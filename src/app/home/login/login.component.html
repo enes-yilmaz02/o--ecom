@@ -11,7 +11,9 @@
         pInputText
         type="email"
         id="email"
-        formControlName="email" />
+        formControlName="email"
+        autocomplete="on"
+        />
       <label htmlFor="email">{{ "loginForm.emailLabel" | transloco }}</label>
     </span>
     <small
@@ -40,7 +42,9 @@
         formControlName="password"
         styleClass="password"
         [toggleMask]="true"
-        [feedback]="false"></p-password>
+        [feedback]="false"
+        autocomplete="on"
+        ></p-password>
       <label htmlFor="password">{{
         "loginForm.passwordLabel" | transloco
         }}</label>
@@ -118,10 +122,7 @@
           <a>
             <div class="flex-1 font-bold text-center cursor-pointer p-4 w-full">
               <span class="button-style">
-                <button class="button" (click)="loginWithGoogle()">
-                  <i class="pi pi-google"></i>
-                {{
-                  "startForm.piGoogle" | transloco }}</button>
+                <button class="button" id="buttonDiv"></button>
               </span>
             </div>
           </a>

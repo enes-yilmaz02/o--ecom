@@ -3,7 +3,7 @@
   <div>
     <div class="category-filter flex">
       <div class="card flex flex-row justify-content-center">
-        <form [formGroup]="categoryForm" class="flex flex-row">
+        <form [formGroup]="categoryForm" class="form-content">
           <div class="drpdwn">
             <select formControlName="category" (change)="onCategoryChange()">
               <option value="" disabled selected hidden>{{'dGetorders.filterCategory' |transloco}}</option>
@@ -118,11 +118,11 @@
               <input
                 pInputText
                 type="text"
-                [(ngModel)]="product.category.name"
+                [(ngModel)]="product.category"
               />
             </ng-template>
             <ng-template pTemplate="output">
-              {{ product.category.name | categoryStatus }}
+              {{ product.category | categoryStatus }}
             </ng-template>
           </p-cellEditor>
         </td>

@@ -15,6 +15,8 @@ export class ProductService {
 
   orders = 'orders';
 
+  creoterProducts= 'creoterProducts';
+
   uploadEndPoint = 'upload';
 
   category = 'category';

@@ -251,7 +251,14 @@ export class ContentCartsComponent {
         );
       });
     } else {
-      this.router.navigate(['account/user-info']);
+      this.messageService.add({
+        severity: 'warn',
+        summary: this.translocoService.translate('warnMessage'),
+        detail: this.translocoService.translate(
+          'complateUserInfoMessage'
+        ),
+      });
+      this.router.navigate(['pages/account/user-info']);
     }
   }
 

@@ -33,8 +33,7 @@ export class UserService {
   constructor(
     private commonService: CommonService,
     private authService: AuthService,
-    private jwtHelper: JwtHelperService,
-    private badgeService: BadgeService
+    private jwtHelper: JwtHelperService
   ) {}
 
   /**
@@ -650,7 +649,7 @@ export class UserService {
    */
   loginUserWithEmail(email: any): Observable<{ token: string }> {
     return this.commonService
-      .post<{ token: string }>(this.loginuserWithEmail, email)
+      .post<{ token: string }>(`${this.loginuserWithEmail}/${email}` , email)
       .pipe(
         tap((response) => {
           this.authToken = response.token;

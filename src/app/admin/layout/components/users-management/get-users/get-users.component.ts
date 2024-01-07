@@ -34,7 +34,6 @@ export class GetUsersComponent {
   getAllUsers() {
     this.userService.getUsers().subscribe((data) => {
       this.userData = data;
-      console.log(this.userData);
     });
   }
 
@@ -68,15 +67,15 @@ export class GetUsersComponent {
     delete this.clonedUser[user.id as string];
   }
 
-  // Diğer fonksiyonları ekleyin
+
 
   showAddUserDialog() {
-    this.newUser = {}; // Yeni kullanıcı verilerini temizle
-    this.displayAddUserDialog = true; // Yeni kullanıcı ekleme formunu göster
+    this.newUser = {};
+    this.displayAddUserDialog = true;
   }
 
   addUser() {
-    // Yeni kullanıcı eklemek için servisi kullanın
+
     this.userService.addUsersAdmin(this.newUser).subscribe(
       (response) => {
         this.messageService.add({
@@ -84,8 +83,8 @@ export class GetUsersComponent {
           summary:  this.translocoService.translate('successMessage'),
           detail:  this.translocoService.translate('aGetUser.messageDetailsuccessadduser'),
         });
-        this.displayAddUserDialog = false; // Yeni kullanıcı ekleme formunu kapat
-        this.getAllUsers(); // Tabloyu güncelle
+        this.displayAddUserDialog = false;
+        this.getAllUsers();
       },
       (error) => {
         console.error('Error adding user:', error);
@@ -104,9 +103,9 @@ export class GetUsersComponent {
         this.messageService.add({
           severity: 'success',
           summary: this.translocoService.translate('successMessage'),
-          detail: this.translocoService.translate('aGetUser.messageDetailsuccessdeleteduser'),
+          detail: this.translocoService.translate('aGetUser.messageDetailsuccessdeleteuser'),
         });
-        this.getAllUsers(); // Tabloyu güncelle
+        this.getAllUsers();
       },
       (error) => {
         console.error('Error updating user:', error);
@@ -120,13 +119,11 @@ export class GetUsersComponent {
   }
 
   cancelAddUser() {
-    // Yeni kullanıcı ekleme işlemini iptal etme
     this.displayAddUserDialog = false;
     this.resetNewUser();
   }
 
   resetNewUser() {
-    // Yeni kullanıcı bilgilerini sıfırlama
     this.newUser = {};
   }
 
