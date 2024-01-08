@@ -9,6 +9,7 @@ $background-color: #ecf0f1;
 $module-color:#253741;
 .orders-list {
   width: 100%;
+  height: auto;
   margin: 10px;
   border: 0.1px solid  ;
   border-radius: 5px;
@@ -27,6 +28,7 @@ $module-color:#253741;
   /* Export butonları stili */
   .flex {
     display: flex;
+    height: auto;
     justify-content: flex-end;
     color: $background-color;
     button {
@@ -43,6 +45,7 @@ $module-color:#253741;
 
   /* Sipariş öğeleri stili */
   .order-item {
+    height: auto;
     margin: 10px;
     margin-bottom: 50px;
     color: $background-color;
@@ -69,6 +72,7 @@ $module-color:#253741;
 
       .product-table {
         width: 100%;
+        height: auto;
         color: $background-color;
         margin-top: 10px;
         thead{
@@ -96,6 +100,10 @@ $module-color:#253741;
       }
     }
 
+}
+
+.product-list{
+  height: auto;
 }
 
 .totalprice{

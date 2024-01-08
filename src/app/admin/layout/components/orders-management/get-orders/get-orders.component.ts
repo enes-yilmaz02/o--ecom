@@ -20,18 +20,13 @@ interface ExportColumn {
 })
 export class GetOrdersComponent {
   orders: any;
-
   userId: any;
-
   userData: any;
-
   cols!: Column[];
-
   showDetails:boolean;
-
   userDetailStatus: { [userId: string]: boolean } = {};
+  ordersLoading: boolean;
 
-  ordersLoading: boolean = true;
   constructor(
     private productService: ProductService,
     private userService: UserService
@@ -39,6 +34,7 @@ export class GetOrdersComponent {
 
   }
   ngOnInit(): void {
+    this.ordersLoading=false;
     this.getAllCreoterOrders();
   }
 
@@ -46,8 +42,6 @@ export class GetOrdersComponent {
     import('jspdf').then((jsPDF) => {
       import('jspdf-autotable').then((x) => {
         const doc = new jsPDF.default('p', 'pt');
-
-        // Sütun başlıkları
         const columns: ExportColumn[] = [
           { title: 'Ürün Adi', dataKey: 'name' },
           { title: 'Fiyat($)', dataKey: 'priceStacked' },
@@ -69,29 +63,23 @@ export class GetOrdersComponent {
               ])
             ),
             styles: {
-              // Tablonun stilleri
               fontSize: 12,
-              font: 'helvetica', // veya başka bir font
-              lineColor: [0, 0, 0], // Çizgi rengi (RGB)
-              lineWidth: 0.5, // Çizgi kalınlığı
-              fontStyle: 'normal', // 'normal', 'bold', 'italic', 'bolditalic'
-              overflow: 'ellipsize', // 'linebreak', 'ellipsize', 'visible', 'hidden'
-              textColor: [0, 0, 0], // Yazı rengi (RGB)
-              cellPadding: 5, // Hücre içi boşluk
-              fillColor: [255, 255, 255], // Hücre arka plan rengi (RGB)
+              font: 'helvetica',
+              lineColor: [0, 0, 0],
+              lineWidth: 0.5,
+              fontStyle: 'normal',
+              overflow: 'ellipsize',
+              textColor: [0, 0, 0],
+              cellPadding: 5,
+              fillColor: [255, 255, 255],
             },
             columnStyles: {
-              // Sütunların stilleri
-              name: { fontStyle: 'bold', textColor: [0, 0, 255] }, // Ad sütunu için bold ve mavi renk
+              name: { fontStyle: 'bold', textColor: [0, 0, 255] },
             },
-            margin: { top: 60 }, // Tablo üstündeki boşluk
+            margin: { top: 60 },
           });
         });
-
-        // Blob oluşturun
         const blob = doc.output('blob');
-
-        // Dosyayı indirin
         FileSaver.saveAs(blob, 'products.pdf');
       });
     });
@@ -99,11 +87,10 @@ export class GetOrdersComponent {
 
   exportExcel() {
     import('xlsx').then((xlsx) => {
-      // Flatten the data structure to include nested orders
       const flattenedOrders = this.orders.flatMap((order) => {
         return order.orders.map((product) => ({
           id: product.product.id,
-          product:product.product.name, // Include all properties from the product
+          product:product.product.name,
           userId: order.userId,
           totalAmount: order.totalAmount,
         }));
@@ -145,9 +132,7 @@ export class GetOrdersComponent {
           totalAmount: item.totalAmount,
           userId: item.userId,
         })) : [];
-        console.log(this.orders)
 
-        // Siparişler alındıktan sonra her bir userId için alıcı bilgilerini getir
         this.orders.forEach((order: any) => {
           this.getUserData(order.userId);
         });
@@ -161,7 +146,6 @@ export class GetOrdersComponent {
     );
   }
   getFileUrl(fileName: string): string {
-    // Update the URL template based on your file structure in Google Cloud Storage
     return `http://localhost:8080/files/${fileName}`;
   }
 
@@ -176,30 +160,20 @@ export class GetOrdersComponent {
 
   getUserData(userId: string) {
     this.userService.getUser(userId).subscribe((data) => {
-      // Siparişi bul
       const order = this.orders.find((order) => order.userId === userId);
-
-      // Eğer sipariş bulunamazsa veya userData daha önce eklenmişse çık
       if (!order || order.userData) {
         return;
       }
-
-      // Alıcı bilgilerini siparişe ekle
       order.userData = data;
-
-      // Eğer userDataArray dizisi henüz tanımlanmamışsa, tanımlayın
       if (!order.userDataArray) {
         order.userDataArray = [];
       }
-
-      // Alıcı bilgilerini userDataArray dizisine ekleyin
       order.userDataArray.push(data);
 
     });
   }
 
   toggleUserDetails(userId: string): void {
-    // Eğer userId tanımlı değilse, varsayılan değeri true olarak ata
     this.userDetailStatus[userId] = !this.userDetailStatus[userId];
   }
 }

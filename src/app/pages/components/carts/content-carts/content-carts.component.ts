@@ -326,11 +326,6 @@ export class ContentCartsComponent {
     this.getUserId().subscribe(() => {
       this.userService.clearCart(this.userId).subscribe(
         () => {
-          // this.messageService.add({
-          //   severity: 'success',
-          //   summary: this.translocoService.translate('successMessage'),
-          //   detail: this.translocoService.translate('clearcart'),
-          // });
           this.getCarts();
           this.badgeService.updateCarts();
           this.allCartsDeleted.emit();

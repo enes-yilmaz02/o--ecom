@@ -1,6 +1,6 @@
 <div class="card">
   <h2>{{ "dGetorders.headeruser" | transloco }}</h2>
-  <p-dialog header="Add New User" [(visible)]="displayAddUserDialog">
+  <p-dialog header="Orion Shop" [(visible)]="displayAddUserDialog" >
     <div class="p-dialog-form">
       <form (ngSubmit)="addUser()" #addUserForm="ngForm">
         <div class="p-field">
@@ -35,7 +35,7 @@
             [(ngModel)]="newUser.role"
             name="role"
             optionLabel="label"
-            placeholder="Select a role"
+            styleClass="role-dropdown"
           ></p-dropdown>
         </div>
 

@@ -1,4 +1,4 @@
-<div class="orders-list" *ngIf="ordersLoading">
+<div class="orders-list" *ngIf="!ordersLoading" >
   <h2>{{ "dGetorders.header" | transloco }}</h2>
 
   <div class="flex">
@@ -89,7 +89,7 @@
     </div>
   </div>
 </div>
-<div class="card" *ngIf="!(orders && orders.length) || !ordersLoading">
+<div class="card" *ngIf="ordersLoading">
   <section class="page_404">
     <div class="container">
       <div class="row">

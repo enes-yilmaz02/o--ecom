@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { TranslocoService } from '@ngneat/transloco';
 import { ProductService } from 'src/app/services/product.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -10,19 +9,12 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class StaticsComponent implements OnInit {
   chartData: any;
-
   chartDataProduct:any;
-
   chartOptions: any;
-
   usersCount: any;
-
   ordersCount: any;
-
   productsCount: any;
-
   allProducts: any[] = [];
-
   revenue: any;
   products: any;
   orders: any;
@@ -53,16 +45,12 @@ export class StaticsComponent implements OnInit {
         const role = user.role;
         roleCountMap.set(role, (roleCountMap.get(role) || 0) + 1);
       });
-
-      //ADMİN CREOTER ve USER sayıları
       const creoterCount = roleCountMap.get("CREOTER") || 0;
       const userCount = roleCountMap.get("USER") || 0;
       const adminCount=roleCountMap.get('ADMİN') || 0;
-
-      // Diğer işlemleri yapabilirsiniz
       const documentStyle = getComputedStyle(document.documentElement);
       const roleArray=['Admin', 'Creoter', 'User'];
-      // chartData'yı güncelle
+
       this.chartData = {
         labels:roleArray ,
         datasets: [
@@ -95,7 +83,7 @@ export class StaticsComponent implements OnInit {
       const roleCountMap = new Map();
 
       data.forEach(product => {
-        const categoryCount =product.category?.name ;
+        const categoryCount =product.category ;
         roleCountMap.set(categoryCount, (roleCountMap.get(categoryCount) || 0) + 1);
       });
 
@@ -104,7 +92,6 @@ export class StaticsComponent implements OnInit {
       const acsCount = roleCountMap.get('Accessories') || 0;
       const fitCount = roleCountMap.get('Fitness') || 0;
 
-       // Diğer işlemleri yapabilirsiniz
        const documentStyle = getComputedStyle(document.documentElement);
       const categoryArray=['Electronics', 'Clothing', 'Accessories','Fitness'];
        // chartData'yı güncelle
