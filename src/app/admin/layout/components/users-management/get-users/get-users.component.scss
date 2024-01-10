@@ -6,6 +6,7 @@ $dark-text: #34495e;
 $light-text: #ecf0f1;
 $light-text-hover: #91c9d7;
 $background-color: #ecf0f1;
+$input-background-color:rgb(212, 212, 213);
 $module-color:#253741;
 /* Dialog Penceresi */
 
@@ -29,15 +30,16 @@ $module-color:#253741;
     color: $background-color;
 
     span , button , icon , i , .p-icon{
-      color: $background-color;
-
+      color: $module-color;
     }
 
     .p-ripple , .p-paginator-rpp-options{
       color: $module-color;
-
+      background-color: $input-background-color;
       span{
         color: $module-color;
+        background-color: $input-background-color;
+
 
       }
     }
@@ -56,7 +58,7 @@ $module-color:#253741;
   }
   .p-button-add{
     position: relative;
-    background: $background-color;
+    background: $input-background-color;
     border: none;
     color: $module-color;
     width: 150px;
@@ -68,6 +70,7 @@ $module-color:#253741;
       width: 100%;
       background: $module-color;
       color: $background-color;
+
       th{
         width: 100px;
         text-align: center;
@@ -79,6 +82,7 @@ $module-color:#253741;
           }
           input{
             width: 150px;
+            background-color: $input-background-color;
           }
         }
       }
@@ -95,6 +99,11 @@ $module-color:#253741;
         color: $background-color;
         font-weight: 700;
         letter-spacing: 0.7px;
+
+
+      }
+      .email {
+        text-align: justify;
       }
     }
   }
@@ -148,6 +157,11 @@ form{
 .p-input-icon-left {
   display: flex;
   align-items: center;
+  border-radius: 5px;
+
+  input{
+    background-color: $input-background-color;
+  }
 }
 
 .p-input-icon-left .pi {

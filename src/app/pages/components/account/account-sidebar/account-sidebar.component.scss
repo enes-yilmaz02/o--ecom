@@ -2,15 +2,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
-
-
   .column {
     display: flex;
     flex-direction: column;
     align-items: center;
-
-
     a {
       display: flex;
       width: 100%;
@@ -25,27 +20,22 @@
       cursor: pointer;
       background-color: transparent;
       transition: background-color 0.3s;
-
       &:hover {
         background-color: #555;
         color: #ecf0f1;
       }
-
       div {
         margin-top: 5px;
         text-align: center;
       }
-
       i {
         font-size: 1rem;
       }
     }
   }
-
   @media (max-width: 768px) {
     .column {
       flex-direction: row;
-
       a {
         width: 100%;
       }

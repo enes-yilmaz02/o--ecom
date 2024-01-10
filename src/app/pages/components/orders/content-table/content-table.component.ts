@@ -50,8 +50,6 @@ export class ContentTableComponent {
         this.products = this.orders
           .map((order: any) => order.orders.map((item: any) => item.product))
           .flat();
-      } else {
-        console.error('Orders data is undefined.');
       }
     });
   }

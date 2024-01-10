@@ -113,8 +113,7 @@ export class ReportingComponent {
           (total, item) => total + parseFloat(item.valueRating),
           0
         );
-        this.averageRating =
-          validProducts.length > 0 ? totalRating / validProducts.length : 0;
+        this.averageRating = validProducts.length > 0 ? totalRating / validProducts.length : 0;
       } else {
         console.error('Geçerli ürün verisi bulunamadı.');
       }
@@ -177,10 +176,7 @@ export class ReportingComponent {
         stockQuantityArray.push(stockQuantity);
       });
 
-      // Diğer işlemleri yapabilirsiniz
       const documentStyle = getComputedStyle(document.documentElement);
-
-      // chartDataProductStock'u güncelle
       this.chartDataProductStock = {
         labels: productNameArray,
         datasets: [
@@ -221,8 +217,6 @@ export class ReportingComponent {
         this.translocoService.translate('OutofStock'),
         this.translocoService.translate('LowStock'),
       ];
-
-      // Güncellenmiş verileri kullanarak chartDataStatus'u güncelle
       const documentStyle = getComputedStyle(document.documentElement);
       this.chartDataStatus = {
         labels: statusNameArray,
@@ -246,60 +240,29 @@ export class ReportingComponent {
       this.productService
         .getAllCreoterOrdersById(userId)
         .subscribe((data: any) => {
-          // Eğer herhangi bir sipariş bulunamazsa, this.orders'u boş bir diziyle güncelle
           this.orders = data.map((item: any) => {
-            // Her bir siparişteki ürünleri products dizisine ekle
             item.orders.forEach((orderItem: any) => {
               const existingProduct = this.products.find(
                 (product) => product.name === orderItem.product.name
               );
 
               if (existingProduct) {
-                // Eğer ürün zaten listeye ekli ise, adetini arttır
                 existingProduct.quantity += 1;
               } else {
-                // Eğer ürün daha önce listeye eklenmemişse, yeni bir ürün olarak ekle
                 this.products.push({
                   name: orderItem.product.name,
                   file:orderItem.product.file,
-                  quantity: 1, // İlk kez eklenen ürünün adeti 1'dir
+                  quantity: orderItem.product.quantity,
                 });
               }
             });
-            // Quantity'ye göre sıralama
             this.products.sort((a, b) => b.quantity - a.quantity);
-
-            console.log(this.products);
           });
         });
     });
   }
 
-  // Yardımcı bir fonksiyon: Bir dizideki öğelerin sıklıklarını hesaplar
-  calculateFrequencies(arr: any[]): Map<any, number> {
-    const frequencies = new Map<any, number>();
 
-    arr.forEach((item) => {
-      frequencies.set(item, (frequencies.get(item) || 0) + 1);
-    });
 
-    return frequencies;
-  }
 
-  // En çok tekrar edenden en az tekrar edene sıralama fonksiyonu
-  sortProductsByFrequency(
-    products: any[],
-    frequencies: Map<any, number>
-  ): any[] {
-    // Frekanslara göre ürünleri sırala
-    const sortedProducts = products.sort((a, b) => {
-      const frequencyA = frequencies.get(a.name) || 0;
-      const frequencyB = frequencies.get(b.name) || 0;
-
-      // Sıklığa göre azalan sıralama
-      return frequencyB - frequencyA;
-    });
-
-    return sortedProducts;
-  }
 }

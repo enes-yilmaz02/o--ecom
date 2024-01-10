@@ -1,4 +1,5 @@
 $background-color: #ecf0f1;
+$input-background-color:rgb(212, 212, 213);
 $module-color:#253741;
 
 .card{
@@ -48,7 +49,7 @@ $module-color:#253741;
 :host ::ng-deep{
 
   .p-button{
-    background: $background-color;
+    background: $input-background-color;
     color: $module-color;
     margin-right: 5px;
     border: none;

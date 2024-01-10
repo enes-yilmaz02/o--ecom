@@ -5,7 +5,7 @@
     <button
       type="button"
       pButton
-      icon="pi pi-file-pdf"
+      icon="pi pi-file-pdf mr-1"
       (click)="exportPdf()"
       class="p-button mx-2 my-2"
       pTooltip="PDF"
@@ -16,7 +16,7 @@
     <button
       type="button"
       pButton
-      icon="pi pi-file-excel"
+      icon="pi pi-file-excel mr-1"
       (click)="exportExcel()"
       class="p-button mx-2 my-2"
       pTooltip="XLS"
@@ -30,8 +30,14 @@
     <div class="order-info">
       <div *ngFor="let userData of order?.userDataArray">
         <div>{{ "dGetorders.userId" | transloco }} {{ order?.userId }}</div>
-        <div>{{ "dGetorders.userName" | transloco }} {{ userData.name  | uppercase}}</div>
-        <div>{{ "dGetorders.userEmail" | transloco }} <mark>{{ userData.email}}</mark></div>
+        <div>
+          {{ "dGetorders.userName" | transloco }}
+          {{ userData.name | uppercase }}
+        </div>
+        <div>
+          {{ "dGetorders.userEmail" | transloco }}
+          <mark>{{ userData.email }}</mark>
+        </div>
         <div>
           {{ "dGetorders.userAddress" | transloco }} {{ userData.address }}
         </div>
@@ -68,7 +74,9 @@
               <img
                 [src]="getFileUrl(product?.product.file)"
                 alt="{{ product?.product.name }}"
-                class="product-image"
+                class="shadow-2 border-round"
+                width="80"
+                height="80"
               />
             </td>
             <td>{{ product?.product.name }}</td>
@@ -96,9 +104,7 @@
       <div class="row">
         <div class="col-sm-12">
           <div class="col-sm-10 col-sm-offset-1 text-center">
-            <div
-              class="four_zero_four_bg"
-            >
+            <div class="four_zero_four_bg">
               <h4 class="text-center">
                 {{ "dGetorders.defaultHeader" | transloco }}
               </h4>
@@ -112,5 +118,3 @@
     </div>
   </section>
 </div>
-
-

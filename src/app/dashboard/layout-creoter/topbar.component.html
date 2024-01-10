@@ -1,20 +1,37 @@
 <div class="layout-topbar">
-  <a class="layout-topbar-logo  " (click)="logout()">
-      <img src="assets/layout/images/{{layoutService.config.colorScheme === 'light' ? 'logo-dark' : 'logo-white'}}.svg" alt="logo">
-      <span>OI</span>
+  <a class="layout-topbar-logo" (click)="logout()">
+    <img
+      src="assets/layout/images/{{
+        layoutService.config.colorScheme === 'light'
+          ? 'logo-dark'
+          : 'logo-white'
+      }}.svg"
+      alt="logo"
+    />
+    <span>OI</span>
   </a>
-  <button #menubutton class="p-link layout-menu-button layout-topbar-button" (click)="layoutService.onMenuToggle()">
-      <i class="pi pi-bars"></i>
+  <button
+    #menubutton
+    class="p-link layout-menu-button layout-topbar-button"
+    (click)="layoutService.onMenuToggle()"
+  >
+    <i class="pi pi-bars"></i>
   </button>
   <div class="w-full flex justify-content-center align-content-center">
-    <div>{{'topbar.header' | transloco}}</div>
+    <h3>{{ "topbar.header" | transloco }}</h3>
   </div>
 
-  <a class="logout" (click)="logout()">
-    <i class="pi pi-sign-out mr-1 text-lg" ></i>
-    <span>{{'topbar.logout' | transloco}}</span>
-</a>
-  <select (change)="setLanguage()" [(ngModel)]="selectedLanguage" class="custom-select flex border-0  ml-3">
-    <option *ngFor="let option of stateOptions" [ngValue]="option.value">{{ option.label }}</option>
+  <a class="logout flex flex-row align-content-center font-bold" (click)="logout()">
+    <i class="pi pi-sign-out mr-2 text-lg font-bold "></i>
+    <span>{{ "topbar.logout" | transloco }}</span>
+  </a>
+  <select
+    (change)="setLanguage()"
+    [(ngModel)]="selectedLanguage"
+    class="custom-select flex border-0 ml-2 font-bold"
+  >
+    <option *ngFor="let option of stateOptions" [ngValue]="option.value">
+      {{ option.label }}
+    </option>
   </select>
 </div>

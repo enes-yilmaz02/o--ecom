@@ -73,7 +73,7 @@
       <h5>{{'dReporting.bestSelling' | transloco}}</h5>
     </div>
     <ul class="list-none p-0 m-0">
-      <li *ngFor="let product of products.slice(0, 5)" class="flex flex-column md:flex-row md:align-items-center md:justify-content-between mb-4">
+      <li *ngFor="let product of products" class="flex flex-column md:flex-row md:align-items-center md:justify-content-between mb-4">
         <div>
           <img
           class=" border-round"
@@ -94,8 +94,6 @@
     </ul>
   </div>
 </div>
-
-
 </div>
 
 

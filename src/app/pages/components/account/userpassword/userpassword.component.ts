@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
-import { Observable, tap, Subject } from 'rxjs';
 import { TranslocoService } from '@ngneat/transloco';
 import { MessageService } from 'primeng/api';
 
@@ -12,16 +11,14 @@ import { MessageService } from 'primeng/api';
 })
 export class UserpasswordComponent implements OnInit {
   newpassForm: FormGroup;
-
   selectedUser: any;
-
-  userId:any;
+  userId: any;
 
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
-    private translocoService:TranslocoService,
-    private messageService:MessageService
+    private translocoService: TranslocoService,
+    private messageService: MessageService
   ) {
     this.newpassForm = this.formBuilder.group({
       currentPassword: [null, [Validators.required, Validators.minLength(8)]],
@@ -31,66 +28,69 @@ export class UserpasswordComponent implements OnInit {
   }
 
   ngOnInit(): void {
-     this.getUserId();
+    this.getUserId();
   }
 
   getUserId() {
-    this.userService.getTokenId().subscribe(
-      (id: any) => {
-        this.userId = id;
-      });
+    this.userService.getTokenId().subscribe((id: any) => {
+      this.userId = id;
+    });
   }
 
-  onSubmit(){
+  onSubmit() {
     const formValues = this.newpassForm.value;
     const password = formValues.currentPassword;
-    this.userService.checkUserPassword(this.userId , password).subscribe((response)=>{
-      const body = {
-        password: formValues.password,
-        confirmpassword: formValues.confirmpassword,
-      };
-      if (this.newpassForm.valid) {
-        this.userService.updateUserPassword(this.userId, body).subscribe(() => {
+    this.userService.checkUserPassword(this.userId, password).subscribe(
+      (response) => {
+        const body = {
+          password: formValues.password,
+          confirmpassword: formValues.confirmpassword,
+        };
+        if (this.newpassForm.valid) {
+          this.userService.updateUserPassword(this.userId, body).subscribe(
+            () => {
+              this.messageService.add({
+                severity: 'success',
+                summary: this.translocoService.translate('successMessage'),
+              });
+            },
+            (error) => {
+              this.messageService.add({
+                severity: 'error',
+                summary: this.translocoService.translate('errorMessage'),
+              });
+              console.log(error);
+            }
+          );
+        } else {
           this.messageService.add({
-            severity: 'success',
-            summary: this.translocoService.translate('successMessage'),
+            severity: 'warn',
+            summary: this.translocoService.translate('warnMessage'),
+            detail: this.translocoService.translate(
+              'newPassForm.messageDetailwarn'
+            ),
           });
-        },
-        (error)=>{
+        }
+      },
+      (error) => {
+        if (this.newpassForm.valid) {
           this.messageService.add({
             severity: 'error',
             summary: this.translocoService.translate('errorMessage'),
+            detail: this.translocoService.translate(
+              'newPassForm.messageDetailerror'
+            ),
           });
-          console.log(error);
+        } else {
+          this.messageService.add({
+            severity: 'warn',
+            summary: this.translocoService.translate('warnMessage'),
+            detail: this.translocoService.translate(
+              'newPassForm.messageDetailwarn'
+            ),
+          });
         }
-        );
-      }else{
-        this.messageService.add({
-          severity: 'warn',
-          summary: this.translocoService.translate('warnMessage'),
-          detail:this.translocoService.translate('newPassForm.messageDetailwarn')
-        });
       }
-    },
-    (error)=>{
-
-      if(this.newpassForm.valid){
-        this.messageService.add({
-          severity: 'error',
-          summary: this.translocoService.translate('errorMessage'),
-          detail:this.translocoService.translate('newPassForm.messageDetailerror'),
-        });
-      }else{
-        this.messageService.add({
-          severity: 'warn',
-          summary: this.translocoService.translate('warnMessage'),
-          detail:this.translocoService.translate('newPassForm.messageDetailwarn')
-        });
-      }
-
-    }
-
-    )
+    );
   }
-
 }

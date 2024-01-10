@@ -37,5 +37,8 @@ h3{
 .custom-select{
   background: $module-color;
   border: none;
-  color:$background-color
+  color:$background-color;
+  appearance: none;
+  border: none;
+  padding: 5px;
 }

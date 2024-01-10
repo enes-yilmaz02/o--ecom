@@ -1,5 +1,5 @@
 import { MessageService } from 'primeng/api';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { Observable, tap } from 'rxjs';
 import { BadgeService } from 'src/app/services/badge.service';
@@ -75,10 +75,6 @@ export class ContentFavoritesComponent {
             this.getFavorites();
             this.onChangeService.changeExFavorites();
           });
-        },
-        (error) => {
-          console.log(productId);
-          console.log(error);
         }
       );
     });

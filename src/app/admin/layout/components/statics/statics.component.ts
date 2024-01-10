@@ -94,7 +94,6 @@ export class StaticsComponent implements OnInit {
 
        const documentStyle = getComputedStyle(document.documentElement);
       const categoryArray=['Electronics', 'Clothing', 'Accessories','Fitness'];
-       // chartData'yı güncelle
        this.chartDataProduct = {
          labels: categoryArray,
          datasets: [
@@ -118,39 +117,27 @@ export class StaticsComponent implements OnInit {
 
 
   getAllCreoterOrders() {
-    this.products = []; // products dizisini başlat
-
+    this.products = [];
     this.productService.getAllCreoterOrders().subscribe(
       (data: any) => {
-        // Eğer herhangi bir sipariş bulunamazsa, this.orders'u boş bir diziyle güncelle
         this.orders = data || [];
-
-        // Siparişler içinde dönerek ürünleri işle
         this.orders.forEach((item: any) => {
-          // Her bir siparişteki ürünleri products dizisine ekle
           item.orders.forEach((orderItem: any) => {
             const existingProduct = this.products.find(
               (product) => product.name === orderItem.product.name
             );
-
             if (existingProduct) {
-              // Eğer ürün zaten listeye ekli ise, adetini arttır
               existingProduct.quantity += 1;
             } else {
-              // Eğer ürün daha önce listeye eklenmemişse, yeni bir ürün olarak ekle
               this.products.push({
                 name: orderItem.product.name,
                 file: orderItem.product.file,
-                quantity: 1, // İlk kez eklenen ürünün adeti 1'dir
+                quantity: orderItem.product.quantity,
               });
             }
           });
         });
-
-        // Quantity'ye göre sıralama
         this.products.sort((a, b) => b.quantity - a.quantity);
-
-        console.log(this.products);
       },
       (error) => {
         console.error('Error fetching orders:', error);
@@ -159,14 +146,11 @@ export class StaticsComponent implements OnInit {
   }
 
   updateChartDataStatus() {
-
       let inStockCount = 0;
       let outOfStockCount = 0;
       let runningLowCount = 0;
-
       this.allProducts.forEach((product: any) => {
-        const stockQuantity = product.quantity;
-
+      const stockQuantity = product.quantity;
         if (stockQuantity > 0) {
           inStockCount++;
         } else {
@@ -176,14 +160,11 @@ export class StaticsComponent implements OnInit {
           }
         }
       });
-
       const statusNameArray = [
-        'Stokta',
-        'Tükendi',
-        'Tükenmek Üzere',
+        'In Stock',
+        'Out of Stock',
+        'Low Stock',
       ];
-
-      // Güncellenmiş verileri kullanarak chartDataStatus'u güncelle
       const documentStyle = getComputedStyle(document.documentElement);
       this.chartDataStatus = {
         labels: statusNameArray,
@@ -198,8 +179,5 @@ export class StaticsComponent implements OnInit {
           },
         ],
       };
-
   }
-
-
 }

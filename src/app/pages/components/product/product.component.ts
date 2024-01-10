@@ -8,9 +8,7 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class ProductComponent {
   showLoading = true;
-
   hasData = true;
-
   contentData: any;
 
   constructor(private productService: ProductService) {
@@ -18,7 +16,6 @@ export class ProductComponent {
 
   ngOnInit() {
     this.loadData();
-    // 5 saniye sonra "loading" şablonunu gizle
     setTimeout(() => {
       this.showLoading = false;
     }, 3000);
@@ -35,11 +32,6 @@ export class ProductComponent {
           this.hasData = false;
         }
         this.showLoading = false;
-      },
-      (error) => {
-        console.error('Veri yüklenirken hata oluştu', error);
-        this.showLoading = false;
-
       }
     );
   }

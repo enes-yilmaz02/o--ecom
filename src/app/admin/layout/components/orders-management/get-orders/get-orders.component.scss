@@ -6,6 +6,7 @@ $light-text-second: #c0ddfb;
 $light-text: #ecf0f1;
 $light-text-hover: #91c9d7;
 $background-color: #ecf0f1;
+$input-background-color:rgb(212, 212, 213);
 $module-color:#253741;
 .orders-list {
   width: 100%;
@@ -16,23 +17,19 @@ $module-color:#253741;
   padding: 20px;
   background: $module-color;
 
-
-  /* Başlık stili */
   h2 {
     font-size: 1.5em;
     font-weight: bold;
     margin-bottom: 10px;
     color: $background-color;
   }
-
-  /* Export butonları stili */
   .flex {
     display: flex;
     height: auto;
     justify-content: flex-end;
     color: $background-color;
     button {
-      background-color:$background-color ;
+      background-color:$input-background-color ;
       width: 150px;
       min-height: 40px;
       margin: 2px;
@@ -43,19 +40,17 @@ $module-color:#253741;
 
   }
 
-  /* Sipariş öğeleri stili */
   .order-item {
     height: auto;
     margin: 10px;
     margin-bottom: 50px;
     color: $background-color;
-    /* Sipariş bilgileri stili */
     .order-info {
       div {
         margin-bottom: 5px;
 
         button {
-          background-color: $background-color;
+          background-color: $input-background-color;
           width: 150px;
           min-height: 40px;
           margin: 2px;
@@ -67,9 +62,6 @@ $module-color:#253741;
         }
       }
     }
-
-    /* Ürün listesi stili */
-
       .product-table {
         width: 100%;
         height: auto;
@@ -90,12 +82,7 @@ $module-color:#253741;
         }
 
         th {
-          background-color: $background-color;
-        }
-
-        img.product-image {
-          max-width: 50px;
-          max-height: 50px;
+          background-color: $input-background-color;
         }
       }
     }

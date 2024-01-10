@@ -4,3 +4,13 @@ $dark-text: #34495e;
   color: $dark-text;
   cursor: pointer;
 }
+
+.custom-select{
+  appearance: none;
+  border: none;
+  padding: 5px;
+}
+
+.custom-select::after {
+  border: none;
+}

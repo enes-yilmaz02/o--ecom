@@ -8,13 +8,9 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./orders.component.scss'],
 })
 export class OrdersComponent implements OnInit {
-
   showLoading = true;
-
   hasData = true;
-
   contentData: any;
-
   userId: any;
 
   constructor(
@@ -33,7 +29,6 @@ export class OrdersComponent implements OnInit {
     return this.userService.getTokenId().pipe(
       tap((id: any) => {
         this.userId = id;
-        console.log(this.userId);
       })
     );
   }

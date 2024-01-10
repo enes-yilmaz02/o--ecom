@@ -1,5 +1,5 @@
 <p-toast></p-toast>
-<div class="container">
+<div class="container px-8 pb-8 pt-2 bg-white border-round">
   <div class="row">
     <div class="header">
       <h2>{{ "userinfoForm.header" | transloco }}</h2>
@@ -49,7 +49,7 @@
           }}</label>
         </span>
         <span class="p-float-label m-4">
-          <i class="pi pi-calendar" style="color: #000"></i>
+          <i class="pi pi-calendar" style="color: #000 "></i>
           <p-calendar
             formControlName="bDate"
             styleClass="calendar"
@@ -65,7 +65,7 @@
             "userinfoForm.addressLabel" | transloco
           }}</label>
         </span>
-        <span class="p-float-label m-4">
+        <span class="p-float-label m-4 custom-select">
           <i class="pi pi-users" style="color: #000;"></i>
           <select formControlName="gender">
             <option value="" disabled selected hidden>{{ "userinfoForm.gender" | transloco  }}</option>

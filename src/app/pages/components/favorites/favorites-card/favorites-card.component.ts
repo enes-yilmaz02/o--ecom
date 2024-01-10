@@ -16,7 +16,7 @@ export class FavoritesCardComponent {
     return `http://localhost:8080/files/${fileName}`;
   }
 
-  deleteExFavorites(productId: string , product:any) {
+  deleteExFavorites(productId: string) {
     this.onDeleteExFavorites.emit(productId);
   }
 }

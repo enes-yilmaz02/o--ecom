@@ -7,6 +7,7 @@ $dark-text-second: #c0ddfb;
 $light-text: #ecf0f1;
 $light-text-hover: #91c9d7;
 $background-color: #ecf0f1;
+$input-background-color:rgb(212, 212, 213);
 $module-color:#253741;
 
 .card{
@@ -36,7 +37,10 @@ $module-color:#253741;
 
   select{
     margin-right: 15px;
-    width: 290px;
+    appearance: none;
+    text-align: center;
+    background-color: $input-background-color;
+    width: 210px;
     height: 30px;
     cursor: pointer;
     font-weight: 600;

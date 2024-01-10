@@ -53,15 +53,11 @@
     <ng-template pTemplate="header">
       <tr class="main">
         <th pSortableColumn="name">{{ "aGetProduct.name" | transloco }}</th>
-        <th>{{ "aGetProduct.image" | transloco }}</th>
-        <th pSortableColumn="price">{{ "aGetProduct.price" | transloco }}</th>
-        <th pSortableColumn="category">
-          {{ "aGetProduct.category" | transloco }}
-        </th>
+        <th pSortableColumn="file">{{ "aGetProduct.image" | transloco }}</th>
+        <th pSortableColumn="priceStacked">{{ "aGetProduct.price" | transloco }}</th>
+        <th pSortableColumn="category">{{ "aGetProduct.category" | transloco }}</th>
         <th pSortableColumn="rating">{{ "aGetProduct.rating" | transloco }}</th>
-        <th pSortableColumn="inventoryStatus">
-          {{ "aGetProduct.status" | transloco }}
-        </th>
+        <th pSortableColumn="selectedStatus.name">{{ "aGetProduct.status" | transloco }}</th>
         <th>{{ "aGetProduct.actions" | transloco }}</th>
       </tr>
     </ng-template>

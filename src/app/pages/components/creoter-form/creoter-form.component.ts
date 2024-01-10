@@ -39,27 +39,23 @@ export class CreoterFormComponent implements OnInit {
   ) {
     this.creoterForm = this.formBuilder.group({
       companyName: ['', [Validators.required]],
-      taxNumber: ['', [Validators.required, Validators.minLength(11) , Validators.maxLength(11)]],
+      taxNumber: ['', [Validators.required, Validators.minLength(11) , Validators.maxLength(11),Validators.pattern(/^-?\d*\.?\d*$/)]],
       email: ['', [Validators.required, Validators.email]],
       city: ['', Validators.required],
       distcrits: [''],
       code: [''],
     });
   }
+
   ngOnInit(): void {
     this.cityService.getCities().subscribe((data) => {
       const gCities = data.city;
-
       this.cities = gCities.map((item: any) => {
-        return { label: item.name, value: item }; // Şehir objesini tamamen al
+        return { label: item.name, value: item };
       });
-
-      this.selectedCity = null; // Varsayılan olarak seçili şehir null olsun
-
-      // Sehir seçildiğinde ilçeleri güncelle
+      this.selectedCity = null;
       this.onCityChange({ value: this.selectedCity });
     });
-
     this.getUserData();
   }
 
@@ -107,7 +103,6 @@ export class CreoterFormComponent implements OnInit {
           city: formArray.city.label,
           distcrits: formArray.distcrits.label,
         };
-        console.log(userData)
         this.creoterService.addCreoter(userData).subscribe(() => {
           this.messageService.add({
             severity: 'success',

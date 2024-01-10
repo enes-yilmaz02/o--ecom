@@ -62,6 +62,7 @@
             [(ngModel)]="newUser.phone"
             name="phone"
             required
+            maxlength="11"
           />
         </div>
 
@@ -87,9 +88,12 @@
             id="newUserEmail"
             type="text"
             pInputText
+            inputmode="numeric"
+            pattern="[0-9]*"
             [(ngModel)]="newUser.taxNumber"
             name="taxNumber"
-            required
+            [required]
+            [maxlength]="11"
           />
         </div>
 
@@ -236,7 +240,7 @@
             </ng-template>
           </p-cellEditor>
         </td>
-        <td>
+        <td class="email">
           <p-cellEditor>
             <ng-template pTemplate="input">
               <input pInputText type="text" [(ngModel)]="user.email" />
@@ -246,7 +250,7 @@
             </ng-template>
           </p-cellEditor>
         </td>
-        <td>
+        <td class="role">
           <p-cellEditor>
             <ng-template pTemplate="input">
               <input pInputText type="text" [(ngModel)]="user.role" />

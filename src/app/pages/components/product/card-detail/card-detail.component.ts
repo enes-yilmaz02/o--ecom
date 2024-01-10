@@ -43,11 +43,9 @@ export class CardDetailComponent implements OnInit {
         this.checkIfProductIsLiked();
       });
     });
-
     this.route.queryParams.subscribe((params) => {
       this.liked = params['liked'] === 'true';
     });
-
     this.productService.getProducts().subscribe((products: any[]) => {
       this.favoritedProducts = Array(products.length).fill(false);
     });
@@ -59,12 +57,11 @@ export class CardDetailComponent implements OnInit {
       const data = await this.productService
         .patchProductById(productId)
         .toPromise();
-
       this.product = data;
       this.productPrice = Number(this.product.priceStacked);
       this.checkIfProductIsLiked();
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error('Veri çekme hatası:', error);
     }
   }
 
@@ -94,7 +91,6 @@ export class CardDetailComponent implements OnInit {
               });
             },
             (error) => {
-              console.error('Favori kaldırma işleminde hata:', error);
               this.messageService.add({
                 severity: 'error',
                 summary: this.translocoService.translate('errorMessage'),
@@ -118,7 +114,6 @@ export class CardDetailComponent implements OnInit {
       })
     );
   }
-
 
   getFileUrl(fileName: string): string {
     if (fileName) {
@@ -182,9 +177,9 @@ export class CardDetailComponent implements OnInit {
               quantity: quantityValue,
             },
           };
-
-          this.userService.addCart(this.userId, id, body).subscribe(
-            (response: any) => {
+          this.userService
+            .addCart(this.userId, id, body)
+            .subscribe((response: any) => {
               if (response) {
                 this.messageService.add({
                   severity: 'success',
@@ -203,12 +198,7 @@ export class CardDetailComponent implements OnInit {
                   ),
                 });
               }
-            },
-            (error) => {
-              // Hata durumunda mesaj göster
-              console.log(error);
-            }
-          );
+            });
         });
       });
     } else if (this.defaultValue === 0) {
@@ -247,39 +237,27 @@ export class CardDetailComponent implements OnInit {
   addToCartFavorites() {
     this.getUserId().subscribe((userId: any) => {
       this.getProductId().subscribe((productId: string) => {
-        this.productService
-          .patchProductById(productId)
-          .subscribe((product: any) => {
-            this.checkIfProductIsFavorites(userId, productId).subscribe(
-              (isFavorited: boolean) => {
-                if (!isFavorited) {
+        this.productService.patchProductById(productId).subscribe((product: any) => {
+            this.checkIfProductIsFavorites(userId, productId).subscribe((isFavorited: boolean) => {
+              if (!isFavorited) {
                   const body = {
                     id: productId,
                     product: product,
                   };
-                  this.userService
-                    .addFavorite(userId, productId, body)
-                    .subscribe(() => {
-                      this.userService
-                        .deleteExFavorite(userId, productId)
-                        .subscribe(() => {
-                          console.log('giriyor');
-                          this.badgeService.updateFavorites();
-                          this.liked = true;
-                          this.messageService.add({
-                            severity: 'success',
-                            summary:
-                              this.translocoService.translate('successMessage'),
-                            detail: this.translocoService.translate(
-                              'cardDetail.messageDetailsuccessaddfavorite'
-                            ),
-                          });
-                        });
+                 this.userService.addFavorite(userId, productId, body).subscribe(() => {
+                   this.userService.deleteExFavorite(userId, productId).subscribe(() => {
+                      this.badgeService.updateFavorites();
+                      this.liked = true;
+                      this.messageService.add({
+                      severity: 'success',
+                      summary:this.translocoService.translate('successMessage'),
+                      detail: this.translocoService.translate('cardDetail.messageDetailsuccessaddfavorite')});
                     });
-                }
+                  });
               }
-            );
-          });
+            }
+          );
+        });
       });
     });
   }

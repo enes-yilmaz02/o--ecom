@@ -28,14 +28,14 @@
   >
     <i class="pi pi-ellipsis-v"></i>
   </button>
-  <a class="logout" (click)="logout()">
-    <i class="pi pi-sign-out mr-1 text-lg" ></i>
-    <span>{{'topbar.logout' | transloco}}</span>
-</a>
+  <a class="logout flex flex-row align-items-center font-bold" (click)="logout()">
+    <i class="pi pi-sign-out mr-2 text-lg font-bold"></i>
+    <span>{{ "topbar.logout" | transloco }}</span>
+  </a>
   <select
     (change)="setLanguage()"
     [(ngModel)]="selectedLanguage"
-    class="custom-select flex border-0 ml-3"
+    class="custom-select flex border-0 ml-3 font-bold"
   >
     <option *ngFor="let option of stateOptions" [ngValue]="option.value">
       {{ option.label }}

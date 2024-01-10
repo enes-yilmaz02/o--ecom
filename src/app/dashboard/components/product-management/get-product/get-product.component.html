@@ -71,10 +71,10 @@
             <div>
               <span class="button-style ">
                 <button
-                  class="button w-full border-round"
+                  class="button w-full flex flex-row align-items-center border-round font-bold"
                   [routerLink]="['/creoter/product-management', 'add-product']"
                 >
-                  <i class="pi pi-plus" style="color: white"></i> {{'dGetProduct.add' | transloco}}
+                  <i class="pi pi-plus mr-1 font-bold" style="color: white"></i> <span>{{'dGetProduct.add' | transloco}}</span>
                 </button>
               </span>
             </div>
@@ -149,14 +149,14 @@
             >
               <div>
                 <span class="button-style">
-                  <button pButton class="button" [routerLink]="['/creoter/product-management','update-product' , product.id]">
+                  <button pButton class="button font-bold" [routerLink]="['/creoter/product-management','update-product' , product.id]">
                     <i class="pi pi-pencil mr-1" style="color: white"></i> {{'dGetProduct.update' | transloco}}
                   </button>
                 </span>
               </div>
               <div>
                 <span class="button-style" style="margin-left: 5px">
-                  <button pButton class="button" (click)="deleteProduct(product.id)">
+                  <button pButton class="button font-bold" (click)="deleteProduct(product.id)">
                     <i class="pi pi-trash mr-1" style="color: white"></i> {{'dGetProduct.delete' | transloco}}
                   </button>
                 </span>

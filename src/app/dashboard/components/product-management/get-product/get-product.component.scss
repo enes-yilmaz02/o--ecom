@@ -38,9 +38,14 @@ $background-color: #ecf0f1;
 
   select{
     margin-right: 15px;
-    width: 240px;
+    width: 220px;
     height: 30px;
+    appearance: none;
+    color: $dark-text;
+    border: 1px solid;
+    text-align: center;
     cursor: pointer;
+    font-weight: bold;
   }
 }
 .card {

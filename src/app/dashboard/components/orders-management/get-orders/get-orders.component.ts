@@ -14,6 +14,7 @@ interface ExportColumn {
   title: string;
   dataKey: string;
 }
+
 @Component({
   selector: 'app-get-orders',
   templateUrl: './get-orders.component.html',
@@ -137,7 +138,12 @@ export class GetOrdersComponent implements OnInit {
             this.getUserData(order.userId);
           });
 
-          this.ordersLoading = false;
+          if(this.orders.length > 0 ){
+            this.ordersLoading = false;
+          }else{
+            this.ordersLoading = true;
+          }
+
         },
         (error) => {
           console.error('Error fetching orders:', error);

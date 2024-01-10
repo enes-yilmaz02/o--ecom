@@ -18,17 +18,16 @@ export class NavbarListComponent implements OnInit  {
     { label: '🇹🇷 TR', value: 'tr' },
     { label: '🇬🇧 EN', value: 'en' },
   ];
-
-  selectedLanguage: string; // Seçilen dil
-  orderBadge: any; // Sipariş batch bilgisi
-  favoritesBadge: any; // Favori ürünler batch bilgisi
-  cartsBadge: any; // Sepet batch bilgisi
-  userId: any; // Kullanıcı ID'si
-  translatedStockStatus: string; // Çevrilmiş stok durumu
-  isOpen = false; // Dropdown menü durumu
-  searchText: string = ''; // Arama metni
-  items: MenuItem[] | undefined; // PrimeNG menü öğeleri
-  user: any; // Kullanıcı bilgileri
+  selectedLanguage: string;
+  orderBadge: any;
+  favoritesBadge: any;
+  cartsBadge: any;
+  userId: any;
+  translatedStockStatus: string;
+  isOpen = false;
+  searchText: string = '';
+  items: MenuItem[] | undefined;
+  user: any;
 
 
   constructor(
@@ -46,47 +45,36 @@ export class NavbarListComponent implements OnInit  {
         this.orderBadge = orders.length.toString();
       });
     });
-
     this.getUserId().subscribe((userId) => {
       this.userService.getFavorites(userId).subscribe((favorites: any) => {
         this.favoritesBadge = favorites.length.toString();
       });
     });
-
     this.getUserId().subscribe((userId) => {
       this.userService.getCarts(userId).subscribe((carts: any) => {
         this.cartsBadge = carts.length.toString();
       });
     });
-
-    // Dil değişikliklerini izle
     this.languageService.language$.subscribe((language: any) => {
       this.selectedLanguage = language;
     });
-    // Sepet güncellendiğinde batch bilgisini güncelle
     this.badgeService.cartUpdated$.subscribe(() => {
       this.updateBadgesCart();
     });
-    // Favori güncellendiğinde batch bilgisini güncelle
     this.badgeService.favoritesUpdated$.subscribe(() => {
       this.updateBadgesFavorites();
     });
-    // Order güncellendiğinde batch bilgisini güncelle
     this.badgeService.orderUpdated$.subscribe(() => {
       this.updateBadgesOrder();
     });
-
-    // Dış tıklamalarda dropdown'ı kapat
     this.renderer.listen('document', 'click', (event: any) => {
       this.onDocumentClick(event);
     });
-    // Kullanıcı ID'sini al ve kullanıcı bilgilerini getir
     this.getUserId().subscribe(() => {
       this.getUser();
     });
   }
 
-  // Favorite Batch bilgilerini günceller
   private updateBadgesFavorites() {
     this.getUserId().subscribe((userId) => {
       this.userService.getFavorites(userId).subscribe((favorites: any) => {
@@ -95,7 +83,6 @@ export class NavbarListComponent implements OnInit  {
     });
   }
 
-  //Order Batch bilgilerini günceller
   private updateBadgesOrder() {
     this.getUserId().subscribe((userId) => {
       this.userService.getOrders(userId).subscribe((orders: any) => {
@@ -104,17 +91,13 @@ export class NavbarListComponent implements OnInit  {
     });
   }
 
-    //Cart Batch bilgilerini günceller
-    private updateBadgesCart() {
+  private updateBadgesCart() {
       this.getUserId().subscribe((userId) => {
         this.userService.getCarts(userId).subscribe((carts: any) => {
           this.cartsBadge = carts.length.toString();
         });
       });
     }
-
-
-
 
   onSearchInputChange() {
     this.searchService.setSearchText(this.searchText);
@@ -155,6 +138,4 @@ export class NavbarListComponent implements OnInit  {
   setLanguage() {
     this.languageService.setLanguage(this.selectedLanguage);
   }
-
-
 }

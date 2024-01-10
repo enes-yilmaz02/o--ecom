@@ -2,7 +2,7 @@ import { Component, OnInit, Renderer2 } from '@angular/core';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product.service';
 import { DataView } from 'primeng/dataview';
-import { SelectItem, MessageService, ConfirmationService } from 'primeng/api';
+import { SelectItem, MessageService } from 'primeng/api';
 import { Observable, map, tap } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
 import { ActivatedRoute } from '@angular/router';
@@ -53,16 +53,9 @@ export class CardComponent implements OnInit {
       localStorage.setItem('isFirstLoad', 'false');
     }
     this.getAllProducts();
-    this.sortOptions = [
-      { label: 'Price High to Low', value: '!price' },
-      { label: 'Price Low to High', value: 'price' },
-    ];
-
     this.searchService.searchText$.subscribe((searchText) => {
       this.searchText = searchText;
     });
-
-     // Dış tıklamalarda form'u kapat
      this.renderer.listen('document', 'click', (event: any) => {
       this.onDocumentClick(event);
     });
@@ -100,20 +93,15 @@ export class CardComponent implements OnInit {
 
   filterProducts(): any[] {
     const search = this.searchText.toLowerCase();
-
     return this.products?.filter((product: any) => {
       const productNameIncludes = product.name.toLowerCase().includes(search);
-
       const categoryIncludes =
         typeof product.category === 'string' &&
         product.category.toLowerCase().includes(search);
-
       const priceMatches = product.priceStacked.toString().includes(search);
-
       const stockStatusMatches =
         typeof product.stockStatus === 'string' &&
         product.selectedStatus.toLowerCase().includes(search);
-
       return (
         productNameIncludes ||
         categoryIncludes ||
@@ -138,6 +126,7 @@ export class CardComponent implements OnInit {
       })
     );
   }
+
   getProductId(): Observable<string> {
     return this.route.params.pipe(map((params) => params['id']));
   }
@@ -145,7 +134,6 @@ export class CardComponent implements OnInit {
   getProductByFilter(category: any) {
     this.productService.getProductsByFilter(category).subscribe((data: any) => {
       this.products = data;
-      console.log(data);
     });
   }
 
@@ -183,9 +171,6 @@ export class CardComponent implements OnInit {
               ),
             });
           }
-        },
-        (error) => {
-          console.log(error);
         }
       );
     });
@@ -197,7 +182,6 @@ export class CardComponent implements OnInit {
 
   onDocumentClick(event: any) {
     const visible = document.querySelector('.visible');
-
     if (!visible?.contains(event.target)) {
       this.visible = false;
     }

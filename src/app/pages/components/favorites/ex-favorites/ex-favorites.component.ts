@@ -74,10 +74,6 @@ export class ExFavoritesComponent  {
             detail:this.tranlocoService.translate('favoritesForm.messageDetailsuccess')
           });
           this.getExFavorites();
-        },
-        (error) => {
-          console.log(productId);
-          console.log(error);
         }
       );
     });
