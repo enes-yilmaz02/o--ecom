@@ -17,6 +17,7 @@ import {
   SocialAuthServiceConfig,
 } from '@abacritt/angularx-social-login';
 import { GoogleLoginProvider } from '@abacritt/angularx-social-login';
+import { BecomeSellerComponent } from './become-seller/become-seller.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { GoogleLoginProvider } from '@abacritt/angularx-social-login';
     ResetPasswordComponent,
     ResetpasswordCodeComponent,
     ResetPasswordPasswordComponent,
+    BecomeSellerComponent,
 
   ],
   imports: [

@@ -203,6 +203,7 @@ export class ContentCartsComponent {
               });
               this.productService.addProductOrders(orderData).subscribe(() => {
                 this.sendEmail();
+                this.badgeService.updateCarts();
                 this.messageService.add({
                   severity: 'success',
                   summary: this.translocoService.translate('successMessage'),
@@ -210,7 +211,6 @@ export class ContentCartsComponent {
                     'completeOrderMessage'
                   ),
                 });
-                this.badgeService.updateCarts();
                 this.clearCart();
               });
             } else {

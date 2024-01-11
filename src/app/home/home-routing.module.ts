@@ -6,6 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { ResetPasswordPasswordComponent } from './reset-password/reset-password-password/reset-password-password.component';
+import { BecomeSellerComponent } from './become-seller/become-seller.component';
 
 
 
@@ -15,6 +16,7 @@ import { ResetPasswordPasswordComponent } from './reset-password/reset-password-
       { path:'' , component:LoginComponent},
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent },
+      { path: 'become-seller', component: BecomeSellerComponent },
       { path: 'reset-password', component: ResetPasswordComponent , children:[
         { path:'code' , component:ResetpasswordCodeComponent},
         { path:'password' , component:ResetPasswordPasswordComponent},

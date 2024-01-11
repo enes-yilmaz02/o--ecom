@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { TranslocoService } from '@ngneat/transloco';
 import { MessageService } from 'primeng/api';
 import { Observable, tap } from 'rxjs';
@@ -24,8 +25,8 @@ export class ProfilManagementComponent implements OnInit {
     private userService: UserService,
     private messageService: MessageService,
     private translocoService: TranslocoService,
-    private productService:ProductService
-
+    private productService:ProductService,
+    private router:Router
   ) {
     this.profilForm = this.formBuilder.group({
       name: [''],
@@ -36,7 +37,7 @@ export class ProfilManagementComponent implements OnInit {
       bDate: [''],
       gender: [''],
       phone: [''],
-      address: [''],
+      city: [''],
     });
     this.getTokenUser();
     this.genders = [
@@ -84,7 +85,7 @@ export class ProfilManagementComponent implements OnInit {
             companyName:this.selectedUser.companyName,
             gender: this.selectedUser.gender,
             phone: this.selectedUser.phone,
-            address: this.selectedUser.address,
+            city: this.selectedUser.city,
             password: this.selectedUser.password,
             confirmpassword: this.selectedUser.confirmpassword,
           });
@@ -102,7 +103,6 @@ export class ProfilManagementComponent implements OnInit {
           email:formValues.email,
           companyName:formValues.companyName
         };
-        console.log(updatedProduct)
         this.productService.updateProduct(product.id, updatedProduct).subscribe(() => {
         });
       });
@@ -120,6 +120,7 @@ export class ProfilManagementComponent implements OnInit {
             summary: this.translocoService.translate('successMessage'),
             detail: this.translocoService.translate('userinfoForm.messageDetailsuccess'),
           });
+          this.router.navigate(['creoter/profil-management'])
         });
       });
     }

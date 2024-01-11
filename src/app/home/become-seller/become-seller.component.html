@@ -1,0 +1,360 @@
+<div class="container">
+  <form [formGroup]="userFormSeller" autocomplete="on">
+    <div
+      class="register-header block justify-content-center align-content-center align-items-center text-2xl w-full"
+      style="background: transparent"
+    >
+      <h2>{{ "sellerForm.header" | transloco }}</h2>
+    </div>
+    <!-- email input start-->
+    <div class="wrapper">
+      <span class="p-float-label mt-4">
+        <i class="pi pi-envelope" style="color: #000"></i>
+        <input
+          pInputText
+          id="email"
+          formControlName="email"
+          autocomplete="email"
+        />
+        <label htmlFor="email">{{
+          "registerForm.emailLabel" | transloco
+        }}</label>
+      </span>
+      <small
+        *ngIf="
+          userFormSeller.get('email')?.invalid &&
+          userFormSeller.get('email')?.touched
+        "
+        class="text-red-500"
+      >
+        {{
+          userFormSeller.get("email").errors != null &&
+          userFormSeller.get("email").errors["whitespace"]
+            ? ("registerForm.emailSmall" | transloco)
+            : ""
+        }}
+        {{
+          userFormSeller.get("email").errors != null &&
+          userFormSeller.get("email").errors["required"]
+            ? ("registerForm.emailSmall" | transloco)
+            : ""
+        }}
+      </small>
+    </div>
+    <!-- email input end-->
+     <!-- Company Name input start-->
+     <div class="wrapper">
+      <span class="p-float-label mt-4">
+        <i class="pi pi-building" style="color: #000"></i>
+        <input pInputText id="companyName"  autocomplete="on" formControlName="companyName" />
+        <label htmlFor="companyName">
+          {{ "creoterForm.nameLabel" | transloco }}
+        </label>
+      </span>
+      <small
+        *ngIf="
+          userFormSeller.get('companyName')?.invalid &&
+          userFormSeller.get('companyName')?.touched
+        "
+        class="text-red-500"
+      >
+        {{
+          userFormSeller.get("companyName").errors != null &&
+          userFormSeller.get("companyName").errors["whitespace"]
+            ? ("creoterForm.nameSmall" | transloco)
+            : ""
+        }}
+        {{
+          userFormSeller.get("companyName").errors != null &&
+          userFormSeller.get("companyName").errors["required"]
+            ? ("creoterForm.nameSmall" | transloco)
+            : ""
+        }}
+      </small>
+    </div>
+    <!-- Company Name input end-->
+
+    <!-- Tax number input start-->
+    <div class="wrapper">
+      <span class="p-float-label mt-4">
+        <i class="pi pi-id-card" style="color: #000"></i>
+        <input pInputText id="taxNumber"  autocomplete="on" formControlName="taxNumber" maxlength="11"/>
+        <label htmlFor="taxNumber">{{
+          "creoterForm.taxNumberLabel" | transloco
+        }}</label>
+      </span>
+      <small
+        *ngIf="
+          userFormSeller.get('taxNumber')?.invalid &&
+          userFormSeller.get('taxNumber')?.touched
+        "
+        class="text-red-500"
+      >
+        {{
+          userFormSeller.get("taxNumber").errors != null &&
+          userFormSeller.get("taxNumber").errors["whitespace"]
+            ? ("creoterForm.taxNumberSmall" | transloco)
+            : ""
+        }}
+        {{
+          userFormSeller.get("taxNumber").errors != null &&
+          userFormSeller.get("taxNumber").hasError("minlength")
+            ? ("registerForm.taxNumberSmallLength" | transloco)
+            : ""
+        }}
+         {{
+          userFormSeller.get("taxNumber").errors != null &&
+          userFormSeller.get("taxNumber").hasError("maxlength")
+            ? ("registerForm.taxNumberSmallLength" | transloco)
+            : ""
+        }}
+        {{
+          userFormSeller.get("taxNumber").errors != null &&
+          userFormSeller.get("taxNumber").errors["required"]
+            ? ("creoterForm.taxNumberSmall" | transloco)
+            : ""
+        }}
+      </small>
+    </div>
+    <!-- Tax number input end-->
+    <!-- city input start-->
+    <div class="wrapper ">
+      <span class="p-float-label mt-4">
+        <i class="pi pi-envelope" style="color: #000"></i>
+        <p-dropdown
+          [options]="cities"
+          formControlName="city"
+          styleClass="dropdown"
+          optionLabel="label"
+          autocomplete="on"
+          [showClear]="true"
+          (ngModelChange)="onCityChange($event)"
+          placeholder="{{'creoterForm.cityName' | transloco}}"
+        ></p-dropdown>
+        <label htmlFor="city">{{ "creoterForm.cityLabel" | transloco }}</label>
+      </span>
+      <small
+        *ngIf="
+          userFormSeller.get('city')?.invalid && userFormSeller.get('city')?.touched
+        "
+        class="text-red-500"
+      >
+        {{
+          userFormSeller.get("city").errors != null &&
+          userFormSeller.get("city").errors["whitespace"]
+            ? ("creoterForm.citySmall" | transloco)
+            : ""
+        }}
+        {{
+          userFormSeller.get("city").errors != null &&
+          userFormSeller.get("city").errors["required"]
+            ? ("creoterForm.citySmall" | transloco)
+            : ""
+        }}
+      </small>
+    </div>
+    <!-- city input end-->
+    <!-- discrits input start-->
+    <div class="wrapper">
+      <span class="p-float-label mt-4">
+        <i class="pi pi-envelope" style="color: #000"></i>
+        <p-dropdown
+          [options]="distcrits"
+          styleClass="dropdown"
+          formControlName="distcrits"
+          optionLabel="label"
+          [showClear]="true"
+          autocomplete="on"
+          placeholder="{{'creoterForm.districtsName' | transloco}}"
+        ></p-dropdown>
+        <label htmlFor="districts">{{
+          "creoterForm.districtsLabel" | transloco
+        }}</label>
+      </span>
+      <small
+        *ngIf="
+          userFormSeller.get('distcrits')?.invalid &&
+          userFormSeller.get('distcrits')?.touched
+        "
+        class="text-red-500"
+      >
+        {{
+          userFormSeller.get("distcrits").errors != null &&
+          userFormSeller.get("distcrits").errors["whitespace"]
+            ? ("creoterForm.districtsSmall" | transloco)
+            : ""
+        }}
+        {{
+          userFormSeller.get("distcrits").errors != null &&
+          userFormSeller.get("distcrits").errors["required"]
+            ? ("creoterForm.districtsSmall" | transloco)
+            : ""
+        }}
+      </small>
+    </div>
+    <!-- discrits input end-->
+
+    <!-- password input start-->
+    <div class="wrapper">
+      <span class="p-float-label mt-4">
+        <i class="pi pi-lock" style="color: #000"></i>
+        <p-password
+          id="password"
+          formControlName="password"
+          styleClass="password"
+          [toggleMask]="true"
+          autocomplete="new-password"
+        ></p-password>
+        <label htmlFor="password">{{
+          "registerForm.passwordLabel" | transloco
+        }}</label>
+      </span>
+      <small
+        *ngIf="
+          userFormSeller.get('password')?.invalid &&
+          userFormSeller.get('password')?.touched
+        "
+        class="text-red-500"
+      >
+        {{
+          userFormSeller.get("password").errors != null &&
+          userFormSeller.get("password").errors["whitespace"]
+            ? ("registerForm.passwordSmall" | transloco)
+            : ""
+        }}
+           {{
+            userFormSeller.get("password").errors != null &&
+            userFormSeller.get("password").errors["minlength"]
+              ? ("registerForm.passwordSmall" | transloco)
+              : ""
+          }}
+        {{
+          userFormSeller.get("password").errors != null &&
+          userFormSeller.get("password").errors["required"]
+            ? ("registerForm.passwordSmall" | transloco)
+            : ""
+        }}
+      </small>
+
+    </div>
+    <!-- password input end-->
+
+    <!-- confirm password input start-->
+    <div class="wrapper">
+      <span class="p-float-label mt-4">
+        <i class="pi pi-lock" style="color: #000"></i>
+        <p-password
+          id="confirmpassword"
+          formControlName="confirmpassword"
+          [toggleMask]="true"
+          styleClass="password"
+          autocomplete="new-password"
+        ></p-password>
+        <label htmlFor="confirmpassword"
+          >{{ "registerForm.confirmLabel" | transloco }}
+        </label>
+      </span>
+      <small
+        *ngIf="
+          userFormSeller.get('confirmpassword')?.invalid &&
+          userFormSeller.get('confirmpassword')?.touched
+        "
+        class="text-red-500"
+      >
+        {{
+          userFormSeller.get("confirmpassword").errors != null &&
+          userFormSeller.get("confirmpassword").errors["whitespace"]
+            ? ("registerForm.confirmSmall" | transloco)
+            : ""
+        }}
+        {{
+          userFormSeller.get("confirmpassword").errors != null &&
+          userFormSeller.get("confirmpassword").errors["minlength"]
+            ? ("registerForm.confirmSmall" | transloco)
+            : ""
+        }}
+        {{
+          userFormSeller.get("confirmpassword").errors != null &&
+          userFormSeller.get("confirmpassword").errors["required"]
+            ? ("registerForm.confirmSmall" | transloco)
+            : ""
+        }}
+      </small>
+      <div *ngIf="userFormSeller.get('confirmpassword').value.length >= 8 && userFormSeller.get('password').value.length >= 8">
+        <small *ngIf="userFormSeller.get('password').value !== userFormSeller.get('confirmpassword').value" class="block text-red-500">
+           {{ 'registerForm.confirmSmallSecond' | transloco }}
+        </small>
+     </div>
+    </div>
+    <!-- confirm password input end-->
+    <div class="flex flex-row align-content-center w-full mt-6 mb-3">
+      <input
+        id="terms"
+        name="terms"
+        type="checkbox"
+        style="width: 15px; height: 15px"
+      />
+      <p for="terms">
+        <a routerLink="/register" target="_self">
+          {{ "registerForm.terms" | transloco }}
+        </a>
+      </p>
+    </div>
+    <!-- button start-->
+    <span class="button-style mt-3 mb-5">
+      <button class="button" (click)="onSubmit()">
+        {{ "sellerForm.buttonLabel" | transloco }}
+      </button>
+    </span>
+    <!-- button end-->
+    <div class="flex flex-row justify-content-between mt-4">
+      <div class="flex">
+        <p>{{ "registerForm.haveaccount" | transloco }}</p>
+      </div>
+
+      <div class="flex">
+        <a routerLink="/login">{{ "registerForm.loginhere" | transloco }}</a>
+      </div>
+    </div>
+    <div class="verifyCode" *ngIf="senderMail | async">
+      <!-- code  input start-->
+      <div class="wrapper">
+        <span class="p-float-label mt-6 mb-4">
+          <i class="pi pi-key" style="color: #000"></i>
+          <input pInputText id="code" formControlName="code" />
+          <label htmlFor="code">
+            {{ "registerForm.codeLabel" | transloco }}
+          </label>
+        </span>
+        <small
+          *ngIf="
+            userFormSeller.get('code')?.invalid &&
+            userFormSeller.get('code')?.touched
+          "
+          class="text-red-500"
+        >
+          {{
+            userFormSeller.get("code").errors != null &&
+            userFormSeller.get("code").errors["whitespace"]
+              ? ("userFormSeller.codeSmall" | transloco)
+              : ""
+          }}
+          {{
+            userFormSeller.get("code").errors != null &&
+            userFormSeller.get("code").errors["required"]
+              ? ("userFormSeller.codeSmall" | transloco)
+              : ""
+          }}
+        </small>
+      </div>
+      <!-- code  input end-->
+      <!-- button start-->
+      <span class="button-style mt-4">
+        <button class="button" (click)="verifyCode()">
+          {{ "sellerForm.codeButton" | transloco }}
+        </button>
+      </span>
+      <!-- button end-->
+    </div>
+  </form>
+</div>

@@ -101,10 +101,12 @@
       <span
         class="register-span flex flex-row justify-content-between align-items-center mb-3">
         <div>
-          <p>{{ "loginForm.haveaccount" | transloco }}</p>
+          <p>{{ "loginForm.haveaccount" | transloco }} <a routerLink="/register"> {{ "loginForm.createnow" | transloco }}</a></p>
+
         </div>
         <div>
-          <a routerLink="/register">{{ "loginForm.createnow" | transloco }}</a>
+          <p>{{ "loginForm.haveseller" | transloco }} <a routerLink="/become-seller"> {{ "loginForm.createseller" | transloco }}</a></p>
+
         </div>
       </span>
     </div>

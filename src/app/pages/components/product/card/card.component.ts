@@ -47,11 +47,6 @@ export class CardComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    const isFirstLoadString = localStorage.getItem('isFirstLoad');
-    if (!isFirstLoadString || isFirstLoadString === 'true') {
-      this.showDialog();
-      localStorage.setItem('isFirstLoad', 'false');
-    }
     this.getAllProducts();
     this.searchService.searchText$.subscribe((searchText) => {
       this.searchText = searchText;

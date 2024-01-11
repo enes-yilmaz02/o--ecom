@@ -91,12 +91,9 @@ export class RegisterComponent {
               this.senderMail.next(true);
               this.messageService.add({
                 severity: 'success',
-                summary: this.translocoService.translate('succesMessage'),
+                summary: this.translocoService.translate('successMessage'),
                 detail:this.translocoService.translate('registerForm.messageDetailsuccess'),
               });
-            },
-            (error) => {
-              console.error('Error sending email', error);
             }
           );
         } else {

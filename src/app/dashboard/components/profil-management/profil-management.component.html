@@ -60,7 +60,7 @@
         </span>
         <span class="p-float-label m-4">
           <i class="pi pi-map-marker" style="color: #000"></i>
-          <input pInputText id="address" formControlName="address" />
+          <input pInputText id="address" formControlName="city" />
           <label htmlFor="address">{{
             "userinfoForm.addressLabel" | transloco
           }}</label>
@@ -69,7 +69,7 @@
           <i class="pi pi-users" style="color: #000;"></i>
           <select formControlName="gender">
             <option value="" disabled selected hidden>{{ "userinfoForm.gender" | transloco  }}</option>
-            <option *ngFor="let gender of genders" [value]="gender">
+            <option *ngFor="let gender of genders" [value]="gender.name">
               {{ gender.name | transloco}}
             </option>
           </select>
