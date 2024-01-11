@@ -53,6 +53,7 @@
   "detailMessagesuccessRS":"Şifre değişikliğiniz başarıyla tamamlandı.",
   "detailMessageerrorRS":"Şifre değişikliğiniz tamamlanamadı.",
 
+
   "loginForm": {
     "header": "Giriş",
     "emailTooltip": "Emaili giriniz",

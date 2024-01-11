@@ -226,14 +226,16 @@ export class ContentCartsComponent {
         );
       });
     } else {
-      this.messageService.add({
-        severity: 'warn',
-        summary: this.translocoService.translate('warnMessage'),
-        detail: this.translocoService.translate(
-          'complateUserInfoMessage'
-        ),
-      });
-      this.router.navigate(['pages/account/user-info']);
+      setTimeout(() => {
+        this.messageService.add({
+          severity: 'warn',
+          summary: this.translocoService.translate('warnMessage'),
+          detail: this.translocoService.translate(
+            'complateUserInfoMessage'
+          ),
+        });
+        this.router.navigate(['pages/account/user-info']);
+      }, 2000);
     }
   }
 

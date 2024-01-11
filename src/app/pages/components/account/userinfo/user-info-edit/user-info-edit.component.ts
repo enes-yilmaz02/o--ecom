@@ -7,18 +7,17 @@ import { Observable, tap } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
-  selector: 'app-userinfo',
-  templateUrl: './userinfo.component.html',
-  styleUrls: ['./userinfo.component.scss'],
+  selector: 'app-user-info-edit',
+  templateUrl: './user-info-edit.component.html',
+  styleUrls: ['./user-info-edit.component.scss']
 })
-export class UserinfoComponent implements OnInit {
+export class UserInfoEditComponent implements OnInit {
   accountForm: FormGroup;
   date: Date | undefined;
   selectedUser: any;
   userId: any;
   genders: any;
   edit: boolean = false;
-
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
@@ -42,7 +41,6 @@ export class UserinfoComponent implements OnInit {
     this.getTokenUser();
     this.genders = [{ name: 'Male' }, { name: 'Female' }, { name: 'Another' }];
   }
-
   getUserId(): Observable<any> {
     return this.userService.getTokenId().pipe(
       tap((id: any) => {
@@ -84,13 +82,11 @@ export class UserinfoComponent implements OnInit {
               'userinfoForm.messageDetailsuccess'
             ),
           });
-          this.router.navigate(['pages/account'])
+          this.router.navigate(['pages/account/user-info'])
         });
       });
     }
   }
 
-  editUser() {
-    this.router.navigate(['pages/account/user-info-edit'])
-  }
+
 }

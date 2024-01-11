@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { TranslocoService } from '@ngneat/transloco';
 import { MessageService } from 'primeng/api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-userpassword',
@@ -18,7 +19,8 @@ export class UserpasswordComponent implements OnInit {
     private formBuilder: FormBuilder,
     private userService: UserService,
     private translocoService: TranslocoService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private router:Router
   ) {
     this.newpassForm = this.formBuilder.group({
       currentPassword: [null, [Validators.required, Validators.minLength(8)]],
@@ -52,14 +54,18 @@ export class UserpasswordComponent implements OnInit {
               this.messageService.add({
                 severity: 'success',
                 summary: this.translocoService.translate('successMessage'),
+                detail:this.translocoService.translate('detailMessagesuccessRS'),
               });
+              this.newpassForm.reset();
+              this.router.navigate(['/pages/account/user-info'])
             },
             (error) => {
               this.messageService.add({
                 severity: 'error',
                 summary: this.translocoService.translate('errorMessage'),
+                detail:this.translocoService.translate('detailMessageerrorRS'),
               });
-              console.log(error);
+
             }
           );
         } else {

@@ -14,7 +14,7 @@ import { UserpasswordComponent } from './components/account/userpassword/userpas
 import { UsercontactComponent } from './components/account/usercontact/usercontact.component';
 import { CartsComponent } from './components/carts/carts.component';
 import { CreoterFormComponent } from './components/creoter-form/creoter-form.component';
-import { DenemeComponent } from './components/deneme/deneme.component';
+import { UserInfoEditComponent } from './components/account/userinfo/user-info-edit/user-info-edit.component';
 
 @NgModule({
   declarations: [],
@@ -40,6 +40,9 @@ import { DenemeComponent } from './components/deneme/deneme.component';
               },
               {
                 path:'user-info' , component:UserinfoComponent
+              },
+              {
+                path:'user-info-edit' , component:UserInfoEditComponent
               },
               {
                 path:'user-contact' , component:UsercontactComponent
