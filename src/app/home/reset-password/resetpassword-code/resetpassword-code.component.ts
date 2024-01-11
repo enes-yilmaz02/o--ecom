@@ -46,7 +46,7 @@ export class ResetpasswordCodeComponent implements OnInit {
 
       } else {
         this.messageService.add({
-          severity:'success',
+          severity:'error',
           summary:  this.translocoService.translate('errorMessage'),
           detail: this.translocoService.translate('rpc.messageDetailerror'),
         });

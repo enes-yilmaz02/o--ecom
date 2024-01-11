@@ -41,7 +41,6 @@ export class ResetPasswordComponent {
     for (let i = 0; i < 6; i++) {
       result += characters.charAt(Math.floor(Math.random() * charactersLength));
     }
-
     return result;
   }
 
@@ -67,9 +66,6 @@ export class ResetPasswordComponent {
           detail: this.translocoService.translate('resetForm.messageDetailsuccess'),
         });
         this.router.navigate(['/code']);
-      },
-      (error) => {
-        console.error('Error sending email', error);
       }
     );
     }else{

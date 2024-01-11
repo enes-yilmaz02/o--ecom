@@ -50,6 +50,8 @@
   "Female":"Female",
   "Another":"Another",
   "complateUserInfoMessage":"Complete your user information.",
+  "detailMessagesuccessRS":"Your password change has been completed successfully.",
+  "detailMessageerrorRS":"Your password change could not be completed.",
 
 
 

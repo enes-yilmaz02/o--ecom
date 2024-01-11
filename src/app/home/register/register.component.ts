@@ -38,7 +38,6 @@ export class RegisterComponent {
 
   }
 
-  //bu fonk db de users collectionda bu email var mı yok mu kontrol ediyor ve bir boolean değer dönüyor
   checkEmailAvailability(email: string): Observable<{ available: boolean }> {
     return this.userService.getUsers().pipe(
       map((users) => {
@@ -48,7 +47,6 @@ export class RegisterComponent {
     );
   }
 
-  // random olarak 6 karakter uzunluğunda bir digit code oluşturan fonk.
   generateRandomCode(): string {
     let result = '';
     const characters = '0123456789';
@@ -59,18 +57,6 @@ export class RegisterComponent {
     }
 
     return result;
-  }
-
-  validateNumericInput(event: any): void {
-    const inputChar = String.fromCharCode(event.charCode);
-
-    // Sayı olup olmadığını kontrol etmek için düzenli ifade kullanabilirsiniz
-    const numericRegex = /^[0-9]*$/;
-
-    if (!numericRegex.test(inputChar) || event.target.value.length >= 11) {
-      // Sayı değilse veya maksimum karakter sınırına ulaşıldıysa girişi engelle
-      event.preventDefault();
-    }
   }
 
   onSubmit() {
@@ -133,7 +119,7 @@ export class RegisterComponent {
         setTimeout(() => {
           localStorage.clear();
           this.router.navigate(['/login']);
-        }, 3000);
+        }, 2000);
       });
     } else {
       this.messageService.add({

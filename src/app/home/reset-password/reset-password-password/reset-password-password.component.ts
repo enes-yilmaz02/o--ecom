@@ -13,11 +13,8 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ResetPasswordPasswordComponent implements OnInit {
   userResetFormPassword: FormGroup;
-
   email: any;
-
   userData: any;
-
   userId: any;
 
   constructor(
@@ -35,7 +32,6 @@ export class ResetPasswordPasswordComponent implements OnInit {
   }
   ngOnInit(): void {
     this.email = this.emailService.getEmail();
-    console.log(this.email);
     this.getUserEmail();
   }
 
@@ -57,6 +53,7 @@ export class ResetPasswordPasswordComponent implements OnInit {
         this.messageService.add({
           severity: 'success',
           summary: this.translocoService.translate('successMessage'),
+          detail: this.translocoService.translate('detailMessagesuccessRS'),
         });
         this.router.navigate(['/login'])
       },
@@ -64,8 +61,8 @@ export class ResetPasswordPasswordComponent implements OnInit {
         this.messageService.add({
           severity: 'error',
           summary: this.translocoService.translate('errorMessage'),
+          detail: this.translocoService.translate('detailMessageerrorRS'),
         });
-        console.log(error);
       }
       );
     }

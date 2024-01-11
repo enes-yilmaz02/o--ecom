@@ -50,6 +50,8 @@
   "Female": "Kadın",
   "Another": "Diğer",
   "complateUserInfoMessage":"Kullanıcı bilgilerinizi tamamlayınız.",
+  "detailMessagesuccessRS":"Şifre değişikliğiniz başarıyla tamamlandı.",
+  "detailMessageerrorRS":"Şifre değişikliğiniz tamamlanamadı.",
 
   "loginForm": {
     "header": "Giriş",
