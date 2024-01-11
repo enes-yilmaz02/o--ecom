@@ -23,9 +23,6 @@ export class LoginComponent implements OnInit , AfterViewInit {
   auth2: any;
   socialUser!: SocialUser;
 
-
-
-
   constructor(
     private formBuilder: FormBuilder,
     private messageService: MessageService,
@@ -34,6 +31,13 @@ export class LoginComponent implements OnInit , AfterViewInit {
     private translocoService: TranslocoService,
 
   ) {}
+
+  ngOnInit() {
+    this.userFormLogin = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.minLength(2)]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
+    });
+  }
 
   ngAfterViewInit(): void {
    google.accounts.id.initialize({
@@ -44,15 +48,6 @@ export class LoginComponent implements OnInit , AfterViewInit {
       document.getElementById("buttonDiv"),
       { size: "medium" , type:"button"}
     );
-  }
-
-
-
-  ngOnInit() {
-    this.userFormLogin = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.minLength(2)]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
-    });
   }
 
   handleGoogleSignIn(response: any) {

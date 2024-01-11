@@ -84,7 +84,6 @@ export class NavbarListComponent implements OnInit  {
   }
 
   private updateBadgesOrder() {
-    console.log('Order badeg');
     this.getUserId().subscribe((userId) => {
       this.userService.getOrders(userId).subscribe((orders: any) => {
         this.orderBadge = orders.length.toString();

@@ -34,6 +34,8 @@ export class CardComponent implements OnInit {
   productData: any;
   visible: boolean = false;
   isFirstLoad: boolean = true;
+  selectedButton: string;
+
 
   constructor(
     private productService: ProductService,
@@ -54,6 +56,11 @@ export class CardComponent implements OnInit {
      this.renderer.listen('document', 'click', (event: any) => {
       this.onDocumentClick(event);
     });
+  }
+
+
+  onButtonClick(category: string): void {
+    this.selectedButton = category;
   }
 
   getFileUrl(fileName: string): string {
@@ -90,18 +97,8 @@ export class CardComponent implements OnInit {
     const search = this.searchText.toLowerCase();
     return this.products?.filter((product: any) => {
       const productNameIncludes = product.name.toLowerCase().includes(search);
-      const categoryIncludes =
-        typeof product.category === 'string' &&
-        product.category.toLowerCase().includes(search);
-      const priceMatches = product.priceStacked.toString().includes(search);
-      const stockStatusMatches =
-        typeof product.stockStatus === 'string' &&
-        product.selectedStatus.toLowerCase().includes(search);
       return (
-        productNameIncludes ||
-        categoryIncludes ||
-        priceMatches ||
-        stockStatusMatches
+        productNameIncludes
       );
     });
   }

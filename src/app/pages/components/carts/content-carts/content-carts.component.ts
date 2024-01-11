@@ -159,10 +159,7 @@ export class ContentCartsComponent {
         };
         this.userService.sendEmailGlobal(body).subscribe(
           () => {
-            console.log('satıcıya mail gönderildi');
-          },
-          (error) => {
-            console.error('Error sending email', error);
+           return;
           }
         );
       });
@@ -203,7 +200,7 @@ export class ContentCartsComponent {
               });
               this.productService.addProductOrders(orderData).subscribe(() => {
                 this.sendEmail();
-                this.badgeService.updateCarts();
+                this.badgeService.updatedOrders();
                 this.messageService.add({
                   severity: 'success',
                   summary: this.translocoService.translate('successMessage'),
