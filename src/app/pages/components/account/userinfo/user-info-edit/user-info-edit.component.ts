@@ -4,12 +4,13 @@ import { Router } from '@angular/router';
 import { TranslocoService } from '@ngneat/transloco';
 import { MessageService } from 'primeng/api';
 import { Observable, tap } from 'rxjs';
+import { BadgeService } from 'src/app/services/badge.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-user-info-edit',
   templateUrl: './user-info-edit.component.html',
-  styleUrls: ['./user-info-edit.component.scss']
+  styleUrls: ['./user-info-edit.component.scss'],
 })
 export class UserInfoEditComponent implements OnInit {
   accountForm: FormGroup;
@@ -18,12 +19,14 @@ export class UserInfoEditComponent implements OnInit {
   userId: any;
   genders: any;
   edit: boolean = false;
+
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
     private messageService: MessageService,
     private translocoService: TranslocoService,
-    private router:Router
+    private router: Router,
+    private badgeService:BadgeService
   ) {
     this.accountForm = this.formBuilder.group({
       name: [''],
@@ -39,7 +42,7 @@ export class UserInfoEditComponent implements OnInit {
 
   ngOnInit(): void {
     this.getTokenUser();
-    this.genders = [{ name: 'Male' }, { name: 'Female' }, { name: 'Another' }];
+    this.genders = ['Male', 'Female' ,'Another' ];
   }
   getUserId(): Observable<any> {
     return this.userService.getTokenId().pipe(
@@ -82,11 +85,12 @@ export class UserInfoEditComponent implements OnInit {
               'userinfoForm.messageDetailsuccess'
             ),
           });
-          this.router.navigate(['pages/account/user-info'])
+          this.badgeService.updateName();
+          setTimeout(() => {
+            this.router.navigate(['pages/account/user-info']);
+          }, 1000);
         });
       });
     }
   }
-
-
 }

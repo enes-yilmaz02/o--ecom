@@ -3,7 +3,7 @@ import { Observable, tap } from 'rxjs';
 import { BadgeService } from 'src/app/services/badge.service';
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
-import { MenuItem } from 'primeng/api';
+import { MenuItem, MessageService } from 'primeng/api';
 import { Renderer2 } from '@angular/core';
 import { OnChangeService } from 'src/app/services/onchange.service';
 import { LanguageService } from 'src/app/services/language.service';
@@ -36,7 +36,7 @@ export class NavbarListComponent implements OnInit  {
     private router: Router,
     private renderer: Renderer2,
     private searchService: OnChangeService,
-    private languageService: LanguageService
+    private languageService: LanguageService,
   ) {}
 
   ngOnInit(): void {
@@ -73,6 +73,10 @@ export class NavbarListComponent implements OnInit  {
     this.getUserId().subscribe(() => {
       this.getUser();
     });
+    this.badgeService.nameUpdated$.subscribe(() => {
+      this.updateName();
+    });
+
   }
 
   private updateBadgesFavorites() {
@@ -96,6 +100,12 @@ export class NavbarListComponent implements OnInit  {
         this.userService.getCarts(userId).subscribe((carts: any) => {
           this.cartsBadge = carts.length.toString();
         });
+      });
+    }
+
+    private updateName() {
+      this.getUserId().subscribe(() => {
+        this.getUser();
       });
     }
 

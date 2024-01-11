@@ -63,13 +63,12 @@
 
         <span class="p-float-label m-4">
           <i class="pi pi-users" style="color: #000"></i>
-          <!-- <label htmlFor="gender"> {{ "userinfoForm.gender" | transloco }}</label> -->
           <select formControlName="gender">
             <option value="" disabled selected hidden>
               {{ "userinfoForm.gender" | transloco }}
             </option>
-            <option *ngFor="let gender of genders" [value]="gender.name">
-              {{ gender.name | transloco }}
+            <option *ngFor="let gender of genders" [value]="gender">
+              {{ gender | transloco }}
             </option>
           </select>
         </span>

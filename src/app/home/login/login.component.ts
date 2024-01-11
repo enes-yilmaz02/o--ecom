@@ -187,9 +187,6 @@ export class LoginComponent implements OnInit , AfterViewInit {
     })
   }
 
-
-
-  //bu fonk db de users collectionda bu email var mı yok mu kontrol ediyor ve bir boolean değer dönüyor
   checkEmailAvailability(email: any): Observable<{ available: boolean }> {
     return this.userService.getUsers().pipe(
       map((users) => {
@@ -199,10 +196,6 @@ export class LoginComponent implements OnInit , AfterViewInit {
     );
   }
 
-
-
-
-  // localstorageda ki tokeni çözdükten sonra alınan id'yi alan fonk.
   getUserId(): Observable<any> {
     return this.userService.getTokenId().pipe(
       tap((id: any) => {
@@ -211,12 +204,10 @@ export class LoginComponent implements OnInit , AfterViewInit {
     );
   }
 
-  // userId ile kullanıcı datsını getiren fonk.
   getUserData() {
     this.getUserId().subscribe((userId: any) => {
       this.userService.getTokenUser(userId).subscribe((data: any) => {
         this.role = data;
-        console.log(this.role);
       });
     });
   }
@@ -233,11 +224,15 @@ export class LoginComponent implements OnInit , AfterViewInit {
                 .getUserWithEmail(formValuesArray.email)
                 .subscribe((data: any) => {
                   this.role = data.role;
-
+                  const name = data.name;
                   switch (this.role) {
                     case 'USER':
                       setTimeout(() => {
-                        this.router.navigate(['pages']);
+                        if(name){
+                          this.router.navigate(['pages']);
+                        }else{
+                          this.router.navigate(['pages/account/user-info-edit']);
+                        }
                       }, 1000);
                       break;
 
