@@ -17,6 +17,7 @@ export class RegisterComponent {
   userFormRegister: FormGroup;
   generatedCode: any;
   senderMail: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  activeButton: boolean = false;
   Genders: any[] = [
     { name: 'Male'},
     { name: 'Female' },
@@ -75,6 +76,7 @@ export class RegisterComponent {
           this.userService.sendEmailGlobal(body).subscribe(
             () => {
               this.senderMail.next(true);
+              this.activeButton = true;
               this.messageService.add({
                 severity: 'success',
                 summary: this.translocoService.translate('successMessage'),

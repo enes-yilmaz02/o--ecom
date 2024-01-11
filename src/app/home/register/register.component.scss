@@ -132,6 +132,11 @@ $module-color:#253741;
       text-align: center;
       margin-top: 20px;
 
+      button[disabled] {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+
       button {
         width: 100%;
         padding: 15px;

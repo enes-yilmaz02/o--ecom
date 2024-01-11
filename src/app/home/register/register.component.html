@@ -152,7 +152,7 @@
     </div>
     <!-- button start-->
     <span class="button-style mt-3 mb-5">
-      <button class="button" (click)="onSubmit()">
+      <button class="button" (click)="onSubmit()" [disabled]="activeButton">
         {{ "registerForm.buttonLabel" | transloco }}
       </button>
     </span>
