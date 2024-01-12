@@ -125,7 +125,7 @@
               height="170"
             />
           </td>
-          <td>{{ product?.priceStacked }}</td>
+          <td>{{ product?.priceStacked | currency:'USD'  }}</td>
           <td>{{ product?.quantity }}</td>
           <td> <p-rating
             [ngModel]="product?.valueRating"

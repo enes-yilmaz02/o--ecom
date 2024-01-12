@@ -1,6 +1,7 @@
 {
   "name": "ecom-primeng",
   "version": "0.0.0",
+  "type": "module",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -32,7 +33,7 @@
     "angularx-social-login": "^4.1.0",
     "bcrypt": "^5.1.1",
     "bcryptjs-then": "^1.0.1",
-    "chart.js": "^4.4.0",
+    "chart.js": "^3.9.1",
     "file-saver": "^2.0.5",
     "firebase": "^10.5.2",
     "jquery": "^3.7.1",

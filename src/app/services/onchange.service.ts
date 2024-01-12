@@ -18,9 +18,9 @@ export class OnChangeService {
     this.searchTextSubject.next(searchText);
   }
 
-  notifyUpdate(value: any) {
-    this.updateSubject.next(value);
-  }
+  // notifyUpdate(value: any) {
+  //   this.updateSubject.next(value);
+  // }
 
   changeExFavorites() {
     this.exFavoritesUpdatedSubject.next();
